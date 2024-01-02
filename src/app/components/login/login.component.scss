@@ -1,0 +1,23 @@
+.login {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #132c338f;
+    width: 300px;
+    border-radius: 20px;
+    margin: auto; /* Zentriert den Container horizontal */
+    padding: 30px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Zentriert den Container vertikal */
+}
+
+.title {
+    font-size: 1.5em;
+    color: white;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+}
