@@ -1,10 +1,16 @@
-<button class="button fixedButton">Login</button>
+<button class="button fixedButton" [routerLink]="['/login']">Login</button>
 <div class="startbox">
-    
+
     <div class="title">
-    "CineFlow: Fließe mit der Kreativität – Streamen, Teilen, Spaß haben!"
+        Streamen, Teilen, Spaß haben
+    </div>
+    <div class="signUpBox">
+        <form [formGroup]="signUpEmailForm" (ngSubmit)="onSubmit()">
+            <div>
+
+                <input type="text" id="username" formControlName="email" placeholder="Your email">
+            </div>
+        </form>
+        <button class="button">SignUp</button>
+    </div>
 </div>
-
-<button class="button">SignUp</button></div>
-
-

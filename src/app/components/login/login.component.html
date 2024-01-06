@@ -1,23 +1,25 @@
-<div class="title">
-    "CineFlow: Fließe mit der Kreativität – Streamen, Teilen, Spaß haben!"
-</div>
-
-<div class="login">
-
-    <span class="login-headline">Log In</span>
-
-
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div>
-            <label for="username">Benutzername:</label>
-            <input type="text" id="username" formControlName="username">
-        </div>
-        <div>
-            <label for="password">Passwort:</label>
-            <input type="password" id="password" formControlName="password">
-        </div>
-        <button type="submit" [disabled]="!loginForm.valid">Einloggen</button>
-    </form>
-
-
+<div class="startbox">
+    <div class="title">
+        Streamen, Teilen, Spaß haben
+    </div>
+    
+    <div class="login">
+    
+        <span class="login-headline">Log In</span>
+    
+    
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="username">Benutzername:</label>
+                <input type="text" id="username" formControlName="username">
+            </div>
+            <div>
+                <label for="password">Passwort:</label>
+                <input type="password" id="password" formControlName="password">
+            </div>
+            <button type="submit" [disabled]="!loginForm.valid">Einloggen</button>
+        </form>
+    
+    
+    </div>
 </div>

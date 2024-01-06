@@ -1,3 +1,10 @@
+.startbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
 .login {
     color: white;
     display: flex;
@@ -15,9 +22,10 @@
 }
 
 .title {
-    font-size: 1.5em;
+    margin-top: 150px;
+    text-align: center;
+    width: 500px;
+    font-size:2.5em;
     color: white;
-    position: absolute;
-    top: 10%;
-    left: 30%;
+   
 }
