@@ -7,10 +7,12 @@ import { OverviewComponent } from './components/overview/overview.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { ImpressumComponent } from './components/impressum/impressum.component';
 import { DatenschutzComponent } from './components/datenschutz/datenschutz.component';
+import { StartComponent } from './components/start/start.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'start', pathMatch: 'full' },
+  { path: 'start', component: StartComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent},
   { path: 'impressum', component: DatenschutzComponent},

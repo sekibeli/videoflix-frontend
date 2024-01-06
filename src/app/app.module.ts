@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -10,6 +10,8 @@ import { OverviewComponent } from './components/overview/overview.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { DatenschutzComponent } from './components/datenschutz/datenschutz.component';
 import { ImpressumComponent } from './components/impressum/impressum.component';
+import { StartComponent } from './components/start/start.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -20,12 +22,15 @@ import { ImpressumComponent } from './components/impressum/impressum.component';
     OverviewComponent,
     DetailComponent,
     DatenschutzComponent,
-    ImpressumComponent
+    ImpressumComponent,
+    StartComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

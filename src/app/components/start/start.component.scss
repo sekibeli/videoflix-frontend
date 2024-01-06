@@ -1,0 +1,28 @@
+.startbox {
+    display: flex;
+    flex-direction: column;
+}
+.title {
+    font-size:2em;
+    color: white;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+}
+.button {
+    background-color: rgb(196, 5, 5);
+    border: 1px solid white; 
+    padding: 10px 20px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgb(240, 5, 5);
+    }
+}
+.fixedButton {
+    position: absolute;
+    top: 5%;
+    right: 10%;
+}
