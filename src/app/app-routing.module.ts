@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'start', component: StartComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent},
-  { path: 'impressum', component: DatenschutzComponent},
+  { path: 'datenschutz', component: DatenschutzComponent},
   { path: 'impressum', component: ImpressumComponent},
   { path: 'home', component: HomeComponent,
 

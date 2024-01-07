@@ -4,7 +4,7 @@
     align-items: center;
    
 }
-.login-headline {
+.headline {
     margin-bottom: 10px;
     font-size: 2em;
 }
@@ -12,7 +12,8 @@
     // margin-top: 150px;
     text-align: center;
     font-size:2.5em;
-    // color: white;
+    color: white;
+    line-height: 1.2em;
 
 }
 .titleadd {
@@ -40,7 +41,7 @@
 .signUpBox {
     color: white;
     padding: 15px 27px;
-    margin-top: 50px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;

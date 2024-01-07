@@ -5,13 +5,14 @@
         Streamen, Teilen, Spaß haben
     </div>
     <div class="signUpBox">
-        <form [formGroup]="signUpEmailForm" (ngSubmit)="onSubmit()">
+        <form class="formgroup" [formGroup]="signUpEmailForm" (ngSubmit)="onSubmit()">
             <div>
 
                 <input class="form-control" type="text" id="username" formControlName="email" placeholder="Deine email">
             </div>
+            <button type="submit" class="btn btn-danger">SignUp</button>
         </form>
-        <!-- <button class="button">SignUp</button> -->
-        <button type="submit" class="btn btn-danger">SignUp</button>
+        
+        <!-- <button type="submit" class="btn btn-danger">SignUp</button> -->
     </div>
 </div>
