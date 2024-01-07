@@ -1,1 +1,39 @@
-<p>signup works!</p>
+<button class="btn btn-danger fixedButton" [routerLink]="['/start']">zurück</button>
+<div class="startbox">
+    <div class="title titleadd">Videoflix</div>
+    <div class="title">
+        Streamen, Teilen, Spaß haben
+    </div>
+
+    <div class="signUpBox">
+
+        <span class="headline">Sign Up</span>
+
+
+        <form class="formgroup" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            <div>
+                <input class="form-control" type="email" id="email" formControlName="email"
+                    placeholder="Deine email">
+            </div>
+            <div>
+                <input class="form-control" type="text" id="username" formControlName="username"
+                    placeholder="Benutzername">
+            </div>
+            <div>
+                <input class="form-control" type="text" id="phone" formControlName="phone"
+                    placeholder="Telefon">
+            </div>
+            <div>
+                <input class="form-control" type="password" id="password" formControlName="password"
+                    placeholder="Passwort">
+            </div>
+            <div>
+                <input class="form-control" type="password" id="passwordRepeat" formControlName="passwordRepeat"
+                    placeholder="Passwort wiederholen">
+            </div>
+            <button class="btn btn-danger" type="submit" [disabled]="signUpForm.valid">Konto anlegen</button>
+        </form>
+
+
+    </div>
+</div>

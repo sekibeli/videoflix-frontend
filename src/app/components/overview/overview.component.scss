@@ -1,0 +1,26 @@
+.content {
+    position: absolute;
+    top: 70px;
+  
+}
+
+.rowHead {
+border-bottom: 1px solid rgba(0, 0, 0, 0.334);
+}
+
+.section {
+    padding: 20px;
+    width: 100vw;
+   font-size: 2em;
+    background-color: rgba(255, 255, 255, 0.402);
+    color: white;
+}
+.videoListing {
+    display: flex;
+}
+.videoBox {
+    width: 150px;
+    height: 100px;
+    margin-right: 20px;
+    background-color: grey;
+}
