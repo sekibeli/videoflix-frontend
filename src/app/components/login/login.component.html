@@ -1,23 +1,25 @@
+<button class="btn btn-danger fixedButton" [routerLink]="['/start']">zurück</button>
 <div class="startbox">
+    <div class="title titleadd">Videoflix</div>
     <div class="title">
         Streamen, Teilen, Spaß haben
     </div>
     
-    <div class="login">
+    <div class="signUpBox">
     
         <span class="login-headline">Log In</span>
     
     
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form class="formgroup" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div>
-                <label for="username">Benutzername:</label>
-                <input type="text" id="username" formControlName="username">
+                <!-- <label for="username">Benutzername:</label> -->
+                <input class="form-control" type="text" id="username" formControlName="username" placeholder="Benutzername">
             </div>
             <div>
-                <label for="password">Passwort:</label>
-                <input type="password" id="password" formControlName="password">
+                <!-- <label for="password">Passwort:</label> -->
+                <input class="form-control" type="password" id="password" formControlName="password" placeholder="Passwort">
             </div>
-            <button type="submit" [disabled]="!loginForm.valid">Einloggen</button>
+            <button class="btn btn-danger" type="submit" [disabled]="!loginForm.valid">Einloggen</button>
         </form>
     
     

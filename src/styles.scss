@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+
 body {
-    background-image: url('assets/img/vetflix.png'); /* Pfad zum Hintergrundbild anpassen */
+    background-image: url('assets/img/dallebg.jpg'); /* Pfad zum Hintergrundbild anpassen */
     background-size: cover; /* Sorgt dafür, dass der Hintergrund das gesamte Element bedeckt */
     background-position: center; /* Zentriert das Bild */
     background-repeat: no-repeat; /* Verhindert das Wiederholen des Bildes */

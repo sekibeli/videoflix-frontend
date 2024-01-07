@@ -4,26 +4,38 @@
     align-items: center;
    
 }
+
+.login{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control {
+    width: 250px;
+}
 .title {
-    margin-top: 150px;
+    // margin-top: 150px;
     text-align: center;
-    width: 500px;
     font-size:2.5em;
-    color: white;
-    // position: absolute;
-    // top: 10%;
-    // left: 30%;
+    // color: white;
+
+}
+.titleadd {
+    margin-top: 100px;
+    font-size: 5em;
+    color: #FEFDC4;
 }
 
 .signUpBox {
+    padding: 15px 27px;
     margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    // flex-direction: column;
     background-color: rgba(0, 0, 0, 0.482);
-    border-radius: 30px;
-    width: 300px;
+    border-radius: 10px;
+    width: 350px;
 }
 .button {
     margin-top: 20px;
@@ -41,6 +53,6 @@
 }
 .fixedButton {
     position: absolute;
-    // top: 5%;
+     top: 5%;
     right: 10%;
 }
