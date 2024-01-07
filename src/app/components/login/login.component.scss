@@ -4,28 +4,64 @@
     align-items: center;
    
 }
+.login-headline {
+    margin-bottom: 10px;
+    font-size: 2em;
+}
+.title {
+    // margin-top: 150px;
+    text-align: center;
+    font-size:2.5em;
+    // color: white;
+
+}
+.titleadd {
+    margin-top: 100px;
+    font-size: 5em;
+    color: #FEFDC4;
+}
 
 .login {
     color: white;
     display: flex;
+    flex-direction:column;
     justify-content: center;
     align-items: center;
-    background-color: #132c338f;
-    width: 300px;
+    background-color: #132c33de;
+    // width: 300px;
     border-radius: 20px;
     margin: auto; /* Zentriert den Container horizontal */
     padding: 30px;
     position: absolute;
-    top: 30%;
+    top: 66%;
     left: 50%;
     transform: translate(-50%, -50%); /* Zentriert den Container vertikal */
 }
-
-.title {
-    margin-top: 150px;
-    text-align: center;
-    width: 500px;
-    font-size:2.5em;
+.signUpBox {
     color: white;
-   
+    padding: 15px 27px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.482);
+    border-radius: 10px;
+    width: 350px;
+}
+.form-control {
+    margin-bottom: 5px;
+    width: 250px;
+}
+
+.formgroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.fixedButton {
+    position: absolute;
+     top: 5%;
+    right: 10%;
 }

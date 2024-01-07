@@ -1,6 +1,6 @@
-<button class="button fixedButton" [routerLink]="['/login']">Login</button>
+<button class="btn btn-danger fixedButton" [routerLink]="['/login']">Login</button>
 <div class="startbox">
-
+<div class="title titleadd">Videoflix</div>
     <div class="title">
         Streamen, Teilen, Spaß haben
     </div>
@@ -8,9 +8,10 @@
         <form [formGroup]="signUpEmailForm" (ngSubmit)="onSubmit()">
             <div>
 
-                <input type="text" id="username" formControlName="email" placeholder="Your email">
+                <input class="form-control" type="text" id="username" formControlName="email" placeholder="Deine email">
             </div>
         </form>
-        <button class="button">SignUp</button>
+        <!-- <button class="button">SignUp</button> -->
+        <button type="submit" class="btn btn-danger">SignUp</button>
     </div>
 </div>
