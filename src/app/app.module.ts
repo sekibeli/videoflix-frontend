@@ -12,6 +12,7 @@ import { DatenschutzComponent } from './components/datenschutz/datenschutz.compo
 import { ImpressumComponent } from './components/impressum/impressum.component';
 import { StartComponent } from './components/start/start.component';
 import { HeaderComponent } from './components/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { HeaderComponent } from './components/header/header.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

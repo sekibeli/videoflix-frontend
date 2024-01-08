@@ -12,3 +12,11 @@ body {
     height: 100%; /* Höhe auf 100% setzen, damit der gesamte Bereich bedeckt ist */
     margin: 0; /* Entfernt standardmäßige Randabstände */
 }
+
+.warning {
+    color: red;
+}
+
+.success {
+    color: green;
+}
