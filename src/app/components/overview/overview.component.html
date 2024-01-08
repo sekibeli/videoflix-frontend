@@ -1,14 +1,31 @@
 <div class="content">
 
     <div class="section">
-        <div class="rowHead">
-            Funny
+
+
+        <div *ngFor="let category of getCategories()">
+            <h2>{{ category }}</h2>
+            <div *ngFor="let video of videosByCategory[category]">
+              <!-- Darstellung jedes Videos -->
+              <div>
+                <h3>{{ video.title }}</h3>
+                <p>{{ video.description }}</p>
+                <!-- Weitere Details des Videos -->
+              </div>
+            </div>
+          </div>
+
+        <!-- <div class="rowHead" *ngFor="let category of getCategories()" >
+            <h2>{{ category}}</h2>
         </div>
         <div class="videoListing">
-            <div *ngFor="let video of videos">
-                <div class="videoBox"></div>
+            <div *ngFor="let video of videosByCategory[category]">
+                <div class="videoBox">
+                    <h3>{{ video.title }}</h3>
+                    <p>{{ video.description }}</p>
+                </div>
             </div>
-        </div>
+        </div> -->
     </div>
  
 </div>
