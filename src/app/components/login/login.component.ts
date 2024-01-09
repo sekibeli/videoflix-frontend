@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginData } from 'src/app/services/user-interface';
 
@@ -12,6 +13,7 @@ import { LoginData } from 'src/app/services/user-interface';
 export class LoginComponent implements OnInit {
   isEmailPasswordInvalid = false;
   loginForm!: FormGroup;
+  notVerifiedMessage = false;
 
 
   constructor(
@@ -50,15 +52,38 @@ export class LoginComponent implements OnInit {
       const formData = this.loginForm.value;
       let resp: any = await this.authService.login(formData);
       localStorage.setItem('token', resp['token']);
-      // this.checkRememberMe(formData);
       this.router.navigateByUrl('/home');
-    } catch (err) {
-      this.handleLoginError();
+    } catch (error: any) {
+      if (error.status === 401) {
+        this.handleSpecificError(error.error?.error);
+      }
     }
   }
 
 
-  handleLoginError() {
+  handleSpecificError(errorMessage: string) {
+    switch (errorMessage) {
+      case 'Please verify your email first.':
+        this.handleEmailNotVerifiedError();
+        this.isEmailPasswordInvalid = false;
+        break;
+      case 'Invalid login data':
+        this.handleInvalidLoginDataError();
+        this.notVerifiedMessage = false;
+        break;
+    }
+  }
+
+
+  handleEmailNotVerifiedError() {
+    this.notVerifiedMessage = true;
+    setTimeout(() => {
+      this.notVerifiedMessage = false;
+    }, 3000);
+  }
+
+
+  handleInvalidLoginDataError() {
     this.isEmailPasswordInvalid = true;
     setTimeout(() => {
       this.isEmailPasswordInvalid = false;

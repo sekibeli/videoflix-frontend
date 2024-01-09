@@ -18,9 +18,10 @@ export class AuthService {
   }
 
 
-  login(formData: LoginData) {
+  async login(formData: LoginData) {
     const url = environment.baseUrl + '/login/';
-    return lastValueFrom(this.http.post(url, formData));
+    return lastValueFrom(this.http.post(url, formData)).
+      catch(err => Promise.reject(err));
   }
 
 
