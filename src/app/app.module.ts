@@ -13,6 +13,7 @@ import { ImpressumComponent } from './components/impressum/impressum.component';
 import { StartComponent } from './components/start/start.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     DatenschutzComponent,
     ImpressumComponent,
     StartComponent,
-    HeaderComponent
+    HeaderComponent,
+    EmailVerifyComponent
   ],
   imports: [
     BrowserModule,

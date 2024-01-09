@@ -38,7 +38,7 @@
 
             <!-- Password section -->
             <div>
-                <input class="form-control" type="password" id="password" formControlName="password"
+                <input class="form-control" type="password" formControlName="password"
                     placeholder="Passwort">
                 <span *ngIf="submitted && signUpForm.get('password')?.errors?.['required']" class="warning">
                     Please enter a password.
@@ -47,13 +47,13 @@
 
             <!-- Confirm passsword section -->
             <div>
-                <input class="form-control" type="password" id="passwordRepeat" formControlName="passwordRepeat"
+                <input class="form-control" type="password" formControlName="confirmPassword"
                     placeholder="Passwort wiederholen">
                 <span class="warning"
                     *ngIf="signUpForm.errors?.['notSame'] && signUpForm.get('confirmPassword')?.touched">Passwords do not match.</span>
             </div>
             
-            <button class="btn btn-danger" type="submit" [disabled]="signUpForm.valid || isButtonDisabled">Konto anlegen</button>
+            <button class="btn btn-danger" type="submit" [disabled]="!signUpForm.valid || isButtonDisabled">Konto anlegen</button>
             <span *ngIf="signedUpInfo" class="success">Signed up succesfully</span>
         </form>
 

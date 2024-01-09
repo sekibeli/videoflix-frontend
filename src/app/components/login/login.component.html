@@ -8,7 +8,7 @@
     <div class="signUpBox">
 
         <span class="headline">Log In</span>
-
+        <span class="warning" [class.d-none]="!isEmailPasswordInvalid">Invalid email or password!</span>
         <form class="formgroup" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
             <div>

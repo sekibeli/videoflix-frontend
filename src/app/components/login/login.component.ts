@@ -27,10 +27,10 @@ export class LoginComponent implements OnInit {
 
 
   initFormGroup() {
-    const savedUsername = localStorage.getItem('username');
+    // const savedUsername = localStorage.getItem('username');
 
     this.loginForm = this.formBuilder.group({
-      username: [savedUsername || '', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required],
       // rememberMe: [!!savedUsername],
     });
