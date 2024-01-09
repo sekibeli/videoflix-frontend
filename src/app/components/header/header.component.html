@@ -1,7 +1,17 @@
 <div class="headerBox">
-    <div class="title">Videoflix</div>
+    <div class="title">
+        <img src="../../../assets/img/logovideoflix.png" alt="" >
+    </div>
+    <div class="headerLinks">
+        <div class="link">Startseite</div>
+        <div class="link">Alle Filme</div>
+        <div class="link">Neu und beliebt</div>
+        <div class="link">Meine Liste</div>
+    </div>
+   
 
-    <div>
+    <div class="headerLinks">
+        <div>Suche</div>
         <button class="btn btn-danger " [routerLink]="['/start']">Mein Profil</button>
         <button class="btn btn-danger " (click)="onLogout()">Log out</button>
     </div>

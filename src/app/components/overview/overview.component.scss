@@ -1,3 +1,5 @@
+
+
 .content {
     position: absolute;
     top: 70px;
@@ -6,21 +8,60 @@
 
 .rowHead {
 border-bottom: 1px solid rgba(0, 0, 0, 0.334);
+border-top: 1px solid rgba(0, 0, 0, 0.334);
+
+
+padding: 0px 20px;
 }
 
 .section {
-    padding: 20px;
+    // padding: 20px;
     width: 100vw;
    font-size: 2em;
-    background-color: rgba(255, 255, 255, 0.402);
+   background-color: rgba(0, 0, 0, 0.563);
     color: white;
 }
 .videoListing {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+
+.description {
+    font-size: 0.5em;
+    color: black;
 }
 .videoBox {
-    width: 150px;
-    height: 100px;
-    margin-right: 20px;
-    background-color: grey;
+//    padding: 0 10px;
+    margin-right: 5px;
+  
+}
+video {
+
+    position: relative;
+    border-radius: 5px;
+   
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.718);
+    cursor: pointer;
+
+}
+.videoTitleHeader {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.773);
+    width: 240px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    color: white;
+    font-size: 0.6em;
+}
+
+.relative {
+     position: relative;
 }

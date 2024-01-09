@@ -1,31 +1,27 @@
-<div class="content">
-
+<div class="content" style="background-color: rgba(0, 0, 0, 0.8)">
     <div class="section">
-
-
         <div *ngFor="let category of getCategories()">
-            <h2>{{ category }}</h2>
-            <div *ngFor="let video of videosByCategory[category]">
-              <!-- Darstellung jedes Videos -->
-              <div>
-                <h3>{{ video.title }}</h3>
-                <p>{{ video.description }}</p>
-                <!-- Weitere Details des Videos -->
-              </div>
+            <div class="rowHead">
+                <h2>{{ category }}</h2>
             </div>
-          </div>
-
-        <!-- <div class="rowHead" *ngFor="let category of getCategories()" >
-            <h2>{{ category}}</h2>
-        </div>
-        <div class="videoListing">
-            <div *ngFor="let video of videosByCategory[category]">
-                <div class="videoBox">
-                    <h3>{{ video.title }}</h3>
-                    <p>{{ video.description }}</p>
+            <div class="videoListing">
+                <div *ngFor="let video of videosByCategory[category]">
+                    <!-- Darstellung jedes Videos -->
+                    <div class="videoBox">
+                        <!-- <h5>{{ video.title }}</h5> -->
+                        <!-- <div class="description">{{ video.description }}</div> -->
+                        <div class="relative">
+                            <div class="videoTitleHeader">{{ video.title }}</div>
+                        <video width="240" height="160">
+                            <source [src]="video.video_file" type="video/mp4">
+                            Ihr Browser unterstützt das Video-Tag nicht.
+                            
+                        </video>
+                     </div>
+                    </div>
                 </div>
             </div>
-        </div> -->
+          
+        </div>
     </div>
- 
 </div>
