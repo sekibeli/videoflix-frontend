@@ -8,6 +8,7 @@ import { VideoService } from 'src/app/services/video.service';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
+  selectedVideo: any = null;
 videos = new Array(5);
 videosByCategory: { [category: string]: Video[] } = {};
 
@@ -33,4 +34,6 @@ private groupVideosByCategory(videos: Video[]) {
 getCategories(): string[] {
   return Object.keys(this.videosByCategory);
 }
+
+
 }

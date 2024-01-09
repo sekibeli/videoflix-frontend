@@ -11,17 +11,22 @@
                         <!-- <h5>{{ video.title }}</h5> -->
                         <!-- <div class="description">{{ video.description }}</div> -->
                         <div class="relative">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                Launch demo modal
+                            </button>
                             <div class="videoTitleHeader">{{ video.title }}</div>
-                        <video width="240" height="160">
-                            <source [src]="video.video_file" type="video/mp4">
-                            Ihr Browser unterstützt das Video-Tag nicht.
-                            
-                        </video>
-                     </div>
+                            <video width="240" height="160">
+                                <source [src]="video.video_file" type="video/mp4">
+                                Ihr Browser unterstützt das Video-Tag nicht.
+
+                            </video>
+                        </div>
                     </div>
                 </div>
             </div>
-          
+
         </div>
     </div>
 </div>
