@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { ModalshowvideoComponent } from './components/modalshowvideo/modalshowvideo.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     StartComponent,
     HeaderComponent,
     EmailVerifyComponent,
-    EditUserComponent
+    EditUserComponent,
+    ModalshowvideoComponent
   ],
   imports: [
     BrowserModule,

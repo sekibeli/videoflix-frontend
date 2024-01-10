@@ -7,8 +7,26 @@
     padding: 10px;
 }
 
+.headerLinks {
+    display: flex;
+    gap: 10px;
+    color: white;
+}
+.link {
+    padding: 5px 10px;
+    border-radius: 5px;
+    &:hover {
+        cursor: pointer;
+       background-color: rgba(255, 255, 255, 0.558);
+    }
+}
+
 .title {
     color: white;
+
+    img {
+        width: 150px;
+    }
 }
 
 .btn {
