@@ -9,29 +9,52 @@
 
         <span class="headline">Sign Up</span>
 
-
+        <!-- Sign up form -->
         <form class="formgroup" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
+            <!-- Email section -->
             <div>
-                <input class="form-control" type="email" id="email" formControlName="email"
-                    placeholder="Deine email">
+                <input class="form-control" type="email" formControlName="email" placeholder="Deine email">
+                <span *ngIf="submitted && signUpForm.get('email')?.errors?.['required']" class="warning">
+                    Please enter your email.
+                </span>
             </div>
+
+            <!-- Username section -->
             <div>
-                <input class="form-control" type="text" id="username" formControlName="username"
-                    placeholder="Benutzername">
+                <input class="form-control" type="text" formControlName="username" placeholder="Benutzername">
+                <span *ngIf="submitted && signUpForm.get('username')?.errors?.['required']" class="warning">
+                    Please enter your firstname.
+                </span>
             </div>
+
+            <!-- Phone section -->
             <div>
-                <input class="form-control" type="text" id="phone" formControlName="phone"
-                    placeholder="Telefon">
+                <input class="form-control" type="text" formControlName="phone" placeholder="Telefon">
+                <span *ngIf="submitted && signUpForm.get('phone')?.errors?.['required']" class="warning">
+                    Please enter a phone.
+                </span>
             </div>
+
+            <!-- Password section -->
             <div>
-                <input class="form-control" type="password" id="password" formControlName="password"
+                <input class="form-control" type="password" formControlName="password"
                     placeholder="Passwort">
+                <span *ngIf="submitted && signUpForm.get('password')?.errors?.['required']" class="warning">
+                    Please enter a password.
+                </span>
             </div>
+
+            <!-- Confirm passsword section -->
             <div>
-                <input class="form-control" type="password" id="passwordRepeat" formControlName="passwordRepeat"
+                <input class="form-control" type="password" formControlName="confirmPassword"
                     placeholder="Passwort wiederholen">
+                <span class="warning"
+                    *ngIf="signUpForm.errors?.['notSame'] && signUpForm.get('confirmPassword')?.touched">Passwords do not match.</span>
             </div>
-            <button class="btn btn-danger" type="submit" [disabled]="signUpForm.valid">Konto anlegen</button>
+            
+            <button class="btn btn-danger" type="submit" [disabled]="!signUpForm.valid || isButtonDisabled">Konto anlegen</button>
+            <span *ngIf="signedUpInfo" class="success">Signed up succesfully</span>
         </form>
 
 

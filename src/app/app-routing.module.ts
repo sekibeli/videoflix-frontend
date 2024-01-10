@@ -25,9 +25,10 @@ const routes: Routes = [
     path: 'home', component: HomeComponent,
 
     children: [
-      { path: '', component: OverviewComponent},
-      { path: 'detail', component: DetailComponent}
-    ]}
+      { path: '', component: OverviewComponent },
+      { path: 'detail', component: DetailComponent }
+    ]
+  }
 ];
 
 @NgModule({
