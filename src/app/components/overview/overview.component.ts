@@ -35,5 +35,8 @@ getCategories(): string[] {
   return Object.keys(this.videosByCategory);
 }
 
+onSelectVideo(video: Video): void {
+  this.selectedVideo = video;
+}
 
 }
