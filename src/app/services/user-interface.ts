@@ -3,6 +3,7 @@ export interface SignupData {
     username: string;
     phone: string;
     password: string;
+    adress: string;
   }
 
 

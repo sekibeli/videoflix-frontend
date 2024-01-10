@@ -26,11 +26,20 @@ export class AuthService {
 
 
   getLoggedUserData() {
-    const url = environment.baseUrl + '/user-info/';
+    const url = environment.baseUrl + '/edit-user/';
     const headers = new HttpHeaders({
       'Authorization': `Token ${localStorage.getItem('token')}`
     });
     return lastValueFrom(this.http.get<SignupData>(url, { headers: headers }));
+  }
+
+
+  updateContact(updateUserProfile: SignupData) {
+    const url = environment.baseUrl + '/edit-user/';
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${localStorage.getItem('token')}`
+    });
+    return lastValueFrom(this.http.patch<SignupData>(url, updateUserProfile, { headers: headers }));
   }
 
 

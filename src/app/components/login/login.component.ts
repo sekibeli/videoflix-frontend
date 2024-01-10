@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-import { LoginData } from 'src/app/services/user-interface';
+
 
 @Component({
   selector: 'app-login',
@@ -53,9 +52,9 @@ export class LoginComponent implements OnInit {
       let resp: any = await this.authService.login(formData);
       localStorage.setItem('token', resp['token']);
       this.router.navigateByUrl('/home');
-    } catch (error: any) {
-      if (error.status === 401) {
-        this.handleSpecificError(error.error?.error);
+    } catch (err: any) {
+      if (err.status === 401) {
+        this.handleSpecificError(err.error?.error);
       }
     }
   }
