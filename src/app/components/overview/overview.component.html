@@ -28,7 +28,18 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          {{selectedVideo?.title}}
+            <div class="category">{{selectedVideo?.category}}</div>
+            <div class="box">
+                <h4>{{selectedVideo?.title}}</h4>
+          <div class="description">{{selectedVideo?.description}}</div>
+        
+          <video width="340" height="260" controls>
+            <source [src]="video.video_file" type="video/mp4" >
+            Ihr Browser unterstützt das Video-Tag nicht.
+
+        </video>
+            </div>
+          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -37,6 +48,7 @@
       </div>
     </div>
   </div>
+  <!-- Modal Ende -->
 
                             <div class="videoTitleHeader">{{ video.title }}</div>
                             <video width="240" height="160">
