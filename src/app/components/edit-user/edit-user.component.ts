@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { SignupData } from 'src/app/services/user-interface';
 
@@ -10,13 +11,14 @@ import { SignupData } from 'src/app/services/user-interface';
 })
 export class EditUserComponent implements OnInit {
   userProfile!: SignupData;
-  editUser!: FormGroup;
+  editUserForm!: FormGroup;
   submitted = false;
 
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.showUserData();
@@ -28,7 +30,7 @@ export class EditUserComponent implements OnInit {
     try {
       const userProfile = await this.authService.getLoggedUserData();
       this.userProfile = userProfile;
-      this.editUser.patchValue( {
+      this.editUserForm.patchValue({
         email: userProfile.email,
         username: userProfile.username,
         phone: userProfile.phone,
@@ -41,22 +43,26 @@ export class EditUserComponent implements OnInit {
 
 
   initFormGroup() {
-    this.editUser = this.formBuilder.group({
-      email: ['', Validators.required, Validators.email],
-      username: ['', Validators.required],
-      phone: ['', Validators.required, Validators.pattern('[- +()0-9]+')],
+    this.editUserForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],
+      phone: ['', [Validators.required, Validators.pattern('[- +()0-9]+')]],
       adress: ['', [Validators.required]],
     })
   }
 
 
-  onSubmit() {
+  async onSubmit() {
     this.submitted = true;
-    if (this.editUser.invalid) {
+    if (this.editUserForm.invalid) {
       return
     }
     try {
-      cnst 
+      const formData: SignupData = this.editUserForm.value;
+      await this.authService.updateContact(formData);
+      this.router.navigateByUrl('/home');
+    } catch (err) {
+      console.error('Could not save user profile chanegs.', err);
     }
   }
 

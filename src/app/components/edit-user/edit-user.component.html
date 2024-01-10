@@ -1,4 +1,4 @@
-<button class="btn btn-danger fixedButton" [routerLink]="['/start']">zurück</button>
+<button class="btn btn-danger fixedButton" [routerLink]="['/home']">zurück</button>
 
 <div class="mainContainer">
     <span class="title titleadd">Videoflix</span>
@@ -8,12 +8,12 @@
             Profil bearbeiten
         </span>
 
-        <form [formGroup]="editUser" (ngSubmit)="onSubmit()">
+        <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
 
             <!-- Email section -->
             <div>
                 <input class="form-control" type="email" formControlName="email" placeholder="Deine email">
-                <span *ngIf="submitted && editUser.get('email')?.errors?.['required']" class="warning">
+                <span *ngIf="submitted && editUserForm.get('email')?.errors?.['required']" class="warning">
                     Please enter your email.
                 </span>
             </div>
@@ -21,7 +21,7 @@
             <!-- Username section -->
             <div>
                 <input class="form-control" type="text" formControlName="username" placeholder="Benutzername">
-                <span *ngIf="submitted && editUser.get('username')?.errors?.['required']" class="warning">
+                <span *ngIf="submitted && editUserForm.get('username')?.errors?.['required']" class="warning">
                     Please enter your firstname.
                 </span>
             </div>
@@ -29,18 +29,20 @@
             <!-- Phone section -->
             <div>
                 <input class="form-control" type="text" formControlName="phone" placeholder="Telefon">
-                <span *ngIf="submitted && editUser.get('phone')?.errors?.['required']" class="warning">
+                <span *ngIf="submitted && editUserForm.get('phone')?.errors?.['required']" class="warning">
                     Please enter a phone.
                 </span>
             </div>
 
             <!-- Address section -->
             <div>
-                <input class="form-control" type="text" formControlName="adress" placeholder="Telefon">
-                <span *ngIf="submitted && editUser.get('adress')?.errors?.['required']" class="warning">
+                <input class="form-control" type="text" formControlName="adress" placeholder="Adresse">
+                <span *ngIf="submitted && editUserForm.get('adress')?.errors?.['required']" class="warning">
                     Please enter a phone.
                 </span>
             </div>
+
+            <button class="btn btn-danger" type="submit" [disabled]="!editUserForm.valid">Speichern</button>
 
         </form>
     </div>

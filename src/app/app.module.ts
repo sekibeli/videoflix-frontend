@@ -15,8 +15,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
-import { HttpClientModule } from '@angular/common/http';
-import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
 
 @NgModule({
   declarations: [

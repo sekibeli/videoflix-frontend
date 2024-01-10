@@ -34,6 +34,15 @@ export class AuthService {
   }
 
 
+  updateContact(updateUserProfile: SignupData) {
+    const url = environment.baseUrl + '/edit-user/';
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${localStorage.getItem('token')}`
+    });
+    return lastValueFrom(this.http.patch<SignupData>(url, updateUserProfile, { headers: headers }));
+  }
+
+
   // isLoggedIn(): boolean {
   //   const token = localStorage.getItem('token');
   //   return !!token;

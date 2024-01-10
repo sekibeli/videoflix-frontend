@@ -50,3 +50,13 @@
     border-radius: 10px;
     width: 350px;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control {
+    width: 250px;
+    margin-bottom: 5px;
+}
