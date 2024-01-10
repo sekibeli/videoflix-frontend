@@ -18,6 +18,11 @@ export class EmailVerifyComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+    this.getToken();
+  }
+
+
+  getToken() {
     const token = this.route.snapshot.paramMap.get('token');
     if (token) {
       this.emailVerificationSubscription = this.verifyEmail(token).subscribe({

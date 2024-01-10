@@ -14,6 +14,7 @@ import { StartComponent } from './components/start/start.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EmailVerifyComponent } from './components/email-verify/email-verify.com
     ImpressumComponent,
     StartComponent,
     HeaderComponent,
-    EmailVerifyComponent
+    EmailVerifyComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
