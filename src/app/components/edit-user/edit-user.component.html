@@ -1,0 +1,48 @@
+<button class="btn btn-danger fixedButton" [routerLink]="['/start']">zurück</button>
+
+<div class="mainContainer">
+    <span class="title titleadd">Videoflix</span>
+
+    <div class="profileBox">
+        <span class="title">
+            Profil bearbeiten
+        </span>
+
+        <form [formGroup]="editUser" (ngSubmit)="onSubmit()">
+
+            <!-- Email section -->
+            <div>
+                <input class="form-control" type="email" formControlName="email" placeholder="Deine email">
+                <span *ngIf="submitted && editUser.get('email')?.errors?.['required']" class="warning">
+                    Please enter your email.
+                </span>
+            </div>
+
+            <!-- Username section -->
+            <div>
+                <input class="form-control" type="text" formControlName="username" placeholder="Benutzername">
+                <span *ngIf="submitted && editUser.get('username')?.errors?.['required']" class="warning">
+                    Please enter your firstname.
+                </span>
+            </div>
+
+            <!-- Phone section -->
+            <div>
+                <input class="form-control" type="text" formControlName="phone" placeholder="Telefon">
+                <span *ngIf="submitted && editUser.get('phone')?.errors?.['required']" class="warning">
+                    Please enter a phone.
+                </span>
+            </div>
+
+            <!-- Address section -->
+            <div>
+                <input class="form-control" type="text" formControlName="adress" placeholder="Telefon">
+                <span *ngIf="submitted && editUser.get('adress')?.errors?.['required']" class="warning">
+                    Please enter a phone.
+                </span>
+            </div>
+
+        </form>
+    </div>
+
+</div>
