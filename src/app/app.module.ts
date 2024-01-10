@@ -12,6 +12,9 @@ import { DatenschutzComponent } from './components/datenschutz/datenschutz.compo
 import { ImpressumComponent } from './components/impressum/impressum.component';
 import { StartComponent } from './components/start/start.component';
 import { HeaderComponent } from './components/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
+import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { HeaderComponent } from './components/header/header.component';
     DatenschutzComponent,
     ImpressumComponent,
     StartComponent,
-    HeaderComponent
+    HeaderComponent,
+    EmailVerifyComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
