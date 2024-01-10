@@ -43,4 +43,8 @@ onSelectVideo(video: Video): void {
 deleteSelectedVideo(){
   this.selectedVideo = null;
 }
+
+onModalClose() {
+  this.selectedVideo = null;
+}
 }
