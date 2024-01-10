@@ -4,61 +4,66 @@
             <div class="rowHead">
                 <h2>{{ category }}</h2>
             </div>
-            <div class="videoListing" data-bs-toggle="modal"
-            data-bs-target="#exampleModal">
-                
+            <div class="videoListing" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
                 <div *ngFor="let video of videosByCategory[category]">
                     <!-- Darstellung jedes Videos -->
                     <div class="videoBox" (click)="onSelectVideo(video)">
-                        <!-- <h5>{{ video.title }}</h5> -->
-                        <!-- <div class="description">{{ video.description }}</div> -->
+
                         <div class="relative">
-                            <!-- Button trigger modal -->
-                            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button> -->
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen-md-down">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="category">{{selectedVideo?.category}}</div>
-            <div class="box">
-                <h4>{{selectedVideo?.title}}</h4>
-          <div class="description">{{selectedVideo?.description}}</div>
-        
-          <video width="340" height="260" controls>
-            <source [src]="video.video_file" type="video/mp4" >
-            Ihr Browser unterstützt das Video-Tag nicht.
-
-        </video>
-            </div>
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Modal Ende -->
 
                             <div class="videoTitleHeader">{{ video.title }}</div>
                             <video width="240" height="160">
                                 <source [src]="video.video_file" type="video/mp4">
                                 Ihr Browser unterstützt das Video-Tag nicht.
-
                             </video>
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog modal-fullscreen-md-down">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+             <button type="button" class="btn-close" (click)="deleteSelectedVideo()" data-bs-dismiss="modal"
+                 aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+             <div class="category">{{selectedVideo?.category}}</div>
+             <div class="box">
+                 <h4>{{selectedVideo?.title}}</h4>
+                 <div class="description">{{selectedVideo?.description}}</div>
+                 <div class="fullwidth" *ngIf="selectedVideo">
+                     <video width="340" height="240" controls>
+                         <source [src]="selectedVideo.video_file" type="video/mp4">
+                         Ihr Browser unterstützt das Video-Tag nicht.
+
+                     </video>
+                 </div>
+<div class="additionalInformation">Dieses Video wurde hochgeladen von:<br> {{selectedVideo?.created_from}} <br> am {{selectedVideo?.created_at | date: 'dd. MMMM yyyy'}}</div>
+             </div>
+
+         </div>
+         <div class="modal-footer">
+             <button type="button" class="btn btn-secondary"
+                 data-bs-dismiss="modal" (click)="deleteSelectedVideo()">Close</button>
+             <button type="button" class="btn btn-primary">Save changes</button>
+         </div>
+     </div>
+ </div>
+</div>
+<!-- Modal Ende -->
+
+
+
+
             </div>
 
         </div>

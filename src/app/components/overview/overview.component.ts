@@ -37,6 +37,10 @@ getCategories(): string[] {
 
 onSelectVideo(video: Video): void {
   this.selectedVideo = video;
+  console.log(this.selectedVideo);
 }
 
+deleteSelectedVideo(){
+  this.selectedVideo = null;
+}
 }
