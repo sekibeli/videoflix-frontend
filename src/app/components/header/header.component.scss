@@ -3,21 +3,23 @@
     justify-content: space-between;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.52);
-    height: 70px;
+    height: 54px;
     padding: 10px;
 }
 
 .headerLinks {
     display: flex;
-    gap: 10px;
-    color: white;
+    // gap: 10px;
+    // color: white;
+    margin-left: 30px;
 }
 .link {
     padding: 5px 10px;
     border-radius: 5px;
     &:hover {
         cursor: pointer;
-       background-color: rgba(255, 255, 255, 0.558);
+    //    background-color: rgba(255, 255, 255, 0.558);
+       background-color: rgba(150, 150, 150, 0.424);
     }
 }
 
@@ -30,5 +32,5 @@
 }
 
 .btn {
-    margin: 5px;
+    margin-right: 5px;
 }
