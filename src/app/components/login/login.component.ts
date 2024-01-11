@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
       const formData = this.loginForm.value;
       let resp: any = await this.authService.login(formData);
       localStorage.setItem('token', resp['token']);
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/home/surprise');
     } catch (err: any) {
       if (err.status === 401) {
         this.handleSpecificError(err.error?.error);

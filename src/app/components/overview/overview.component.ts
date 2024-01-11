@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Video } from 'src/app/models/video.class';
 import { VideoService } from 'src/app/services/video.service';
+import { BehaviorSubject } from 'rxjs';
+
 
 @Component({
   selector: 'app-overview',
@@ -11,6 +13,9 @@ export class OverviewComponent implements OnInit {
   selectedVideo: any = null;
 videos = new Array(5);
 videosByCategory: { [category: string]: Video[] } = {};
+private videosByCategorySubject = new BehaviorSubject<{ [category: string]: Video[] }>({});
+  public videosByCategory$ = this.videosByCategorySubject.asObservable();
+
 
 
 constructor(private videoService:VideoService){}
@@ -23,12 +28,14 @@ ngOnInit() {
 }
 
 private groupVideosByCategory(videos: Video[]) {
+  const categoryGroups: { [category: string]: Video[] } = {};
   videos.forEach(video => {
-    if (!this.videosByCategory[video.category]) {
-      this.videosByCategory[video.category] = [];
+    if (!categoryGroups[video.category]) {
+      categoryGroups[video.category] = [];
     }
-    this.videosByCategory[video.category].push(video);
+    categoryGroups[video.category].push(video);
   });
+  this.videosByCategorySubject.next(categoryGroups);
 }
 
 getCategories(): string[] {
@@ -46,5 +53,10 @@ deleteSelectedVideo(){
 
 onModalClose() {
   this.selectedVideo = null;
+}
+
+deleteVideo(videoId: number){
+  console.log('delete', videoId);
+  this.videoService.deleteVideo(videoId);
 }
 }

@@ -16,6 +16,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { MyvideosComponent } from './components/myvideos/myvideos.component';
+import { SurpriseComponent } from './components/surprise/surprise.component';
 
 
 
@@ -33,6 +35,8 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     HeaderComponent,
     EmailVerifyComponent,
     EditUserComponent,
+    MyvideosComponent,
+    SurpriseComponent,
    
   ],
   imports: [
