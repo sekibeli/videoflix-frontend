@@ -53,8 +53,8 @@
                     *ngIf="signUpForm.errors?.['notSame'] && signUpForm.get('confirmPassword')?.touched">Passwords do not match.</span>
             </div>
             
-            <button class="btn btn-danger" type="submit" [disabled]="!signUpForm.valid || isButtonDisabled">Konto anlegen</button>
-            <span *ngIf="signedUpInfo" class="success">Signed up succesfully</span>
+            <button class="btn btn-danger signUptBtn" type="submit" [disabled]="!signUpForm.valid || isButtonDisabled">Konto anlegen</button>
+            <span *ngIf="signedUpInfo" class="success signedUpInfo">Signed up succesfully. We sent you a verification email.</span>
         </form>
 
 
