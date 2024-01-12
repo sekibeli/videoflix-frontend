@@ -34,7 +34,7 @@ export class EditUserComponent implements OnInit {
         email: userProfile.email,
         username: userProfile.username,
         phone: userProfile.phone,
-        adress: userProfile.adress,
+        // adress: userProfile.adress,
       })
     } catch (err) {
       console.error('Could not load user data', err);
@@ -47,7 +47,7 @@ export class EditUserComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       username: ['', [Validators.required]],
       phone: ['', [Validators.required, Validators.pattern('[- +()0-9]+')]],
-      adress: ['', [Validators.required]],
+      // adress: ['', [Validators.required]],
     })
   }
 
@@ -59,8 +59,8 @@ export class EditUserComponent implements OnInit {
     }
     try {
       const formData: SignupData = this.editUserForm.value;
-      await this.authService.updateContact(formData);
-      this.router.navigateByUrl('/home');
+      await this.authService.updateUserProfile(formData);
+      this.router.navigateByUrl('/home/surprise');
     } catch (err) {
       console.error('Could not save user profile chanegs.', err);
     }
