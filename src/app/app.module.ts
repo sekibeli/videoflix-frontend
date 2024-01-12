@@ -15,6 +15,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     HeaderComponent,
     EmailVerifyComponent,
     EditUserComponent,
+    ResetPasswordComponent,
+    ForgotPasswordComponent,
    
   ],
   imports: [

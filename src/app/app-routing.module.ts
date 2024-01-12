@@ -10,6 +10,7 @@ import { DatenschutzComponent } from './components/datenschutz/datenschutz.compo
 import { StartComponent } from './components/start/start.component';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'verify/:token', component: EmailVerifyComponent },
   { path: 'edit-user', component: EditUserComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'datenschutz', component: DatenschutzComponent },
   { path: 'impressum', component: ImpressumComponent },
   {

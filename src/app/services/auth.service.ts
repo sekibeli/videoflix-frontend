@@ -56,4 +56,9 @@ export class AuthService {
   }
 
 
+  forgotPassword(email: string) {
+    const url = environment.baseUrl + '/password-reset/';
+    return lastValueFrom(this.http.post(url, { email: email }));
+  }
+
 }

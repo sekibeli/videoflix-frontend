@@ -3,24 +3,22 @@ import { AbstractControlOptions, FormBuilder, FormGroup, ValidationErrors, Valid
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
-
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.scss']
 })
-export class SignupComponent implements OnInit {
-  userAlreadyExists!: boolean;
-  signUpForm!: FormGroup;
-  submitted!: boolean;
-  signedUpInfo!: boolean;
+export class ResetPasswordComponent implements OnInit {
+  resetPasswordForm!: FormGroup;
   isButtonDisabled!: boolean;
+  submitted!: boolean;
+  passwortReset!: boolean;
 
 
   constructor(
     public authService: AuthService,
-    private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) { }
 
 
@@ -30,10 +28,7 @@ export class SignupComponent implements OnInit {
 
 
   initFormGroup() {
-    this.signUpForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      username: ['', Validators.required],
-      phone: ['', Validators.required],
+    this.resetPasswordForm = this.formBuilder.group({
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['']
     }, { validators: this.checkPasswords } as AbstractControlOptions);
@@ -51,38 +46,28 @@ export class SignupComponent implements OnInit {
   }
 
 
-  async onSubmit() {
+  onSubmit() {
     this.submitted = true;
 
-    if (this.signUpForm.invalid) {
+    if (this.resetPasswordForm.invalid) {
       return;
     }
-    await this.performSignup();
+    this.performResetPassword();
   }
 
 
-  async performSignup() {
+  async performResetPassword() {
     try {
-      const formData = this.signUpForm.value;
-      let resp: any = await this.authService.signup(formData);
-      localStorage.setItem('token', resp.token);
-      this.signedUpInfo = true;
+      const formData = this.resetPasswordForm.value;
       this.isButtonDisabled = true;
+      await this.authService.forgotPassword(formData);
+      this.passwortReset = true;
       setTimeout(() => {
         this.router.navigateByUrl('/login');
       }, 3000);
     } catch (err) {
-      console.error('Could not signup.', err);      
-      this.handlySignUpError();
+      console.error('Could not reset password.', err);
     }
-  }
-
-
-  handlySignUpError() {
-    this.userAlreadyExists = true;
-    setTimeout(() => {
-      this.userAlreadyExists = false;
-    }, 3000);
   }
 
 }

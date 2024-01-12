@@ -54,7 +54,8 @@
             </div>
             
             <button class="btn btn-danger signUptBtn" type="submit" [disabled]="!signUpForm.valid || isButtonDisabled">Konto anlegen</button>
-            <span *ngIf="signedUpInfo" class="success signedUpInfo">Signed up succesfully. We sent you a verification email.</span>
+            <span *ngIf="signedUpInfo" class="success signupInfoText">Signed up succesfully. We sent you a verification email.</span>
+            <span *ngIf="userAlreadyExists" class="warning signupInfoText">This user already exists.</span>
         </form>
 
 
