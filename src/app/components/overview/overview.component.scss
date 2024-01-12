@@ -1,16 +1,21 @@
-
+:host {
+    display: block;
+    width: 100%; /* Füllt die Breite des Elternelements */
+    min-height: 100vh; /* Mindestens so hoch wie der Viewport */
+    background: url('./../../../assets/img/dallebg.jpg') no-repeat center center;
+    // background-size: cover; /* Stellt sicher, dass der Hintergrund die gesamte Fläche bedeckt */
+  }
 
 .content {
     height: 100vh;
     position: absolute;
     top: 54px;
+   
   
 }
 
 .rowHead {
-    // background-color: rgba(255, 255, 255, 0.162);
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.162) 100%);
-
+     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.162) 100%);
 border-bottom: 1px solid rgba(0, 0, 0, 0.334);
 border-top: 1px solid rgba(0, 0, 0, 0.334);
 
@@ -19,10 +24,8 @@ padding: 0px 20px;
 }
 
 .section {
-    // padding: 20px;
-    width: 100vw;
+       width: 100vw;
    font-size: 2em;
-//    background-color: rgba(0, 0, 0, 0.563);
     color: white;
 }
 .videoListing {
@@ -38,7 +41,6 @@ padding: 0px 20px;
     color: black;
 }
 .videoBox {
-//    padding: 0 10px;
     margin-right: 5px;
   
 }
@@ -87,8 +89,10 @@ video {
 }
 
 .description {
-    font-size: 0.6em;
+    font-size: 0.5em;
+    line-height: 1em;
     color: grey;
+    margin-bottom: 20px;
 }
 
 .additionalInformation {
@@ -96,5 +100,29 @@ video {
 }
 
 .fullwidth {
-    width: 80vw;
+    // width: 80vw;
+    display: flex;
+    justify-content: center;
+}
+
+.controlButtons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+ 
+}
+.card-body {
+ height: 40px;
+ padding: 0;
+}
+.card {
+    background-color: rgba(255, 228, 196, 0.517);
+    
+    height: 40px;
+}
+
+.iconSize {
+    font-size: 0.8em;
+    padding: 0 10px;
+    cursor: pointer;
 }

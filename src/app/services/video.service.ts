@@ -25,4 +25,21 @@ constructor(private http: HttpClient) { }
       }
     );
   }
+
+  deleteVideo(id: number) {
+    const url = environment.baseUrl + `/videos/${id}`;
+    this.http.delete(url).subscribe(
+        (response) => {
+            console.log('Video gelöscht', response);
+            
+        },
+        (error) => {
+            console.error('Fehler beim Löschen des Videos', error);
+          
+        }
+    );
+}
+
+
+
 }

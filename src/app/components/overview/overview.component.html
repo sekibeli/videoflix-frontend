@@ -1,12 +1,13 @@
 <div class="content" style="background-color: rgba(0, 0, 0, 0.8)">
+    <div class="overlay"></div>
     <div class="section">
-        <div *ngFor="let category of getCategories()">
+        <div *ngFor="let category of (videosByCategory$ | async) | keyvalue">
             <div class="rowHead">
-                <h2>{{ category }}</h2>
+                <h2>{{ category.key }}</h2>
             </div>
-            <div class="videoListing" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <div class="videoListing" >
 
-                <div *ngFor="let video of videosByCategory[category]">
+                <div *ngFor="let video of category.value" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <!-- Darstellung jedes Videos -->
                     <div class="videoBox" (click)="onSelectVideo(video)">
 
@@ -27,8 +28,8 @@
 
  <!-- Modal -->
  <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
- aria-hidden="true"  (hidden.bs.modal)="onModalClose()">
- <div class="modal-dialog modal-fullscreen-md-down">
+ aria-hidden="true"  >
+ <div class="modal-dialog modal-xl modal-fullscreen-md-down">
      <div class="modal-content">
          <div class="modal-header">
              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
@@ -41,13 +42,25 @@
                  <h4>{{selectedVideo?.title}}</h4>
                  <div class="description">{{selectedVideo?.description}}</div>
                  <div class="fullwidth" *ngIf="selectedVideo">
-                     <video width="340" height="240" controls>
+                     <video width="100%"  controls>
                          <source [src]="selectedVideo.video_file" type="video/mp4">
                          Ihr Browser unterstützt das Video-Tag nicht.
 
                      </video>
+                     
                  </div>
-<div class="additionalInformation">Dieses Video wurde hochgeladen von:<br> {{selectedVideo?.created_from}} <br> am {{selectedVideo?.created_at | date: 'dd. MMMM yyyy'}}</div>
+                 <div class="card">
+                    <div class="card-body">
+                        <div class="controlButtons">
+                            <div class="bi bi-trash3-fill iconSize" (click)="deleteVideo(selectedVideo.id)"></div>
+                            <div class="bi bi-heart iconSize"></div>
+                            <div class="bi bi-info-circle-fill iconSize" ></div>
+                            <div class="additionalInformation">Autor: {{selectedVideo?.created_from}}  Upload {{selectedVideo?.created_at | date: 'dd. MMMM yyyy'}}</div>
+                         </div>
+                    </div>
+                    
+                  </div>
+
              </div>
 
          </div>

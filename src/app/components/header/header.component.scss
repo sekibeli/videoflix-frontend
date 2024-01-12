@@ -21,6 +21,12 @@
     //    background-color: rgba(255, 255, 255, 0.558);
        background-color: rgba(150, 150, 150, 0.424);
     }
+
+
+    &.active {
+        cursor: pointer;
+        background-color: rgba(150, 150, 150, 0.424);
+    }
 }
 
 .title {
