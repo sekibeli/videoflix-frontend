@@ -14,10 +14,12 @@
     width: 250px;
     margin-bottom: 5px;
 }
+
 .formgroup {
     display: flex;
     flex-direction: column;
 }
+
 .title {
     // margin-top: 150px;
     text-align: center;
@@ -26,16 +28,19 @@
     line-height: 1.2em;
 
 }
+
 .titleadd {
     margin-top: 100px;
     font-size: 5em;
     color: #FEFDC4;
 }
+
 .headline {
     margin-bottom: 10px;
     font-size: 2em;
     color: white;
 }
+
 .signUpBox {
     padding: 15px 27px;
     margin-top: 40px;
@@ -47,6 +52,7 @@
     border-radius: 10px;
     width: 350px;
 }
+
 .button {
     margin-top: 20px;
     width: 150px;
@@ -61,8 +67,17 @@
         background-color: rgb(240, 5, 5);
     }
 }
+
 .fixedButton {
     position: absolute;
      top: 5%;
     right: 10%;
+}
+
+.signUptBtn {
+    width: 250px;
+}
+
+.signedUpInfo {
+    width: 250px;
 }

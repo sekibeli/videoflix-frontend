@@ -8,21 +8,31 @@ import { DetailComponent } from './components/detail/detail.component';
 import { ImpressumComponent } from './components/impressum/impressum.component';
 import { DatenschutzComponent } from './components/datenschutz/datenschutz.component';
 import { StartComponent } from './components/start/start.component';
+import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { MyvideosComponent } from './components/myvideos/myvideos.component';
+import { SurpriseComponent } from './components/surprise/surprise.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'start', pathMatch: 'full' },
   { path: 'start', component: StartComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent},
-  { path: 'datenschutz', component: DatenschutzComponent},
-  { path: 'impressum', component: ImpressumComponent},
-  { path: 'home', component: HomeComponent,
+  { path: 'signup', component: SignupComponent },
+  { path: 'verify/:token', component: EmailVerifyComponent },
+  { path: 'edit-user', component: EditUserComponent },
+  { path: 'datenschutz', component: DatenschutzComponent },
+  { path: 'impressum', component: ImpressumComponent },
+  {
+    path: 'home', component: HomeComponent,
 
     children: [
-      { path: '', component: OverviewComponent},
-      { path: 'detail', component: DetailComponent}
-    ]}
+      { path: 'surprise', component: SurpriseComponent},
+      { path: 'allvideos', component: OverviewComponent },
+      { path: 'myvideos', component: MyvideosComponent},
+      // { path: 'detail', component: DetailComponent }
+    ]
+  }
 ];
 
 @NgModule({

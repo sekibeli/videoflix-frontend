@@ -1,0 +1,62 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    margin-top: 20px;
+    width: 150px;
+    background-color: rgb(196, 5, 5);
+    border: 1px solid white; 
+    padding: 10px 20px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgb(240, 5, 5);
+    }
+}
+
+.fixedButton {
+    position: absolute;
+     top: 5%;
+    right: 10%;
+}
+
+.title {
+    text-align: center;
+    font-size:2.5em;
+    color: white;
+    line-height: 1.2em;
+
+}
+
+.titleadd {
+    margin-top: 100px;
+    font-size: 5em;
+    color: #FEFDC4;
+}
+
+.profileBox {
+    padding: 15px 27px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.482);
+    border-radius: 10px;
+    width: 350px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control {
+    width: 250px;
+    margin-bottom: 5px;
+}

@@ -1,14 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+// body{
+//     // background-image: url('assets/img/dallebg.jpg'); /* Pfad zum Hintergrundbild anpassen */
+
+//     background-size: cover; /* Sorgt dafür, dass der Hintergrund das gesamte Element bedeckt */
+//     background-position: center; /* Zentriert das Bild */
+//     background-repeat: no-repeat; /* Verhindert das Wiederholen des Bildes */
+//     background-attachment: fixed; /* Der Hintergrund bewegt sich nicht beim Scrollen */
+//     height: 100%; /* Höhe auf 100% setzen, damit der gesamte Bereich bedeckt ist */
+//     margin: 0; /* Entfernt standardmäßige Randabstände */
+// }
 
 
-body {
-    background-image: url('assets/img/dallebg.jpg'); /* Pfad zum Hintergrundbild anpassen */
-    background-size: cover; /* Sorgt dafür, dass der Hintergrund das gesamte Element bedeckt */
-    background-position: center; /* Zentriert das Bild */
-    background-repeat: no-repeat; /* Verhindert das Wiederholen des Bildes */
-    background-attachment: fixed; /* Der Hintergrund bewegt sich nicht beim Scrollen */
-    height: 100%; /* Höhe auf 100% setzen, damit der gesamte Bereich bedeckt ist */
-    margin: 0; /* Entfernt standardmäßige Randabstände */
+.warning {
+    color: red;
+}
+
+.success {
+    color: green;
 }

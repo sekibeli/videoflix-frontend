@@ -12,6 +12,14 @@ import { DatenschutzComponent } from './components/datenschutz/datenschutz.compo
 import { ImpressumComponent } from './components/impressum/impressum.component';
 import { StartComponent } from './components/start/start.component';
 import { HeaderComponent } from './components/header/header.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { MyvideosComponent } from './components/myvideos/myvideos.component';
+import { SurpriseComponent } from './components/surprise/surprise.component';
+
+
 
 @NgModule({
   declarations: [
@@ -24,15 +32,27 @@ import { HeaderComponent } from './components/header/header.component';
     DatenschutzComponent,
     ImpressumComponent,
     StartComponent,
-    HeaderComponent
+    HeaderComponent,
+    EmailVerifyComponent,
+    EditUserComponent,
+    MyvideosComponent,
+    SurpriseComponent,
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
