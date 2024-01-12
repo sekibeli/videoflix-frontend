@@ -4,7 +4,7 @@
         <div *ngIf="videoService.videos$ | async as videos">
             <div *ngIf="videos.length > 0">
                 <video autoplay loop muted>
-                    <source [src]="videos[3].video_file" type="video/mp4">
+                    <source [src]="videos[0].video_file" type="video/mp4">
                     Ihr Browser unterstützt das Video-Tag nicht.
                 </video>
             </div>

@@ -31,7 +31,7 @@ constructor(private http: HttpClient) { }
     this.http.delete(url).subscribe(
         (response) => {
             console.log('Video gelöscht', response);
-            
+            this.getVideos();
         },
         (error) => {
             console.error('Fehler beim Löschen des Videos', error);
@@ -40,6 +40,14 @@ constructor(private http: HttpClient) { }
     );
 }
 
+postVideo(video: Video){
+  const url = environment.baseUrl + `/videos/`;
+  this.http.post(url, video)
+}
 
+// getVideos() {
+//   // Hier rufen Sie die Methode auf, um die Liste der Videos neu zu laden
+//   this.videosByCategory$ = this.videoService.getVideos();
+// }
 
 }
