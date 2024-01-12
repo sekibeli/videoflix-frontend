@@ -1,8 +1,44 @@
-.surpriseContent {
-    width: 100vw;
-    height:500px;
-    background-color: aquamarine;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+:host {
+    display: block;
+    width: 100%; /* Füllt die Breite des Elternelements */
+    min-height: 100vh; /* Mindestens so hoch wie der Viewport */
+    // background: url('./../../../assets/img/dallebg.jpg') no-repeat center center;
+    background-size: cover; /* Stellt sicher, dass der Hintergrund die gesamte Fläche bedeckt */
+    background-color: rgba(0, 0, 0, 0.811);
+  }
+
+// .videoContainer {
+//     overflow: hidden;
+//    width: 100%;
+//     height:400px;
+//     // background-color: rgba(0, 0, 0, 0.811);
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+
+// }
+// .videoFullScreen {
+//     width: 100%;
+//     height: 100%;
+//     display:block;
+//     object-fit: cover; /* Füllt den Container, schneidet aber Teile ab */
+// }
+
+
+.video-container {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
 }
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+   position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+}
+

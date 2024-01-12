@@ -15,7 +15,7 @@ export class SurpriseComponent implements OnInit {
 
   ngOnInit() {
     this.videoService.getVideos();
- this.selectVideo(48);
+//  this.selectVideo(48);
    
   }
 

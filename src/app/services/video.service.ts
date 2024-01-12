@@ -31,14 +31,15 @@ constructor(private http: HttpClient) { }
     this.http.delete(url).subscribe(
         (response) => {
             console.log('Video gelöscht', response);
-            // Weitere Aktionen nach erfolgreichem Löschen
+            
         },
         (error) => {
             console.error('Fehler beim Löschen des Videos', error);
-            // Fehlerbehandlung
+          
         }
     );
 }
+
 
 
 }

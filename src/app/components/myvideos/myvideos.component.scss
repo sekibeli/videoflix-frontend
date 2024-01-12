@@ -1,10 +1,23 @@
-.myvideosContent {
-    padding-top: 70px;
-    width: 100vw;
+
+.myList {
+position: absolute;
+top: 54px;
+width: 100vw;
+height: 100vh;
+ background-color: rgb(102, 149, 37);
+ background: url('./../../../assets/img/dallebg.jpg') ;
+}
+
+
+.uploadCard {
     height: 200px;
-    background-color: beige;
-    color: black;
+    background: grey;
+    width: 100vw;
+}
+
+.myvideosContent {
+   
     display: flex;
-    justify-content: center;
-    z-index: 50;
+    flex-wrap:wrap;
+    gap: 5px;
 }

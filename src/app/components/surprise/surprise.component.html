@@ -1,11 +1,20 @@
-<div class="surpriseContent">
-    <div> Hier soll ein großes Video rein, es will nur noch nicht so wie ich will</div>
-   
-    <div><video width="90vw"  *ngIf="selectedVideo">
-        <source [src]="selectedVideo.video_file" type="video/mp4">
-        Ihr Browser unterstützt das Video-Tag nicht.
-    </video></div>
-    <div></div>
-</div>
+
+
+    <div  class="video-container" >
+        <div *ngIf="videoService.videos$ | async as videos">
+            <div *ngIf="videos.length > 0">
+                <video autoplay loop muted>
+                    <source [src]="videos[3].video_file" type="video/mp4">
+                    Ihr Browser unterstützt das Video-Tag nicht.
+                </video>
+            </div>
+        </div>
+  
+    </div>
+
+
+
+
+
 
 
