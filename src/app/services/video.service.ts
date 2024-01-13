@@ -40,14 +40,11 @@ constructor(private http: HttpClient) { }
     );
 }
 
-postVideo(video: Video){
+postVideo(videoData: FormData){
   const url = environment.baseUrl + `/videos/`;
-  this.http.post(url, video)
+  return this.http.post(url, videoData);
 }
 
-// getVideos() {
-//   // Hier rufen Sie die Methode auf, um die Liste der Videos neu zu laden
-//   this.videosByCategory$ = this.videoService.getVideos();
-// }
+
 
 }

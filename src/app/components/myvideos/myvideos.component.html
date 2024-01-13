@@ -1,38 +1,66 @@
 <div class="myList">
-    <div class="uploadCard">
+  <div class="uploadCard">
 
-        <div class="card">
-            <div class="card-header">
-              Meine Videos
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Wähle ein neues Video zum Upload aus</h5>
-              <p class="card-text">
-               
-                
-              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVideoModal">Neues Video hinzufügen</button>
-            </div>
-          </div>
+    <div class="card">
+      <div class="card-header">
+        Meine Videos
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Wähle ein neues Video zum Upload aus</h5>
+        <p class="card-text">
 
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVideoModal">Neues Video
+            hinzufügen</button>
+
+      </div>
     </div>
 
+  </div>
 
-  
+
+
   <!-- Modal -->
   <div class="modal fade" id="addVideoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Video hochladen</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Video hinzufügen</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <input type="file" (change)="onFileSelected($event)">
-        </div>
+          <form class="formgroup" [formGroup]="videoForm" (ngSubmit)="onUpload()">
+
+            <div class="input-item">
+              <label for="username">Titel:</label>
+              <input class="form-control" type="text" formControlName="title" placeholder="Titel">
+            </div>
+            <div class="input-item">
+              <label for="username">Beschreibung:</label>
+              <input class="form-control" type="text" formControlName="description" placeholder="Beschreibung">
+            </div>
+
+            <div class="mb-3 input-item">
+              <label for="categorySelect" class="form-label">Kategorie</label>
+              <select class="form-select" formControlName="category" id="categorySelect">
+                <option value="allgemein" selected>Wählen Sie eine Kategorie</option>
+                  <option value="allgemein">Allgemein</option>
+                  <option value="kids">Kids</option>
+                  <option value="noidea">No idea</option>
+                  <option value="funny">Funny</option>
+              </select>
+          </div>
+
+            <!-- <button type="submit" [disabled]="!videoForm.valid" class="btn btn-primary" data-bs-toggle="modal"
+              data-bs-target="#addVideoModal">Neues Video hinzufügen</button> -->
+          
+          <input type="file" (change)="onFileSelected($event)">
+        
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button  [disabled]="!videoForm.valid" type="submit" class="btn btn-primary">Video hinzufügen</button>
         </div>
+      </form>
+    </div>
       </div>
     </div>
   </div>
@@ -40,26 +68,26 @@
 
 
 
-    <div class="myvideosContent" *ngIf="videoService.videos$  | async">
-       
+  <div class="myvideosContent" *ngIf="videoService.videos$  | async">
 
-        <div *ngIf="videoService.videos$ | async as videos" class="myvideosContent">
-            <div *ngFor="let video of videos" class="card" style="width: 18rem;">
-                <!-- <img src="" class="card-img-top" alt="{{video.title}}"> -->
-                <video width="100%" height="160">
-                    <source [src]="video.video_file" type="video/mp4">
-                    Ihr Browser unterstützt das Video-Tag nicht.
-                </video>
-                <div class="card-body">
-                    <h5 class="card-title">{{video.title}}</h5>
-                    <p class="card-text">{{video.description}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
+
+    <div *ngIf="videoService.videos$ | async as videos" class="myvideosContent">
+      <div *ngFor="let video of videos" class="card" style="width: 18rem;">
+        <!-- <img src="" class="card-img-top" alt="{{video.title}}"> -->
+        <video width="100%" height="160">
+          <source [src]="video.video_file" type="video/mp4">
+          Ihr Browser unterstützt das Video-Tag nicht.
+        </video>
+        <div class="card-body">
+          <h5 class="card-title">{{video.title}}</h5>
+          <p class="card-text">{{video.description}}</p>
+          <a href="#" class="btn btn-primary">Bearbeiten</a>
         </div>
-
-       
-
-     
+      </div>
     </div>
+
+
+
+
+  </div>
 </div>

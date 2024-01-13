@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Video } from 'src/app/models/video.class';
 import { VideoService } from 'src/app/services/video.service';
 import { BehaviorSubject } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -18,10 +19,11 @@ private videosByCategorySubject = new BehaviorSubject<{ [category: string]: Vide
 
 
 
-constructor(private videoService:VideoService){}
+constructor(private videoService:VideoService, public userService: UserService){}
 
 ngOnInit() {
   this.videoService.getVideos();
+  // this.userService.getUserData();
   this.videoService.videos$.subscribe(videos => {
     this.groupVideosByCategory(videos);
   });
