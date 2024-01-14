@@ -11,52 +11,61 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class OverviewComponent implements OnInit {
   selectedVideo: any = null;
-videos = new Array(5);
-videosByCategory: { [category: string]: Video[] } = {};
-private videosByCategorySubject = new BehaviorSubject<{ [category: string]: Video[] }>({});
+  videos = new Array(5);
+  featureVideo!: Video;
+  videosByCategory: { [category: string]: Video[] } = {};
+  private videosByCategorySubject = new BehaviorSubject<{ [category: string]: Video[] }>({});
   public videosByCategory$ = this.videosByCategorySubject.asObservable();
 
 
 
-constructor(private videoService:VideoService){}
+  constructor(private videoService: VideoService) { }
 
-ngOnInit() {
-  this.videoService.getVideos();
-  this.videoService.videos$.subscribe(videos => {
-    this.groupVideosByCategory(videos);
-  });
-}
+  ngOnInit() {
+    this.videoService.getVideos();
+    this.videoService.videos$.subscribe(videos => {
+      this.groupVideosByCategory(videos);
+      this.loadFeatureVideo(videos);
+    });
+  }
 
-private groupVideosByCategory(videos: Video[]) {
-  const categoryGroups: { [category: string]: Video[] } = {};
-  videos.forEach(video => {
-    if (!categoryGroups[video.category]) {
-      categoryGroups[video.category] = [];
+  private groupVideosByCategory(videos: Video[]) {
+    const categoryGroups: { [category: string]: Video[] } = {};
+    videos.forEach(video => {
+      if (!categoryGroups[video.category]) {
+        categoryGroups[video.category] = [];
+      }
+      categoryGroups[video.category].push(video);
+    });
+    this.videosByCategorySubject.next(categoryGroups);
+  }
+
+  getCategories(): string[] {
+    return Object.keys(this.videosByCategory);
+  }
+
+  onSelectVideo(video: Video): void {
+    this.selectedVideo = video;
+    console.log(this.selectedVideo);
+  }
+
+  deleteSelectedVideo() {
+    this.selectedVideo = null;
+  }
+
+  onModalClose() {
+    this.selectedVideo = null;
+  }
+
+  deleteVideo(videoId: number) {
+    console.log('delete', videoId);
+    this.videoService.deleteVideo(videoId);
+  }
+
+  loadFeatureVideo(videos: Video[]) {
+    if (videos && videos.length > 0) {
+      const randomIndex = Math.floor(Math.random() * videos.length);
+      this.featureVideo = videos[randomIndex];
     }
-    categoryGroups[video.category].push(video);
-  });
-  this.videosByCategorySubject.next(categoryGroups);
-}
-
-getCategories(): string[] {
-  return Object.keys(this.videosByCategory);
-}
-
-onSelectVideo(video: Video): void {
-  this.selectedVideo = video;
-  console.log(this.selectedVideo);
-}
-
-deleteSelectedVideo(){
-  this.selectedVideo = null;
-}
-
-onModalClose() {
-  this.selectedVideo = null;
-}
-
-deleteVideo(videoId: number){
-  console.log('delete', videoId);
-  this.videoService.deleteVideo(videoId);
-}
+  }
 }

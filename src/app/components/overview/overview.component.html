@@ -1,5 +1,11 @@
 <div class="content" style="background-color: rgba(0, 0, 0, 0.8)">
     <div class="overlay"></div>
+    <div *ngIf="featureVideo" class="autoplay-video-area">
+        <video width="100%" height="auto" autoplay muted>
+            <source [src]="featureVideo.video_file" type="video/mp4">
+            Ihr Browser unterstützt das Video-Tag nicht.
+        </video>
+    </div>
     <div class="section">
         <div *ngFor="let category of (videosByCategory$ | async) | keyvalue">
             <div class="rowHead">
