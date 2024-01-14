@@ -1,3 +1,11 @@
+:host {
+    display: block;
+    width: 100%; /* Füllt die Breite des Elternelements */
+    min-height: 100vh; /* Mindestens so hoch wie der Viewport */
+    background: url('../../../assets/img/dallebg.jpg') no-repeat center center;
+    background-size: cover; /* Stellt sicher, dass der Hintergrund die gesamte Fläche bedeckt */
+  }
+
 .mainContainer {
     display: flex;
     flex-direction: column;

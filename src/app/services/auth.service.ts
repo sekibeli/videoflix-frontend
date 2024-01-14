@@ -18,7 +18,7 @@ export class AuthService {
   }
 
 
-  async login(formData: LoginData) {
+  login(formData: LoginData) {
     const url = environment.baseUrl + '/login/';
     return lastValueFrom(this.http.post(url, formData)).
       catch(err => Promise.reject(err));
@@ -34,7 +34,7 @@ export class AuthService {
   }
 
 
-  updateContact(updateUserProfile: SignupData) {
+  updateUserProfile(updateUserProfile: SignupData) {
     const url = environment.baseUrl + '/edit-user/';
     const headers = new HttpHeaders({
       'Authorization': `Token ${localStorage.getItem('token')}`
