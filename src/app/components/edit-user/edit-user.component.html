@@ -1,13 +1,10 @@
-<button class="btn btn-danger fixedButton" [routerLink]="['/home/surprise']">zurück</button>
-
 <div class="mainContainer">
-    <span class="title titleadd">Videoflix</span>
+    <div class="headlineCainer">
+        <span class="title titleadd">Profil bearbeiten</span>
+        <div class="underline"></div>
+    </div>
 
     <div class="profileBox">
-        <span class="title">
-            Profil bearbeiten
-        </span>
-
         <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
 
             <!-- Email section -->
@@ -42,8 +39,10 @@
                 </span>
             </div> -->
 
-            <button class="btn btn-danger" type="submit" [disabled]="!editUserForm.valid">Speichern</button>
-
+            <div class="btnContainer">
+                <button class="editProfileBtn saveBtn" type="submit" [disabled]="!editUserForm.valid">Speichern</button>
+                <button class="editProfileBtn cancelBtn" [routerLink]="['/home/surprise']">Abbrechen</button>
+            </div>
         </form>
     </div>
 
