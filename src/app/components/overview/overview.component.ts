@@ -60,11 +60,4 @@ export class OverviewComponent implements OnInit {
     this.videoService.deleteVideo(videoId);
   }
 
-  loadFeatureVideo(videos: Video[]) {
-    if (videos && videos.length > 0) {
-      const randomIndex = Math.floor(Math.random() * videos.length);
-      this.featureVideo = videos[randomIndex];
-    }
-  }
-
 }
