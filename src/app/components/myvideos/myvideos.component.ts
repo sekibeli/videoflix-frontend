@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VideoService } from 'src/app/services/video.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user.class';
 
 @Component({
   selector: 'app-myvideos',
@@ -11,7 +13,7 @@ import { VideoService } from 'src/app/services/video.service';
 export class MyvideosComponent implements OnInit
 {
   // videoForm!: FormGroup;
-  
+ 
   videoForm = this.formBuilder.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
@@ -36,12 +38,14 @@ export class MyvideosComponent implements OnInit
     }
   }
 
-  constructor( private formBuilder: FormBuilder, public videoService: VideoService){}
+  constructor( private formBuilder: FormBuilder, public videoService: VideoService, private authService : AuthService){}
   
   ngOnInit(){
     this.videoService.getVideos();
+    
   }
 
+ 
   
 
   onUpload() {
@@ -52,7 +56,7 @@ export class MyvideosComponent implements OnInit
       formData.append('title', this.videoForm.value.title ??'')
       formData.append('description', this.videoForm.value.description ?? '')
       formData.append('video_file', this.selectedFile, this.selectedFile.name);
-
+      formData.append('category', this.videoForm.value.category ?? 'allgemein');
      
       formData.append('myFile', this.selectedFile, this.selectedFile.name);
       console.log('FormData vor dem Senden:', formData);
@@ -60,6 +64,7 @@ export class MyvideosComponent implements OnInit
       this.videoService.postVideo(formData).subscribe({
         next: (response) => {
           console.log('Video erfolgreich hochgeladen', response);
+          this.videoService.getVideos();
         },
         error: (error) => {
           console.log('Fehler beim Hochladen des Videos', error);
