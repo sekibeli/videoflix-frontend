@@ -1,20 +1,18 @@
+<div *ngIf="featureVideo" class="autoplay-video-area">
+    <video width="100%" height="auto" autoplay muted>
+        <source [src]="featureVideo.video_file" type="video/mp4">
+        Ihr Browser unterstützt das Video-Tag nicht.
+    </video>
+</div>
 
-
-    <div  class="video-container" >
-        <div *ngIf="videoService.videos$ | async as videos">
-            <div *ngIf="videos.length > 0">
-                <video autoplay loop muted>
-                    <source [src]="videos[3].video_file" type="video/mp4">
-                    Ihr Browser unterstützt das Video-Tag nicht.
-                </video>
-            </div>
+<!-- <div class="video-container">
+    <div *ngIf="videoService.videos$ | async as videos">
+        <div *ngIf="videos.length > 0">
+            <video autoplay loop muted>
+                <source [src]="videos[3].video_file" type="video/mp4">
+                Ihr Browser unterstützt das Video-Tag nicht.
+            </video>
         </div>
-  
     </div>
 
-
-
-
-
-
-
+</div> -->

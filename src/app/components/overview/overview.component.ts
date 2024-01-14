@@ -12,7 +12,6 @@ import { BehaviorSubject } from 'rxjs';
 export class OverviewComponent implements OnInit {
   selectedVideo: any = null;
   videos = new Array(5);
-  featureVideo!: Video;
   videosByCategory: { [category: string]: Video[] } = {};
   private videosByCategorySubject = new BehaviorSubject<{ [category: string]: Video[] }>({});
   public videosByCategory$ = this.videosByCategorySubject.asObservable();
@@ -25,7 +24,6 @@ export class OverviewComponent implements OnInit {
     this.videoService.getVideos();
     this.videoService.videos$.subscribe(videos => {
       this.groupVideosByCategory(videos);
-      this.loadFeatureVideo(videos);
     });
   }
 
@@ -62,10 +60,4 @@ export class OverviewComponent implements OnInit {
     this.videoService.deleteVideo(videoId);
   }
 
-  loadFeatureVideo(videos: Video[]) {
-    if (videos && videos.length > 0) {
-      const randomIndex = Math.floor(Math.random() * videos.length);
-      this.featureVideo = videos[randomIndex];
-    }
-  }
 }
