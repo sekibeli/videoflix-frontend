@@ -47,11 +47,11 @@ import { SurpriseComponent } from './components/surprise/surprise.component';
     HttpClientModule
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptorService,
-    //   multi: true
-    // }
+     {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+     }
   ],
   bootstrap: [AppComponent]
 })

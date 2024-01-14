@@ -57,6 +57,7 @@ onModalClose() {
 
 deleteVideo(videoId: number){
   console.log('delete', videoId);
-  this.videoService.deleteVideo(videoId);
+  this.videoService.deleteVideo(videoId)
 }
+
 }
