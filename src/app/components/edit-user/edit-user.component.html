@@ -1,4 +1,4 @@
-<button class="btn btn-danger fixedButton" [routerLink]="['/home']">zurück</button>
+<button class="btn btn-danger fixedButton" [routerLink]="['/home/surprise']">zurück</button>
 
 <div class="mainContainer">
     <span class="title titleadd">Videoflix</span>
@@ -35,12 +35,12 @@
             </div>
 
             <!-- Address section -->
-            <div>
+            <!-- <div>
                 <input class="form-control" type="text" formControlName="adress" placeholder="Adresse">
                 <span *ngIf="submitted && editUserForm.get('adress')?.errors?.['required']" class="warning">
                     Please enter a phone.
                 </span>
-            </div>
+            </div> -->
 
             <button class="btn btn-danger" type="submit" [disabled]="!editUserForm.valid">Speichern</button>
 

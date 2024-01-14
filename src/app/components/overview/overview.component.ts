@@ -68,4 +68,5 @@ export class OverviewComponent implements OnInit {
       this.featureVideo = videos[randomIndex];
     }
   }
+
 }
