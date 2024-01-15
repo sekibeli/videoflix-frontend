@@ -42,3 +42,121 @@
     // transform: translate(-50%, -50%);
 }
 
+.controlButtons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    height: 100%;
+}
+
+.card-body {
+ height: 40px;
+ padding: 0;
+}
+
+.card {
+    // background-color: rgba(255, 228, 196, 0.517);    
+    height: auto;
+}
+
+.iconSizeFeatureVideo {
+    font-size: 1.4em;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.infoFeatureVideo {
+    font-size: 1em;
+}
+
+.iconSize {
+    font-size: 0.8em;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.videoDescriptionContainer {
+    padding: 10px;
+}
+
+.rowHead {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.162) 100%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.334);
+    border-top: 1px solid rgba(0, 0, 0, 0.334);
+    padding: 0px 20px;
+}
+
+.section {
+    width: 100vw;
+    font-size: 2em;
+    color: white;
+}
+
+.videoListing {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+.videoBox {
+    margin-right: 5px;
+}
+
+video {
+    position: relative;
+    border-radius: 5px;
+
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.718);
+    cursor: pointer;
+}
+
+.videoTitleHeader {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.773);
+    width: 240px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    color: white;
+    font-size: 0.6em;
+}
+
+.relative {
+    position: relative;
+}
+
+.category {
+    font-size: 0.8em;
+    padding: 0 20px;
+    background-color: rgba(255, 228, 196, 0.517);
+    height: 40px;
+}
+
+.box {
+    padding: 20px;
+}
+
+.description {
+    font-size: 0.5em;
+    color: black;
+}
+
+.fullwidth {
+    // width: 80vw;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-body {
+    color: black;
+    padding: 0;
+}
+
+.additionalInformation {
+    font-size: 0.4em;
+}
