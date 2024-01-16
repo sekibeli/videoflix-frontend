@@ -52,10 +52,10 @@
                  <div class="card">
                     <div class="card-body">
                         <div class="controlButtons">
-                            <div class="bi bi-trash3-fill iconSize" data-bs-dismiss="modal" (click)="deleteVideo(selectedVideo.id)"></div>
+                            <!-- <div class="bi bi-trash3-fill iconSize" data-bs-dismiss="modal" (click)="deleteVideo(selectedVideo.id)"></div> -->
                             <div class="bi bi-heart iconSize"></div>
                             <div class="bi bi-info-circle-fill iconSize" ></div>
-                            <div class="additionalInformation">Autor: {{selectedVideo?.created_from}}  Upload {{selectedVideo?.created_at | date: 'dd. MMMM yyyy'}}</div>
+                            <div class="additionalInformation">Autor: {{ getUserById(selectedVideo?.created_from)?.username }}   Upload {{selectedVideo?.created_at | date: 'dd. MMMM yyyy'}}</div>
                          </div>
                     </div>
                     
@@ -67,7 +67,7 @@
          <div class="modal-footer">
              <button type="button" class="btn btn-secondary"
                  data-bs-dismiss="modal" (click)="deleteSelectedVideo()">Close</button>
-             <button type="button" class="btn btn-primary">Save changes</button>
+             <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
          </div>
      </div>
  </div>

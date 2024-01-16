@@ -14,15 +14,15 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
 
-  // getUserData() {
-  //   const url = environment.baseUrl + `/users/`;
-  //   this.http.get<User[]>(url).subscribe(
-  //     users => {
-  //       this.usersSubject.next(users);
-  //     },
-  //     error => {
-  //       console.error('Fehler beim Laden der Benutzer:', error)
-  //     }
-  //   );
-  // }
+  getUserData() {
+    const url = environment.baseUrl + `/user/`;
+    this.http.get<User[]>(url).subscribe(
+      users => {
+        this.usersSubject.next(users);
+      },
+      error => {
+        console.error('Fehler beim Laden der Benutzer:', error)
+      }
+    );
+  }
 }
