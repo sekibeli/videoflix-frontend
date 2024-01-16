@@ -55,5 +55,12 @@ export class AuthService {
     return lastValueFrom(this.http.post(url, {}, { headers: headers }));
   }
 
+  deleteUserAccount() {
+    const url = environment.baseUrl + '/delete-user/';
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${localStorage.getItem('token')}`
+    });
+    return lastValueFrom(this.http.delete(url, { headers: headers }));
+  }
 
 }
