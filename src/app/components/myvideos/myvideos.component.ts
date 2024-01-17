@@ -46,7 +46,9 @@ export class MyvideosComponent implements OnInit
   }
   
   ngOnInit(){
+    //  this.videoService.getVideos();
     this.loadMyVideos();
+    
     
   }
 
