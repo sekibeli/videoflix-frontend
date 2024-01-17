@@ -1,13 +1,16 @@
-<button class="btn btn-danger fixedButton" [routerLink]="['/home']">zurück</button>
-
 <div class="mainContainer">
-    <span class="title titleadd">Videoflix</span>
+
+    <div class="headlineContainer">
+        <span class="title titleadd">Profil bearbeiten</span>
+        <div class="underline"></div>
+
+        <span class="infoText">
+            Wilkommen {{currentUsername}}, hier kannst
+            du deine persöhnlichen Einstellungen verwalten.
+        </span>
+    </div>
 
     <div class="profileBox">
-        <span class="title">
-            Profil bearbeiten
-        </span>
-
         <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
 
             <!-- Email section -->
@@ -27,24 +30,55 @@
             </div>
 
             <!-- Phone section -->
-            <div>
+            <!-- <div>
                 <input class="form-control" type="text" formControlName="phone" placeholder="Telefon">
                 <span *ngIf="submitted && editUserForm.get('phone')?.errors?.['required']" class="warning">
                     Please enter a phone.
                 </span>
-            </div>
+            </div> -->
 
             <!-- Address section -->
-            <div>
+            <!-- <div>
                 <input class="form-control" type="text" formControlName="adress" placeholder="Adresse">
                 <span *ngIf="submitted && editUserForm.get('adress')?.errors?.['required']" class="warning">
                     Please enter a phone.
                 </span>
+            </div> -->
+
+            <div class="btnContainer">
+                <button class="editProfileBtn saveBtn" type="submit" [disabled]="!editUserForm.valid">Speichern</button>
+                <button class="editProfileBtn cancelBtn" [routerLink]="['/home/surprise']">Abbrechen</button>
             </div>
-
-            <button class="btn btn-danger" type="submit" [disabled]="!editUserForm.valid">Speichern</button>
-
         </form>
+    </div>
+
+    <div class="editUserBottomContainer">
+        <span class="infoText">
+            Möchtest du deinen Account löschen?
+        </span>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="deleteUserAccountBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">Account
+            löschen</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Account löschen</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Möchtest du wirklich deinen Account unwiderruflich löschen?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteAccount()">Löschen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
