@@ -70,11 +70,5 @@ export class SurpriseComponent implements OnInit {
   deleteSelectedVideo() {
     this.selectedVideo = null;
   }
-
-
-  deleteVideo(videoId: number) {
-    console.log('delete', videoId);
-    this.videoService.deleteVideo(videoId);
-  }
-
+  
 }
