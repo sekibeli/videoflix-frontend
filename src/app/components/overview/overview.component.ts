@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Video } from 'src/app/models/video.class';
 import { VideoService } from 'src/app/services/video.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user.class';
 
 
 @Component({
@@ -10,23 +11,33 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent implements OnInit, OnDestroy {
+  private users: User[] = [];
+  private subscription?: Subscription;
   selectedVideo: any = null;
-  videos = new Array(5);
   videosByCategory: { [category: string]: Video[] } = {};
   private videosByCategorySubject = new BehaviorSubject<{ [category: string]: Video[] }>({});
   public videosByCategory$ = this.videosByCategorySubject.asObservable();
 
 
 
-  constructor(private videoService: VideoService) { }
+  constructor(private videoService: VideoService, private userService: UserService) { }
 
   ngOnInit() {
-    this.videoService.getVideos();
+    // this.videoService.getVideos();
+    // this.userService.getUserData();
+    this.subscription = this.userService.users$.subscribe(users => {
+      this.users = users;
+    });
     this.videoService.videos$.subscribe(videos => {
       this.groupVideosByCategory(videos);
     });
   }
+
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
+  }
+
 
   private groupVideosByCategory(videos: Video[]) {
     const categoryGroups: { [category: string]: Video[] } = {};
@@ -59,6 +70,10 @@ export class OverviewComponent implements OnInit {
   deleteVideo(videoId: number) {
     console.log('delete', videoId);
     this.videoService.deleteVideo(videoId);
+  }
+
+  getUserById(id: number): User | undefined {
+    return this.users.find(user => user.id === id);
   }
 
 }

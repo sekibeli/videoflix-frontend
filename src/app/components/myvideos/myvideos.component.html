@@ -68,11 +68,11 @@
 
 
 
-  <div class="myvideosContent" *ngIf="videoService.videos$  | async">
+  <div class="myvideosContent" *ngIf="videoService.myVideos$  | async">
 
 
-    <div *ngIf="videoService.videos$ | async as videos" class="myvideosContent">
-      <div *ngFor="let video of videos" class="card" style="width: 18rem;">
+    <div *ngIf="myVideos " class="myvideosContent">
+      <div *ngFor="let video of myVideos" class="card" style="width: 18rem;">
         <!-- <img src="" class="card-img-top" alt="{{video.title}}"> -->
         <video width="100%" height="160">
           <source [src]="video.video_file" type="video/mp4">
@@ -81,7 +81,11 @@
         <div class="card-body">
           <h5 class="card-title">{{video.title}}</h5>
           <p class="card-text">{{video.description}}</p>
-          <a href="#" class="btn btn-primary">Bearbeiten</a>
+          <div class="lastRow">
+            <a href="#" class="btn btn-primary">Bearbeiten</a>
+          <div class="btn btn-primary" data-bs-dismiss="modal" (click)="video.id !== undefined && deleteVideo(video.id)">Löschen</div>
+          </div>
+          
         </div>
       </div>
     </div>

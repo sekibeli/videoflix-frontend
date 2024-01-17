@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VideoService } from 'src/app/services/video.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user.class';
+import { Video } from 'src/app/models/video.class';
 
 @Component({
   selector: 'app-myvideos',
@@ -12,6 +13,8 @@ import { User } from 'src/app/models/user.class';
 })
 export class MyvideosComponent implements OnInit
 {
+  userProfile?: any;
+  myVideos: Video[] = [];
   // videoForm!: FormGroup;
  
   videoForm = this.formBuilder.group({
@@ -38,15 +41,32 @@ export class MyvideosComponent implements OnInit
     }
   }
 
-  constructor( private formBuilder: FormBuilder, public videoService: VideoService, private authService : AuthService){}
+  constructor( private formBuilder: FormBuilder, public videoService: VideoService, private authService : AuthService){
+  
+  }
   
   ngOnInit(){
-    this.videoService.getVideos();
+    //  this.videoService.getVideos();
+    this.loadMyVideos();
+    
     
   }
 
  
-  
+  async loadMyVideos() {
+    // Benutzerdaten abrufen
+    const userProfile = await this.authService.getLoggedUserData();
+      this.userProfile = userProfile;
+      const userId = this.userProfile.id;
+         // Auf Änderungen in videosSubject reagieren
+         this.videoService.videos$.subscribe(videos => {
+          console.log('Alle Videos:',videos);
+          // Filtern der Videos, die vom eingeloggten Benutzer erstellt wurden
+          this.myVideos = videos.filter(video => video.created_from === userId);
+          console.log(this.myVideos);
+        });
+
+  }
 
   onUpload() {
     console.log('onUpload Aufruf');
@@ -72,5 +92,10 @@ export class MyvideosComponent implements OnInit
       })
      
     }
+  }
+
+  deleteVideo(videoId: number) {
+    console.log('delete', videoId);
+    this.videoService.deleteVideo(videoId);
   }
 }
