@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VideoService } from 'src/app/services/video.service';
 import { Video } from 'src/app/models/video.class';
-import { VideoData } from 'src/app/services/video-interface';
 import { ViewChild, ElementRef } from '@angular/core';
 
 
@@ -11,10 +10,10 @@ import { ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./surprise.component.scss']
 })
 export class SurpriseComponent implements OnInit {
-  selectedVideo: any = null;
-  featureVideo!: Video;
-  allVideos!: VideoData[];
-  videosByCategory!: VideoData[];
+  selectedVideo: Video | null = null;
+  featureVideo: Video | null = null;
+  allVideos: Video[] = [];
+  videosByCategory: Video[] = [];
   @ViewChild('featureVideoElement') featureVideoElement!: ElementRef;
 
   constructor(public videoService: VideoService) { }
@@ -41,7 +40,7 @@ export class SurpriseComponent implements OnInit {
     if (videos && videos.length > 0) {
       const randomIndex = Math.floor(Math.random() * videos.length);
       this.featureVideo = videos[randomIndex];
-      console.log(this.featureVideo);
+      console.log('Current feature video is:', this.featureVideo);
     }
     this.videosByCategory = this.filterVideosByCategory();
   }
@@ -56,12 +55,12 @@ export class SurpriseComponent implements OnInit {
   }
 
 
-  filterVideosByCategory(): VideoData[] {
-    return this.allVideos.filter(video => video.category === this.featureVideo.category);
+  filterVideosByCategory(): Video[] {
+    return this.allVideos.filter(video => video.category === this.featureVideo?.category);
   }
 
 
-  onSelectVideo(video: any): void {
+  onSelectVideo(video: Video): void {
     this.selectedVideo = video;
     console.log('Selected video is:', this.selectedVideo);
   }
@@ -72,9 +71,25 @@ export class SurpriseComponent implements OnInit {
   }
 
 
-  deleteVideo(videoId: number) {
-    console.log('delete', videoId);
-    this.videoService.deleteVideo(videoId);
+  toggleLikeVideo(videoId: number) {
+    this.videoService.toggleLike(videoId).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        console.log('Request completed');
+      }
+    });
   }
+
+
+
+  // deleteVideo(videoId: number) {
+  //   console.log('delete', videoId);
+  //   this.videoService.deleteVideo(videoId);
+  // }
 
 }

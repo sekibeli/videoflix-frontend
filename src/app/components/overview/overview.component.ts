@@ -31,6 +31,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
     });
     this.videoService.videos$.subscribe(videos => {
       this.groupVideosByCategory(videos);
+      console.log(videos);
+      
     });
   }
 
@@ -74,6 +76,21 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   getUserById(id: number): User | undefined {
     return this.users.find(user => user.id === id);
+  }
+
+
+  toggleLikeVideo(videoId: number) {
+    this.videoService.toggleLike(videoId).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        console.log('Request completed');
+      }
+    });
   }
 
 }
