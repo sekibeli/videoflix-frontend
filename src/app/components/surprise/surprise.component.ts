@@ -22,6 +22,7 @@ export class SurpriseComponent implements OnInit {
     this.videoService.getVideos();
     this.videoService.videos$.subscribe(videos => {
       this.allVideos = videos;
+      this.allVideos.sort((a, b) => b.likes.length - a.likes.length);
       this.loadFeatureVideo(videos);
     });
   }
