@@ -13,6 +13,7 @@ import { Video } from 'src/app/models/video.class';
 })
 export class MyvideosComponent implements OnInit
 {
+  selectedVideo: any = null;
   userProfile?: any;
   myVideos: Video[] = [];
   // videoForm!: FormGroup;
@@ -98,4 +99,12 @@ export class MyvideosComponent implements OnInit
     console.log('delete', videoId);
     this.videoService.deleteVideo(videoId);
   }
+
+  deleteSelectedVideo(){}
+
+  onSelectVideo(video: Video): void {
+    this.selectedVideo = video;
+    console.log(this.selectedVideo);
+  }
+
 }

@@ -82,7 +82,7 @@
           <h5 class="card-title">{{video.title}}</h5>
           <p class="card-text">{{video.description}}</p>
           <div class="lastRow">
-            <a href="#" class="btn btn-primary">Bearbeiten</a>
+            <div class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" (click)="onSelectVideo(video)">Bearbeiten</div>
           <div class="btn btn-primary" data-bs-dismiss="modal" (click)="video.id !== undefined && deleteVideo(video.id)">Löschen</div>
           </div>
           
@@ -94,4 +94,54 @@
 
 
   </div>
+
+
+  <!-- Modal Video Bearbeiten -->
+ <div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+ aria-hidden="true"  >
+ <div class="modal-dialog modal-xl modal-fullscreen-md-down">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h1 class="modal-title fs-5" id="exampleModalLabel">Video bearbeiten</h1>
+             <button type="button" class="btn-close" (click)="deleteSelectedVideo()" data-bs-dismiss="modal"
+                 aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+             <div class="category">{{selectedVideo?.category}}</div>
+             <div class="box">
+                 <h4>{{selectedVideo?.title}}</h4>
+                 <div class="description">{{selectedVideo?.description}}</div>
+                 <div class="fullwidth" *ngIf="selectedVideo">
+                     <video width="100%"  controls>
+                         <source [src]="selectedVideo.video_file" type="video/mp4">
+                         Ihr Browser unterstützt das Video-Tag nicht.
+
+                     </video>
+                     
+                 </div>
+                 <div class="card">
+                    <div class="card-body">
+                        <div class="controlButtons">
+                            <!-- <div class="bi bi-trash3-fill iconSize" data-bs-dismiss="modal" (click)="deleteVideo(selectedVideo.id)"></div> -->
+                            <div class="bi bi-heart iconSize"></div>
+                            <div class="bi bi-info-circle-fill iconSize" ></div>
+                            <!-- <div class="additionalInformation">Autor: {{ getUserById(selectedVideo?.created_from)?.username }}   Upload {{selectedVideo?.created_at | date: 'dd. MMMM yyyy'}}</div> -->
+                         </div>
+                    </div>
+                    
+                  </div>
+
+             </div>
+
+         </div>
+         <div class="modal-footer">
+             <button type="button" class="btn btn-secondary"
+                 data-bs-dismiss="modal" (click)="deleteSelectedVideo()">Close</button>
+             <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+         </div>
+     </div>
+ </div>
+</div>
+<!-- Modal Ende -->
+
 </div>
