@@ -8,15 +8,15 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class VideoService {
-public videosSubject = new BehaviorSubject<Video[]>([])
-public videos$ = this.videosSubject.asObservable();
-private myVideosSubject = new BehaviorSubject<Video[]>([])
-public myVideos$ = this.myVideosSubject.asObservable();
-  
+  public videosSubject = new BehaviorSubject<Video[]>([])
+  public videos$ = this.videosSubject.asObservable();
+  private myVideosSubject = new BehaviorSubject<Video[]>([])
+  public myVideos$ = this.myVideosSubject.asObservable();
 
-constructor(private http: HttpClient) { }
 
-  getVideos():void {
+  constructor(private http: HttpClient) { }
+
+  getVideos(): void {
     const url = environment.baseUrl + '/videos/';
     this.http.get<Video[]>(url).subscribe(
       videos => {
@@ -44,22 +44,26 @@ constructor(private http: HttpClient) { }
   deleteVideo(id: number) {
     const url = environment.baseUrl + `/videos/${id}`;
     this.http.delete(url).subscribe(
-        (response) => {
-            console.log('Video gelöscht', response);
-            this.getVideos();
-        },
-        (error) => {
-            console.error('Fehler beim Löschen des Videos', error);
-          
-        }
+      (response) => {
+        console.log('Video gelöscht', response);
+        this.getVideos();
+      },
+      (error) => {
+        console.error('Fehler beim Löschen des Videos', error);
+
+      }
     );
-}
+  }
 
-postVideo(videoData: FormData){
-  const url = environment.baseUrl + `/videos/`;
-  return this.http.post(url, videoData);
-}
+  postVideo(videoData: FormData) {
+    const url = environment.baseUrl + `/videos/`;
+    return this.http.post(url, videoData);
+  }
 
 
+  toggleLike(videoId: number) {
+    const url = environment.baseUrl + `/toggle_like/${videoId}`;
+    return this.http.post(url, {});
+  }
 
 }

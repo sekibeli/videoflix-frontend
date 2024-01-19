@@ -24,13 +24,15 @@ export class OverviewComponent implements OnInit, OnDestroy {
   constructor(private videoService: VideoService, private userService: UserService) { }
 
   ngOnInit() {
-    // this.videoService.getVideos();
-    // this.userService.getUserData();
+    this.videoService.getVideos();
+    this.userService.getUserData();
     this.subscription = this.userService.users$.subscribe(users => {
       this.users = users;
     });
     this.videoService.videos$.subscribe(videos => {
       this.groupVideosByCategory(videos);
+      console.log(videos);
+      
     });
   }
 
@@ -74,6 +76,21 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   getUserById(id: number): User | undefined {
     return this.users.find(user => user.id === id);
+  }
+
+
+  toggleLikeVideo(videoId: number) {
+    this.videoService.toggleLike(videoId).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        console.log('Request completed');
+      }
+    });
   }
 
 }
