@@ -7,10 +7,9 @@
     <div class="card">
         <div class="card-body">
             <div class="controlButtons">
-                <!-- <div class="bi bi-trash3-fill iconSizeFeatureVideo" data-bs-dismiss="modal" *ngIf="featureVideo.id"
-                    (click)="deleteVideo(featureVideo.id)"></div> -->
                 <div class="bi bi-heart iconSizeFeatureVideo" *ngIf="featureVideo.id" (click)="toggleLikeVideo(featureVideo.id)"></div>
                 <div class="bi iconSizeFeatureVideo">{{featureVideo.likes.length}}</div>
+                <div class="bi bi-heart iconSizeFeatureVideo"></div>
                 <div class="bi bi-info-circle-fill iconSizeFeatureVideo" data-bs-toggle="collapse"
                     data-bs-target="#videoDescriptionContent"></div>
             </div>
@@ -51,7 +50,8 @@
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1"
-                aria-labelledby="exampleModalLabel" aria-hidden="true" (show.bs.modal)="pauseFeatureVideo()" (hidden.bs.modal)="playFeatureVideo()">
+                aria-labelledby="exampleModalLabel" aria-hidden="true" (show.bs.modal)="pauseFeatureVideo()"
+                (hidden.bs.modal)="playFeatureVideo()">
                 <div class="modal-dialog modal-xl modal-fullscreen-md-down">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -75,10 +75,9 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="controlButtons">
-                                            <!-- <div class="bi bi-trash3-fill iconSize" data-bs-dismiss="modal"
-                                                (click)="deleteVideo(selectedVideo.id)"></div> -->
                                             <div class="bi bi-heart iconSize" *ngIf="selectedVideo && selectedVideo.id !== undefined" (click)="toggleLikeVideo(selectedVideo.id)"></div>
                                             <div class="bi iconSizeFeatureVideo">{{selectedVideo?.likes?.length}}</div>
+                                            <div class="bi bi-heart iconSize"></div>
                                             <div class="bi bi-info-circle-fill iconSize"></div>
                                             <div class="additionalInformation">Autor: {{ selectedVideo ? getUserById(selectedVideo.created_from)?.username : 'Unbekannter Autor' }}
 
