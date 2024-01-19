@@ -64,10 +64,6 @@ export class VideoService {
   toggleLike(videoId: number) {
     const url = environment.baseUrl + `/toggle_like/${videoId}`;
     return this.http.post(url, {});
-    // const headers = new HttpHeaders({
-    //   'Authorization': `Token ${localStorage.getItem('token')}`
-    // });
-    // return lastValueFrom(this.http.delete(url, { headers: headers }));
   }
 
 }

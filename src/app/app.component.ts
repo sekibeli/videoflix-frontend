@@ -13,8 +13,8 @@ export class AppComponent implements OnInit {
 constructor(private videoService: VideoService, private userService: UserService){}
 
   ngOnInit(){
-    this.videoService.getVideos();
-    this.userService.getUserData();
+    // this.videoService.getVideos();
+    // this.userService.getUserData();
   
   }
 }

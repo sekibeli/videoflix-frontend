@@ -1,7 +1,7 @@
 export class Video {
-    id?: number;
+    id: number;
     created_at: Date;
-    created_from: string;
+    created_from: number;
     title: string;
     description: string;
     category: string;
@@ -11,7 +11,7 @@ export class Video {
     constructor(obj?:any){
         this.id = obj ? obj.id: null;
         this.created_at = obj ? obj.created_at: null;
-        this.created_from = obj ? obj.created_from: '';
+        this.created_from = obj ? obj.created_from: null;
         this.title = obj ? obj.title: '';
         this.description = obj ? obj.description: '';
         this.category = obj ? obj.category: '';

@@ -24,8 +24,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
   constructor(private videoService: VideoService, private userService: UserService) { }
 
   ngOnInit() {
-    // this.videoService.getVideos();
-    // this.userService.getUserData();
+    this.videoService.getVideos();
+    this.userService.getUserData();
     this.subscription = this.userService.users$.subscribe(users => {
       this.users = users;
     });
