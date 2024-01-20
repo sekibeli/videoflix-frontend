@@ -7,16 +7,21 @@
     <div class="card">
         <div class="card-body">
             <div class="controlButtons">
-                <div class="bi bi-heart likeButton iconSizeFeatureVideo" *ngIf="featureVideo.id && !videoLiked" (click)="toggleLikeVideo(featureVideo.id)"></div>
-                <div class="bi bi-heart-fill iconSizeFeatureVideo" style="color:red" *ngIf="videoLiked" (click)="toggleLikeVideo(featureVideo.id)"></div>
-                <div class="bi iconSizeFeatureVideo">{{featureVideo.likes.length}}</div>
+                <div class="videoLikesContainer">
+                    <div class="bi bi-heart likeButton iconSizeFeatureVideo" *ngIf="featureVideo.id && !videoLiked"
+                        (click)="toggleLikeVideo(featureVideo.id)"></div>
+                    <div class="bi bi-heart-fill iconSizeFeatureVideo" style="color:red" *ngIf="videoLiked"
+                        (click)="toggleLikeVideo(featureVideo.id)"></div>
+                    <div class="bi likeCounterFeatureVideo iconSizeFeatureVideo">{{featureVideo.likes.length}}</div>
+                </div>
                 <div class="bi bi-info-circle-fill iconSizeFeatureVideo" data-bs-toggle="collapse"
                     data-bs-target="#videoDescriptionContent"></div>
             </div>
         </div>
         <div id="videoDescriptionContent" class="collapse">
             <div class="videoDescriptionContainer">
-                <div class="infoFeatureVideo">Autor: {{ featureVideo ? getUserById(featureVideo.created_from)?.username : 'Unbekannter Autor' }}</div>
+                <div class="infoFeatureVideo">Autor: {{ featureVideo ? getUserById(featureVideo.created_from)?.username
+                    : 'Unbekannter Autor' }}</div>
                 <div class="infoFeatureVideo">Upload: {{featureVideo.created_at | date: 'dd. MMMM yyyy'}}</div>
                 <div class="infoFeatureVideo">Kategorie: {{featureVideo.category}}</div>
                 <span class="infoFeatureVideo">Beschreibung: {{featureVideo.description}}</span>
@@ -75,11 +80,19 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="controlButtons">
-                                            <div class="bi bi-heart iconSize" *ngIf="selectedVideo && selectedVideo.id !== undefined && !videoLiked" (click)="toggleLikeVideo(selectedVideo.id)"></div>
-                                            <div class="bi bi-heart-fill iconSize" style="color:red" *ngIf="selectedVideo && selectedVideo.id !== undefined && videoLiked" (click)="toggleLikeVideo(selectedVideo.id)"></div>
-                                            <div class="bi iconSizeFeatureVideo">{{selectedVideo?.likes?.length}}</div>
+                                            <div class="videoLikesContainer">
+                                                <div class="bi bi-heart iconSize"
+                                                *ngIf="selectedVideo && selectedVideo.id !== undefined && !videoLiked"
+                                                (click)="toggleLikeVideo(selectedVideo.id)"></div>
+                                            <div class="bi bi-heart-fill iconSize" style="color:red"
+                                                *ngIf="selectedVideo && selectedVideo.id !== undefined && videoLiked"
+                                                (click)="toggleLikeVideo(selectedVideo.id)"></div>
+                                            <div class="bi likeCounterSelectedVideo iconSizeFeatureVideo">{{selectedVideo?.likes?.length}}</div>
+                                            </div>
                                             <div class="bi bi-info-circle-fill iconSize"></div>
-                                            <div class="additionalInformation">Autor: {{ selectedVideo ? getUserById(selectedVideo.created_from)?.username : 'Unbekannter Autor' }}
+                                            <div class="additionalInformation">Autor: {{ selectedVideo ?
+                                                getUserById(selectedVideo.created_from)?.username : 'Unbekannter Autor'
+                                                }}
 
                                                 Upload {{selectedVideo?.created_at |
                                                 date: 'dd. MMMM yyyy'}}</div>

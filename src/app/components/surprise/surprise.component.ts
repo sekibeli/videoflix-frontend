@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { VideoService } from 'src/app/services/video.service';
 import { Video } from 'src/app/models/video.class';
 import { ViewChild, ElementRef } from '@angular/core';
@@ -14,9 +14,8 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './surprise.component.html',
   styleUrls: ['./surprise.component.scss']
 })
-export class SurpriseComponent implements OnInit {
+export class SurpriseComponent implements OnInit, OnDestroy {
   private users: User[] = [];
-  autorsName: string = 'Autor';
   selectedVideo: Video | null = null;
   featureVideo!: Video;
   allVideos: Video[] = [];
@@ -24,6 +23,7 @@ export class SurpriseComponent implements OnInit {
   subscription!: Subscription;
   currentUser!: SignupData;
   videoLiked!: boolean;
+  likeSubscription!: Subscription;
   @ViewChild('featureVideoElement') featureVideoElement!: ElementRef;
 
   constructor(public videoService: VideoService, private userService: UserService, private authService: AuthService) { }
@@ -35,12 +35,9 @@ export class SurpriseComponent implements OnInit {
       this.users = users;
       console.log('Users Array;', this.users);
     });
-    this.videoService.videos$.subscribe(videos => {
-      this.allVideos = videos;
-      this.allVideos.sort((a, b) => b.likes.length - a.likes.length);
-      this.loadFeatureVideo(videos);
-    });
+    this.getAllVideos();
     this.getLoggedUserData();
+    this.likeUpdateListener();
   }
 
   // selectVideo(index: number) {
@@ -61,8 +58,16 @@ export class SurpriseComponent implements OnInit {
     if (this.currentUser && this.featureVideo) {
       this.checkVideoLikes();
     }
-    console.log('Current FeatureVideo:', this.featureVideo);
     this.videosByCategory = this.filterVideosByCategory();
+  }
+
+
+  getAllVideos() {
+    this.videoService.videos$.subscribe(videos => {
+      this.allVideos = videos;
+      this.allVideos.sort((a, b) => b.likes.length - a.likes.length);
+      this.loadFeatureVideo(videos);
+    });
   }
 
 
@@ -82,7 +87,6 @@ export class SurpriseComponent implements OnInit {
 
   onSelectVideo(video: Video): void {
     this.selectedVideo = video;
-    console.log('Autosname is:', this.autorsName);
   }
 
 
@@ -94,26 +98,41 @@ export class SurpriseComponent implements OnInit {
   toggleLikeVideo(videoId: number) {
     this.videoService.toggleLike(videoId).subscribe({
       next: (response) => {
-        this.checkVideoLikes();
+        this.getFeatureVideo(videoId);
+        this.videoService.notifyLikeUpdate();
         console.log(response);
       },
       error: (error) => {
         console.error(error);
-      },
-      complete: () => {
-        console.log('Request completed');
       }
     });
   }
 
 
-  checkVideoLikes() {
+  checkVideoLikes() {    
     if (this.featureVideo && this.featureVideo.likes && this.currentUser) {
-      this.videoLiked = this.featureVideo.likes.includes(this.currentUser.id);
-    } else {
-      this.videoLiked = false;
+      this.videoLiked = this.featureVideo.likes.includes(this.currentUser.id);  
     }
-    console.log('is video liked?', this.videoLiked);
+  }
+
+
+  likeUpdateListener() {      
+    this.likeSubscription = this.videoService.getLikeUpdateListener().subscribe(() => {
+        this.checkVideoLikes();     
+    })
+  }
+
+
+  getFeatureVideo(videoId: number) {
+    this.videoService.getVideobyId(videoId).subscribe({
+      next: (updatedVideo: Video) => {
+        this.featureVideo = updatedVideo;
+        this.checkVideoLikes();
+      },
+      error: (error: any) => {
+        console.error("Fehler beim Abrufen des aktualisierten Videos", error);
+      }
+    });
   }
 
 
@@ -131,6 +150,11 @@ export class SurpriseComponent implements OnInit {
     } catch (err) {
       console.error('Could not load user data', err);
     }
+  }
+
+
+  ngOnDestroy(): void {
+    this.likeSubscription?.unsubscribe();
   }
 
 }

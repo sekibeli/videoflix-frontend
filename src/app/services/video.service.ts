@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Video } from '../models/video.class';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject, lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -12,6 +12,7 @@ export class VideoService {
   public videos$ = this.videosSubject.asObservable();
   private myVideosSubject = new BehaviorSubject<Video[]>([])
   public myVideos$ = this.myVideosSubject.asObservable();
+  likeUpdate = new Subject<void>();
 
 
   constructor(private http: HttpClient) { }
@@ -61,9 +62,25 @@ export class VideoService {
   }
 
 
+  getVideobyId(id: number) {
+    const url = environment.baseUrl + `/videos/${id}`;
+    return this.http.get<Video>(url);
+  }
+
+
   toggleLike(videoId: number) {
     const url = environment.baseUrl + `/toggle_like/${videoId}`;
     return this.http.post(url, {});
+  }
+
+
+  notifyLikeUpdate() {
+    this.likeUpdate.next();
+  }
+
+
+  getLikeUpdateListener() {
+    return this.likeUpdate.asObservable();
   }
 
 }

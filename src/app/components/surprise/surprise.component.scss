@@ -57,6 +57,7 @@
 .card {
     // background-color: rgba(255, 228, 196, 0.517);    
     height: auto;
+    padding: 2px 0;
 }
 
 .iconSizeFeatureVideo {
@@ -161,6 +162,21 @@ video {
     font-size: 0.4em;
 }
 
+.videoLikesContainer {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #dc3545;
+    border-radius: 20px;
+}
+
+.likeCounterFeatureVideo {
+    font-size: 1.2em !important;
+}
+
+.likeCounterSelectedVideo {
+    font-size: 0.7em !important;
+}
+
 .likeButton {
     display: inline-block;
     transition: all .125ms ease;
@@ -180,7 +196,7 @@ video {
       transform: scale(1);
     }
     50% {
-      transform: scale(1.2); // Vergrößern
+      transform: scale(1.2); 
     }
     100% {
       transform: scale(1);
