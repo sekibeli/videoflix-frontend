@@ -60,7 +60,10 @@ export class VideoService {
     return this.http.post(url, videoData);
   }
 
-
+updateVideo(videoData:FormData, id: number){
+  const url =  environment.baseUrl + `/videos/${id}/`;
+  return this.http.put(url, videoData );
+}
   toggleLike(videoId: number) {
     const url = environment.baseUrl + `/toggle_like/${videoId}`;
     return this.http.post(url, {});
