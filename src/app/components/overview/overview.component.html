@@ -53,7 +53,8 @@
                     <div class="card-body">
                         <div class="controlButtons">
                             <!-- <div class="bi bi-trash3-fill iconSize" data-bs-dismiss="modal" (click)="deleteVideo(selectedVideo.id)"></div> -->
-                            <div class="bi bi-heart iconSize"></div>
+                            <div class="bi bi-heart iconSize" *ngIf="selectedVideo && selectedVideo.id !== undefined" (click)="toggleLikeVideo(selectedVideo.id)"></div>
+                            <div class="bi iconSizeFeatureVideo">{{selectedVideo?.likes?.length}}</div>
                             <div class="bi bi-info-circle-fill iconSize" ></div>
                             <div class="additionalInformation">Autor: {{ getUserById(selectedVideo?.created_from)?.username }}   Upload {{selectedVideo?.created_at | date: 'dd. MMMM yyyy'}}</div>
                          </div>
