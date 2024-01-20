@@ -60,6 +60,9 @@ postVideo(videoData: FormData){
   return this.http.post(url, videoData);
 }
 
-
+updateVideo(videoData:FormData, id: number){
+  const url =  environment.baseUrl + `/videos/${id}/`;
+  return this.http.put(url, videoData );
+}
 
 }
