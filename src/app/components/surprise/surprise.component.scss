@@ -160,3 +160,29 @@ video {
 .additionalInformation {
     font-size: 0.4em;
 }
+
+.likeButton {
+    display: inline-block;
+    transition: all .125ms ease;
+
+    &.liked {
+        color: red;
+        animation: pulse 0.6s ease;
+    }
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2); // Vergrößern
+    }
+    100% {
+      transform: scale(1);
+    }
+}

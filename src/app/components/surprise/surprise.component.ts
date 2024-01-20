@@ -5,6 +5,8 @@ import { ViewChild, ElementRef } from '@angular/core';
 import { User } from 'src/app/models/user.class';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
+import { SignupData } from 'src/app/services/user-interface';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -20,22 +22,25 @@ export class SurpriseComponent implements OnInit {
   allVideos: Video[] = [];
   videosByCategory: Video[] = [];
   subscription!: Subscription;
+  currentUser!: SignupData;
+  videoLiked!: boolean;
   @ViewChild('featureVideoElement') featureVideoElement!: ElementRef;
 
-  constructor(public videoService: VideoService, private userService: UserService) { }
+  constructor(public videoService: VideoService, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit() {
     this.videoService.getVideos();
     this.userService.getUserData();
     this.subscription = this.userService.users$.subscribe(users => {
       this.users = users;
-      console.log('Users Array;',this.users);
+      console.log('Users Array;', this.users);
     });
     this.videoService.videos$.subscribe(videos => {
       this.allVideos = videos;
       this.allVideos.sort((a, b) => b.likes.length - a.likes.length);
       this.loadFeatureVideo(videos);
     });
+    this.getLoggedUserData();
   }
 
   // selectVideo(index: number) {
@@ -53,9 +58,10 @@ export class SurpriseComponent implements OnInit {
       const randomIndex = Math.floor(Math.random() * videos.length);
       this.featureVideo = videos[randomIndex];
     }
+    if (this.currentUser && this.featureVideo) {
+      this.checkVideoLikes();
+    }
     console.log('Current FeatureVideo:', this.featureVideo);
-    const videoAutor = this.getUserById(this.featureVideo?.id);   
-    console.log('videoAutor is:', videoAutor);
     this.videosByCategory = this.filterVideosByCategory();
   }
 
@@ -88,6 +94,7 @@ export class SurpriseComponent implements OnInit {
   toggleLikeVideo(videoId: number) {
     this.videoService.toggleLike(videoId).subscribe({
       next: (response) => {
+        this.checkVideoLikes();
         console.log(response);
       },
       error: (error) => {
@@ -100,9 +107,30 @@ export class SurpriseComponent implements OnInit {
   }
 
 
+  checkVideoLikes() {
+    if (this.featureVideo && this.featureVideo.likes && this.currentUser) {
+      this.videoLiked = this.featureVideo.likes.includes(this.currentUser.id);
+    } else {
+      this.videoLiked = false;
+    }
+    console.log('is video liked?', this.videoLiked);
+  }
+
+
   getUserById(id: number): User | undefined {
     return this.users.find(user => user.id === id);
   }
 
+
+  async getLoggedUserData() {
+    try {
+      this.currentUser = await this.authService.getLoggedUserData();
+      if (this.currentUser && this.featureVideo) {
+        this.checkVideoLikes();
+      }
+    } catch (err) {
+      console.error('Could not load user data', err);
+    }
+  }
 
 }
