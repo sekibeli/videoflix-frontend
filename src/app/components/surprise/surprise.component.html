@@ -11,7 +11,7 @@
                     <div class="bi bi-heart likeButton iconSizeFeatureVideo"
                         *ngIf="featureVideo.id && !featureVideoLiked" (click)="toggleLikeFeatureVideo(featureVideo.id)">
                     </div>
-                    <div class="bi bi-heart-fill iconSizeFeatureVideo" style="color:red" *ngIf="featureVideoLiked"
+                    <div class="bi bi-heart-fill iconSizeFeatureVideo likeButton" [ngClass]="{'liked': featureVideoLiked}" style="color:red" *ngIf="featureVideoLiked"
                         (click)="toggleLikeFeatureVideo(featureVideo.id)"></div>
                     <div class="bi likeCounterFeatureVideo iconSizeFeatureVideo">{{featureVideo.likes.length}}</div>
                 </div>
@@ -82,10 +82,10 @@
                                     <div class="card-body">
                                         <div class="controlButtons">
                                             <div class="videoLikesContainer">
-                                                <div class="bi bi-heart iconSize"
+                                                <div class="bi bi-heart iconSize" 
                                                     *ngIf="selectedVideo && selectedVideo.id !== undefined && !videoLiked"
                                                     (click)="toggleLikeVideo(selectedVideo.id)"></div>
-                                                <div class="bi bi-heart-fill iconSize" style="color:red"
+                                                <div class="bi bi-heart-fill iconSize likeButton"  [ngClass]="{'liked': videoLiked}" style="color:red"
                                                     *ngIf="selectedVideo && selectedVideo.id !== undefined && videoLiked"
                                                     (click)="toggleLikeVideo(selectedVideo.id)"></div>
                                                 <div class="bi likeCounterSelectedVideo iconSizeFeatureVideo">

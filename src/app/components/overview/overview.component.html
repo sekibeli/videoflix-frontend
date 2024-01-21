@@ -57,7 +57,7 @@
                                 <div class="bi bi-heart iconSize"
                                     *ngIf="selectedVideo && selectedVideo.id !== undefined && !videoLiked"
                                     (click)="toggleLikeVideo(selectedVideo.id)"></div>
-                                <div class="bi bi-heart-fill iconSize" style="color:red"
+                                <div class="bi bi-heart-fill iconSize likeButton" [ngClass]="{'liked': videoLiked}" style="color:red"
                                     *ngIf="selectedVideo && selectedVideo.id !== undefined && videoLiked"
                                     (click)="toggleLikeVideo(selectedVideo.id)"></div>
                                 <div class="bi likeCounterSelectedVideo iconSizeFeatureVideo">

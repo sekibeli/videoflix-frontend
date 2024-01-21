@@ -185,10 +185,6 @@ video {
         color: red;
         animation: pulse 0.6s ease;
     }
-
-    &:hover {
-        transform: scale(1.1);
-    }
 }
 
 @keyframes pulse {
