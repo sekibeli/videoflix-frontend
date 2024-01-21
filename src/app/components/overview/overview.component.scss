@@ -117,3 +117,15 @@ video {
     padding: 0 10px;
     cursor: pointer;
 }
+
+.videoLikesContainer {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #dc3545;
+    border-radius: 20px;
+}
+
+.likeCounterSelectedVideo {
+    font-size: 0.7em !important;
+    padding: 0 10px;
+}

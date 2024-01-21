@@ -4,6 +4,8 @@ import { VideoService } from 'src/app/services/video.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.class';
+import { AuthService } from 'src/app/services/auth.service';
+import { SignupData } from 'src/app/services/user-interface';
 
 
 @Component({
@@ -18,10 +20,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
   videosByCategory: { [category: string]: Video[] } = {};
   private videosByCategorySubject = new BehaviorSubject<{ [category: string]: Video[] }>({});
   public videosByCategory$ = this.videosByCategorySubject.asObservable();
+  videoLiked!: boolean;
+  currentUser!: SignupData;
 
 
-
-  constructor(private videoService: VideoService, private userService: UserService) { }
+  constructor(private videoService: VideoService, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit() {
     this.videoService.getVideos();
@@ -31,9 +34,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
     });
     this.videoService.videos$.subscribe(videos => {
       this.groupVideosByCategory(videos);
-      console.log(videos);
-      
     });
+    this.checkVideoLikes();
+    this.getLoggedUserData();
   }
 
   ngOnDestroy() {
@@ -57,8 +60,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   onSelectVideo(video: Video): void {
+    const videoId = video.id;
+    this.getSelectedtVideo(videoId)
     this.selectedVideo = video;
-    console.log(this.selectedVideo);
+    this.checkVideoLikes();
   }
 
   deleteSelectedVideo() {
@@ -82,15 +87,46 @@ export class OverviewComponent implements OnInit, OnDestroy {
   toggleLikeVideo(videoId: number) {
     this.videoService.toggleLike(videoId).subscribe({
       next: (response) => {
+        this.getSelectedtVideo(videoId);
+        this.videoService.notifyLikeUpdate(videoId);
         console.log(response);
       },
       error: (error) => {
         console.error(error);
-      },
-      complete: () => {
-        console.log('Request completed');
       }
     });
+  }
+
+
+  getSelectedtVideo(videoId: number) {
+    this.videoService.getVideobyId(videoId).subscribe({
+      next: (updatedVideo: Video) => {
+        this.selectedVideo = updatedVideo;
+        this.checkVideoLikes();
+      },
+      error: (error: any) => {
+        console.error("Fehler beim Abrufen des aktualisierten Videos", error);
+      }
+    });
+  }
+
+
+  checkVideoLikes() {
+    if (this.selectedVideo && this.selectedVideo.likes) {
+      this.videoLiked = this.selectedVideo.likes.includes(this.currentUser.id);
+    }
+  }
+
+
+  async getLoggedUserData() {
+    try {
+      this.currentUser = await this.authService.getLoggedUserData();
+      if (this.currentUser) {
+        this.checkVideoLikes();
+      }
+    } catch (err) {
+      console.error('Could not load user data', err);
+    }
   }
 
 }
