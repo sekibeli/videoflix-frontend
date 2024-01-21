@@ -8,10 +8,10 @@
         <div class="card-body">
             <div class="controlButtons">
                 <div class="videoLikesContainer">
-                    <div class="bi bi-heart likeButton iconSizeFeatureVideo" *ngIf="featureVideo.id && !videoLiked"
-                        (click)="toggleLikeVideo(featureVideo.id)"></div>
-                    <div class="bi bi-heart-fill iconSizeFeatureVideo" style="color:red" *ngIf="videoLiked"
-                        (click)="toggleLikeVideo(featureVideo.id)"></div>
+                    <div class="bi bi-heart likeButton iconSizeFeatureVideo" *ngIf="featureVideo.id && !featureVideoLiked"
+                        (click)="toggleLikeFeatureVideo(featureVideo.id)"></div>
+                    <div class="bi bi-heart-fill iconSizeFeatureVideo" style="color:red" *ngIf="featureVideoLiked"
+                        (click)="toggleLikeFeatureVideo(featureVideo.id)"></div>
                     <div class="bi likeCounterFeatureVideo iconSizeFeatureVideo">{{featureVideo.likes.length}}</div>
                 </div>
                 <div class="bi bi-info-circle-fill iconSizeFeatureVideo" data-bs-toggle="collapse"

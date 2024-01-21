@@ -22,6 +22,7 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   videosByCategory: Video[] = [];
   subscription!: Subscription;
   currentUser!: SignupData;
+  featureVideoLiked!: boolean;
   videoLiked!: boolean;
   likeSubscription!: Subscription;
   @ViewChild('featureVideoElement') featureVideoElement!: ElementRef;
@@ -36,6 +37,7 @@ export class SurpriseComponent implements OnInit, OnDestroy {
       console.log('Users Array;', this.users);
     });
     this.getAllVideos();
+    this.checkVideoLikes();
     this.getLoggedUserData();
     this.likeUpdateListener();
   }
@@ -86,6 +88,8 @@ export class SurpriseComponent implements OnInit, OnDestroy {
 
 
   onSelectVideo(video: Video): void {
+    const videoId = video.id;
+    this.getSelectedtVideo(videoId);
     this.selectedVideo = video;
   }
 
@@ -95,7 +99,7 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   }
 
 
-  toggleLikeVideo(videoId: number) {
+  toggleLikeFeatureVideo(videoId: number) {
     this.videoService.toggleLike(videoId).subscribe({
       next: (response) => {
         this.getFeatureVideo(videoId);
@@ -109,16 +113,32 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   }
 
 
-  checkVideoLikes() {    
+  toggleLikeVideo(videoId: number) {
+    this.videoService.toggleLike(videoId).subscribe({
+      next: (response) => {
+        this.videoService.notifyLikeUpdate();
+        console.log(response);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
+
+
+  checkVideoLikes() {
     if (this.featureVideo && this.featureVideo.likes && this.currentUser) {
-      this.videoLiked = this.featureVideo.likes.includes(this.currentUser.id);  
+      this.featureVideoLiked = this.featureVideo.likes.includes(this.currentUser.id);
+    }
+    if (this.selectedVideo && this.selectedVideo.likes) {
+      this.videoLiked = this.selectedVideo.likes.includes(this.currentUser.id);
     }
   }
 
 
-  likeUpdateListener() {      
+  likeUpdateListener() {
     this.likeSubscription = this.videoService.getLikeUpdateListener().subscribe(() => {
-        this.checkVideoLikes();     
+      this.checkVideoLikes();
     })
   }
 
@@ -127,6 +147,19 @@ export class SurpriseComponent implements OnInit, OnDestroy {
     this.videoService.getVideobyId(videoId).subscribe({
       next: (updatedVideo: Video) => {
         this.featureVideo = updatedVideo;
+        this.checkVideoLikes();
+      },
+      error: (error: any) => {
+        console.error("Fehler beim Abrufen des aktualisierten Videos", error);
+      }
+    });
+  }
+
+
+  getSelectedtVideo(videoId: number) {
+    this.videoService.getVideobyId(videoId).subscribe({
+      next: (updatedVideo: Video) => {
+        this.selectedVideo = updatedVideo;
         this.checkVideoLikes();
       },
       error: (error: any) => {
