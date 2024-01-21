@@ -12,7 +12,7 @@ export class VideoService {
   public videos$ = this.videosSubject.asObservable();
   private myVideosSubject = new BehaviorSubject<Video[]>([])
   public myVideos$ = this.myVideosSubject.asObservable();
-  likeUpdate = new Subject<void>();
+  private likeUpdate = new BehaviorSubject<number | null>(null);
 
 
   constructor(private http: HttpClient) { }
@@ -61,7 +61,10 @@ export class VideoService {
     return this.http.post(url, videoData);
   }
 
-
+  updateVideo(videoData: FormData, id: number) {
+    const url = environment.baseUrl + `/videos/${id}/`;
+    return this.http.put(url, videoData);
+  }
   getVideobyId(id: number) {
     const url = environment.baseUrl + `/videos/${id}`;
     return this.http.get<Video>(url);
@@ -74,8 +77,8 @@ export class VideoService {
   }
 
 
-  notifyLikeUpdate() {
-    this.likeUpdate.next();
+  notifyLikeUpdate(videoId: number) {
+    this.likeUpdate.next(videoId);
   }
 
 

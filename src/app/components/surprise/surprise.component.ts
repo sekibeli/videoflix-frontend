@@ -25,6 +25,8 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   featureVideoLiked!: boolean;
   videoLiked!: boolean;
   likeSubscription!: Subscription;
+  featureVideoLikedSubscription!: Subscription;
+  selectedVideoLikedSubscription!: Subscription;
   @ViewChild('featureVideoElement') featureVideoElement!: ElementRef;
 
   constructor(public videoService: VideoService, private userService: UserService, private authService: AuthService) { }
@@ -34,22 +36,12 @@ export class SurpriseComponent implements OnInit, OnDestroy {
     this.userService.getUserData();
     this.subscription = this.userService.users$.subscribe(users => {
       this.users = users;
-      console.log('Users Array;', this.users);
     });
     this.getAllVideos();
     this.checkVideoLikes();
     this.getLoggedUserData();
     this.likeUpdateListener();
   }
-
-  // selectVideo(index: number) {
-  //   this.videoService.videos$.subscribe(videos => {
-  //     if (videos && videos.length > index) {
-  //       this.selectedVideo = videos[index];
-  //       console.log(this.selectedVideo);
-  //     }
-  //   });
-  // }
 
 
   loadFeatureVideo(videos: Video[]) {
@@ -73,6 +65,15 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   }
 
 
+  getAllVideosAfterLike() {
+    this.videoService.getVideos();
+    this.videoService.videos$.subscribe(videos => {
+      this.allVideos = videos;
+      this.allVideos.sort((a, b) => b.likes.length - a.likes.length);
+    });
+  }
+
+
   pauseFeatureVideo() {
     this.featureVideoElement.nativeElement.pause();
   }
@@ -89,8 +90,9 @@ export class SurpriseComponent implements OnInit, OnDestroy {
 
   onSelectVideo(video: Video): void {
     const videoId = video.id;
-    this.getSelectedtVideo(videoId);
+    this.getSelectedtVideo(videoId)
     this.selectedVideo = video;
+    this.checkVideoLikes();
   }
 
 
@@ -103,7 +105,7 @@ export class SurpriseComponent implements OnInit, OnDestroy {
     this.videoService.toggleLike(videoId).subscribe({
       next: (response) => {
         this.getFeatureVideo(videoId);
-        this.videoService.notifyLikeUpdate();
+        this.videoService.notifyLikeUpdate(videoId);
         console.log(response);
       },
       error: (error) => {
@@ -116,7 +118,8 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   toggleLikeVideo(videoId: number) {
     this.videoService.toggleLike(videoId).subscribe({
       next: (response) => {
-        this.videoService.notifyLikeUpdate();
+        this.getSelectedtVideo(videoId);
+        this.videoService.notifyLikeUpdate(videoId);
         console.log(response);
       },
       error: (error) => {
@@ -126,25 +129,37 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   }
 
 
-  checkVideoLikes() {
-    if (this.featureVideo && this.featureVideo.likes && this.currentUser) {
-      this.featureVideoLiked = this.featureVideo.likes.includes(this.currentUser.id);
-    }
-    if (this.selectedVideo && this.selectedVideo.likes) {
-      this.videoLiked = this.selectedVideo.likes.includes(this.currentUser.id);
-    }
+  likeUpdateListener() {
+    this.likeSubscription = this.videoService.getLikeUpdateListener().subscribe(updatedVideoId => {
+      if (updatedVideoId !== null) {
+        this.updateLocalVideoData(updatedVideoId);
+      }
+    });
   }
 
 
-  likeUpdateListener() {
-    this.likeSubscription = this.videoService.getLikeUpdateListener().subscribe(() => {
-      this.checkVideoLikes();
-    })
+  updateLocalVideoData(updatedVideoId: number) {
+    if (this.featureVideo && this.featureVideo.id === updatedVideoId) {
+      this.getFeatureVideo(updatedVideoId);
+    }
+
+    if (this.selectedVideo && this.selectedVideo.id === updatedVideoId) {
+      this.getSelectedtVideo(updatedVideoId);
+    }
+
+    const index = this.allVideos.findIndex(video => video.id === updatedVideoId);
+    if (index !== -1) {      
+      this.videoService.getVideobyId(updatedVideoId).subscribe(updatedVideo => {
+        this.allVideos[index] = updatedVideo;
+        console.log('Try to update video', updatedVideo);
+        this.checkVideoLikes();
+      });
+    }
   }
 
 
   getFeatureVideo(videoId: number) {
-    this.videoService.getVideobyId(videoId).subscribe({
+    this.featureVideoLikedSubscription = this.videoService.getVideobyId(videoId).subscribe({
       next: (updatedVideo: Video) => {
         this.featureVideo = updatedVideo;
         this.checkVideoLikes();
@@ -169,6 +184,16 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   }
 
 
+  checkVideoLikes() {
+    if (this.featureVideo && this.featureVideo.likes && this.currentUser) {
+      this.featureVideoLiked = this.featureVideo.likes.includes(this.currentUser.id);
+    }
+    if (this.selectedVideo && this.selectedVideo.likes) {
+      this.videoLiked = this.selectedVideo.likes.includes(this.currentUser.id);
+    }
+  }
+
+
   getUserById(id: number): User | undefined {
     return this.users.find(user => user.id === id);
   }
@@ -188,6 +213,8 @@ export class SurpriseComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.likeSubscription?.unsubscribe();
+    this.featureVideoLikedSubscription?.unsubscribe();
+    this.selectedVideoLikedSubscription?.unsubscribe();
   }
 
 }
