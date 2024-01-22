@@ -47,7 +47,7 @@
 
             <div class="btnContainer">
                 <button class="editProfileBtn saveBtn" type="submit" [disabled]="!editUserForm.valid">Speichern</button>
-                <button class="editProfileBtn cancelBtn" [routerLink]="['/home/surprise']">Abbrechen</button>
+                <button class="editProfileBtn cancelBtn" (click)="goBack()">Abbrechen</button>
             </div>
         </form>
     </div>

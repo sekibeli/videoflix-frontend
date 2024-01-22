@@ -20,7 +20,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'verify/:token', component: EmailVerifyComponent },
-  { path: 'edit-user', component: EditUserComponent },
   { path: 'datenschutz', component: DatenschutzComponent },
   { path: 'impressum', component: ImpressumComponent },
   {
@@ -30,6 +29,7 @@ const routes: Routes = [
       { path: 'surprise', component: SurpriseComponent},
       { path: 'allvideos', component: OverviewComponent },
       { path: 'myvideos', component: MyvideosComponent},
+      { path: 'edit-user', component: EditUserComponent },
       // { path: 'detail', component: DetailComponent }
     ]
   }
