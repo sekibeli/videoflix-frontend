@@ -1,4 +1,5 @@
 export interface SignupData {
+    id: number;
     email: string;
     username: string;
     phone: string;
