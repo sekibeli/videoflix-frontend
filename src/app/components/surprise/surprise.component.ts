@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { VideoService } from 'src/app/services/video.service';
 import { Video } from 'src/app/models/video.class';
 import { ViewChild, ElementRef } from '@angular/core';
@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './surprise.component.html',
   styleUrls: ['./surprise.component.scss']
 })
-export class SurpriseComponent implements OnInit {
+export class SurpriseComponent implements OnInit, AfterViewInit, OnDestroy {
   private users: User[] = [];
   autorsName: string = 'Autor';
   selectedVideo: Video | null = null;
@@ -29,7 +29,7 @@ export class SurpriseComponent implements OnInit {
     this.userService.getUserData();
     this.subscription = this.userService.users$.subscribe(users => {
       this.users = users;
-      console.log('Users Array;',this.users);
+      console.log('Users Array;', this.users);
     });
     this.videoService.videos$.subscribe(videos => {
       this.allVideos = videos;
@@ -54,7 +54,7 @@ export class SurpriseComponent implements OnInit {
       this.featureVideo = videos[randomIndex];
     }
     console.log('Current FeatureVideo:', this.featureVideo);
-    const videoAutor = this.getUserById(this.featureVideo?.id);   
+    const videoAutor = this.getUserById(this.featureVideo?.id);
     console.log('videoAutor is:', videoAutor);
     this.videosByCategory = this.filterVideosByCategory();
   }
@@ -104,5 +104,23 @@ export class SurpriseComponent implements OnInit {
     return this.users.find(user => user.id === id);
   }
 
+
+  ngAfterViewInit() {
+    const modalElement = document.getElementById('surpriseVideoModal');
+    if (modalElement) {
+      modalElement.addEventListener('hide.bs.modal',this.handleModalClose);
+    }
+  }
+
+  ngOnDestroy() {
+    const modalElement = document.getElementById('surpriseVideoModal');
+    if (modalElement) {
+      modalElement.removeEventListener('hide.bs.modal', this.handleModalClose);
+    }
+  }
+
+  private handleModalClose = (event: Event): void => {
+    this.selectedVideo = null;
+  }
 
 }

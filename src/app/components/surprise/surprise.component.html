@@ -32,7 +32,7 @@
         </div>
         <div class="videoListing">
 
-            <div *ngFor="let video of videosByCategory" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <div *ngFor="let video of videosByCategory" data-bs-toggle="modal" data-bs-target="#surpriseVideoModal">
                 <!-- Darstellung jedes Videos -->
                 <div class="videoBox" (click)="onSelectVideo(video)">
 
@@ -48,13 +48,13 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1"
-                aria-labelledby="exampleModalLabel" aria-hidden="true" (show.bs.modal)="pauseFeatureVideo()"
+            <div class="modal fade" id="surpriseVideoModal" data-bs-backdrop="static" tabindex="-1"
+                aria-labelledby="surpriseVideoModalLabel" aria-hidden="true" (show.bs.modal)="pauseFeatureVideo()"
                 (hidden.bs.modal)="playFeatureVideo()">
                 <div class="modal-dialog modal-xl modal-fullscreen-md-down">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <h1 class="modal-title fs-5" id="surpriseVideoModalLabel">Modal title</h1>
                             <button type="button" class="btn-close" (click)="deleteSelectedVideo()"
                                 data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>

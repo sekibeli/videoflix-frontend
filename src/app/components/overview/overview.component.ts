@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
 import { Video } from 'src/app/models/video.class';
 import { VideoService } from 'src/app/services/video.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { User } from 'src/app/models/user.class';
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent implements OnInit, OnDestroy {
+export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
   private users: User[] = [];
   private subscription?: Subscription;
   selectedVideo: any = null;
@@ -32,12 +32,16 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.videoService.videos$.subscribe(videos => {
       this.groupVideosByCategory(videos);
       console.log(videos);
-      
+
     });
   }
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
+    const modalElement = document.getElementById('overviewVideoModal');
+    if (modalElement) {
+      modalElement.removeEventListener('hide.bs.modal', this.handleModalClose);
+    }
   }
 
 
@@ -91,6 +95,19 @@ export class OverviewComponent implements OnInit, OnDestroy {
         console.log('Request completed');
       }
     });
+  }
+
+
+  ngAfterViewInit() {
+    const modalElement = document.getElementById('overviewVideoModal');
+    if (modalElement) {
+      modalElement.addEventListener('hide.bs.modal', this.handleModalClose);
+    }
+  }
+
+
+  private handleModalClose = (event: Event): void => {
+    this.selectedVideo = null;
   }
 
 }
