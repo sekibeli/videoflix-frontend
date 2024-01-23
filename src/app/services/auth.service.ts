@@ -27,19 +27,14 @@ export class AuthService {
 
   getLoggedUserData() {
     const url = environment.baseUrl + '/edit-user/';
-    const headers = new HttpHeaders({
-      'Authorization': `Token ${localStorage.getItem('token')}`
-    });
-    return lastValueFrom(this.http.get<SignupData>(url, { headers: headers }));
+    return lastValueFrom(this.http.get<SignupData>(url));
   }
 
 
   updateUserProfile(updateUserProfile: SignupData) {
+    console.log('Run method updateUserProfile');    
     const url = environment.baseUrl + '/edit-user/';
-    const headers = new HttpHeaders({
-      'Authorization': `Token ${localStorage.getItem('token')}`
-    });
-    return lastValueFrom(this.http.patch<SignupData>(url, updateUserProfile, { headers: headers }));
+    return lastValueFrom(this.http.patch<SignupData>(url, updateUserProfile));
   }
 
 
@@ -51,16 +46,12 @@ export class AuthService {
 
   signout() {
     const url = environment.baseUrl + '/logout/';
-    const headers = new HttpHeaders().set('Authorization', `Token ${localStorage.getItem('token')}`);
-    return lastValueFrom(this.http.post(url, {}, { headers: headers }));
+    return lastValueFrom(this.http.post(url, {}));
   }
 
   deleteUserAccount() {
     const url = environment.baseUrl + '/delete-user/';
-    const headers = new HttpHeaders({
-      'Authorization': `Token ${localStorage.getItem('token')}`
-    });
-    return lastValueFrom(this.http.delete(url, { headers: headers }));
+    return lastValueFrom(this.http.delete(url));
   }
 
 }

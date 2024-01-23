@@ -35,7 +35,6 @@ export class EditUserComponent implements OnInit {
     try {
       const userProfile = await this.authService.getLoggedUserData();
       this.userProfile = userProfile;
-      console.log(this.userProfile);
       this.editUserForm.patchValue({
         email: userProfile.email,
         username: userProfile.username,
@@ -85,7 +84,7 @@ export class EditUserComponent implements OnInit {
   }
 
   
-  goBack(): void {   
+  goBack(): void {      
     this.location.back(); 
   }
 

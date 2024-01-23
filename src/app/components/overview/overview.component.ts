@@ -31,8 +31,6 @@ export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
     });
     this.videoService.videos$.subscribe(videos => {
       this.groupVideosByCategory(videos);
-      console.log(videos);
-
     });
   }
 
@@ -62,7 +60,6 @@ export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onSelectVideo(video: Video): void {
     this.selectedVideo = video;
-    console.log(this.selectedVideo);
   }
 
   deleteSelectedVideo() {
@@ -74,7 +71,6 @@ export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   deleteVideo(videoId: number) {
-    console.log('delete', videoId);
     this.videoService.deleteVideo(videoId);
   }
 
@@ -90,9 +86,6 @@ export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
       },
       error: (error) => {
         console.error(error);
-      },
-      complete: () => {
-        console.log('Request completed');
       }
     });
   }

@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'verify/:token', component: EmailVerifyComponent },
   { path: 'datenschutz', component: DatenschutzComponent },
   { path: 'impressum', component: ImpressumComponent },
+  { path: 'edit-user', component: EditUserComponent },
   {
     path: 'home', component: HomeComponent,
 
@@ -29,7 +30,6 @@ const routes: Routes = [
       { path: 'surprise', component: SurpriseComponent},
       { path: 'allvideos', component: OverviewComponent },
       { path: 'myvideos', component: MyvideosComponent},
-      { path: 'edit-user', component: EditUserComponent },
       // { path: 'detail', component: DetailComponent }
     ]
   }
@@ -40,3 +40,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+// { enableTracing: true }

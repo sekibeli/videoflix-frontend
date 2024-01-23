@@ -29,7 +29,6 @@ export class SurpriseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.userService.getUserData();
     this.subscription = this.userService.users$.subscribe(users => {
       this.users = users;
-      console.log('Users Array;', this.users);
     });
     this.videoService.videos$.subscribe(videos => {
       this.allVideos = videos;
@@ -53,9 +52,7 @@ export class SurpriseComponent implements OnInit, AfterViewInit, OnDestroy {
       const randomIndex = Math.floor(Math.random() * videos.length);
       this.featureVideo = videos[randomIndex];
     }
-    console.log('Current FeatureVideo:', this.featureVideo);
     const videoAutor = this.getUserById(this.featureVideo?.id);
-    console.log('videoAutor is:', videoAutor);
     this.videosByCategory = this.filterVideosByCategory();
   }
 
@@ -76,7 +73,6 @@ export class SurpriseComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onSelectVideo(video: Video): void {
     this.selectedVideo = video;
-    console.log('Autosname is:', this.autorsName);
   }
 
 
@@ -92,9 +88,6 @@ export class SurpriseComponent implements OnInit, AfterViewInit, OnDestroy {
       },
       error: (error) => {
         console.error(error);
-      },
-      complete: () => {
-        console.log('Request completed');
       }
     });
   }

@@ -61,18 +61,15 @@ export class MyvideosComponent implements OnInit {
     const userId = this.userProfile.id;
     // Auf Änderungen in videosSubject reagieren
     this.videoService.videos$.subscribe(videos => {
-      console.log('Alle Videos:', videos);
+
       // Filtern der Videos, die vom eingeloggten Benutzer erstellt wurden
       this.myVideos = videos.filter(video => video.created_from === userId);
-      console.log(this.myVideos);
     });
 
   }
 
   onUpload() {
-    console.log('onUpload Aufruf');
     if (this.videoForm.valid && this.selectedFile) {
-      console.log('onUpload valid');
       const formData = new FormData();
       formData.append('title', this.videoForm.value.title ?? '')
       formData.append('description', this.videoForm.value.description ?? '')
@@ -80,7 +77,6 @@ export class MyvideosComponent implements OnInit {
       formData.append('category', this.videoForm.value.category ?? 'allgemein');
 
       formData.append('myFile', this.selectedFile, this.selectedFile.name);
-      console.log('FormData vor dem Senden:', formData);
 
       this.videoService.postVideo(formData).subscribe({
         next: (response) => {
@@ -96,7 +92,6 @@ export class MyvideosComponent implements OnInit {
   }
 
   deleteVideo(videoId: number) {
-    console.log('delete', videoId);
     this.videoService.deleteVideo(videoId);
   }
 
@@ -106,14 +101,12 @@ export class MyvideosComponent implements OnInit {
 
   onSelectVideo(video: Video): void {
     this.selectedVideo = video;
-    console.log(this.selectedVideo);
   }
 
   async showVideoData(videoData: Video) {
     try {
       // const videoData = await this.videoService.getVideos();
       this.selectedVideo = videoData;
-      console.log(this.userProfile);
       this.editVideoForm.patchValue({
         category: videoData.category,
         title: videoData.title,
