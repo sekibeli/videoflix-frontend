@@ -12,6 +12,7 @@ import { EmailVerifyComponent } from './components/email-verify/email-verify.com
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { MyvideosComponent } from './components/myvideos/myvideos.component';
 import { SurpriseComponent } from './components/surprise/surprise.component';
+import { PopularComponent } from './components/popular/popular.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
       { path: 'surprise', component: SurpriseComponent},
       { path: 'allvideos', component: OverviewComponent },
       { path: 'myvideos', component: MyvideosComponent},
+      { path: 'popular', component: PopularComponent},
       // { path: 'detail', component: DetailComponent }
     ]
   }
