@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Video } from 'src/app/models/video.class';
 import { VideoService } from 'src/app/services/video.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.class';
+import { AuthService } from 'src/app/services/auth.service';
+import { SignupData } from 'src/app/services/user-interface';
 
 
 @Component({
@@ -11,17 +13,18 @@ import { User } from 'src/app/models/user.class';
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
+export class OverviewComponent implements OnInit, OnDestroy {
   private users: User[] = [];
   private subscription?: Subscription;
   selectedVideo: any = null;
   videosByCategory: { [category: string]: Video[] } = {};
   private videosByCategorySubject = new BehaviorSubject<{ [category: string]: Video[] }>({});
   public videosByCategory$ = this.videosByCategorySubject.asObservable();
+  videoLiked!: boolean;
+  currentUser!: SignupData;
 
 
-
-  constructor(private videoService: VideoService, private userService: UserService) { }
+  constructor(private videoService: VideoService, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit() {
     this.videoService.getVideos();
@@ -32,14 +35,13 @@ export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
     this.videoService.videos$.subscribe(videos => {
       this.groupVideosByCategory(videos);
     });
+    this.checkVideoLikes();
+    this.getLoggedUserData();
   }
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
     const modalElement = document.getElementById('overviewVideoModal');
-    if (modalElement) {
-      modalElement.removeEventListener('hide.bs.modal', this.handleModalClose);
-    }
   }
 
 
@@ -59,7 +61,10 @@ export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onSelectVideo(video: Video): void {
+    const videoId = video.id;
+    this.getSelectedtVideo(videoId)
     this.selectedVideo = video;
+    this.checkVideoLikes();
   }
 
   deleteSelectedVideo() {
@@ -82,6 +87,8 @@ export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
   toggleLikeVideo(videoId: number) {
     this.videoService.toggleLike(videoId).subscribe({
       next: (response) => {
+        this.getSelectedtVideo(videoId);
+        this.videoService.notifyLikeUpdate(videoId);
         console.log(response);
       },
       error: (error) => {
@@ -91,16 +98,35 @@ export class OverviewComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
 
-  ngAfterViewInit() {
-    const modalElement = document.getElementById('overviewVideoModal');
-    if (modalElement) {
-      modalElement.addEventListener('hide.bs.modal', this.handleModalClose);
+  getSelectedtVideo(videoId: number) {
+    this.videoService.getVideobyId(videoId).subscribe({
+      next: (updatedVideo: Video) => {
+        this.selectedVideo = updatedVideo;
+        this.checkVideoLikes();
+      },
+      error: (error: any) => {
+        console.error("Fehler beim Abrufen des aktualisierten Videos", error);
+      }
+    });
+  }
+
+
+  checkVideoLikes() {
+    if (this.selectedVideo && this.selectedVideo.likes) {
+      this.videoLiked = this.selectedVideo.likes.includes(this.currentUser.id);
     }
   }
 
 
-  private handleModalClose = (event: Event): void => {
-    this.selectedVideo = null;
+  async getLoggedUserData() {
+    try {
+      this.currentUser = await this.authService.getLoggedUserData();
+      if (this.currentUser) {
+        this.checkVideoLikes();
+      }
+    } catch (err) {
+      console.error('Could not load user data', err);
+    }
   }
-
+  
 }

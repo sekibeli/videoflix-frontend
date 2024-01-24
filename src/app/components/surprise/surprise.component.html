@@ -7,15 +7,23 @@
     <div class="card">
         <div class="card-body">
             <div class="controlButtons">
-                <div class="bi bi-heart iconSizeFeatureVideo" *ngIf="featureVideo.id" (click)="toggleLikeVideo(featureVideo.id)"></div>
-                <div class="bi iconSizeFeatureVideo">{{featureVideo.likes.length}}</div>
+                <div class="videoLikesContainer">
+                    <div class="bi bi-heart likeButton iconSizeFeatureVideo"
+                        *ngIf="featureVideo.id && !featureVideoLiked" (click)="toggleLikeFeatureVideo(featureVideo.id)">
+                    </div>
+                    <div class="bi bi-heart-fill iconSizeFeatureVideo likeButton"
+                        [ngClass]="{'liked': featureVideoLiked}" style="color:red" *ngIf="featureVideoLiked"
+                        (click)="toggleLikeFeatureVideo(featureVideo.id)"></div>
+                    <div class="bi likeCounterFeatureVideo iconSizeFeatureVideo">{{featureVideo.likes.length}}</div>
+                </div>
                 <div class="bi bi-info-circle-fill iconSizeFeatureVideo" data-bs-toggle="collapse"
                     data-bs-target="#videoDescriptionContent"></div>
             </div>
         </div>
         <div id="videoDescriptionContent" class="collapse">
             <div class="videoDescriptionContainer">
-                <div class="infoFeatureVideo">Autor: {{ featureVideo ? getUserById(featureVideo.created_from)?.username : 'Unbekannter Autor' }}</div>
+                <div class="infoFeatureVideo">Autor: {{ featureVideo ? getUserById(featureVideo.created_from)?.username
+                    : 'Unbekannter Autor' }}</div>
                 <div class="infoFeatureVideo">Upload: {{featureVideo.created_at | date: 'dd. MMMM yyyy'}}</div>
                 <div class="infoFeatureVideo">Kategorie: {{featureVideo.category}}</div>
                 <span class="infoFeatureVideo">Beschreibung: {{featureVideo.description}}</span>
@@ -50,7 +58,7 @@
             <!-- Modal -->
             <div class="modal fade" id="surpriseVideoModal" data-bs-backdrop="static" tabindex="-1"
                 aria-labelledby="surpriseVideoModalLabel" aria-hidden="true" (show.bs.modal)="pauseFeatureVideo()"
-                (hidden.bs.modal)="playFeatureVideo()">
+                (hidden.bs.modal)="playFeatureVideo()" (hide.bs.modal)="deleteSelectedVideo()">
                 <div class="modal-dialog modal-xl modal-fullscreen-md-down">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -74,11 +82,21 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="controlButtons">
-                                            <div class="bi bi-heart iconSize" *ngIf="selectedVideo && selectedVideo.id !== undefined" (click)="toggleLikeVideo(selectedVideo.id)"></div>
-                                            <div class="bi iconSizeFeatureVideo">{{selectedVideo?.likes?.length}}</div>
-                                            <div class="bi bi-heart iconSize"></div>
+                                            <div class="videoLikesContainer">
+                                                <div class="bi bi-heart iconSize"
+                                                    *ngIf="selectedVideo && selectedVideo.id !== undefined && !videoLiked"
+                                                    (click)="toggleLikeVideo(selectedVideo.id)"></div>
+                                                <div class="bi bi-heart-fill iconSize likeButton"
+                                                    [ngClass]="{'liked': videoLiked}" style="color:red"
+                                                    *ngIf="selectedVideo && selectedVideo.id !== undefined && videoLiked"
+                                                    (click)="toggleLikeVideo(selectedVideo.id)"></div>
+                                                <div class="bi likeCounterSelectedVideo iconSizeFeatureVideo">
+                                                    {{selectedVideo?.likes?.length}}</div>
+                                            </div>
                                             <div class="bi bi-info-circle-fill iconSize"></div>
-                                            <div class="additionalInformation">Autor: {{ selectedVideo ? getUserById(selectedVideo.created_from)?.username : 'Unbekannter Autor' }}
+                                            <div class="additionalInformation">Autor: {{ selectedVideo ?
+                                                getUserById(selectedVideo.created_from)?.username : 'Unbekannter Autor'
+                                                }}
 
                                                 Upload {{selectedVideo?.created_at |
                                                 date: 'dd. MMMM yyyy'}}</div>
