@@ -40,11 +40,19 @@
           </div>
         </ul>
         
-        <form class="d-flex" role="search">
+        <!-- <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <i class="bi bi-search" type=submit></i>
-          <!-- <button class="btn btn-outline-danger" type="submit">Search</button> -->
-        </form>
+          <button class="btn btn-outline-danger" type="submit">Search</button>
+        </form> -->
+
+
+        <div class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"  [(ngModel)]="searchTerm"
+          (keyup)="filterVideos()">
+          <i class="bi bi-search" type=submit></i>
+          <div class="filteredVideos"></div>
+        </div>
       
       </div>
       <div class="headerLinks">

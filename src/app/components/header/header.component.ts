@@ -8,11 +8,17 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  searchTerm: string = '';
 
 
   constructor(
     public authService: AuthService,
     private router: Router) { }
+
+
+    filterVideos() {
+      
+    }
 
 
   async onLogout() {
