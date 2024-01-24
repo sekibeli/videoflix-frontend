@@ -41,6 +41,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
+    const modalElement = document.getElementById('overviewVideoModal');
   }
 
 
@@ -75,7 +76,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   deleteVideo(videoId: number) {
-    console.log('delete', videoId);
     this.videoService.deleteVideo(videoId);
   }
 
@@ -128,5 +128,5 @@ export class OverviewComponent implements OnInit, OnDestroy {
       console.error('Could not load user data', err);
     }
   }
-
+  
 }

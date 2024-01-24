@@ -20,9 +20,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'verify/:token', component: EmailVerifyComponent },
-  { path: 'edit-user', component: EditUserComponent },
   { path: 'datenschutz', component: DatenschutzComponent },
   { path: 'impressum', component: ImpressumComponent },
+  { path: 'edit-user', component: EditUserComponent },
   {
     path: 'home', component: HomeComponent,
 
@@ -40,3 +40,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+// { enableTracing: true }

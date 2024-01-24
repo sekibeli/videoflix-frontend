@@ -148,7 +148,7 @@ export class SurpriseComponent implements OnInit, OnDestroy {
     }
 
     const index = this.allVideos.findIndex(video => video.id === updatedVideoId);
-    if (index !== -1) {      
+    if (index !== -1) {
       this.videoService.getVideobyId(updatedVideoId).subscribe(updatedVideo => {
         this.allVideos[index] = updatedVideo;
         console.log('Try to update video', updatedVideo);

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { MessageService } from 'src/app/services/message.service';
 import { SignupData } from 'src/app/services/user-interface';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-user',
@@ -21,7 +22,8 @@ export class EditUserComponent implements OnInit {
     private authService: AuthService,
     private messageService: MessageService,
     private formBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.showUserData();
@@ -33,7 +35,6 @@ export class EditUserComponent implements OnInit {
     try {
       const userProfile = await this.authService.getLoggedUserData();
       this.userProfile = userProfile;
-      console.log(this.userProfile);
       this.editUserForm.patchValue({
         email: userProfile.email,
         username: userProfile.username,
@@ -83,5 +84,8 @@ export class EditUserComponent implements OnInit {
   }
 
   
+  goBack(): void {      
+    this.location.back(); 
+  }
 
 }
