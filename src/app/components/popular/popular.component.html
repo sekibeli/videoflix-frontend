@@ -1,11 +1,30 @@
 <div class="content">
   
     <div class="firstRow">
-        <div class="bigVideo"></div>
+        <div class="bigVideo"> Anzeige vom absoluten Top Video</div>
         <div class="rightSection">
             <div class="videoBox">
                 <div class="top">Neu hochgeladen</div>
-                <div class="videoRow"></div>
+                <div class="videoRow">
+                    <div class="videoListing" >
+
+                        <div *ngFor="let video of videosToday$ | async" data-bs-toggle="modal" data-bs-target="#overviewVideoModal">
+                            <!-- Darstellung jedes Videos -->
+                            <div class="videoBox" >
+        
+                                <div class="relative">
+        
+                                    <div class="videoTitleHeader">{{ video.title }}</div>
+                                    <video width="200" height="120">
+                                        <source [src]="video.video_file" type="video/mp4">
+                                        Ihr Browser unterstützt das Video-Tag nicht.
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
             <div class="videoBox">
                 <div class="top">Am beliebtesten</div>

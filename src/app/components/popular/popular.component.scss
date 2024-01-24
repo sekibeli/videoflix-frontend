@@ -38,8 +38,25 @@
 }
 
 .videoRow {
-    padding: 10px 20px;
-    background-color: rgba(255, 255, 255, 0.236);
+    padding: 0px 20px;
+    // background-color: rgba(255, 255, 255, 0.236);
     margin-top: 20px;
     height: 135px;
+}
+.relative {
+    position: relative;
+}
+.videoTitleHeader {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.773);
+    width: 200px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    color: white;
+    font-size: 0.6em;
+    padding: 5px;
 }

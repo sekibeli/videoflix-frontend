@@ -86,4 +86,9 @@ export class VideoService {
     return this.likeUpdate.asObservable();
   }
 
+  getTodayVideos(){
+    const url = environment.baseUrl + `/videos/videos_today/`;
+    return this.http.get<Video[]>(url);
+  }
+
 }
