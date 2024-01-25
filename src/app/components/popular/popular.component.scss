@@ -1,0 +1,62 @@
+.content {
+    height: 100vh;
+    width:100vw;
+    position: absolute;
+    top: 54px;
+    background-color: #1A221C;
+    display: flex;
+    flex-direction: column;
+}
+
+.firstRow {
+    display: flex;
+    
+}
+.rightSection {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.videoBox {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.bigVideo {
+    background-color: white;
+    padding: 10px;
+    margin: 20px;
+    width: 50%;
+    height: 400px;
+}
+.top {
+    width: 100%;
+    color: white;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.457);
+}
+
+.videoRow {
+    padding: 0px 20px;
+    // background-color: rgba(255, 255, 255, 0.236);
+    margin-top: 20px;
+    height: 135px;
+}
+.relative {
+    position: relative;
+}
+.videoTitleHeader {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.773);
+    width: 200px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    color: white;
+    font-size: 0.6em;
+    padding: 5px;
+}

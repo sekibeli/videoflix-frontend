@@ -18,6 +18,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { MyvideosComponent } from './components/myvideos/myvideos.component';
 import { SurpriseComponent } from './components/surprise/surprise.component';
+import { PopularComponent } from './components/popular/popular.component';
 
 
 
@@ -37,6 +38,7 @@ import { SurpriseComponent } from './components/surprise/surprise.component';
     EditUserComponent,
     MyvideosComponent,
     SurpriseComponent,
+    PopularComponent,
    
   ],
   imports: [
