@@ -20,47 +20,55 @@
 
 
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary" >
-    <div class="container-fluid">
-        <div class="title">
-            <img src="../../../assets/img/logovideoflix.png" alt="" >
-        </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      
-          <div class="headerLinks">
-          <div class="link bi bi-house-fill" routerLink="surprise" routerLinkActive="active"></div> 
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <div class="title">
+      <img src="../../../assets/img/logovideoflix.png" alt="">
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <div class="headerLinks">
+          <div class="link bi bi-house-fill" routerLink="surprise" routerLinkActive="active"></div>
 
           <div class="link" routerLink="allvideos" routerLinkActive="active">Alle Filme</div>
           <div class="link" routerLinkActive="active">Neu & beliebt</div>
-        <div class="link" routerLink="myvideos" routerLinkActive="active">Meine Videos</div>
-          </div>
-        </ul>
-        
-        <!-- <form class="d-flex" role="search">
+          <div class="link" routerLink="myvideos" routerLinkActive="active">Meine Videos</div>
+        </div>
+      </ul>
+
+      <!-- <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <i class="bi bi-search" type=submit></i>
           <button class="btn btn-outline-danger" type="submit">Search</button>
         </form> -->
 
-
-        <div class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"  [(ngModel)]="searchTerm"
-          (keyup)="filterVideos()">
-          <i class="bi bi-search" type=submit></i>
-          <div class="filteredVideos"></div>
+      <!-- search sector -->
+      <div class="d-flex searchContainer" role="search">
+        <div class="searchInputContent">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+            [(ngModel)]="searchTerm" (keyup)="searchVideos()">
+          <i class="bi bi-search"></i>
         </div>
-      
+        <div class="filteredVideos" *ngIf="searchTerm">
+          <span *ngFor="let result of searchResults" (click)="onSelectVideo(result)">
+            {{result.title}}
+          </span>
+        </div>
       </div>
-      <div class="headerLinks">
-      
-        <div>
-            <button class="btn btn-danger " routerLink="/edit-user">Profil</button>
-            <button class="btn btn-danger " (click)="onLogout()">Log out</button>
-        </div>
+      <!-- search sector -->
+
     </div>
+    <div class="headerLinks">
+
+      <div>
+        <button class="btn btn-danger " routerLink="/edit-user">Profil</button>
+        <button class="btn btn-danger " (click)="onLogout()">Log out</button>
+      </div>
     </div>
-  </nav>
+  </div>
+</nav>

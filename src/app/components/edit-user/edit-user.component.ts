@@ -66,7 +66,7 @@ export class EditUserComponent implements OnInit {
     try {
       const formData: SignupData = this.editUserForm.value;
       await this.authService.updateUserProfile(formData);
-      this.router.navigateByUrl('/home/surprise');
+      this.location.back(); 
     } catch (err) {
       console.error('Could not save user profile chanegs.', err);
     }
