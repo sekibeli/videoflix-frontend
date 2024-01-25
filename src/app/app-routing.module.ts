@@ -12,6 +12,7 @@ import { EmailVerifyComponent } from './components/email-verify/email-verify.com
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { MyvideosComponent } from './components/myvideos/myvideos.component';
 import { SurpriseComponent } from './components/surprise/surprise.component';
+import { PopularComponent } from './components/popular/popular.component';
 
 
 const routes: Routes = [
@@ -20,9 +21,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'verify/:token', component: EmailVerifyComponent },
-  { path: 'edit-user', component: EditUserComponent },
   { path: 'datenschutz', component: DatenschutzComponent },
   { path: 'impressum', component: ImpressumComponent },
+  { path: 'edit-user', component: EditUserComponent },
   {
     path: 'home', component: HomeComponent,
 
@@ -30,6 +31,7 @@ const routes: Routes = [
       { path: 'surprise', component: SurpriseComponent},
       { path: 'allvideos', component: OverviewComponent },
       { path: 'myvideos', component: MyvideosComponent},
+      { path: 'popular', component: PopularComponent},
       // { path: 'detail', component: DetailComponent }
     ]
   }
@@ -40,3 +42,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+// { enableTracing: true }

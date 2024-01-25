@@ -24,6 +24,8 @@ export class AuthInterceptorService implements HttpInterceptor{
     catchError((err)=> {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
+          console.log('No Token');
+          
         this.router.navigateByUrl('/login');
      }
   }

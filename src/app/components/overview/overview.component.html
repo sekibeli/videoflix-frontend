@@ -7,7 +7,7 @@
             </div>
             <div class="videoListing" >
 
-                <div *ngFor="let video of category.value" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div *ngFor="let video of category.value" data-bs-toggle="modal" data-bs-target="#overviewVideoModal">
                     <!-- Darstellung jedes Videos -->
                     <div class="videoBox" (click)="onSelectVideo(video)">
 
@@ -24,15 +24,13 @@
 
 
 
-
-
  <!-- Modal -->
- <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
- aria-hidden="true"  >
+ <div class="modal fade" id="overviewVideoModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="overviewVideoModalLabel"
+ aria-hidden="true" (hide.bs.modal)="deleteSelectedVideo()">
  <div class="modal-dialog modal-xl modal-fullscreen-md-down">
      <div class="modal-content">
          <div class="modal-header">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+             <h1 class="modal-title fs-5" id="overviewVideoModalLabel">Modal title</h1>
              <button type="button" class="btn-close" (click)="deleteSelectedVideo()" data-bs-dismiss="modal"
                  aria-label="Close"></button>
          </div>
@@ -53,7 +51,16 @@
                     <div class="card-body">
                         <div class="controlButtons">
                             <!-- <div class="bi bi-trash3-fill iconSize" data-bs-dismiss="modal" (click)="deleteVideo(selectedVideo.id)"></div> -->
-                            <div class="bi bi-heart iconSize"></div>
+                            <div class="videoLikesContainer">
+                                <div class="bi bi-heart iconSize"
+                                    *ngIf="selectedVideo && selectedVideo.id !== undefined && !videoLiked"
+                                    (click)="toggleLikeVideo(selectedVideo.id)"></div>
+                                <div class="bi bi-heart-fill iconSize likeButton" [ngClass]="{'liked': videoLiked}" style="color:red"
+                                    *ngIf="selectedVideo && selectedVideo.id !== undefined && videoLiked"
+                                    (click)="toggleLikeVideo(selectedVideo.id)"></div>
+                                <div class="bi likeCounterSelectedVideo iconSizeFeatureVideo">
+                                    {{selectedVideo?.likes?.length}}</div>
+                            </div>
                             <div class="bi bi-info-circle-fill iconSize" ></div>
                             <div class="additionalInformation">Autor: {{ getUserById(selectedVideo?.created_from)?.username }}   Upload {{selectedVideo?.created_at | date: 'dd. MMMM yyyy'}}</div>
                          </div>

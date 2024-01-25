@@ -35,7 +35,7 @@
           <div class="link bi bi-house-fill" routerLink="surprise" routerLinkActive="active"></div> 
 
           <div class="link" routerLink="allvideos" routerLinkActive="active">Alle Filme</div>
-          <div class="link" routerLinkActive="active">Neu & beliebt</div>
+          <div class="link" routerLink="popular" routerLinkActive="active">Neu & beliebt</div>
         <div class="link" routerLink="myvideos" routerLinkActive="active">Meine Videos</div>
           </div>
         </ul>
@@ -50,7 +50,7 @@
       <div class="headerLinks">
       
         <div>
-            <button class="btn btn-danger " [routerLink]="['/edit-user']">Profil</button>
+            <button class="btn btn-danger " routerLink="/edit-user">Profil</button>
             <button class="btn btn-danger " (click)="onLogout()">Log out</button>
         </div>
     </div>

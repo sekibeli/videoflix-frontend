@@ -10,11 +10,12 @@ import { UserService } from './services/user.service';
 export class AppComponent implements OnInit {
   title = 'videoflix-frontend';
 
-constructor(private videoService: VideoService, private userService: UserService){}
+constructor(private videoService: VideoService, private userService: UserService){
+}
 
   ngOnInit(){
-    this.videoService.getVideos();
-    this.userService.getUserData();
+    // this.videoService.getVideos();
+    // this.userService.getUserData();
   
   }
 }
