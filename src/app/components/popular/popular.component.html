@@ -36,30 +36,7 @@
     <div class="secondRow">
         <div class="videoBox">
             <div class="top">Videos von <span class="point" (click)="getTodayVideos()">[ heute ]</span> [ gestern ] [übermorgen :D]</div>
-            <div class="videoRow">
-
-                <div class="videoRow">
-                    <div class="videoListing" >
-
-                        <div *ngFor="let video of videosToday$ | async" data-bs-toggle="modal" data-bs-target="#overviewVideoModal">
-                            <!-- Darstellung jedes Videos -->
-                            <div class="videoBox" >
-        
-                                <div class="relative">
-        
-                                    <div class="videoTitleHeader">{{ video.title }}</div>
-                                    <video width="200" height="120">
-                                        <source [src]="video.video_file" type="video/mp4">
-                                        Ihr Browser unterstützt das Video-Tag nicht.
-                                    </video>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
+         <app-videorow [videos]="videosToday$ | async " ></app-videorow>
         </div>
     </div>
 </div>
