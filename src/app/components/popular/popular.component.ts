@@ -11,6 +11,8 @@ import { VideoService } from 'src/app/services/video.service';
 export class PopularComponent {
   private videosTodaySubject = new BehaviorSubject<Video[]>([]);
   public videosToday$ = this.videosTodaySubject.asObservable();
+  private videosYesterdaySubject = new BehaviorSubject<Video[]>([]);
+  public videosYesterday$ = this.videosYesterdaySubject.asObservable();
   
   
   constructor(public videoService: VideoService){
@@ -29,5 +31,12 @@ export class PopularComponent {
     // this.getSelectedtVideo(videoId)
     // this.selectedVideo = video;
     // this.checkVideoLikes();
+  }
+
+  getYesterdayVideos(){
+    this.videoService.getYesterdayVideos().subscribe(videos => {
+      console.log(videos);
+      this.videosYesterdaySubject.next(videos);
+    })
   }
 }

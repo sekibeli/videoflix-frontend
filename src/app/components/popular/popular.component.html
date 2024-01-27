@@ -35,7 +35,7 @@
     </div>
     <div class="secondRow">
         <div class="videoBox">
-            <div class="top">Videos von <span class="point" (click)="getTodayVideos()">[ heute ]</span> [ gestern ] [übermorgen :D]</div>
+            <div class="top">Videos von <span class="point" (click)="getTodayVideos()">[ heute ]</span> <span class="point" (click)="getYesterdayVideos()">[ gestern ]</span> [übermorgen :D]</div>
          <app-videorow [videos]="videosToday$ | async " ></app-videorow>
         </div>
     </div>

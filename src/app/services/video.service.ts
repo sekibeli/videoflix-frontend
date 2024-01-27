@@ -91,4 +91,8 @@ export class VideoService {
     return this.http.get<Video[]>(url);
   }
 
+  getYesterdayVideos(){
+    const url = environment.baseUrl + `/videos/videos_yesterday/`;
+    return this.http.get<Video[]>(url);
+  }
 }
