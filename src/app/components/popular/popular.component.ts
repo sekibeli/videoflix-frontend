@@ -17,6 +17,9 @@ export class PopularComponent {
   
   constructor(public videoService: VideoService){
     this.getTodayVideos();
+    this.videoService.getMostLikedVideos();
+   
+    console.log(this.videoService.mostLikedVideos$)
   }
 
   getTodayVideos(){
@@ -39,4 +42,14 @@ export class PopularComponent {
       this.videosYesterdaySubject.next(videos);
     })
   }
+
+  scrollLeft() {
+    const container = document.querySelector('.videoRow');
+    container?.scrollBy({ left: -200, behavior: 'smooth' }); // Passen Sie den Wert -200 nach Bedarf an
+}
+
+scrollRight() {
+    const container = document.querySelector('.videoRow');
+    container?.scrollBy({ left: 200, behavior: 'smooth' }); // Passen Sie den Wert 200 nach Bedarf an
+}
 }

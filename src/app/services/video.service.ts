@@ -13,7 +13,8 @@ export class VideoService {
   private myVideosSubject = new BehaviorSubject<Video[]>([])
   public myVideos$ = this.myVideosSubject.asObservable();
   private likeUpdate = new BehaviorSubject<number | null>(null);
-
+  private mostLikedVideosSubject = new BehaviorSubject<Video[]>([]);
+  public mostLikedVideos$ = this.mostLikedVideosSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -94,5 +95,19 @@ export class VideoService {
   getYesterdayVideos(){
     const url = environment.baseUrl + `/videos/videos_yesterday/`;
     return this.http.get<Video[]>(url);
+  }
+
+  getMostLikedVideos(){
+    const url = environment.baseUrl + `/videos/popular_videos/`;
+    this.http.get<Video[]>(url).subscribe(
+      mostLiked => {
+        this.mostLikedVideosSubject.next(mostLiked);
+        console.log('Most', mostLiked);
+      },
+        error => {
+          console.error('Fehler beim Laden der MostLikedVideos:', error)
+        }
+
+    );
   }
 }
