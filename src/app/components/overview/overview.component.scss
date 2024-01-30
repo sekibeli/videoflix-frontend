@@ -88,6 +88,7 @@ video {
 }
 
 .additionalInformation {
+    display: flex;
     font-size: 0.4em;
 }
 
@@ -138,6 +139,11 @@ video {
         color: red;
         animation: pulse 0.6s ease;
     }
+}
+
+.bi {
+    margin-left: 15px;
+    margin-right: 5px;
 }
 
 @keyframes pulse {

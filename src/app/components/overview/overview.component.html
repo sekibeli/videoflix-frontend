@@ -62,7 +62,7 @@
                                     {{selectedVideo?.likes?.length}}</div>
                             </div>
                             <div class="bi bi-info-circle-fill iconSize" ></div>
-                            <div class="additionalInformation">Autor: {{ getUserById(selectedVideo?.created_from)?.username }}   Upload {{selectedVideo?.created_at | date: 'dd. MMMM yyyy'}} <i class="bi bi-eye-fill"></i> {{selectedVideo?.view_count}}</div>
+                            <div class="additionalInformation"><i class="bi bi-person-fill"></i> {{ getUserById(selectedVideo?.created_from)?.username }}   <i class="bi bi-cloud-upload-fill"></i> {{selectedVideo?.created_at | date: 'dd. MMMM yyyy'}} <i class="bi bi-eye-fill"></i> {{selectedVideo?.view_count}}</div>
                          </div>
                     </div>
                     
