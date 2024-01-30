@@ -72,7 +72,7 @@
                                 <h4>{{selectedVideo?.title}}</h4>
                                 <div class="description">{{selectedVideo?.description}}</div>
                                 <div class="fullwidth" *ngIf="selectedVideo">
-                                    <video width="100%" controls>
+                                    <video width="100%" controls (play)="onVideoPlay(selectedVideo.id)" >
                                         <source [src]="selectedVideo.video_file" type="video/mp4">
                                         Ihr Browser unterstützt das Video-Tag nicht.
 

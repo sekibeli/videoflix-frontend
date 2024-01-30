@@ -1,7 +1,17 @@
 <div class="content">
   
     <div class="firstRow">
-        <div class="bigVideo"> Anzeige vom absoluten Top Video</div>
+        <div class="bigVideo"  *ngIf="(videoService.mostLikedVideos$ | async)?.slice(0,1) as mostLikedVideo"> 
+
+            <div class="relative">
+        
+                <div *ngIf="mostLikedVideo[0]" class="videoTitleHeader">{{mostLikedVideo[0].title}}</div> 
+                <video *ngIf="mostLikedVideo[0]" controls loop autoplay>
+                    <source [src]="mostLikedVideo[0].video_file" type="video/mp4">
+                    Ihr Browser unterstützt das Video-Tag nicht.
+                </video>
+            </div>
+        </div>
         <div class="rightSection">
             <div class="videoBox">
                 <div class="top">Neu hochgeladen</div>
@@ -27,16 +37,61 @@
                 </div>
             </div>
             <div class="videoBox">
-                <div class="top">Am beliebtesten</div>
-                <div class="videoRow"></div>
+                <div class="top">Am meisten geliked</div>
+                <div class="videoRow">
+
+                    <div class="videoListing" >
+
+                        <div *ngFor="let video of this.videoService.mostLikedVideos$ | async" data-bs-toggle="modal" data-bs-target="#overviewVideoModal">
+                            <!-- Darstellung jedes Videos -->
+                            <div class="videoBox" >
+        
+                                <div class="relative">
+        
+                                    <div class="videoTitleHeader">{{ video.title }}</div>
+                                    <video width="200" height="120">
+                                        <source [src]="video.video_file" type="video/mp4">
+                                        Ihr Browser unterstützt das Video-Tag nicht.
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
     </div>
     <div class="secondRow">
         <div class="videoBox">
-            <div class="top">Videos von [ heute ] [gestern] [übermorgen :D]</div>
-            <div class="videoRow"></div>
+            <div class="top">Am meisten gesehen</div>
+         <!-- <app-videorow ></app-videorow> -->
+         <div class="videoRow">
+
+            <div class="videoListing" >
+
+                <div *ngFor="let video of this.videoService.mostSeenVideos$ | async" data-bs-toggle="modal" data-bs-target="#overviewVideoModal">
+                    <!-- Darstellung jedes Videos -->
+                    <div class="videoBox" >
+
+                        <div class="relative">
+
+                            <div class="videoTitleHeader">{{ video.title }}</div>
+                            <video width="200" height="120">
+                                <source [src]="video.video_file" type="video/mp4">
+                                Ihr Browser unterstützt das Video-Tag nicht.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="secondRow">
+        <div class="videoBox">
+            <div class="top">Videos von <span class="point" (click)="getTodayVideos()">[ heute ]</span> <span class="point" (click)="getYesterdayVideos()">[ gestern ]</span> [übermorgen :D]</div>
+         <app-videorow [videos]="videosToday$ | async " ></app-videorow>
         </div>
     </div>
 </div>

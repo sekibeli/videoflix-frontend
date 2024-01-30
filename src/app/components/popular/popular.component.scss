@@ -25,11 +25,20 @@
 }
 .bigVideo {
     background-color: white;
-    padding: 10px;
+   
     margin: 20px;
     width: 50%;
     height: 400px;
+    position: relative; /* Stellen Sie sicher, dass der Container relative positioniert ist */
+    overflow: hidden;
 }
+.bigVideo video {
+    // width: 100%; /* Setzt die Breite des Videos auf die volle Breite des Containers */
+    // height: 100%; /* Setzt die Höhe des Videos auf die volle Höhe des Containers */
+    object-fit: cover; /* Stellt sicher, dass das Video den Container bedeckt, während das Seitenverhältnis beibehalten wird */
+    // position: absolute; /* Positioniert das Video absolut innerhalb des Containers */
+}
+
 .top {
     width: 100%;
     color: white;
@@ -42,6 +51,8 @@
     // background-color: rgba(255, 255, 255, 0.236);
     margin-top: 20px;
     height: 135px;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 .relative {
     position: relative;
@@ -59,4 +70,12 @@
     color: white;
     font-size: 0.6em;
     padding: 5px;
+}
+
+.dark {
+    color: black;
+}
+.videoListing {
+    display: flex;
+    gap: 5px;
 }

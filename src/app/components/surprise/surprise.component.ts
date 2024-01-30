@@ -217,4 +217,12 @@ export class SurpriseComponent implements OnInit, OnDestroy {
     this.selectedVideoLikedSubscription?.unsubscribe();
   }
 
+  onVideoPlay(videoId: number){
+    this.videoService.incrementViewCount(videoId).subscribe(response => {
+      console.log('Video hochgezählt');
+
+    });
+   
+  }
+
 }

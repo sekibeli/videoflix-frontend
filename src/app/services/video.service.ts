@@ -13,6 +13,10 @@ export class VideoService {
   private myVideosSubject = new BehaviorSubject<Video[]>([])
   public myVideos$ = this.myVideosSubject.asObservable();
   private likeUpdate = new BehaviorSubject<number | null>(null);
+  private mostLikedVideosSubject = new BehaviorSubject<Video[]>([]);
+  public mostLikedVideos$ = this.mostLikedVideosSubject.asObservable();
+  private mostSeenVideosSubject = new BehaviorSubject<Video[]>([]);
+  public mostSeenVideos$ = this.mostSeenVideosSubject.asObservable();
 
 
   constructor(private http: HttpClient) { }
@@ -89,6 +93,44 @@ export class VideoService {
   getTodayVideos(){
     const url = environment.baseUrl + `/videos/videos_today/`;
     return this.http.get<Video[]>(url);
+  }
+
+  getYesterdayVideos(){
+    const url = environment.baseUrl + `/videos/videos_yesterday/`;
+    return this.http.get<Video[]>(url);
+  }
+
+  getMostLikedVideos(){
+    const url = environment.baseUrl + `/videos/popular_videos/`;
+    this.http.get<Video[]>(url).subscribe(
+      mostLiked => {
+        this.mostLikedVideosSubject.next(mostLiked);
+        console.log('Most liked', mostLiked);
+      },
+        error => {
+          console.error('Fehler beim Laden der MostLikedVideos:', error)
+        }
+
+    );
+  }
+
+  incrementViewCount(videoId: number){
+    const url = environment.baseUrl + `/videos/${videoId}/increment-view-count/`;
+    return this.http.post(url,null);
+  }
+
+  getMostSeenVideos(){
+    const url = environment.baseUrl + `/videos/mostSeen_videos/`;
+    this.http.get<Video[]>(url).subscribe(
+      mostSeen => {
+        this.mostSeenVideosSubject.next(mostSeen);
+        console.log('Most seen', mostSeen);
+      },
+        error => {
+          console.error('Fehler beim Laden der MostSeenVideos:', error)
+        }
+
+    );
   }
 
 }
