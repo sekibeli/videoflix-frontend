@@ -7,6 +7,7 @@ export class Video {
     category: string;
     video_file: string;
     likes: number[];
+    thumbnail: string;
 
     constructor(obj?:any){
         this.id = obj ? obj.id: null;
@@ -17,6 +18,7 @@ export class Video {
         this.category = obj ? obj.category: '';
         this.video_file = obj ? obj.video_file: '';
         this.likes = obj ? obj.likes: [];
+        this.thumbnail = obj ? obj.video_file: '';
     }
 
     public toJSON(){
@@ -28,7 +30,8 @@ export class Video {
            description: this.description,
            category: this.category,
            video_file: this.video_file,
-           likes: this.likes
+           likes: this.likes,
+           thumb: this.thumbnail
         }
     }
 }

@@ -37,6 +37,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
     });
     this.videoService.videosToDisplay$.subscribe(videos => {
       this.groupVideosByCategory(videos);
+      console.log('All videos object', videos);
+      
     });
     this.checkVideoLikes();
     this.getLoggedUserData();
@@ -140,9 +142,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
   
 
-  showButtonListener() {
-    console.log('Call showButtonListener method');
-    
+  showButtonListener() {    
     this.buttonSubscription = this.videoService.getShowButtonListener().subscribe(() => {
       this.showAllVideosBtn = true;
     })

@@ -26,7 +26,7 @@
                             <div class="relative">
 
                                 <div class="videoTitleHeader">{{ video.title }}</div>
-                                <video width="240" height="160">
+                                <video width="240" height="160" [poster]="video.thumbnail">
                                     <source [src]="video.video_file" type="video/mp4">
                                     Ihr Browser unterstützt das Video-Tag nicht.
                                 </video>
