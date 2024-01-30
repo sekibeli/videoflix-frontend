@@ -3,7 +3,7 @@
 <div class="content" style="background-color: rgba(0, 0, 0, 0.8)">
     <div class="overlay"></div>
     <div class="section">
-        <button class="btn btn-danger showAllVideos" (click)="resetSearch()">Alle Videos anzeigen</button>
+        <button class="btn btn-danger showAllVideos" *ngIf="showAllVideosBtn" (click)="resetSearch()">Alle Videos anzeigen</button>
         <!-- <div *ngIf="filteredVideos.length > 0; else showCategories">
             <div *ngFor="let video of filteredVideos" data-bs-toggle="modal" data-bs-target="#overviewVideoModal">
                 <div class="videoBox" (click)="onSelectVideo(video)">

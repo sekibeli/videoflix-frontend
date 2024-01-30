@@ -36,6 +36,7 @@ export class HeaderComponent {
   onSelectVideo(video: Video) {
     this.videoService.updateFilteredVideos(this.searchResults);
     this.searchTerm = '';
+    this.videoService.notifyShowButton();
   }
 
 

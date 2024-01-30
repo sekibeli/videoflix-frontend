@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Video } from '../models/video.class';
-import { BehaviorSubject, Observable, map, of, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, map, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -17,6 +17,8 @@ export class VideoService {
   public filteredVideos$ = this.filteredVideosSubject.asObservable();
 
   private likeUpdate = new BehaviorSubject<number | null>(null);
+
+  private showVideosButton = new Subject<void>();
 
 
 
@@ -121,6 +123,16 @@ export class VideoService {
 
   getLikeUpdateListener() {
     return this.likeUpdate.asObservable();
+  }
+
+
+  notifyShowButton() {
+    this.showVideosButton.next();
+  }
+
+
+  getShowButtonListener() {
+    return this.showVideosButton.asObservable();
   }
 
 }
