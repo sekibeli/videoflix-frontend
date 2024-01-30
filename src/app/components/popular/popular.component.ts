@@ -18,8 +18,9 @@ export class PopularComponent {
   constructor(public videoService: VideoService){
     this.getTodayVideos();
     this.videoService.getMostLikedVideos();
-   
-    console.log(this.videoService.mostLikedVideos$)
+    this.videoService.getMostSeenVideos();
+  //  console.log(this.videoService.mostSeenVideos$)
+  //   console.log(this.videoService.mostLikedVideos$)
   }
 
   getTodayVideos(){
