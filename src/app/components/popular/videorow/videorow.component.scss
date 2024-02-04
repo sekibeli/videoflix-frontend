@@ -2,3 +2,110 @@
     display: flex;
     gap: 5px;
 }
+
+.relative {
+    position: relative;
+}
+.videoTitleHeader {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.773);
+    width: 200px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    color: white;
+    font-size: 0.6em;
+    padding: 5px;
+}
+
+.dark {
+    color: black;
+}
+
+.videoRow {
+    padding: 0px 10px;
+    // background-color: rgba(255, 255, 255, 0.236);
+    margin-top: 15px;
+    height: 135px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+video {
+    cursor: pointer;
+}
+
+.category {
+    font-size: 1.3em;
+    padding: 0 20px;
+    background-color: rgba(255, 228, 196, 0.517);
+    height: 40px;
+}
+
+.description {
+    font-size: 1em;
+    line-height: 1em;
+    color: grey;
+    margin-bottom: 20px;
+}
+
+.additionalInformation {
+    display: flex;
+    font-size: 1em;
+}
+.fullwidth {
+    // width: 80vw;
+    display: flex;
+    justify-content: center;
+}
+
+.controlButtons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.card-body {
+    height: 40px;
+    padding: 0;
+}
+.card {
+    background-color: rgba(255, 228, 196, 0.517);
+
+    height: 40px;
+}
+
+.iconSize {
+    font-size: 0.8em;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.videoLikesContainer {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #dc3545;
+    border-radius: 20px;
+}
+
+.likeCounterSelectedVideo {
+    font-size: 0.7em !important;
+    padding: 0 10px;
+}
+
+.likeButton {
+    display: inline-block;
+    transition: all .125ms ease;
+
+    &.liked {
+        color: red;
+        animation: pulse 0.6s ease;
+    }
+}
+
+.bi {
+    margin-left: 15px;
+    margin-right: 5px;
+}

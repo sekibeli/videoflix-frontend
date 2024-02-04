@@ -100,6 +100,11 @@ export class VideoService {
     return this.http.get<Video[]>(url);
   }
 
+  getRecentVideos(){
+    const url = environment.baseUrl + `/videos/recentVideos/`;
+    return this.http.get<Video[]>(url);
+  }
+
   getMostLikedVideos(){
     const url = environment.baseUrl + `/videos/popular_videos/`;
     this.http.get<Video[]>(url).subscribe(
