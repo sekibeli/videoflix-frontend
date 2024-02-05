@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Video } from 'src/app/models/video.class';
 import { VideoService } from 'src/app/services/video.service';
@@ -8,7 +8,7 @@ import { VideoService } from 'src/app/services/video.service';
   templateUrl: './popular.component.html',
   styleUrls: ['./popular.component.scss']
 })
-export class PopularComponent implements OnDestroy {
+export class PopularComponent implements OnInit, OnDestroy {
   private videosTodaySubject = new BehaviorSubject<Video[]>([]);
   public videosToday$ = this.videosTodaySubject.asObservable();
   private videosYesterdaySubject = new BehaviorSubject<Video[]>([]);
@@ -26,6 +26,10 @@ export class PopularComponent implements OnDestroy {
     this.videoService.getMostSeenVideos();
     this.getRecentVideos();
  
+  }
+
+  ngOnInit(): void {
+    
   }
 
   getTodayVideos(){

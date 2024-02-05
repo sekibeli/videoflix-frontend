@@ -20,13 +20,13 @@
             </div>
             <div class="videoBox">
                 <div class="top">Am meisten geliked</div>
-                <!-- <app-videorow [videos]="this.videoService.mostLikedVideos$ | async " ></app-videorow> -->
-                <div class="videoRow">
+                <app-videorow [videos]="this.videoService.mostLikedVideos$ | async " ></app-videorow>
+                <!-- <div class="videoRow">
 
                     <div class="videoListing" >
 
                         <div *ngFor="let video of this.videoService.mostLikedVideos$ | async" data-bs-toggle="modal" data-bs-target="#overviewVideoModal">
-                            <!-- Darstellung jedes Videos -->
+                          
                             <div class="videoBox" >
         
                                 <div class="relative">
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         

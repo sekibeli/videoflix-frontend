@@ -26,15 +26,15 @@ constructor(public videoService: VideoService, public userService: UserService){
 
 ngOnInit() {
   // this.videoService.getVideos();
-  
+ 
   this.subscription = this.userService.users$.subscribe(users => {
     this.users = users;
   });
 }
 onSelectVideo(video: Video): void {
   const videoId = video.id;
-  console.log(videoId);
-  this.getSelectedtVideo(videoId)
+  console.log(video);
+   this.getSelectedVideo(videoId)
   this.selectedVideo = video;
   this.checkVideoLikes();
 }
@@ -54,7 +54,7 @@ deleteVideo(videoId: number) {
 toggleLikeVideo(videoId: number) {
   this.videoService.toggleLike(videoId).subscribe({
     next: (response) => {
-      this.getSelectedtVideo(videoId);
+      this.getSelectedVideo(videoId);
       this.videoService.notifyLikeUpdate(videoId);
       console.log(response);
     },
@@ -65,7 +65,7 @@ toggleLikeVideo(videoId: number) {
 }
 
 
-getSelectedtVideo(videoId: number) {
+getSelectedVideo(videoId: number) {
   this.videoService.getVideobyId(videoId).subscribe({
     next: (updatedVideo: Video) => {
       this.selectedVideo = updatedVideo;
@@ -79,7 +79,8 @@ getSelectedtVideo(videoId: number) {
 
 checkVideoLikes() {
   if (this.selectedVideo && this.selectedVideo.likes) {
-    this.videoLiked = this.selectedVideo.likes.includes(this.currentUser.id);
+    console.log(this.selectedVideo);
+     this.videoLiked = this.selectedVideo.likes.includes(this.currentUser.id);
   }
 }
 
