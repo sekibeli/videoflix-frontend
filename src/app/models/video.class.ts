@@ -18,7 +18,7 @@ export class Video {
         this.category = obj ? obj.category: '';
         this.video_file = obj ? obj.video_file: '';
         this.likes = obj ? obj.likes: [];
-        this.thumbnail = obj ? obj.video_file: '';
+        this.thumbnail = obj ? obj.thumbnail: '';
     }
 
     public toJSON(){
@@ -31,7 +31,7 @@ export class Video {
            category: this.category,
            video_file: this.video_file,
            likes: this.likes,
-           thumb: this.thumbnail
+           thumbnail: this.thumbnail
         }
     }
 }
