@@ -23,6 +23,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
   videoLiked!: boolean;
   currentUser!: SignupData;
 
+  showAllVideosBtn: boolean = false;
+  buttonSubscription!: Subscription;
+
 
   constructor(private videoService: VideoService, private userService: UserService, private authService: AuthService) { }
 
@@ -32,15 +35,19 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.subscription = this.userService.users$.subscribe(users => {
       this.users = users;
     });
-    this.videoService.videos$.subscribe(videos => {
+    this.videoService.videosToDisplay$.subscribe(videos => {
       this.groupVideosByCategory(videos);
+      console.log('All videos object', videos);
+      
     });
     this.checkVideoLikes();
     this.getLoggedUserData();
+    this.showButtonListener();
   }
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
+    this.buttonSubscription?.unsubscribe();
     const modalElement = document.getElementById('overviewVideoModal');
   }
 
@@ -128,7 +135,19 @@ export class OverviewComponent implements OnInit, OnDestroy {
       console.error('Could not load user data', err);
     }
   }
+
+  resetSearch() {
+    this.videoService.resetFilteredVideos();
+    this.showAllVideosBtn = false;
+  }
   
+
+  showButtonListener() {    
+    this.buttonSubscription = this.videoService.getShowButtonListener().subscribe(() => {
+      this.showAllVideosBtn = true;
+    })
+  }
+
  
   onVideoPlay(videoId: number){
     this.videoService.incrementViewCount(videoId).subscribe(response => {
@@ -138,3 +157,4 @@ export class OverviewComponent implements OnInit, OnDestroy {
    
   }
 }
+

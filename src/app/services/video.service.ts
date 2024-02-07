@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Video } from '../models/video.class';
-import { BehaviorSubject, Subject, lastValueFrom } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, map, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -12,11 +12,18 @@ export class VideoService {
   public videos$ = this.videosSubject.asObservable();
   private myVideosSubject = new BehaviorSubject<Video[]>([])
   public myVideos$ = this.myVideosSubject.asObservable();
+
+  private filteredVideosSubject = new BehaviorSubject<Video[]>([]);
+  public filteredVideos$ = this.filteredVideosSubject.asObservable();
+
   private likeUpdate = new BehaviorSubject<number | null>(null);
   private mostLikedVideosSubject = new BehaviorSubject<Video[]>([]);
   public mostLikedVideos$ = this.mostLikedVideosSubject.asObservable();
   private mostSeenVideosSubject = new BehaviorSubject<Video[]>([]);
   public mostSeenVideos$ = this.mostSeenVideosSubject.asObservable();
+
+  private showVideosButton = new Subject<void>();
+
 
 
   constructor(private http: HttpClient) { }
@@ -33,6 +40,38 @@ export class VideoService {
     );
   }
 
+
+  getFilteredVideos(searchTerm: string): Observable<Video[]> {
+    return this.videos$.pipe(
+      map(videos => videos.filter(video =>
+        video.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        video.category.toLowerCase().includes(searchTerm.toLowerCase())
+        // Hier evtl ein Such-Kriterium für den Autor einbauen
+      ))
+    );
+  }
+
+
+  updateFilteredVideos(videos: Video[]) {
+    this.filteredVideosSubject.next(videos);
+  }
+
+
+  get videosToDisplay$(): Observable<Video[]> {
+    return this.filteredVideos$.pipe(
+      switchMap(filteredVideos => {
+        if (filteredVideos.length === 0) {
+          return this.videos$;
+        }
+        return of(filteredVideos);
+      })
+    );
+  }
+
+
+  resetFilteredVideos() {
+    this.filteredVideosSubject.next([]);
+  }
 
   // getMyVideos():void {
   //   const url = environment.baseUrl + '/videos/?myvideos=true';
@@ -90,6 +129,15 @@ export class VideoService {
     return this.likeUpdate.asObservable();
   }
 
+
+  notifyShowButton() {
+    this.showVideosButton.next();
+  }
+
+
+  getShowButtonListener() {
+    return this.showVideosButton.asObservable();
+    
   getTodayVideos(){
     const url = environment.baseUrl + `/videos/videos_today/`;
     return this.http.get<Video[]>(url);

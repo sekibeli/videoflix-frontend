@@ -25,6 +25,7 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   featureVideoLiked!: boolean;
   videoLiked!: boolean;
   likeSubscription!: Subscription;
+  videoSubscription!: Subscription;
   featureVideoLikedSubscription!: Subscription;
   selectedVideoLikedSubscription!: Subscription;
   @ViewChild('featureVideoElement') featureVideoElement!: ElementRef;
@@ -57,7 +58,8 @@ export class SurpriseComponent implements OnInit, OnDestroy {
 
 
   getAllVideos() {
-    this.videoService.videos$.subscribe(videos => {
+    this.videoSubscription = this.videoService.videos$.subscribe(videos => {
+      console.log('Video Array', videos);
       this.allVideos = videos;
       this.allVideos.sort((a, b) => b.likes.length - a.likes.length);
       this.loadFeatureVideo(videos);
@@ -65,13 +67,13 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   }
 
 
-  getAllVideosAfterLike() {
-    this.videoService.getVideos();
-    this.videoService.videos$.subscribe(videos => {
-      this.allVideos = videos;
-      this.allVideos.sort((a, b) => b.likes.length - a.likes.length);
-    });
-  }
+  // getAllVideosAfterLike() {
+  //   this.likeSubscription = this.videoService.getVideos();
+  //   this.videoService.videos$.subscribe(videos => {
+  //     this.allVideos = videos;
+  //     this.allVideos.sort((a, b) => b.likes.length - a.likes.length);
+  //   });
+  // }
 
 
   pauseFeatureVideo() {
@@ -213,6 +215,7 @@ export class SurpriseComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.likeSubscription?.unsubscribe();
+    this.videoSubscription?.unsubscribe();
     this.featureVideoLikedSubscription?.unsubscribe();
     this.selectedVideoLikedSubscription?.unsubscribe();
   }
