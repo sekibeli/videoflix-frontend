@@ -18,7 +18,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { MyvideosComponent } from './components/myvideos/myvideos.component';
 import { SurpriseComponent } from './components/surprise/surprise.component';
-import { VideoSearchComponent } from './components/video-search/video-search.component';
+import { PopularComponent } from './components/popular/popular.component';
+import { VideorowComponent } from './components/popular/videorow/videorow.component';
 
 
 
@@ -38,7 +39,8 @@ import { VideoSearchComponent } from './components/video-search/video-search.com
     EditUserComponent,
     MyvideosComponent,
     SurpriseComponent,
-    VideoSearchComponent,
+    PopularComponent,
+    VideorowComponent,
    
   ],
   imports: [

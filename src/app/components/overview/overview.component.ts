@@ -147,5 +147,14 @@ export class OverviewComponent implements OnInit, OnDestroy {
       this.showAllVideosBtn = true;
     })
   }
-  
+
+ 
+  onVideoPlay(videoId: number){
+    this.videoService.incrementViewCount(videoId).subscribe(response => {
+      console.log('Video hochgezählt');
+
+    });
+   
+  }
 }
+
