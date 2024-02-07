@@ -13,7 +13,7 @@ import { VideoService } from 'src/app/services/video.service';
 })
 export class VideorowComponent {
 @Input() videos! : Video[] | null ;
-selectedVideo: any = null;
+selectedVideo!: any ;
 videoLiked!: boolean;
 currentUser!: SignupData;
 private users: User[] = [];
@@ -32,11 +32,12 @@ ngOnInit() {
   });
 }
 onSelectVideo(video: Video): void {
-  const videoId = video.id;
-  console.log(video);
-   this.getSelectedVideo(videoId)
   this.selectedVideo = video;
-  this.checkVideoLikes();
+  // const videoId = video.id;
+   console.log(this.selectedVideo);
+  //  this.getSelectedVideo(video.id)
+  //  this.checkVideoLikes();
+   
 }
 
 deleteSelectedVideo() {
@@ -69,7 +70,7 @@ getSelectedVideo(videoId: number) {
   this.videoService.getVideobyId(videoId).subscribe({
     next: (updatedVideo: Video) => {
       this.selectedVideo = updatedVideo;
-      this.checkVideoLikes();
+      // this.checkVideoLikes();
     },
     error: (error: any) => {
       console.error("Fehler beim Abrufen des aktualisierten Videos", error);
