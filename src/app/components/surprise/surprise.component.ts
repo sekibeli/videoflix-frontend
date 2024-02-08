@@ -33,15 +33,15 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   constructor(public videoService: VideoService, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.videoService.getVideos();
-    this.userService.getUserData();
-    this.subscription = this.userService.users$.subscribe(users => {
-      this.users = users;
-    });
-    this.getAllVideos();
-    this.checkVideoLikes();
-    this.getLoggedUserData();
-    this.likeUpdateListener();
+      this.videoService.getVideos();
+      this.userService.getUserData();
+      this.subscription = this.userService.users$.subscribe(users => {
+        this.users = users;
+      });
+      this.getAllVideos();
+      this.checkVideoLikes();
+      this.getLoggedUserData();
+      this.likeUpdateListener();
   }
 
 
@@ -49,11 +49,13 @@ export class SurpriseComponent implements OnInit, OnDestroy {
     if (videos && videos.length > 0) {
       const randomIndex = Math.floor(Math.random() * videos.length);
       this.featureVideo = videos[randomIndex];
+      console.log('Current FeatureVideo is:', this.featureVideo);      
     }
     if (this.currentUser && this.featureVideo) {
       this.checkVideoLikes();
     }
     this.videosByCategory = this.filterVideosByCategory();
+    console.log('Current Video Categories:',this.videosByCategory);    
   }
 
 
@@ -85,7 +87,7 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   }
 
 
-  filterVideosByCategory(): Video[] {
+  filterVideosByCategory(): Video[] {  
     return this.allVideos.filter(video => video.category === this.featureVideo?.category);
   }
 
