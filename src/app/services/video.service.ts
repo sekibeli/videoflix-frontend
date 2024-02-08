@@ -169,6 +169,7 @@ export class VideoService {
   }
 
   incrementViewCount(videoId: number) {
+    console.log('hoch');
     const url = environment.baseUrl + `/videos/${videoId}/increment-view-count/`;
     return this.http.post(url, null);
   }
