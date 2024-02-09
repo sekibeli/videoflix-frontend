@@ -66,14 +66,20 @@ video {
     display: flex;
     gap: 10px;
     align-items: center;
+    padding-top: 5px;
 }
 .card-body {
     height: 40px;
     padding: 0;
 }
 .card {
+    
+  
     background-color: rgba(255, 228, 196, 0.517);
-
+   border-top-left-radius: 0px;
+   border-top-right-radius: 0px;
+   border-bottom-left-radius: 20px;
+   border-bottom-right-radius: 20px;
     height: 40px;
 }
 
@@ -108,4 +114,37 @@ video {
 .bi {
     margin-left: 15px;
     margin-right: 5px;
+}
+
+.myModal {
+    position: absolute;
+    top: 50px;
+    left: 10%;
+    width: 70%;
+    border-radius: 20px;
+    background-color: #fafafa;
+    z-index: 20;
+    color: rgb(71, 71, 71);
+}
+
+.closeModal {
+    color: rgb(47, 47, 47);
+display: flex;
+justify-content: flex-end;
+padding: 10px 20px;
+cursor:pointer;
+}
+.modalOverlay {
+    position: fixed; /* Positioniert das Overlay fest auf dem Bildschirm */
+    top: 0;
+    left: 0;
+    width: 100%; /* Stellt sicher, dass das Overlay den ganzen Bildschirm bedeckt */
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.648); /* Schwarze Hintergrundfarbe mit 50% Transparenz */
+    z-index: 15; /* Stellt sicher, dass das Overlay unter dem Modal, aber über dem Rest der Seite angezeigt wird */
+}
+
+
+.box {
+    padding: 10px 20px;
 }
