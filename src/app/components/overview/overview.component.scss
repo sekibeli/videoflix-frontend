@@ -88,6 +88,7 @@ video {
 }
 
 .additionalInformation {
+    display: flex;
     font-size: 0.4em;
 }
 
@@ -140,6 +141,11 @@ video {
     }
 }
 
+.bi {
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
 @keyframes pulse {
     0% {
       transform: scale(1);
@@ -150,4 +156,10 @@ video {
     100% {
       transform: scale(1);
     }
+}
+
+.showAllVideos {
+    position: absolute;
+    top: 4px;
+    right: 30px;
 }

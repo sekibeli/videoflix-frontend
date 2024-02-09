@@ -17,7 +17,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SurpriseComponent implements OnInit, OnDestroy {
   private users: User[] = [];
   selectedVideo: Video | null = null;
-  featureVideo!: Video;
+  featureVideo: Video | null = null;
   allVideos: Video[] = [];
   videosByCategory: Video[] = [];
   subscription!: Subscription;
@@ -25,6 +25,7 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   featureVideoLiked!: boolean;
   videoLiked!: boolean;
   likeSubscription!: Subscription;
+  videoSubscription!: Subscription;
   featureVideoLikedSubscription!: Subscription;
   selectedVideoLikedSubscription!: Subscription;
   @ViewChild('featureVideoElement') featureVideoElement!: ElementRef;
@@ -46,18 +47,43 @@ export class SurpriseComponent implements OnInit, OnDestroy {
 
   loadFeatureVideo(videos: Video[]) {
     if (videos && videos.length > 0) {
-      const randomIndex = Math.floor(Math.random() * videos.length);
-      this.featureVideo = videos[randomIndex];
+      this.featureVideo = this.selectOrSaveFeatureVideo(videos);
+      console.log('Current FeatureVideo is:', this.featureVideo);
+
+      if (this.currentUser && this.featureVideo) {
+        this.checkVideoLikes();
+      }
+
+      this.videosByCategory = this.filterVideosByCategory();
     }
-    if (this.currentUser && this.featureVideo) {
-      this.checkVideoLikes();
-    }
-    this.videosByCategory = this.filterVideosByCategory();
   }
 
 
+  selectOrSaveFeatureVideo(videos: Video[]): Video {
+    const savedVideoId = sessionStorage.getItem('featureVideoId');
+    let video: Video;
+
+    if (savedVideoId) {
+      video = videos.find(v => v.id === parseInt(savedVideoId, 10)) || this.getRandomVideo(videos);
+    } else {
+      video = this.getRandomVideo(videos);
+      sessionStorage.setItem('featureVideoId', video.id.toString());
+    }
+
+    return video;
+  }
+
+
+  getRandomVideo(videos: Video[]): Video {
+    const randomIndex = Math.floor(Math.random() * videos.length);
+    return videos[randomIndex];
+  }
+
+
+
   getAllVideos() {
-    this.videoService.videos$.subscribe(videos => {
+    this.videoSubscription = this.videoService.videos$.subscribe(videos => {
+      console.log('Video Array', videos);
       this.allVideos = videos;
       this.allVideos.sort((a, b) => b.likes.length - a.likes.length);
       this.loadFeatureVideo(videos);
@@ -65,13 +91,13 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   }
 
 
-  getAllVideosAfterLike() {
-    this.videoService.getVideos();
-    this.videoService.videos$.subscribe(videos => {
-      this.allVideos = videos;
-      this.allVideos.sort((a, b) => b.likes.length - a.likes.length);
-    });
-  }
+  // getAllVideosAfterLike() {
+  //   this.likeSubscription = this.videoService.getVideos();
+  //   this.videoService.videos$.subscribe(videos => {
+  //     this.allVideos = videos;
+  //     this.allVideos.sort((a, b) => b.likes.length - a.likes.length);
+  //   });
+  // }
 
 
   pauseFeatureVideo() {
@@ -213,8 +239,17 @@ export class SurpriseComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.likeSubscription?.unsubscribe();
+    this.videoSubscription?.unsubscribe();
     this.featureVideoLikedSubscription?.unsubscribe();
     this.selectedVideoLikedSubscription?.unsubscribe();
+  }
+
+  onVideoPlay(videoId: number) {
+    this.videoService.incrementViewCount(videoId).subscribe(response => {
+      console.log('Video hochgezählt');
+
+    });
+
   }
 
 }

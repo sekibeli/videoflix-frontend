@@ -19,6 +19,9 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { MyvideosComponent } from './components/myvideos/myvideos.component';
 import { SurpriseComponent } from './components/surprise/surprise.component';
 import { PopularComponent } from './components/popular/popular.component';
+import { VideorowComponent } from './components/popular/videorow/videorow.component';
+
+
 
 
 
@@ -39,6 +42,7 @@ import { PopularComponent } from './components/popular/popular.component';
     MyvideosComponent,
     SurpriseComponent,
     PopularComponent,
+    VideorowComponent,
    
   ],
   imports: [
