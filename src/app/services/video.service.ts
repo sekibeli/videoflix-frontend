@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Video } from '../models/video.class';
-import { BehaviorSubject, Observable, Subject, map, of, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, map, of, switchMap, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -30,7 +30,7 @@ export class VideoService {
 
   getVideos(): void {
     const url = environment.baseUrl + '/videos/';
-    this.http.get<Video[]>(url).subscribe(
+    this.http.get<Video[]>(url).pipe(take(1)).subscribe(
       videos => {
         this.videosSubject.next(videos);
       },
@@ -149,7 +149,12 @@ export class VideoService {
     return this.http.get<Video[]>(url);
   }
 
-  getMostLikedVideos() {
+  getRecentVideos(){
+    const url = environment.baseUrl + `/videos/recentVideos/`;
+    return this.http.get<Video[]>(url);
+  }
+
+  getMostLikedVideos(){
     const url = environment.baseUrl + `/videos/popular_videos/`;
     this.http.get<Video[]>(url).subscribe(
       mostLiked => {
@@ -164,6 +169,7 @@ export class VideoService {
   }
 
   incrementViewCount(videoId: number) {
+    console.log('hoch');
     const url = environment.baseUrl + `/videos/${videoId}/increment-view-count/`;
     return this.http.post(url, null);
   }
