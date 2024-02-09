@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Video } from '../models/video.class';
-import { BehaviorSubject, Observable, Subject, map, of, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, map, of, switchMap, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -30,7 +30,7 @@ export class VideoService {
 
   getVideos(): void {
     const url = environment.baseUrl + '/videos/';
-    this.http.get<Video[]>(url).subscribe(
+    this.http.get<Video[]>(url).pipe(take(1)).subscribe(
       videos => {
         this.videosSubject.next(videos);
       },
