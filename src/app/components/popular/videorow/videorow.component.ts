@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.class';
 import { Video } from 'src/app/models/video.class';
+import { AuthService } from 'src/app/services/auth.service';
 import { SignupData } from 'src/app/services/user-interface';
 import { UserService } from 'src/app/services/user.service';
 import { VideoService } from 'src/app/services/video.service';
@@ -19,24 +20,23 @@ currentUser!: SignupData;
 private users: User[] = [];
 private subscription?: Subscription;
 
-constructor(public videoService: VideoService, public userService: UserService){
+constructor(public videoService: VideoService, public userService: UserService, public authService: AuthService){
   this.userService.getUserData();
 }
 
 
 ngOnInit() {
   // this.videoService.getVideos();
- 
+  this.getLoggedUserData();
   this.subscription = this.userService.users$.subscribe(users => {
     this.users = users;
   });
 }
 onSelectVideo(video: Video): void {
   this.selectedVideo = video;
-  // const videoId = video.id;
-   console.log(this.selectedVideo);
-  //  this.getSelectedVideo(video.id)
-  //  this.checkVideoLikes();
+  const videoId = video.id;
+  // this.getSelectedVideo(video.id)
+   this.checkVideoLikes();
    
 }
 
@@ -70,7 +70,7 @@ getSelectedVideo(videoId: number) {
   this.videoService.getVideobyId(videoId).subscribe({
     next: (updatedVideo: Video) => {
       this.selectedVideo = updatedVideo;
-      // this.checkVideoLikes();
+      this.checkVideoLikes();
     },
     error: (error: any) => {
       console.error("Fehler beim Abrufen des aktualisierten Videos", error);
@@ -80,7 +80,6 @@ getSelectedVideo(videoId: number) {
 
 checkVideoLikes() {
   if (this.selectedVideo && this.selectedVideo.likes) {
-    console.log(this.selectedVideo);
      this.videoLiked = this.selectedVideo.likes.includes(this.currentUser.id);
   }
 }
@@ -94,6 +93,17 @@ onVideoPlay(videoId: number){
 }
 getUserById(id: number): User | undefined {
   return this.users.find(user => user.id === id);
+}
+
+async getLoggedUserData() {
+  try {
+    this.currentUser = await this.authService.getLoggedUserData();
+    if (this.currentUser) {
+      this.checkVideoLikes();
+    }
+  } catch (err) {
+    console.error('Could not load user data', err);
+  }
 }
 
 }
