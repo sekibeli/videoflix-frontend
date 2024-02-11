@@ -34,6 +34,7 @@ ngOnInit() {
 }
 onSelectVideo(video: Video): void {
   this.selectedVideo = video;
+ 
   const videoId = video.id;
   // this.getSelectedVideo(video.id)
    this.checkVideoLikes();
@@ -42,6 +43,7 @@ onSelectVideo(video: Video): void {
 
 deleteSelectedVideo() {
   this.selectedVideo = null;
+  // document.body.classList.remove('modal-open');
 }
 
 onModalClose() {
