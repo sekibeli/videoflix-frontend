@@ -6,27 +6,6 @@
     background-color: #141414;
 }
 
-// .button {
-//     margin-top: 20px;
-//     width: 150px;
-//     background-color: rgb(196, 5, 5);
-//     border: 1px solid white;
-//     padding: 10px 20px;
-//     color: white;
-//     border-radius: 10px;
-//     cursor: pointer;
-
-//     &:hover {
-//         background-color: rgb(240, 5, 5);
-//     }
-// }
-
-// .fixedButton {
-//     position: absolute;
-//      top: 5%;
-//     right: 10%;
-// }
-
 .headlineContainer {
     text-align: center;
     width: 100%;
@@ -120,9 +99,8 @@ input {
     text-align: center;
     width: 100%;
     max-width: 600px;
-    margin-top: 100px;
     margin-top: auto;
-    margin-bottom: 10%;
+    margin-bottom: 100px;
 }
 
 .deleteUserAccountBtn {
@@ -137,5 +115,31 @@ input {
 
     &:hover {
         background-color: rgb(240, 5, 5);
+    }
+}
+
+
+@media(max-width: 800px) {
+    .title {
+        font-size: 4em;
+    }
+
+    .infoText {
+        font-size: 1.5em;
+    }
+
+    .headlineContainer {
+        padding: 0 2%;
+    }
+}
+
+@media(max-height: 700px) {
+    .editUserBottomContainer {
+        margin-top: min(30px);
+        margin-bottom: 20px;
+    }
+
+    .headlineContainer {
+        margin-top: 20px;
     }
 }
