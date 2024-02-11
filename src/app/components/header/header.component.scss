@@ -11,12 +11,25 @@ nav {
     padding: 10px;
 }
 
+// .navbarToggleBtn {
+
+//     &:focus {
+//         box-shadow: unset;
+//     }
+// }
+
+.searchContainer {
+    margin-left: 10px;
+}
+
 .headerLinks {
     display: flex;
-    // gap: 10px;
-    // color: white;
-    margin-left: 30px;
+    margin-left: auto;
+    margin-right: 15px;
+    padding: 15px;
 }
+
+
 .link {
     padding: 5px 10px;
     border-radius: 5px;
@@ -42,13 +55,6 @@ nav {
 
 .btn {
     margin-right: 5px;
-}
-
-.searchContainer {
-    flex-direction: column;
-    position: absolute;
-    right: 17%;
-    top: 8px;
 }
 
 .searchInputContent {
@@ -81,5 +87,21 @@ nav {
 
     span:last-child {
         margin-bottom: 10px;
+    }
+}
+
+
+@media(max-width: 991px) {
+
+    #navbarSupportedContent {
+        background-color: white;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .homeBtn {
+        width: 35px;
+        margin-top: 10px;
+        margin-left: 10px;
     }
 }
