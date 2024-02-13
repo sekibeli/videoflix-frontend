@@ -9,6 +9,7 @@
 
         <span class="headline">Log In</span>
         <span class="warning" [class.d-none]="!isEmailPasswordInvalid">Invalid email or password!</span>
+        <span class="warning" *ngIf="message">{{message}}</span>
         <span *ngIf="notVerifiedMessage" class="warning">Please verify your email first</span>
         <form class="formgroup" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
@@ -29,6 +30,10 @@
 
             <button class="btn btn-danger" type="submit" [disabled]="!loginForm.valid">Einloggen</button>
         </form>
+
+        <div class="signUpBoxBottomContent">
+            <button class="btn btn-danger" [routerLink]="['/forgot-password']">Forgot passsword</button>
+        </div>
 
 
     </div>

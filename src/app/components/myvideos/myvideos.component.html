@@ -1,0 +1,171 @@
+<div class="myList">
+  <div class="uploadCard">
+
+    <div class="card">
+      <div class="card-header">
+        Meine Videos
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Wähle ein neues Video zum Upload aus</h5>
+        <p class="card-text">
+
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVideoModal">Neues Video
+            hinzufügen</button>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="addVideoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Video hinzufügen</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="formgroup" [formGroup]="videoForm" (ngSubmit)="onUpload()">
+
+            <div class="input-item">
+              <label for="username">Titel:</label>
+              <input class="form-control" type="text" formControlName="title" placeholder="Titel">
+            </div>
+            <div class="input-item">
+              <label for="username">Beschreibung:</label>
+              <input class="form-control" type="text" formControlName="description" placeholder="Beschreibung">
+            </div>
+
+            <div class="mb-3 input-item">
+              <label for="categorySelect" class="form-label">Kategorie</label>
+              <select class="form-select" formControlName="category" id="categorySelect">
+                <option value="allgemein" selected>Wählen Sie eine Kategorie</option>
+                <option value="allgemein">Allgemein</option>
+                <option value="kids">Kids</option>
+                <option value="noidea">No idea</option>
+                <option value="funny">Funny</option>
+              </select>
+            </div>
+
+         
+            <input type="file" (change)="onFileSelected($event)">
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button [disabled]="!videoForm.valid" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Video
+                hinzufügen</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="myvideosContent" *ngIf="videoService.myVideos$  | async">
+
+
+    <div *ngIf="myVideos " class="myvideosContent">
+      <div *ngFor="let video of myVideos" class="card" style="width: 18rem;">
+        <!-- <img src="" class="card-img-top" alt="{{video.title}}"> -->
+        <video width="100%" height="160" >
+          <source [src]="video.video_file" type="video/mp4">
+          Ihr Browser unterstützt das Video-Tag nicht.
+        </video>
+        <div class="card-body">
+          <h5 class="card-title">{{video.title}}</h5>
+          <p class="card-text">{{video.description}}</p>
+          <div class="lastRow">
+            <div class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal"
+              (click)="onSelectVideo(video); showVideoData(video)">Bearbeiten</div>
+            <div class="btn btn-primary" data-bs-dismiss="modal"
+              (click)="video.id !== undefined && deleteVideo(video.id)">Löschen</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+
+  <!-- Modal Video Bearbeiten -->
+  <div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" (hide.bs.modal)="deleteSelectedVideo()">
+    <div class="modal-dialog modal-xl modal-fullscreen-md-down">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Video bearbeiten</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form [formGroup]="editVideoForm" (ngSubmit)="onSubmit()">
+
+            <!-- Title section -->
+            <div>
+              <label for="title">Titel:</label>
+              <input class="form-control" type="text" formControlName="title" placeholder="Titel">
+              <span *ngIf="submitted && editVideoForm.get('title')?.errors?.['required']" class="warning">
+                Please enter your title.
+              </span>
+            </div>
+            <div>
+              <!-- Description section -->
+              <label for="description">Beschreibung:</label>
+              <input class="form-control" type="text" formControlName="description" placeholder="Description">
+              <span *ngIf="submitted && editVideoForm.get('description')?.errors?.['required']" class="warning">
+                Please enter your description.
+              </span>
+            </div>
+      
+            <div class="mb-3 input-item">
+              <label for="categorySelect" class="form-label">Kategorie</label>
+              <select class="form-select" formControlName="category" id="categorySelect">
+                <option value="allgemein" selected>Wählen Sie eine Kategorie</option>
+                <option value="allgemein">Allgemein</option>
+                <option value="kids">Kids</option>
+                <option value="noidea">No idea</option>
+                <option value="funny">Funny</option>
+              </select>
+            </div>
+
+          </form>
+
+
+          <!-- <div class="category">{{selectedVideo?.category}}</div> -->
+          <div class="box">
+            <!-- <h4>{{selectedVideo?.title}}</h4> -->
+            <!-- <div class="description">{{selectedVideo?.description}}</div> -->
+            <div class="fullwidth" *ngIf="selectedVideo">
+              <video width="230px" controls>
+                <source [src]="selectedVideo.video_file" type="video/mp4">
+                Ihr Browser unterstützt das Video-Tag nicht.
+
+              </video>
+
+            </div>
+         
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+            (click)="deleteSelectedVideo()">Close</button>
+          <button  (click)="saveChanges(this.selectedVideo); closeModal()" type="button" class="btn btn-primary" >Änderungen speichern</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Ende -->
+
+</div>

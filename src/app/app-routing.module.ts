@@ -10,7 +10,11 @@ import { DatenschutzComponent } from './components/datenschutz/datenschutz.compo
 import { StartComponent } from './components/start/start.component';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { MyvideosComponent } from './components/myvideos/myvideos.component';
+import { SurpriseComponent } from './components/surprise/surprise.component';
+import { PopularComponent } from './components/popular/popular.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 const routes: Routes = [
@@ -21,14 +25,19 @@ const routes: Routes = [
   { path: 'verify/:token', component: EmailVerifyComponent },
   { path: 'edit-user', component: EditUserComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'datenschutz', component: DatenschutzComponent },
   { path: 'impressum', component: ImpressumComponent },
+  { path: 'edit-user', component: EditUserComponent },
   {
     path: 'home', component: HomeComponent,
 
     children: [
-      { path: '', component: OverviewComponent },
-      { path: 'detail', component: DetailComponent }
+      { path: 'surprise', component: SurpriseComponent},
+      { path: 'allvideos', component: OverviewComponent },
+      { path: 'myvideos', component: MyvideosComponent},
+      { path: 'popular', component: PopularComponent},
+      // { path: 'detail', component: DetailComponent }
     ]
   }
 ];
@@ -38,3 +47,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+// { enableTracing: true }

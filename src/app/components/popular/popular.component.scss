@@ -1,0 +1,112 @@
+.content {
+    height: 100vh;
+    width:100vw;
+    position: absolute;
+    top: 54px;
+    background-color: #1A221C;
+    display: flex;
+    flex-direction: column;
+}
+
+.firstRow {
+    display: flex;
+    
+}
+.rightSection {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.videoBox {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.bigVideo {
+    background-color: white;
+   
+    margin: 20px;
+    width: 50%;
+    height: 400px;
+    position: relative; /* Stellen Sie sicher, dass der Container relative positioniert ist */
+    overflow: hidden;
+}
+.bigVideo video {
+    // width: 100%; /* Setzt die Breite des Videos auf die volle Breite des Containers */
+    // height: 100%; /* Setzt die Höhe des Videos auf die volle Höhe des Containers */
+    object-fit: cover; /* Stellt sicher, dass das Video den Container bedeckt, während das Seitenverhältnis beibehalten wird */
+    // position: absolute; /* Positioniert das Video absolut innerhalb des Containers */
+}
+
+.top {
+    width: 100%;
+    color: white;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.457);
+}
+
+.videoRow {
+    padding: 0px 20px;
+    // background-color: rgba(255, 255, 255, 0.236);
+    margin-top: 15px;
+    height: 135px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.relative {
+    position: relative;
+}
+.videoTitleHeader {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.773);
+    width: 200px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    color: white;
+    font-size: 0.6em;
+    padding: 5px;
+}
+
+.dark {
+    color: black;
+}
+.videoListing {
+    display: flex;
+    gap: 5px;
+}
+
+.point {
+    cursor: pointer;
+
+    &:hover {
+        color: rgb(38, 38, 38);
+    }
+}
+
+app-videorow {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 800px){
+
+    .firstRow {
+        flex-direction:column;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .bigVideo {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .rightSection {
+        width: 100%;
+        margin: 20px 0;
+    }
+}

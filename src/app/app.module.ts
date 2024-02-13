@@ -12,9 +12,17 @@ import { DatenschutzComponent } from './components/datenschutz/datenschutz.compo
 import { ImpressumComponent } from './components/impressum/impressum.component';
 import { StartComponent } from './components/start/start.component';
 import { HeaderComponent } from './components/header/header.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { MyvideosComponent } from './components/myvideos/myvideos.component';
+import { SurpriseComponent } from './components/surprise/surprise.component';
+import { PopularComponent } from './components/popular/popular.component';
+import { VideorowComponent } from './components/popular/videorow/videorow.component';
+
+
+
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
@@ -33,6 +41,10 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     HeaderComponent,
     EmailVerifyComponent,
     EditUserComponent,
+    MyvideosComponent,
+    SurpriseComponent,
+    PopularComponent,
+    VideorowComponent,
     ResetPasswordComponent,
     ForgotPasswordComponent,
    
@@ -44,7 +56,13 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+     {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+     }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,11 @@
+<div class="d-flex searchContainer" role="search">
+    <div class="searchInputContent">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchTerm" (input)="onSearchChange()">
+        <i class="bi bi-search"></i>
+    </div>
+    <!-- <div class="filteredVideos" *ngIf="searchTerm">
+        <span *ngFor="let result of videos" (click)="onSelectVideo()">
+            {{result.title}}
+        </span>
+    </div> -->
+</div>

@@ -65,6 +65,8 @@ export class ForgotPasswordComponent {
     this.invalidMailInfo = true;
     setTimeout(() => {
       this.invalidMailInfo = false;
+      this.forgotPasswordForm.reset();
+      this.isButtonDisabled = false;
     }, 3000);
   }
 

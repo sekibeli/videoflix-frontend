@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { MessageService } from 'src/app/services/message.service';
 
 
 @Component({
@@ -13,10 +14,12 @@ export class LoginComponent implements OnInit {
   isEmailPasswordInvalid = false;
   loginForm!: FormGroup;
   notVerifiedMessage = false;
+  message!: string;
 
 
   constructor(
     public authService: AuthService,
+    private messageService: MessageService,
     private router: Router,
     private formBuilder: FormBuilder
   ) { }
@@ -24,6 +27,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initFormGroup();
+    this.messageService.currentMessage.subscribe(message => this.message = message);
   }
 
 
@@ -51,7 +55,7 @@ export class LoginComponent implements OnInit {
       const formData = this.loginForm.value;
       let resp: any = await this.authService.login(formData);
       localStorage.setItem('token', resp['token']);
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/home/surprise');
     } catch (err: any) {
       if (err.status === 401) {
         this.handleSpecificError(err.error?.error);

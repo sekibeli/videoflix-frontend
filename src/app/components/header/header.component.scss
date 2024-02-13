@@ -1,3 +1,7 @@
+nav {
+    max-height: 54px;
+}
+
 .headerBox {
     display: flex;
     justify-content: space-between;
@@ -7,19 +11,34 @@
     padding: 10px;
 }
 
+.searchContainer {
+    margin-left: 10px;
+}
+
+#navbarSupportedContent {
+    margin-top: 5px;
+}
+
 .headerLinks {
     display: flex;
-    // gap: 10px;
-    // color: white;
-    margin-left: 30px;
+    margin-left: auto;
+    margin-right: 15px;
+    padding: 15px;
 }
+
+
 .link {
     padding: 5px 10px;
     border-radius: 5px;
     &:hover {
         cursor: pointer;
-    //    background-color: rgba(255, 255, 255, 0.558);
-       background-color: rgba(150, 150, 150, 0.424);
+        //    background-color: rgba(255, 255, 255, 0.558);
+        background-color: rgba(150, 150, 150, 0.424);
+    }
+
+    &.active {
+        cursor: pointer;
+        background-color: rgba(150, 150, 150, 0.424);
     }
 }
 
@@ -33,4 +52,53 @@
 
 .btn {
     margin-right: 5px;
+}
+
+.searchInputContent {
+    display: flex;
+    align-items: center;
+}
+
+.filteredVideos {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+
+    span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+        padding: 10px;
+
+        &:hover {
+            background-color: rgba(220, 53, 69, 1);
+            color: white;
+        }
+    }
+
+    span:first-child {
+        margin-top: 10px;
+    }
+
+    span:last-child {
+        margin-bottom: 10px;
+    }
+}
+
+
+@media(max-width: 991px) {
+
+    #navbarSupportedContent {
+        background-color: white;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .homeBtn {
+        width: 35px;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
 }

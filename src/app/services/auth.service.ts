@@ -18,7 +18,7 @@ export class AuthService {
   }
 
 
-  async login(formData: LoginData) {
+  login(formData: LoginData) {
     const url = environment.baseUrl + '/login/';
     return lastValueFrom(this.http.post(url, formData)).
       catch(err => Promise.reject(err));
@@ -27,19 +27,14 @@ export class AuthService {
 
   getLoggedUserData() {
     const url = environment.baseUrl + '/edit-user/';
-    const headers = new HttpHeaders({
-      'Authorization': `Token ${localStorage.getItem('token')}`
-    });
-    return lastValueFrom(this.http.get<SignupData>(url, { headers: headers }));
+    return lastValueFrom(this.http.get<SignupData>(url));
   }
 
 
-  updateContact(updateUserProfile: SignupData) {
+  updateUserProfile(updateUserProfile: SignupData) {
+    console.log('Run method updateUserProfile');
     const url = environment.baseUrl + '/edit-user/';
-    const headers = new HttpHeaders({
-      'Authorization': `Token ${localStorage.getItem('token')}`
-    });
-    return lastValueFrom(this.http.patch<SignupData>(url, updateUserProfile, { headers: headers }));
+    return lastValueFrom(this.http.patch<SignupData>(url, updateUserProfile));
   }
 
 
@@ -51,14 +46,27 @@ export class AuthService {
 
   signout() {
     const url = environment.baseUrl + '/logout/';
-    const headers = new HttpHeaders().set('Authorization', `Token ${localStorage.getItem('token')}`);
-    return lastValueFrom(this.http.post(url, {}, { headers: headers }));
+    return lastValueFrom(this.http.post(url, {}));
   }
 
+  deleteUserAccount() {
+    const url = environment.baseUrl + '/delete-user/';
+    return lastValueFrom(this.http.delete(url));
+  }
 
   forgotPassword(email: string) {
-    const url = environment.baseUrl + '/password-reset/';
+    const url = environment.baseUrl + '/api/password_reset/';
     return lastValueFrom(this.http.post(url, { email: email }));
+  }
+
+  resetPassword(token: string, password: string) {
+    const url = environment.baseUrl + '/api/password_reset/confirm/';
+    return lastValueFrom(this.http.post(url, { token: token, password: password }));
+  }
+
+  validateToken(token: string) {
+    const url = environment.baseUrl + '/api/password_reset/validate_token/';
+    return lastValueFrom(this.http.post(url, { token: token }));
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -18,7 +18,8 @@ export class ResetPasswordComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
 
@@ -58,15 +59,30 @@ export class ResetPasswordComponent implements OnInit {
 
   async performResetPassword() {
     try {
-      const formData = this.resetPasswordForm.value;
+      let formData = this.resetPasswordForm.value;
+      const token = this.route.snapshot.queryParamMap.get('token');
       this.isButtonDisabled = true;
-      await this.authService.forgotPassword(formData);
+
+      if(!token) {
+        console.error('Password reset token is missing.');
+        setTimeout(() => {
+          this.isButtonDisabled = false;
+          this.resetPasswordForm.reset();
+        }, 3000);
+        return;
+      }
+
+      await this.authService.resetPassword(token, formData.password);
       this.passwortReset = true;
       setTimeout(() => {
         this.router.navigateByUrl('/login');
       }, 3000);
     } catch (err) {
       console.error('Could not reset password.', err);
+      setTimeout(() => {
+        this.isButtonDisabled = false;
+        this.resetPasswordForm.reset();
+      }, 3000);
     }
   }
 
