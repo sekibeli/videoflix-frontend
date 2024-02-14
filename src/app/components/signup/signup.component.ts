@@ -72,6 +72,7 @@ export class SignupComponent implements OnInit {
         this.router.navigateByUrl('/login');
       }, 3000);
     } catch (err) {
+      console.error('Could not signup.', err);      
       this.handlySignUpError();
     }
   }

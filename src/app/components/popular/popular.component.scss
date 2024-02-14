@@ -19,7 +19,7 @@
     width: 50%;
 }
 .videoBox {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
 }
@@ -49,7 +49,7 @@
 .videoRow {
     padding: 0px 20px;
     // background-color: rgba(255, 255, 255, 0.236);
-    margin-top: 20px;
+    margin-top: 15px;
     height: 135px;
     overflow-x: auto;
     white-space: nowrap;
@@ -78,4 +78,35 @@
 .videoListing {
     display: flex;
     gap: 5px;
+}
+
+.point {
+    cursor: pointer;
+
+    &:hover {
+        color: rgb(38, 38, 38);
+    }
+}
+
+app-videorow {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 800px){
+
+    .firstRow {
+        flex-direction:column;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .bigVideo {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .rightSection {
+        width: 100%;
+        margin: 20px 0;
+    }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Video } from '../models/video.class';
-import { BehaviorSubject, Observable, Subject, map, of, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, map, of, switchMap, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -30,7 +30,7 @@ export class VideoService {
 
   getVideos(): void {
     const url = environment.baseUrl + '/videos/';
-    this.http.get<Video[]>(url).subscribe(
+    this.http.get<Video[]>(url).pipe(take(1)).subscribe(
       videos => {
         this.videosSubject.next(videos);
       },
@@ -137,14 +137,20 @@ export class VideoService {
 
   getShowButtonListener() {
     return this.showVideosButton.asObservable();
-    
-  getTodayVideos(){
+  }
+
+  getTodayVideos() {
     const url = environment.baseUrl + `/videos/videos_today/`;
     return this.http.get<Video[]>(url);
   }
 
-  getYesterdayVideos(){
+  getYesterdayVideos() {
     const url = environment.baseUrl + `/videos/videos_yesterday/`;
+    return this.http.get<Video[]>(url);
+  }
+
+  getRecentVideos(){
+    const url = environment.baseUrl + `/videos/recentVideos/`;
     return this.http.get<Video[]>(url);
   }
 
@@ -155,30 +161,30 @@ export class VideoService {
         this.mostLikedVideosSubject.next(mostLiked);
         console.log('Most liked', mostLiked);
       },
-        error => {
-          console.error('Fehler beim Laden der MostLikedVideos:', error)
-        }
+      error => {
+        console.error('Fehler beim Laden der MostLikedVideos:', error)
+      }
 
     );
   }
 
-  incrementViewCount(videoId: number){
+  incrementViewCount(videoId: number) {
+    console.log('hoch');
     const url = environment.baseUrl + `/videos/${videoId}/increment-view-count/`;
-    return this.http.post(url,null);
+    return this.http.post(url, null);
   }
 
-  getMostSeenVideos(){
+  getMostSeenVideos() {
     const url = environment.baseUrl + `/videos/mostSeen_videos/`;
     this.http.get<Video[]>(url).subscribe(
       mostSeen => {
         this.mostSeenVideosSubject.next(mostSeen);
         console.log('Most seen', mostSeen);
       },
-        error => {
-          console.error('Fehler beim Laden der MostSeenVideos:', error)
-        }
+      error => {
+        console.error('Fehler beim Laden der MostSeenVideos:', error)
+      }
 
     );
   }
-
 }
