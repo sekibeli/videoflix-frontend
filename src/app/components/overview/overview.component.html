@@ -22,9 +22,7 @@
                         data-bs-target="#overviewVideoModal">
                         <!-- Darstellung jedes Videos -->
                         <div class="videoBox" (click)="onSelectVideo(video)">
-
                             <div class="relative">
-
                                 <div class="videoTitleHeader">{{ video.title }}</div>
                                 <video width="240" height="160" [poster]="video.thumbnail">
                                     <source [src]="video.video_file" type="video/mp4">
