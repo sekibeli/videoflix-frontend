@@ -24,3 +24,26 @@ body {
 .success {
     color: green;
 }
+
+
+// This is a default style for all form containers in Login, Signup, Forgot-Password and Reset-Password
+
+.formDefaultContainer {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.resetPasswordContainer {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin-top: 25px;
+
+    button {
+        width: 100%;
+    }
+}
