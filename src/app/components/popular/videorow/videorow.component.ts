@@ -20,6 +20,9 @@ currentUser!: SignupData;
 private users: User[] = [];
 private subscription?: Subscription;
 
+// searchTerm: string = '';
+// searchResults: Video[] = [];
+
 constructor(public videoService: VideoService, public userService: UserService, public authService: AuthService){
   this.userService.getUserData();
 }

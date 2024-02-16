@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Video } from '../models/video.class';
 import { BehaviorSubject, Observable, Subject, map, of, switchMap, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,13 @@ import { HttpClient } from '@angular/common/http';
 export class VideoService {
   public videosSubject = new BehaviorSubject<Video[]>([])
   public videos$ = this.videosSubject.asObservable();
+
   private myVideosSubject = new BehaviorSubject<Video[]>([])
   public myVideos$ = this.myVideosSubject.asObservable();
+
+  public searchResultsSubject = new BehaviorSubject<Video[]>([]);
+  public searchResults$ = this.searchResultsSubject.asObservable();
+
 
   private filteredVideosSubject = new BehaviorSubject<Video[]>([]);
   public filteredVideos$ = this.filteredVideosSubject.asObservable();
@@ -19,11 +24,11 @@ export class VideoService {
   private likeUpdate = new BehaviorSubject<number | null>(null);
   private mostLikedVideosSubject = new BehaviorSubject<Video[]>([]);
   public mostLikedVideos$ = this.mostLikedVideosSubject.asObservable();
+
   private mostSeenVideosSubject = new BehaviorSubject<Video[]>([]);
   public mostSeenVideos$ = this.mostSeenVideosSubject.asObservable();
 
   private showVideosButton = new Subject<void>();
-
 
 
   constructor(private http: HttpClient) { }
@@ -46,7 +51,6 @@ export class VideoService {
       map(videos => videos.filter(video =>
         video.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         video.category.toLowerCase().includes(searchTerm.toLowerCase())
-        // Hier evtl ein Such-Kriterium für den Autor einbauen
       ))
     );
   }
@@ -149,12 +153,12 @@ export class VideoService {
     return this.http.get<Video[]>(url);
   }
 
-  getRecentVideos(){
+  getRecentVideos() {
     const url = environment.baseUrl + `/videos/recentVideos/`;
     return this.http.get<Video[]>(url);
   }
 
-  getMostLikedVideos(){
+  getMostLikedVideos() {
     const url = environment.baseUrl + `/videos/popular_videos/`;
     this.http.get<Video[]>(url).subscribe(
       mostLiked => {
@@ -187,4 +191,20 @@ export class VideoService {
 
     );
   }
+
+
+  searchVideos(searchterm: string): void {
+    const url = environment.baseUrl + `/videos-search/?search=${searchterm}`;
+    this.http.get<Video[]>(url).subscribe(
+      searchResults => {
+        this.searchResultsSubject.next(searchResults);
+        console.log(searchResults);        
+      },
+      error => {
+        console.error('Fehler bei der Suche:', error);
+      }
+    );
+
+  }
+
 }

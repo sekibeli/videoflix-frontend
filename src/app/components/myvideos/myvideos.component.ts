@@ -46,8 +46,8 @@ export class MyvideosComponent implements OnInit {
   }
 
   ngOnInit() {
-     this.videoService.getVideos();
-     this.initFormGroup(); 
+    this.videoService.getVideos();
+    this.initFormGroup();
     this.loadMyVideos();
 
 
@@ -110,7 +110,7 @@ export class MyvideosComponent implements OnInit {
       this.editVideoForm.patchValue({
         category: videoData.category,
         title: videoData.title,
-        description:videoData.description
+        description: videoData.description
 
       })
 
@@ -124,11 +124,11 @@ export class MyvideosComponent implements OnInit {
       title: ['', [Validators.required]],
       description: ['', [Validators.required]],
       category: ['', [Validators.required]],
-     
+
     })
   }
 
-  onSubmit(){}
+  onSubmit() { }
 
   saveChanges(video: Video) {
     if (this.editVideoForm.valid) {
@@ -137,19 +137,19 @@ export class MyvideosComponent implements OnInit {
       formData.append('description', this.editVideoForm.get('description')?.value);
       formData.append('category', this.editVideoForm.get('category')?.value);
       // Fügen Sie hier ggf. weitere Felder hinzu
-  
+
       // Wenn Sie eine Datei hochladen, fügen Sie diese auch hinzu
       // Beispiel: formData.append('video_file', this.selectedFile);
-  const videoId = video.id;
-  if(videoId !== undefined){
-    this.videoService.updateVideo(formData, videoId) // Ersetzen Sie 'videoId' durch die tatsächliche Video-ID
-    .subscribe(response => {
-      // Erfolg: Handhaben Sie die Antwort hier
-    }, error => {
-      // Fehler: Handhaben Sie Fehlerfälle hier
-    });
-  }
-   
+      const videoId = video.id;
+      if (videoId !== undefined) {
+        this.videoService.updateVideo(formData, videoId) // Ersetzen Sie 'videoId' durch die tatsächliche Video-ID
+          .subscribe(response => {
+            // Erfolg: Handhaben Sie die Antwort hier
+          }, error => {
+            // Fehler: Handhaben Sie Fehlerfälle hier
+          });
+      }
+
     }
   }
 
