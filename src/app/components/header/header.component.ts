@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, debounceTime, distinctUntilChanged } from 'rxjs';
 import { Video } from 'src/app/models/video.class';
 import { AuthService } from 'src/app/services/auth.service';
 import { VideoService } from 'src/app/services/video.service';
@@ -10,33 +10,41 @@ import { VideoService } from 'src/app/services/video.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
-  searchTerm: string = '';
-  private videoSubscription?: Subscription;
-  searchResults: Video[] = [];
+export class HeaderComponent implements OnInit {
+  searchTermValue: string = '';
+  searchTerm = new Subject<string>();
+  videos: Video[] = [];
+  searchSubscription!: Subscription;
 
 
   constructor(
     public authService: AuthService,
     private router: Router,
-    private videoService: VideoService) { }
+    public videoService: VideoService) { }
 
 
-  searchVideos() {
-    if (!this.searchTerm) {
-      this.searchResults = [];
-      return;
-    }
-    this.videoService.getFilteredVideos(this.searchTerm).subscribe(videos => {
-      this.searchResults = videos;
+  ngOnInit(): void {
+    this.searchVideosSubscription();
+  }
+
+
+  searchVideosSubscription() {
+    this.searchSubscription = this.searchTerm.pipe(
+      debounceTime(400),
+      distinctUntilChanged()
+    ).subscribe(searchTerm => {
+      this.videoService.searchVideos(searchTerm);
     });
   }
 
 
-  onSelectVideo(video: Video) {
-    this.videoService.updateFilteredVideos(this.searchResults);
-    this.searchTerm = '';
-    this.videoService.notifyShowButton();
+  search(term: string): void {
+    this.searchTerm.next(term);
+  }
+
+
+  ngOnDestroy() {
+    this.searchSubscription.unsubscribe();
   }
 
 

@@ -1,11 +1,24 @@
 <div class="videoRow">
 
-    <div class="videoRow">
-        <div class="videoListing" >
+    <!-- <div class="d-flex searchContainer" role="search">
+        <div class="searchInputContent">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                [(ngModel)]="searchTerm" (keyup)="searchVideos()">
+            <i class="bi bi-search"></i>
+        </div>
+        <div class="filteredVideos" *ngIf="searchTerm">
+            <span *ngFor="let result of searchResults" (click)="onSelectVideo(result)">
+                {{result.title}}
+            </span>
+        </div>
+    </div> -->
 
-            <div *ngFor="let video of videos" >
+    <div class="videoRow">
+        <div class="videoListing">
+
+            <div *ngFor="let video of videos">
                 <!-- Darstellung jedes Videos -->
-                <div class="videoBox" (click)="onSelectVideo(video)" >
+                <div class="videoBox" (click)="onSelectVideo(video)">
 
                     <div class="relative">
 
@@ -24,49 +37,53 @@
             <div *ngIf="selectedVideo" class="modalOverlay"></div>
             <div *ngIf="selectedVideo" class="myModal">
                 <i class="bi bi-x-lg closeModal" style="font-size: 1.5rem" (click)="deleteSelectedVideo()"></i>
-            
-              
+
+
                 <div class="category">{{selectedVideo?.category}}</div>
                 <div class="box">
                     <h4>{{selectedVideo?.title}}</h4>
                     <div class="description">{{selectedVideo?.description}}</div>
-                    </div>
+                </div>
                 <div class="fullwidth" *ngIf="selectedVideo">
-                    <video width="100%"  controls (play)="onVideoPlay(selectedVideo.id)">
+                    <video width="100%" controls (play)="onVideoPlay(selectedVideo.id)">
                         <source [src]="selectedVideo.video_file" type="video/mp4">
                         Ihr Browser unterstützt das Video-Tag nicht.
-            
+
                     </video>
-                    
+
                 </div>
-            
+
                 <div class="card">
-                    <div >
+                    <div>
                         <div class="controlButtons">
-                        
+
                             <div class="videoLikesContainer">
                                 <div class="bi bi-heart iconSize"
                                     *ngIf="selectedVideo && selectedVideo.id !== undefined && !videoLiked"
                                     (click)="toggleLikeVideo(selectedVideo.id)"></div>
-                                <div class="bi bi-heart-fill iconSize likeButton" [ngClass]="{'liked': videoLiked}" style="color:red"
+                                <div class="bi bi-heart-fill iconSize likeButton" [ngClass]="{'liked': videoLiked}"
+                                    style="color:red"
                                     *ngIf="selectedVideo && selectedVideo.id !== undefined && videoLiked"
                                     (click)="toggleLikeVideo(selectedVideo.id)"></div>
                                 <div class="bi likeCounterSelectedVideo iconSizeFeatureVideo">
                                     {{selectedVideo?.likes?.length}}</div>
                             </div>
                             <!-- <div class="bi bi-info-circle-fill iconSize" ></div> -->
-                            <div class="additionalInformation"><i class="bi bi-person-fill"></i> {{ getUserById(selectedVideo?.created_from)?.username }}   <i class="bi bi-cloud-upload-fill"></i> {{selectedVideo?.created_at | date: 'dd. MMMM yyyy'}} <i class="bi bi-eye-fill"></i> {{selectedVideo?.view_count}}</div>
-                         </div>
+                            <div class="additionalInformation"><i class="bi bi-person-fill"></i> {{
+                                getUserById(selectedVideo?.created_from)?.username }} <i
+                                    class="bi bi-cloud-upload-fill"></i> {{selectedVideo?.created_at | date: 'dd. MMMM
+                                yyyy'}} <i class="bi bi-eye-fill"></i> {{selectedVideo?.view_count}}</div>
+                        </div>
                     </div>
-                    
-                  </div>
-            
-            
+
+                </div>
+
+
             </div>
 
 
- <!-- Modal -->
- <!-- <div class="modal fade" id="overviewVideoModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="overviewVideoModalLabel"
+            <!-- Modal -->
+            <!-- <div class="modal fade" id="overviewVideoModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="overviewVideoModalLabel"
  aria-hidden="true" (hide.bs.modal)="deleteSelectedVideo()">
  <div class="modal-dialog modal-xl modal-fullscreen-md-down">
      <div class="modal-content">
@@ -120,7 +137,7 @@
      </div>
  </div>
 </div> -->
-<!-- Modal Ende -->
+            <!-- Modal Ende -->
 
 
 
