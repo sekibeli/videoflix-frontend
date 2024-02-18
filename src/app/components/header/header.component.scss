@@ -11,13 +11,6 @@ nav {
     padding: 10px;
 }
 
-.searchContainer {
-    // margin-left: 10px;
-    // flex-direction: column;
-    // position: relative;
-    // overflow: auto;
-}
-
 #navbarSupportedContent {
     margin-top: 5px;
 }
@@ -28,7 +21,6 @@ nav {
     margin-right: 15px;
     padding: 15px;
 }
-
 
 .link {
     padding: 5px 10px;
@@ -90,9 +82,7 @@ nav {
     }
 }
 
-
-@media(max-width: 991px) {
-
+@media (max-width: 991px) {
     #navbarSupportedContent {
         background-color: white;
         border-bottom-left-radius: 10px;
