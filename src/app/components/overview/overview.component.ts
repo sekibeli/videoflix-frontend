@@ -40,7 +40,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     });
     this.checkVideoLikes();
     this.getLoggedUserData();
-    this.showButtonListener();
+    // this.showButtonListener();
   }
 
   ngOnDestroy() {
@@ -140,11 +140,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
   
 
-  showButtonListener() {    
-    this.buttonSubscription = this.videoService.getShowButtonListener().subscribe(() => {
-      this.showAllVideosBtn = true;
-    })
-  }
+  // showButtonListener() {    
+  //   this.buttonSubscription = this.videoService.getShowButtonListener().subscribe(() => {
+  //     this.showAllVideosBtn = true;
+  //   })
+  // }
 
  
   onVideoPlay(videoId: number){
