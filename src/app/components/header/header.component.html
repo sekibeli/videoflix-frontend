@@ -1,33 +1,12 @@
-<!-- <div class="headerBox">
-    <div class="title">
-        <img src="../../../assets/img/logovideoflix.png" alt="" >
-    </div>
-    <div class="headerLinks">
-        <div class="link">Startseite</div>
-        <div class="link">Alle Filme</div>
-        <div class="link">Neu und beliebt</div>
-        <div class="link">Meine Liste</div>
-    </div>
-   
-    <div class="headerLinks">
-      
-    <div>
-        <button class="btn btn-danger " [routerLink]="['/edit-user']">Mein Profil</button>
-        <button class="btn btn-danger " (click)="onLogout()">Log out</button>
-    </div>
-</div>
-</div> -->
-
-
-
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <div class="title">
       <img src="../../../assets/img/logovideoflix.png" alt="">
     </div>
 
-    <button class="navbar-toggler navbarToggleBtn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbarToggleBtn" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -55,14 +34,9 @@
       <div class="d-flex searchContainer" role="search">
         <div class="searchInputContent">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-          [(ngModel)]="searchTermValue" (keyup)="search(searchTermValue)">        
+            [(ngModel)]="searchTermValue" (input)="onInputChange(searchTermValue)">
           <i class="bi bi-search"></i>
         </div>
-        <!-- <div class="filteredVideos" *ngIf="searchTerm">
-          <span *ngFor="let result of searchResults" (click)="onSelectVideo(result)">
-            {{result.title}}
-          </span>
-        </div> -->
       </div>
       <!-- search sector -->
 

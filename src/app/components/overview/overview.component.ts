@@ -36,9 +36,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
       this.users = users;
     });
     this.videoService.videos$.subscribe(videos => {
-      this.groupVideosByCategory(videos);      
-      console.log(videos);
-      
+      this.groupVideosByCategory(videos);            
     });
     this.checkVideoLikes();
     this.getLoggedUserData();

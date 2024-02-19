@@ -28,8 +28,6 @@ export class VideoService {
   private mostSeenVideosSubject = new BehaviorSubject<Video[]>([]);
   public mostSeenVideos$ = this.mostSeenVideosSubject.asObservable();
 
-  private showVideosButton = new Subject<void>();
-
 
   constructor(private http: HttpClient) { }
 
@@ -133,16 +131,6 @@ export class VideoService {
     return this.likeUpdate.asObservable();
   }
 
-
-  notifyShowButton() {
-    this.showVideosButton.next();
-  }
-
-
-  getShowButtonListener() {
-    return this.showVideosButton.asObservable();
-  }
-
   getTodayVideos() {
     const url = environment.baseUrl + `/videos/videos_today/`;
     return this.http.get<Video[]>(url);
@@ -197,14 +185,12 @@ export class VideoService {
     const url = environment.baseUrl + `/videos-search/?search=${searchterm}`;
     this.http.get<Video[]>(url).subscribe(
       searchResults => {
-        this.searchResultsSubject.next(searchResults);
-        console.log(searchResults);        
+        this.videosSubject.next(searchResults);    
       },
       error => {
         console.error('Fehler bei der Suche:', error);
       }
     );
-
   }
 
 }

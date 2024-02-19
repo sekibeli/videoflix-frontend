@@ -33,15 +33,31 @@ export class HeaderComponent implements OnInit {
       debounceTime(400),
       distinctUntilChanged()
     ).subscribe(searchTerm => {
-      this.videoService.searchVideos(searchTerm);
+      this.videoService.searchVideos(searchTerm); 
+      console.log(this.searchTermValue);      
     });
   }
+
+
+  clearSearch(): void {
+    this.searchTermValue = ''; 
+    this.search('');
+  }  
 
 
   search(term: string): void {
     this.searchTerm.next(term);
   }
 
+
+  onInputChange(term: string): void {
+    if (term === '') {
+      this.clearSearch();
+    } else {
+      this.searchTerm.next(term);
+    }
+  }
+  
 
   ngOnDestroy() {
     this.searchSubscription.unsubscribe();
