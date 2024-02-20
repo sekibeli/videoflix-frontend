@@ -4,6 +4,7 @@ import { Subject, Subscription, debounceTime, distinctUntilChanged } from 'rxjs'
 import { Video } from 'src/app/models/video.class';
 import { AuthService } from 'src/app/services/auth.service';
 import { VideoService } from 'src/app/services/video.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -14,13 +15,14 @@ export class HeaderComponent implements OnInit {
   searchTermValue: string = '';
   searchTerm = new Subject<string>();
   videos: Video[] = [];
-  searchSubscription!: Subscription;
+  searchSub!: Subscription;
 
 
   constructor(
     public authService: AuthService,
     private router: Router,
-    public videoService: VideoService) { }
+    public videoService: VideoService,
+    private location: Location) { }
 
 
   ngOnInit(): void {
@@ -29,20 +31,24 @@ export class HeaderComponent implements OnInit {
 
 
   searchVideosSubscription() {
-    this.searchSubscription = this.searchTerm.pipe(
+    this.searchSub = this.searchTerm.pipe(
       debounceTime(400),
       distinctUntilChanged()
     ).subscribe(searchTerm => {
-      this.videoService.searchVideos(searchTerm); 
-      console.log(this.searchTermValue);      
+      if (searchTerm == '') {
+        this.router.navigate(['/home/allvideos']);
+        return;
+      }
+      this.videoService.searchVideos(searchTerm);
+      this.router.navigate(['/home/search'], { queryParams: { q: searchTerm } });
     });
   }
 
 
   clearSearch(): void {
-    this.searchTermValue = ''; 
+    this.searchTermValue = '';
     this.search('');
-  }  
+  }
 
 
   search(term: string): void {
@@ -57,10 +63,10 @@ export class HeaderComponent implements OnInit {
       this.searchTerm.next(term);
     }
   }
-  
+
 
   ngOnDestroy() {
-    this.searchSubscription.unsubscribe();
+    this.searchSub.unsubscribe();
   }
 
 

@@ -25,6 +25,7 @@ import { VideorowComponent } from './components/popular/videorow/videorow.compon
 
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     VideorowComponent,
     ResetPasswordComponent,
     ForgotPasswordComponent,
+    SearchResultsComponent,
    
   ],
   imports: [

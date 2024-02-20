@@ -40,7 +40,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
     });
     this.checkVideoLikes();
     this.getLoggedUserData();
-    // this.showButtonListener();
   }
 
   ngOnDestroy() {
@@ -134,25 +133,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
     }
   }
 
-  resetSearch() {
-    this.videoService.resetFilteredVideos();
-    this.showAllVideosBtn = false;
-  }
-  
-
-  // showButtonListener() {    
-  //   this.buttonSubscription = this.videoService.getShowButtonListener().subscribe(() => {
-  //     this.showAllVideosBtn = true;
-  //   })
-  // }
-
  
   onVideoPlay(videoId: number){
     this.videoService.incrementViewCount(videoId).subscribe(response => {
       console.log('Video hochgezählt');
-
-    });
-   
+    });   
   }
-}
 
+}

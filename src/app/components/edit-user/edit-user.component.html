@@ -29,22 +29,6 @@
                 </span>
             </div>
 
-            <!-- Phone section -->
-            <!-- <div>
-                <input class="form-control" type="text" formControlName="phone" placeholder="Telefon">
-                <span *ngIf="submitted && editUserForm.get('phone')?.errors?.['required']" class="warning">
-                    Please enter a phone.
-                </span>
-            </div> -->
-
-            <!-- Address section -->
-            <!-- <div>
-                <input class="form-control" type="text" formControlName="adress" placeholder="Adresse">
-                <span *ngIf="submitted && editUserForm.get('adress')?.errors?.['required']" class="warning">
-                    Please enter a phone.
-                </span>
-            </div> -->
-
             <div class="btnContainer">
                 <button class="editProfileBtn saveBtn" type="submit" [disabled]="!editUserForm.valid">Speichern</button>
                 <button class="editProfileBtn cancelBtn" type="button" (click)="goBack()">Abbrechen</button>

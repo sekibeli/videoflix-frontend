@@ -1,0 +1,176 @@
+:host {
+    display: block;
+    width: 100%; /* Füllt die Breite des Elternelements */
+    min-height: 100vh; /* Mindestens so hoch wie der Viewport */
+    background: url("../../../assets/img/dallebg.jpg") no-repeat center center;
+    background-size: cover; /* Stellt sicher, dass der Hintergrund die gesamte Fläche bedeckt */
+}
+
+.content {
+    height: 100vh;
+    padding-top: 100px;
+    // position: absolute;
+    // top: 54px;
+    overflow: unset;
+}
+
+.rowHead {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.162) 100%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.334);
+    border-top: 1px solid rgba(0, 0, 0, 0.334);
+    padding: 0px 20px;
+}
+
+.section {
+    width: 100vw;
+    font-size: 2em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    row-gap: 50px;
+    padding: 25px 3%;
+    width: 100%;
+}
+.videoListing {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+.description {
+    font-size: 0.5em;
+    color: black;
+}
+.videoBox {
+    margin-right: 5px;
+}
+video {
+    position: relative;
+    border-radius: 5px;
+
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.718);
+    cursor: pointer;
+}
+.videoTitleHeader {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.773);
+    width: 240px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    color: white;
+    font-size: 0.6em;
+}
+
+.relative {
+    position: relative;
+}
+
+.modal-body {
+    color: black;
+    padding: 0;
+}
+
+.box {
+    padding: 20px;
+}
+
+.category {
+    font-size: 0.8em;
+    padding: 0 20px;
+    background-color: rgba(255, 228, 196, 0.517);
+    height: 40px;
+}
+
+.description {
+    font-size: 0.5em;
+    line-height: 1em;
+    color: grey;
+    margin-bottom: 20px;
+}
+
+.additionalInformation {
+    display: flex;
+    font-size: 0.4em;
+}
+
+.fullwidth {
+    // width: 80vw;
+    display: flex;
+    justify-content: center;
+}
+
+.controlButtons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 3px;
+}
+.card-body {
+    height: 40px;
+    padding: 0;
+}
+.card {
+    background-color: rgba(255, 228, 196, 0.517);
+
+    height: 40px;
+}
+
+.iconSize {
+    font-size: 0.6em;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.videoLikesContainer {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #dc3545;
+    border-radius: 20px;
+}
+
+.likeCounterSelectedVideo {
+    font-size: 0.6em !important;
+    padding: 0 10px;
+}
+
+.likeButton {
+    display: inline-block;
+    transition: all .125ms ease;
+
+    &.liked {
+        color: red;
+        animation: pulse 0.6s ease;
+    }
+}
+
+.bi {
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2); 
+    }
+    100% {
+      transform: scale(1);
+    }
+}
+
+.showAllVideos {
+    position: absolute;
+    top: 4px;
+    right: 30px;
+}
