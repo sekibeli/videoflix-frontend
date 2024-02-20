@@ -3,31 +3,19 @@
 <div class="content" style="background-color: rgba(0, 0, 0, 0.8)">
     <div class="overlay"></div>
     <div class="section">
+        <div *ngFor="let video of videos$ | async">
 
-        <ng-container #showCategories>
-            <div *ngFor="let category of (videosByCategory$ | async) | keyvalue">
-                <div class="rowHead">
-                    <h2>{{ category.key }}</h2>
-                </div>
-                <div class="videoListing">
-
-                    <div *ngFor="let video of category.value" data-bs-toggle="modal"
-                        data-bs-target="#overviewVideoModal">
-                        <!-- Darstellung jedes Videos -->
-                        <div class="videoBox" (click)="onSelectVideo(video)">
-                            <div class="relative">
-                                <div class="videoTitleHeader">{{ video.title }}</div>
-                                <video width="240" height="160" [poster]="video.thumbnail">
-                                    <source [src]="video.video_file" type="video/mp4">
-                                    Ihr Browser unterstützt das Video-Tag nicht.
-                                </video>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Darstellung jedes Videos -->
+            <div class="videoBox" (click)="onSelectVideo(video)">
+                <div class="relative">
+                    <div class="videoTitleHeader">{{ video.title }}</div>
+                    <video width="240" height="160" [poster]="video.thumbnail">
+                        <source [src]="video.video_file" type="video/mp4">
+                        Ihr Browser unterstützt das Video-Tag nicht.
+                    </video>
                 </div>
             </div>
-        </ng-container>
-
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="overviewVideoModal" data-bs-backdrop="static" tabindex="-1"
@@ -68,7 +56,11 @@
                                                 {{selectedVideo?.likes?.length}}</div>
                                         </div>
                                         <div class="bi bi-info-circle-fill iconSize"></div>
-                                        <div class="additionalInformation"><i class="bi bi-person-fill"></i> {{ getUserById(selectedVideo?.created_from)?.username }}   <i class="bi bi-cloud-upload-fill"></i> {{selectedVideo?.created_at | date: 'dd. MMMM yyyy'}} <i class="bi bi-eye-fill"></i> {{selectedVideo?.view_count}}</div>
+                                        <div class="additionalInformation"><i class="bi bi-person-fill"></i> {{
+                                            getUserById(selectedVideo?.created_from)?.username }} <i
+                                                class="bi bi-cloud-upload-fill"></i> {{selectedVideo?.created_at | date:
+                                            'dd. MMMM yyyy'}} <i class="bi bi-eye-fill"></i>
+                                            {{selectedVideo?.view_count}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -90,5 +82,3 @@
 
 
     </div>
-
-</div>

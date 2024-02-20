@@ -15,6 +15,7 @@ import { SurpriseComponent } from './components/surprise/surprise.component';
 import { PopularComponent } from './components/popular/popular.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
     path: 'home', component: HomeComponent,
 
     children: [
+      { path: 'search', component: SearchResultsComponent },
       { path: 'surprise', component: SurpriseComponent},
       { path: 'allvideos', component: OverviewComponent },
       { path: 'myvideos', component: MyvideosComponent},

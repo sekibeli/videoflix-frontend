@@ -54,33 +54,6 @@ nav {
     align-items: center;
 }
 
-.filteredVideos {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-
-    span {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        cursor: pointer;
-        padding: 10px;
-
-        &:hover {
-            background-color: rgba(220, 53, 69, 1);
-            color: white;
-        }
-    }
-
-    span:first-child {
-        margin-top: 10px;
-    }
-
-    span:last-child {
-        margin-bottom: 10px;
-    }
-}
 
 @media (max-width: 991px) {
     #navbarSupportedContent {

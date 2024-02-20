@@ -11,15 +11,13 @@ export class VideoService {
   public videosSubject = new BehaviorSubject<Video[]>([])
   public videos$ = this.videosSubject.asObservable();
 
+  public searchResults = new BehaviorSubject<Video[]>([])
+
   private myVideosSubject = new BehaviorSubject<Video[]>([])
   public myVideos$ = this.myVideosSubject.asObservable();
 
   public searchResultsSubject = new BehaviorSubject<Video[]>([]);
   public searchResults$ = this.searchResultsSubject.asObservable();
-
-
-  private filteredVideosSubject = new BehaviorSubject<Video[]>([]);
-  public filteredVideos$ = this.filteredVideosSubject.asObservable();
 
   private likeUpdate = new BehaviorSubject<number | null>(null);
   private mostLikedVideosSubject = new BehaviorSubject<Video[]>([]);
@@ -43,49 +41,6 @@ export class VideoService {
     );
   }
 
-
-  getFilteredVideos(searchTerm: string): Observable<Video[]> {
-    return this.videos$.pipe(
-      map(videos => videos.filter(video =>
-        video.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        video.category.toLowerCase().includes(searchTerm.toLowerCase())
-      ))
-    );
-  }
-
-
-  updateFilteredVideos(videos: Video[]) {
-    this.filteredVideosSubject.next(videos);
-  }
-
-
-  get videosToDisplay$(): Observable<Video[]> {
-    return this.filteredVideos$.pipe(
-      switchMap(filteredVideos => {
-        if (filteredVideos.length === 0) {
-          return this.videos$;
-        }
-        return of(filteredVideos);
-      })
-    );
-  }
-
-
-  resetFilteredVideos() {
-    this.filteredVideosSubject.next([]);
-  }
-
-  // getMyVideos():void {
-  //   const url = environment.baseUrl + '/videos/?myvideos=true';
-  //   this.http.get<Video[]>(url).subscribe(
-  //     videos => {
-  //       this.myVideosSubject.next(videos);
-  //     },
-  //     error => {
-  //       console.error('Fehler beim Laden der Videos:', error)
-  //     }
-  //   );
-  // }
 
   deleteVideo(id: number) {
     const url = environment.baseUrl + `/videos/${id}`;
@@ -185,7 +140,7 @@ export class VideoService {
     const url = environment.baseUrl + `/videos-search/?search=${searchterm}`;
     this.http.get<Video[]>(url).subscribe(
       searchResults => {
-        this.videosSubject.next(searchResults);    
+        this.searchResults.next(searchResults);    
       },
       error => {
         console.error('Fehler bei der Suche:', error);
