@@ -19,7 +19,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'start', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'start', component: StartComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
