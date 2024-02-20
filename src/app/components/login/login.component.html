@@ -1,13 +1,13 @@
 <button class="btn btn-danger fixedButton" [routerLink]="['/start']">zurück</button>
 <div class="startbox">
-    <div class="title titleadd">Videoflix</div>
+    <!-- <div class="title titleadd">Videoflix</div>
     <div class="title">
         Streamen, Teilen, Spaß haben
-    </div>
+    </div> -->
 
     <div class="signUpBox">
 
-        <span class="headline">Log In</span>
+        <span class="headline"> <img src="../../../assets/img/logovideoflix.png" alt="" width="250px"></span>
         <span class="warning" [class.d-none]="!isEmailPasswordInvalid">Invalid email or password!</span>
         <span class="warning" *ngIf="message">{{message}}</span>
         <span *ngIf="notVerifiedMessage" class="warning">Please verify your email first</span>
@@ -28,11 +28,11 @@
                 <label for="rememberMe" class="">Remember me</label>
             </section> -->
 
-            <button class="btn btn-danger" type="submit" [disabled]="!loginForm.valid">Einloggen</button>
+            <button class="btn btn-danger" type="submit" [disabled]="!loginForm.valid">LOG IN</button>
         </form>
-
+        <div class="text">Du hast noch keinen Account? <span class="red" [routerLink]="['/signup']">Hier anmelden!</span></div>
         <div class="signUpBoxBottomContent">
-            <button class="btn btn-danger" [routerLink]="['/forgot-password']">Forgot passsword</button>
+            <div class="forgotPw" [routerLink]="['/forgot-password']">Forgot passsword</div>
         </div>
 
 
