@@ -2,7 +2,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url('../../../assets/img/kinosaal2.jpg');
+    position: relative;
+    height: 100vh;
+    background-size: cover;
    
+}
+.startbox::before {
+    content: ""; /* Notwendig für die Anzeige des Pseudo-Elements */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(40, 40, 45, 0.90); /* Farbton #28282D mit hoher Deckkraft */
+    z-index: 1; /* Stellt sicher, dass das Overlay über dem Hintergrundbild liegt */
 }
 
 .login{
@@ -12,9 +26,15 @@
 
 .form-control {
     width: 250px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+    background-color: #302f2f;
+    border-color: #28282D;
+    color: white !important;
 }
-
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.592); /* Setzt die Farbe des Placeholder-Textes auf Weiß */
+    opacity: 1; /* Optional: Stellt sicher, dass der Placeholder-Text vollständig opak ist */
+} 
 .formgroup {
     display: flex;
     flex-direction: column;
@@ -42,17 +62,34 @@
 }
 
 .signUpBox {
-    padding: 15px 27px;
-    margin-top: 40px;
+  
+    border-top: 2px solid #DC3545;
+    padding: 30px 27px;
+    margin-top: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.482);
+   background-color: #28282D;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     width: 350px;
+    z-index: 3;
+}
+.text {
+    // display: flex;
+    // justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: white;
 }
 
+.red {
+    color: #DC3545;
+    cursor: pointer;
+
+}
 .button {
     margin-top: 20px;
     width: 150px;

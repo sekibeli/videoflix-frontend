@@ -1,13 +1,13 @@
 <button class="btn btn-danger fixedButton" [routerLink]="['/start']">zurück</button>
 <div class="startbox">
-    <div class="title titleadd">Videoflix</div>
+    <!-- <div class="title titleadd">Videoflix</div>
     <div class="title">
         Streamen, Teilen, Spaß haben
-    </div>
+    </div> -->
 
     <div class="signUpBox">
 
-        <span class="headline">Sign Up</span>
+        <span class="headline"><img src="../../../assets/img/logovideoflix.png" alt="" width="250px"></span>
 
         <!-- Sign up form -->
         <form class="formgroup" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
@@ -58,6 +58,6 @@
             <span *ngIf="userAlreadyExists" class="warning signupInfoText">This user already exists.</span>
         </form>
 
-
+<div class="text">Du hast schon einen Account?<br><span class="red" [routerLink]="['/login']">Hier einloggen</span></div>
     </div>
 </div>
