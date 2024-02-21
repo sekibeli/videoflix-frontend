@@ -69,4 +69,10 @@ export class AuthService {
     return lastValueFrom(this.http.post(url, { token: token }));
   }
 
+
+  guestLogin() {
+    const url = environment.baseUrl + '/guest-login/';
+    return lastValueFrom(this.http.post(url, {}));
+  }
+
 }

@@ -23,9 +23,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
   videoLiked!: boolean;
   currentUser!: SignupData;
 
-  showAllVideosBtn: boolean = false;
-  buttonSubscription!: Subscription;
-
 
   constructor(private videoService: VideoService, private userService: UserService, private authService: AuthService) { }
 
@@ -44,7 +41,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
-    this.buttonSubscription?.unsubscribe();
     const modalElement = document.getElementById('overviewVideoModal');
   }
 
@@ -68,7 +64,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     const videoId = video.id;
     this.getSelectedtVideo(videoId)
     this.selectedVideo = video;
-    this.checkVideoLikes();
+    this.checkVideoLikes();    
   }
 
   deleteSelectedVideo() {
@@ -112,6 +108,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
         console.error("Fehler beim Abrufen des aktualisierten Videos", error);
       }
     });
+    console.log('videoId is:',videoId, 'selectedVideo is:', this.selectedVideo);
   }
 
 

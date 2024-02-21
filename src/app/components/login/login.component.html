@@ -9,6 +9,7 @@
 
         <span class="headline"> <img src="../../../assets/img/logovideoflix.png" alt="" width="250px"></span>
         <span class="warning" [class.d-none]="!isEmailPasswordInvalid">Invalid email or password!</span>
+        <span class="warning" [class.d-none]="!isEmailPasswordInvalid">Something went wrong. Please try again.</span>
         <span class="warning" *ngIf="message">{{message}}</span>
         <span *ngIf="notVerifiedMessage" class="warning">Please verify your email first</span>
         <form class="formgroup" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -22,13 +23,8 @@
                 <input class="form-control" type="password" formControlName="password" placeholder="Passwort">
             </div>
 
-            <!-- Remember me section -->
-            <!-- <section>
-                <input type="checkbox" id="rememberMe" formControlName="rememberMe">
-                <label for="rememberMe" class="">Remember me</label>
-            </section> -->
-
-            <button class="btn btn-danger" type="submit" [disabled]="!loginForm.valid">LOG IN</button>
+            <button class="btn btn-danger mb-3" type="submit" [disabled]="!loginForm.valid">LOG IN</button>
+            <button class="btn btn-danger" type="submit" (click)="onGuestLogin($event)">GUEST LOGIN</button>
         </form>
         <div class="text">Du hast noch keinen Account? <br><span class="red" [routerLink]="['/signup']">Hier registrieren!</span></div>
         <div class="signUpBoxBottomContent">
