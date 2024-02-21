@@ -1,10 +1,8 @@
 :host {
     display: block;
-    width: 100%; /* Füllt die Breite des Elternelements */
-    min-height: 100vh; /* Mindestens so hoch wie der Viewport */
-    // background: url('./../../../assets/img/dallebg.jpg') no-repeat center center;
-    background-size: cover; /* Stellt sicher, dass der Hintergrund die gesamte Fläche bedeckt */
-    // background-color: rgba(0, 0, 0, 0.811);
+    width: 100%; 
+    min-height: 100vh; 
+    background-size: cover; 
     background-color: #28282D;
   }
 
@@ -48,8 +46,19 @@
     justify-content: center;
     border-radius: 10px;
 }
+.text-background {
+    border-radius: 5px;
+    position: absolute;
+    left: 0;
+    top:0;
+    bottom: 0;
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.304);
+}
 .text-overlay {
     position: absolute;
+padding: 10px;
+
 
     // top: 200px;
     left: 50px;
@@ -166,6 +175,7 @@
 .itemBox {
     margin-right: 5px;
     display: flex;
+    margin-bottom: 10px;
     
 }
 

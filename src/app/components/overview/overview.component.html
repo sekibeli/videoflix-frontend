@@ -1,8 +1,11 @@
 <!-- <app-video-search [videos]="videoSearchList" (searchResults)="handleSearchResults($event)"></app-video-search> -->
 
-<div class="content" style="background-color: rgba(0, 0, 0, 0.8)">
-    <div class="overlay"></div>
-    <div class="section">
+
+<div class="content" >
+    <div class="rowHead"><h2>Alle Filme im Überblick</h2></div>
+    <div class="section-devider"></div>
+    <!-- <div class="overlay"></div> -->
+    <!-- <div class="section"> -->
 
         <ng-container #showCategories>
             <div *ngFor="let category of (videosByCategory$ | async) | keyvalue">
@@ -14,7 +17,7 @@
                     <div *ngFor="let video of category.value" data-bs-toggle="modal"
                         data-bs-target="#overviewVideoModal">
                         <!-- Darstellung jedes Videos -->
-                        <div class="videoBox" (click)="onSelectVideo(video)">
+                        <!-- <div class="videoBox" (click)="onSelectVideo(video)">
                             <div class="relative">
                                 <div class="videoTitleHeader">{{ video.title }}</div>
                                 <video width="240" height="160" [poster]="video.thumbnail">
@@ -22,6 +25,30 @@
                                     Ihr Browser unterstützt das Video-Tag nicht.
                                 </video>
                             </div>
+                        </div> -->
+                        <div class="itemBox" >
+                            <div class="pic-box">
+                               
+                                <div class="overlay" (click)="onSelectVideo(video)">
+                                    <!-- <i class="play-icon">▶</i> Beispiel für ein Abspielsymbol -->
+                                    <div class="playIcon">Play</div>
+                                </div>
+                               
+                                <video class="video" width="240" height="160" [poster]="video.thumbnail" >
+                                   
+                                    <source [src]="video.video_file" type="video/mp4">
+                                    Ihr Browser unterstützt das Video-Tag nicht.
+                                    
+                                </video>
+                           
+                            </div>
+                                <div class="text-besides">
+                                    <div class="overview-title">{{video.title}}</div>
+                                    <div class="overview-category">{{video.category}}</div>
+                                    <div class="overview-likes"><img src="../../../assets/img/icons8-herz-48.png" alt="">{{video?.likes?.length}}</div>
+                                   
+                                </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -89,6 +116,9 @@
 
 
 
-    </div>
+    <!-- </div> -->
 
 </div>
+
+
+<!-- <a target="_blank" href="https://icons8.com/icon/zkTZNXGR64dz/herz-anzug">Herz</a> Icon von <a target="_blank" href="https://icons8.com">Icons8</a> -->
