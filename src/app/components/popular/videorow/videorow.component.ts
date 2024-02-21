@@ -20,6 +20,9 @@ currentUser!: SignupData;
 private users: User[] = [];
 private subscription?: Subscription;
 
+// searchTerm: string = '';
+// searchResults: Video[] = [];
+
 constructor(public videoService: VideoService, public userService: UserService, public authService: AuthService){
   this.userService.getUserData();
 }
@@ -34,6 +37,7 @@ ngOnInit() {
 }
 onSelectVideo(video: Video): void {
   this.selectedVideo = video;
+ 
   const videoId = video.id;
   // this.getSelectedVideo(video.id)
    this.checkVideoLikes();
@@ -42,6 +46,7 @@ onSelectVideo(video: Video): void {
 
 deleteSelectedVideo() {
   this.selectedVideo = null;
+  // document.body.classList.remove('modal-open');
 }
 
 onModalClose() {

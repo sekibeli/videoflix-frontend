@@ -13,14 +13,20 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { MyvideosComponent } from './components/myvideos/myvideos.component';
 import { SurpriseComponent } from './components/surprise/surprise.component';
 import { PopularComponent } from './components/popular/popular.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'start', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'start', component: StartComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'verify/:token', component: EmailVerifyComponent },
+  { path: 'edit-user', component: EditUserComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'datenschutz', component: DatenschutzComponent },
   { path: 'impressum', component: ImpressumComponent },
   { path: 'edit-user', component: EditUserComponent },
@@ -28,6 +34,7 @@ const routes: Routes = [
     path: 'home', component: HomeComponent,
 
     children: [
+      { path: 'search', component: SearchResultsComponent },
       { path: 'surprise', component: SurpriseComponent},
       { path: 'allvideos', component: OverviewComponent },
       { path: 'myvideos', component: MyvideosComponent},

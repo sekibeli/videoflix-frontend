@@ -23,9 +23,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
   videoLiked!: boolean;
   currentUser!: SignupData;
 
-  showAllVideosBtn: boolean = false;
-  buttonSubscription!: Subscription;
-
 
   constructor(private videoService: VideoService, private userService: UserService, private authService: AuthService) { }
 
@@ -35,19 +32,15 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.subscription = this.userService.users$.subscribe(users => {
       this.users = users;
     });
-    this.videoService.videosToDisplay$.subscribe(videos => {
-      this.groupVideosByCategory(videos);
-      console.log('All videos object', videos);
-      
+    this.videoService.videos$.subscribe(videos => {
+      this.groupVideosByCategory(videos);            
     });
     this.checkVideoLikes();
     this.getLoggedUserData();
-    this.showButtonListener();
   }
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
-    this.buttonSubscription?.unsubscribe();
     const modalElement = document.getElementById('overviewVideoModal');
   }
 
@@ -71,7 +64,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     const videoId = video.id;
     this.getSelectedtVideo(videoId)
     this.selectedVideo = video;
-    this.checkVideoLikes();
+    this.checkVideoLikes();    
   }
 
   deleteSelectedVideo() {
@@ -115,6 +108,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
         console.error("Fehler beim Abrufen des aktualisierten Videos", error);
       }
     });
+    console.log('videoId is:',videoId, 'selectedVideo is:', this.selectedVideo);
   }
 
 
@@ -136,25 +130,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
     }
   }
 
-  resetSearch() {
-    this.videoService.resetFilteredVideos();
-    this.showAllVideosBtn = false;
-  }
-  
-
-  showButtonListener() {    
-    this.buttonSubscription = this.videoService.getShowButtonListener().subscribe(() => {
-      this.showAllVideosBtn = true;
-    })
-  }
-
  
   onVideoPlay(videoId: number){
     this.videoService.incrementViewCount(videoId).subscribe(response => {
       console.log('Video hochgezählt');
-
-    });
-   
+    });   
   }
-}
 
+}

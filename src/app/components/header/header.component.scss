@@ -1,5 +1,6 @@
 nav {
     max-height: 54px;
+ 
 }
 
 .headerBox {
@@ -11,12 +12,17 @@ nav {
     padding: 10px;
 }
 
+#navbarSupportedContent {
+    margin-top: 5px;
+}
+
 .headerLinks {
     display: flex;
-    // gap: 10px;
-    // color: white;
-    margin-left: 30px;
+    margin-left: auto;
+    margin-right: 15px;
+    padding: 15px;
 }
+
 .link {
     padding: 5px 10px;
     border-radius: 5px;
@@ -44,42 +50,22 @@ nav {
     margin-right: 5px;
 }
 
-.searchContainer {
-    flex-direction: column;
-    position: absolute;
-    right: 17%;
-    top: 8px;
-}
-
 .searchInputContent {
     display: flex;
     align-items: center;
 }
 
-.filteredVideos {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
 
-    span {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        cursor: pointer;
-        padding: 10px;
-
-        &:hover {
-            background-color: rgba(220, 53, 69, 1);
-            color: white;
-        }
+@media (max-width: 991px) {
+    #navbarSupportedContent {
+        background-color: white;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
     }
 
-    span:first-child {
+    .homeBtn {
+        width: 35px;
         margin-top: 10px;
-    }
-
-    span:last-child {
-        margin-bottom: 10px;
+        margin-left: 10px;
     }
 }

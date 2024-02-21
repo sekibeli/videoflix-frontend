@@ -23,6 +23,9 @@ import { VideorowComponent } from './components/popular/videorow/videorow.compon
 
 
 
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 
 @NgModule({
@@ -43,6 +46,9 @@ import { VideorowComponent } from './components/popular/videorow/videorow.compon
     SurpriseComponent,
     PopularComponent,
     VideorowComponent,
+    ResetPasswordComponent,
+    ForgotPasswordComponent,
+    SearchResultsComponent,
    
   ],
   imports: [

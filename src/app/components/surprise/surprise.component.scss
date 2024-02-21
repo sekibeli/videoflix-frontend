@@ -1,10 +1,9 @@
 :host {
     display: block;
-    width: 100%; /* Füllt die Breite des Elternelements */
-    min-height: 100vh; /* Mindestens so hoch wie der Viewport */
-    // background: url('./../../../assets/img/dallebg.jpg') no-repeat center center;
-    background-size: cover; /* Stellt sicher, dass der Hintergrund die gesamte Fläche bedeckt */
-    background-color: rgba(0, 0, 0, 0.811);
+    width: 100%; 
+    min-height: 100vh; 
+    background-size: cover; 
+    background-color: #28282D;
   }
 
 // .videoContainer {
@@ -25,23 +24,50 @@
 // }
 
 
-.video-container {
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
-    position: relative;
-}
+// .video-container {
+//     width: 100%;
+//     height: 400px;
+//     overflow: hidden;
+//     position: relative;
+// }
 
-.video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-   position: absolute;
+// .video-container video {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+//    position: absolute;
     // top: 50%;
     // left: 50%;
     // transform: translate(-50%, -50%);
+// }
+.placemid {
+   position: relative;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
 }
+.text-background {
+    border-radius: 5px;
+    position: absolute;
+    left: 0;
+    top:0;
+    bottom: 0;
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.304);
+}
+.text-overlay {
+    position: absolute;
+padding: 10px;
 
+
+    // top: 200px;
+    left: 50px;
+    right: 20px;
+    bottom: 15%;
+    color: white;
+    z-index: 20;
+    width: 300px;
+}
 .controlButtons {
     display: flex;
     gap: 10px;
@@ -49,6 +75,49 @@
     height: 100%;
 }
 
+.upper-content-box {
+    margin: 100px 80px;
+}
+
+.show-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.show-description {
+    margin-bottom: 20px;
+}
+.overview-title {
+    font-weight: 300;
+    color: white;
+    // padding-bottom: 20px;
+    font-size: 1.4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.overview-description {
+    font-weight: 300;
+    color: rgb(197, 197, 197);
+    padding-top: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+}
+.overview-category {
+    font-weight: 400;
+    color: #DC3545;
+    padding-top: 20px;
+}
+
+.show-category {
+    color: #DC3545;
+    margin-bottom: 20px;
+}
 .card-body {
  height: 40px;
  padding: 0;
@@ -81,10 +150,13 @@
 }
 
 .rowHead {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.162) 100%);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.334);
-    border-top: 1px solid rgba(0, 0, 0, 0.334);
-    padding: 0px 20px;
+    color: white;
+    margin: 30px 0;
+    // background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.162) 100%);
+    // border-bottom: 1px solid rgba(0, 0, 0, 0.334);
+    // border-top: 1px solid rgba(0, 0, 0, 0.334);
+    padding: 0px 80px;
+   width: 100vw;
 }
 
 .section {
@@ -97,22 +169,75 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    padding-left: 20px;
+    padding: 10px 80px;
 }
 
-.videoBox {
+.itemBox {
     margin-right: 5px;
+    display: flex;
+    margin-bottom: 10px;
+    
 }
 
 video {
+   height: 500px;
     position: relative;
     border-radius: 5px;
-
+// margin-top: 100px;
+// margin-bottom: 50px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     background-color: rgba(255, 255, 255, 0.718);
     cursor: pointer;
+    object-fit: cover;
+}
+.video {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: block;
 }
 
+.pic-box {
+    position: relative;
+    height: 280px;
+    width: 180px; 
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0.5); 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    opacity: 0; 
+    transition: opacity 0.5s; 
+    z-index: 10;
+    cursor: pointer;
+  }
+  
+  .pic-box:hover .overlay {
+    opacity: 1; 
+  }
+
+  .playIcon {
+    width: 50px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.video-box {
+    height: 580px;
+    
+}
 .videoTitleHeader {
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.773);
@@ -127,17 +252,31 @@ video {
     font-size: 0.6em;
 }
 
-.relative {
-    position: relative;
+.section-devider {
+    width: 100%;
+    background-color: #DC3545;
+    height: 2px;
 }
 
+// .relative {
+//     position: relative;
+// }
+.overview {
+    display: flex;
+}
 .category {
     font-size: 0.8em;
     padding: 0 20px;
     background-color: rgba(255, 228, 196, 0.517);
     height: 40px;
 }
-
+.text-besides {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: 5px 20px;
+}
 .box {
     padding: 20px;
 }
@@ -161,6 +300,7 @@ video {
 .additionalInformation {
     font-size: 0.4em;
 }
+
 
 .videoLikesContainer {
     display: flex;
@@ -196,5 +336,17 @@ video {
     }
     100% {
       transform: scale(1);
+    }
+}
+
+@media (max-width: 1000px){
+    .content-box {
+        margin: 0px 50px;
+    }
+}
+
+@media (max-width: 500px){
+    .content-box {
+        margin: 0px 20px;
     }
 }

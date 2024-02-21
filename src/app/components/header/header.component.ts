@@ -1,42 +1,72 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, debounceTime, distinctUntilChanged } from 'rxjs';
 import { Video } from 'src/app/models/video.class';
 import { AuthService } from 'src/app/services/auth.service';
 import { VideoService } from 'src/app/services/video.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
-  searchTerm: string = '';
-  private videoSubscription?: Subscription;
-  searchResults: Video[] = [];
+export class HeaderComponent implements OnInit {
+  searchTermValue: string = '';
+  searchTerm = new Subject<string>();
+  videos: Video[] = [];
+  searchSub!: Subscription;
 
 
   constructor(
     public authService: AuthService,
     private router: Router,
-    private videoService: VideoService) { }
+    public videoService: VideoService,
+    private location: Location) { }
 
 
-  searchVideos() {
-    if (!this.searchTerm) {
-      this.searchResults = [];
-      return;
-    }
-    this.videoService.getFilteredVideos(this.searchTerm).subscribe(videos => {
-      this.searchResults = videos;
+  ngOnInit(): void {
+    this.searchVideosSubscription();
+  }
+
+
+  searchVideosSubscription() {
+    this.searchSub = this.searchTerm.pipe(
+      debounceTime(400),
+      distinctUntilChanged()
+    ).subscribe(searchTerm => {
+      if (searchTerm == '') {
+        this.router.navigate(['/home/allvideos']);
+        return;
+      }
+      this.videoService.searchVideos(searchTerm);
+      this.router.navigate(['/home/search'], { queryParams: { q: searchTerm } });
     });
   }
 
 
-  onSelectVideo(video: Video) {
-    this.videoService.updateFilteredVideos(this.searchResults);
-    this.searchTerm = '';
-    this.videoService.notifyShowButton();
+  clearSearch(): void {
+    this.searchTermValue = '';
+    this.search('');
+  }
+
+
+  search(term: string): void {
+    this.searchTerm.next(term);
+  }
+
+
+  onInputChange(term: string): void {
+    if (term === '') {
+      this.clearSearch();
+    } else {
+      this.searchTerm.next(term);
+    }
+  }
+
+
+  ngOnDestroy() {
+    this.searchSub.unsubscribe();
   }
 
 

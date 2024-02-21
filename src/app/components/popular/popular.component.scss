@@ -19,8 +19,7 @@
     width: 50%;
 }
 .videoBox {
-    margin-bottom: 15
-    px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
 }
@@ -91,4 +90,23 @@
 
 app-videorow {
     margin-bottom: 10px;
+}
+
+@media (max-width: 800px){
+
+    .firstRow {
+        flex-direction:column;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .bigVideo {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .rightSection {
+        width: 100%;
+        margin: 20px 0;
+    }
 }

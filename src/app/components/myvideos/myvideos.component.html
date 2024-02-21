@@ -1,4 +1,6 @@
 <div class="myList">
+
+
   <div class="uploadCard">
 
     <div class="card">
@@ -50,7 +52,7 @@
               </select>
             </div>
 
-         
+
             <input type="file" (change)="onFileSelected($event)">
 
             <div class="modal-footer">
@@ -73,7 +75,7 @@
     <div *ngIf="myVideos " class="myvideosContent">
       <div *ngFor="let video of myVideos" class="card" style="width: 18rem;">
         <!-- <img src="" class="card-img-top" alt="{{video.title}}"> -->
-        <video width="100%" height="160" >
+        <video width="100%" height="160">
           <source [src]="video.video_file" type="video/mp4">
           Ihr Browser unterstützt das Video-Tag nicht.
         </video>
@@ -126,11 +128,11 @@
                 Please enter your description.
               </span>
             </div>
-      
+
             <div class="mb-3 input-item">
               <label for="categorySelect" class="form-label">Kategorie</label>
               <select class="form-select" formControlName="category" id="categorySelect">
-                <option value="allgemein" selected>Wählen Sie eine Kategorie</option>
+                <option selected>Wählen Sie eine Kategorie</option>
                 <option value="allgemein">Allgemein</option>
                 <option value="kids">Kids</option>
                 <option value="noidea">No idea</option>
@@ -153,7 +155,7 @@
               </video>
 
             </div>
-         
+
 
           </div>
 
@@ -161,7 +163,8 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
             (click)="deleteSelectedVideo()">Close</button>
-          <button  (click)="saveChanges(this.selectedVideo); closeModal()" type="button" class="btn btn-primary" >Änderungen speichern</button>
+          <button (click)="saveChanges(this.selectedVideo); closeModal()" type="button"
+            class="btn btn-primary">Änderungen speichern</button>
         </div>
       </div>
     </div>

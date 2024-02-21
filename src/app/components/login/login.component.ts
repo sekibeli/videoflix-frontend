@@ -94,16 +94,18 @@ export class LoginComponent implements OnInit {
   }
 
 
-  // checkRememberMe(formData: LoginData) {
-  //   const username = formData.username;
-  //   if (formData.rememberMe) {
-  //     localStorage.setItem('username', username);
-  //   } else {
-  //     localStorage.removeItem('username');
-  //   }
-  // }
+  async onGuestLogin(event: MouseEvent) {
+    event.stopPropagation();
+    try {
+      const resp: any = await this.authService.guestLogin();
+      localStorage.setItem('token', resp['token']);
+      this.router.navigateByUrl('/home/surprise');
+    } catch (err) {
+      this.isEmailPasswordInvalid = true;
+      setTimeout(() => {
+        this.isEmailPasswordInvalid = false;
+      }, 3000);
+    }
+  }
 
-
-  guestLogin() { }
-  showForgotPassword() { }
 }
