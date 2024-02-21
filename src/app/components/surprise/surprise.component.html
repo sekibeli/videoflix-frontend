@@ -71,12 +71,12 @@
                         <div class="itemBox" >
                             <div class="pic-box">
                                
-                                <div class="overlay">
+                                <div class="overlay" (click)="onSelectVideo(video)">
                                     <!-- <i class="play-icon">▶</i> Beispiel für ein Abspielsymbol -->
                                     <div class="playIcon">Play</div>
                                 </div>
                                
-                                <video class="video" width="240" height="160" [poster]="video.thumbnail" (click)="onSelectVideo(video)">
+                                <video class="video" width="240" height="160" [poster]="video.thumbnail" >
                                    
                                     <source [src]="video.video_file" type="video/mp4">
                                     Ihr Browser unterstützt das Video-Tag nicht.
@@ -95,7 +95,7 @@
                     </div>
         
                     <!-- Modal -->
-                    <div class="modal fade" id="surpriseVideoModal" data-bs-backdrop="static" tabindex="-1"
+                    <!-- <div class="modal fade" id="surpriseVideoModal" data-bs-backdrop="static" tabindex="-1"
                         aria-labelledby="surpriseVideoModalLabel" aria-hidden="true" (show.bs.modal)="pauseFeatureVideo()"
                         (hidden.bs.modal)="playFeatureVideo()" (hide.bs.modal)="deleteSelectedVideo()">
                         <div class="modal-dialog modal-xl modal-fullscreen-md-down">
@@ -154,7 +154,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Modal Ende -->
         
                 </div>
