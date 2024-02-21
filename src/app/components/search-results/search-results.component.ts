@@ -43,6 +43,7 @@ export class SearchResultsComponent implements OnInit {
     this.getSelectedtVideo(videoId)
     this.selectedVideo = video;
     this.checkVideoLikes();
+    console.log('videoId is:',videoId, 'selectedVideo is:', this.selectedVideo);
   }
 
 
@@ -56,6 +57,7 @@ export class SearchResultsComponent implements OnInit {
         console.error("Fehler beim Abrufen des aktualisierten Videos", error);
       }
     });
+    console.log('videoId is:',videoId, 'selectedVideo is:', this.selectedVideo);
   }
 
 

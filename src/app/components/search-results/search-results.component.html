@@ -3,7 +3,8 @@
 <div class="content" style="background-color: rgba(0, 0, 0, 0.8)">
     <div class="overlay"></div>
     <div class="section">
-        <div *ngFor="let video of videos$ | async">
+        <div *ngFor="let video of videos$ | async"  data-bs-toggle="modal"
+        data-bs-target="#overviewVideoModal">
 
             <!-- Darstellung jedes Videos -->
             <div class="videoBox" (click)="onSelectVideo(video)">
