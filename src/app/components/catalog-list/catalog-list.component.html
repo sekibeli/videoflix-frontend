@@ -1,0 +1,33 @@
+<div class="videoListing">
+        
+    <div *ngFor="let video of videos">
+        <!-- Darstellung jedes Videos -->
+        <div class="itemBox" >
+            <div class="pic-box">
+               
+                <div class="overlay" >
+                    <!-- <i class="play-icon">▶</i> Beispiel für ein Abspielsymbol -->
+                    <div class="playIcon">Play</div>
+                </div>
+               
+                <video class="video" [poster]="video.thumbnail" >
+                   
+                    <source [src]="video.video_file" type="video/mp4">
+                    Ihr Browser unterstützt das Video-Tag nicht.
+                    
+                </video>
+           
+            </div>
+                <div class="text-besides">
+                    <div class="overview-title">{{video.title}}</div>
+                    <div class="overview-category">{{video.category}}</div>
+                    <div></div>
+                    <div class="overview-description">{{video.description}}</div>
+                </div>
+            
+        </div>
+    </div>
+
+    
+
+</div>
