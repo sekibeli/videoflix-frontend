@@ -26,6 +26,8 @@ import { VideorowComponent } from './components/popular/videorow/videorow.compon
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { CatalogGridComponent } from './components/catalog-grid/catalog-grid.component';
+import { CatalogListComponent } from './components/catalog-list/catalog-list.component';
 
 
 @NgModule({
@@ -49,6 +51,8 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     ResetPasswordComponent,
     ForgotPasswordComponent,
     SearchResultsComponent,
+    CatalogGridComponent,
+    CatalogListComponent,
    
   ],
   imports: [

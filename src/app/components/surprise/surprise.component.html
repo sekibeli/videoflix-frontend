@@ -1,13 +1,9 @@
 <div class="upper-content-box">
-    <div *ngIf="featureVideo" class="autoplay-video-area">
-        <!-- <video #featureVideoElement width="100%" height="auto" autoplay muted controls loop>
-            <source [src]="featureVideo.video_file" type="video/mp4">
-            Ihr Browser unterstützt das Video-Tag nicht.
-        </video> -->
+    <div *ngIf="featureVideo">
     
         <div class="placemid">
             <!-- <div class="video-box"> -->
-                <video #featureVideoElement width="100%" height="auto" autoplay muted loop>
+                <video  width="100%" height="auto" autoplay muted loop>
                     <source [src]="featureVideo.video_file" type="video/mp4">
                     Ihr Browser unterstützt das Video-Tag nicht.
                 </video>
