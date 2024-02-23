@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Video } from 'src/app/models/video.class';
 
 @Component({
@@ -8,4 +9,10 @@ import { Video } from 'src/app/models/video.class';
 })
 export class CatalogGridComponent {
   @Input() videos! : Video[] | null ;
+
+  constructor(private router: Router){}
+
+  viewVideoDetail(videoId: number){
+    this.router.navigate(['/home/detail', videoId])
+  }
 }

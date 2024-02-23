@@ -6,7 +6,7 @@
         <div class="itemBox" >
             <div class="pic-box">
                
-                <div class="overlay" >
+                <div class="overlay" (click)="viewVideoDetail(video.id)">
                   
                     <div class="playIcon">Play</div>
                 </div>
@@ -19,7 +19,7 @@
                 </video>
            
             </div>
-                <div class="text-besides">
+                <div class="text-besides" *ngIf="video">
                     <div class="overview-title">{{video.title}}</div>
                     <div class="overview-category">{{video.category}}</div>
                     <div class="overview-likes"><img src="../../../assets/img/icons8-herz-48.png" alt="">{{video?.likes?.length}}</div>

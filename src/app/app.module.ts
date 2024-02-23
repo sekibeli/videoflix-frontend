@@ -28,6 +28,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { CatalogGridComponent } from './components/catalog-grid/catalog-grid.component';
 import { CatalogListComponent } from './components/catalog-list/catalog-list.component';
+import { VideoDetailComponent } from './components/video-detail/video-detail.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { CatalogListComponent } from './components/catalog-list/catalog-list.com
     SearchResultsComponent,
     CatalogGridComponent,
     CatalogListComponent,
+    VideoDetailComponent,
    
   ],
   imports: [
