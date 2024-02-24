@@ -9,7 +9,10 @@
                 <div class="left-top">
                     <div class="smallPic"></div>
                     <div class="information">
-                        <div class="overview-likes"><img src="../../../assets/img/icons8-herz-48.png" alt="">{{video.likes.length}}</div>
+                        <div class="overview-likes">
+                            <span><img src="../../../assets/img/icons8-herz-48.png" alt="">{{video.likes.length}}</span>
+                            <span class="space-left"><img src="../../../assets/img/auge.png" alt="">{{video.view_count}}</span>
+                        </div>
                         Kategorie: {{video.category}}<br>
                         Hochgeladen am: {{video.created_at | date: 'dd.MM.yyyy' }}
                     </div>
@@ -33,5 +36,5 @@
 
 
 
-
+<!-- <a target="_blank" href="https://icons8.com/icon/85130/sichtbar">Sichtbar</a> Icon von <a target="_blank" href="https://icons8.com">Icons8</a> -->
 

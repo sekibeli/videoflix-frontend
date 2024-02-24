@@ -1,4 +1,96 @@
-<div class="myList">
+
+
+<div class="startbox">
+ 
+  <div class="uploadBox">
+
+      <span class="headline"> <img src="../../../assets/img/logovideoflix.png" alt="" width="250px"></span><br>
+      <span>NEUES VIDEO</span>
+    
+      <form class="formgroup" [formGroup]="videoForm" (ngSubmit)="onUpload()">
+
+        
+          <div class="input-item">
+            <label for="username">Titel:</label>
+            <input class="form-control" type="text" formControlName="title" placeholder="Titel">
+          </div>
+          <div class="input-item">
+            <label for="username">Beschreibung:</label>
+            <input class="form-control" type="text" formControlName="description" placeholder="Beschreibung">
+          </div>
+
+          <div class="mb-3 input-item">
+            <label for="categorySelect" class="form-label">Kategorie</label>
+            <select class="form-select" formControlName="category" id="categorySelect">
+              <option value="allgemein" selected>Wählen Sie eine Kategorie</option>
+              <option value="allgemein">Allgemein</option>
+              <option value="kids">Kids</option>
+              <option value="noidea">No idea</option>
+              <option value="funny">Funny</option>
+            </select>
+          </div>
+
+
+          <input type="file" (change)="onFileSelected($event)">
+
+
+       
+
+
+        
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+            <button [disabled]="!videoForm.valid" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Video
+              hinzufügen</button>
+          </div>
+      </form>
+      <!-- <div class="text">Du hast noch keinen Account? <br><span class="red" [routerLink]="['/signup']">Hier registrieren!</span></div>
+      <div class="signUpBoxBottomContent">
+          <div class="forgotPw" [routerLink]="['/forgot-password']">Passwort vergessen?</div>
+      </div>
+<div class="devide"></div>
+<div class="redsection">Gastzugang</div>
+  </div> -->
+
+</div>
+</div>
+<div>
+  <div class="rowHead">
+    <h2>Ähnliche Videos</h2>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="myList">
 
 
   <div class="uploadCard">
@@ -17,12 +109,12 @@
       </div>
     </div>
 
-  </div>
+  </div> -->
 
 
 
   <!-- Modal -->
-  <div class="modal fade" id="addVideoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="addVideoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -73,9 +165,9 @@
 
 
     <div *ngIf="myVideos " class="myvideosContent">
-      <div *ngFor="let video of myVideos" class="card" style="width: 18rem;">
+      <div *ngFor="let video of myVideos" class="card" style="width: 18rem;"> -->
         <!-- <img src="" class="card-img-top" alt="{{video.title}}"> -->
-        <video width="100%" height="160">
+        <!-- <video width="100%" height="160">
           <source [src]="video.video_file" type="video/mp4">
           Ihr Browser unterstützt das Video-Tag nicht.
         </video>
@@ -96,11 +188,11 @@
 
 
 
-  </div>
+  </div> -->
 
 
   <!-- Modal Video Bearbeiten -->
-  <div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+  <!-- <div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true" (hide.bs.modal)="deleteSelectedVideo()">
     <div class="modal-dialog modal-xl modal-fullscreen-md-down">
       <div class="modal-content">
@@ -110,19 +202,19 @@
         </div>
         <div class="modal-body">
 
-          <form [formGroup]="editVideoForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="editVideoForm" (ngSubmit)="onSubmit()"> -->
 
             <!-- Title section -->
-            <div>
+            <!-- <div>
               <label for="title">Titel:</label>
               <input class="form-control" type="text" formControlName="title" placeholder="Titel">
               <span *ngIf="submitted && editVideoForm.get('title')?.errors?.['required']" class="warning">
                 Please enter your title.
               </span>
             </div>
-            <div>
+            <div> -->
               <!-- Description section -->
-              <label for="description">Beschreibung:</label>
+              <!-- <label for="description">Beschreibung:</label>
               <input class="form-control" type="text" formControlName="description" placeholder="Description">
               <span *ngIf="submitted && editVideoForm.get('description')?.errors?.['required']" class="warning">
                 Please enter your description.
@@ -140,14 +232,14 @@
               </select>
             </div>
 
-          </form>
+          </form> -->
 
 
           <!-- <div class="category">{{selectedVideo?.category}}</div> -->
-          <div class="box">
+          <!-- <div class="box"> -->
             <!-- <h4>{{selectedVideo?.title}}</h4> -->
             <!-- <div class="description">{{selectedVideo?.description}}</div> -->
-            <div class="fullwidth" *ngIf="selectedVideo">
+            <!-- <div class="fullwidth" *ngIf="selectedVideo">
               <video width="230px" controls>
                 <source [src]="selectedVideo.video_file" type="video/mp4">
                 Ihr Browser unterstützt das Video-Tag nicht.
@@ -168,7 +260,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- Modal Ende -->
 
-</div>
+<!-- </div> -->
