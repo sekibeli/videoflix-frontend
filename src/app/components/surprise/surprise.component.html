@@ -12,7 +12,7 @@
                     <div class="show-title">{{featureVideo.title}}</div>
                     <div class="show-description">{{featureVideo.description}}</div>
                     <div class="show-category">{{featureVideo.category}}</div>
-                    <button class="btn btn-danger">ANSCHAUEN</button>
+                    <button class="btn btn-danger" (click)="viewVideoDetail(featureVideo.id)">ANSCHAUEN</button>
                 </div>
             <!-- </div> -->
          
@@ -68,7 +68,7 @@
                         <div class="itemBox" >
                             <div class="pic-box">
                                
-                                <div class="overlay" (click)="onSelectVideo(video)">
+                                <div class="overlay" (click)="viewVideoDetail(video.id)">
                                     <!-- <i class="play-icon">▶</i> Beispiel für ein Abspielsymbol -->
                                     <div class="playIcon">Play</div>
                                 </div>

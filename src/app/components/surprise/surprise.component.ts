@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { SignupData } from 'src/app/services/user-interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   selectedVideoLikedSubscription!: Subscription;
   @ViewChild('featureVideoElement') featureVideoElement!: ElementRef;
 
-  constructor(public videoService: VideoService, private userService: UserService, private authService: AuthService) { }
+  constructor(public videoService: VideoService, private userService: UserService, private authService: AuthService, public router: Router) { }
 
   ngOnInit() {
     this.videoService.getVideos();
@@ -250,6 +251,10 @@ export class SurpriseComponent implements OnInit, OnDestroy {
 
     });
 
+  }
+
+  viewVideoDetail(videoId: number){
+    this.router.navigate(['/home/detail', videoId])
   }
 
 }

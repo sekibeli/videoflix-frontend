@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.class';
 import { AuthService } from 'src/app/services/auth.service';
 import { SignupData } from 'src/app/services/user-interface';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   currentUser!: SignupData;
 
 
-  constructor(private videoService: VideoService, private userService: UserService, private authService: AuthService) { }
+  constructor(private videoService: VideoService, private userService: UserService, private authService: AuthService, public router: Router) { }
 
   ngOnInit() {
     this.videoService.getVideos();
@@ -135,6 +136,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.videoService.incrementViewCount(videoId).subscribe(response => {
       console.log('Video hochgezählt');
     });   
+  }
+  viewVideoDetail(videoId: number){
+    this.router.navigate(['/home/detail', videoId])
   }
 
 }

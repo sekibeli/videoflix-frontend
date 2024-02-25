@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Video } from 'src/app/models/video.class';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-catalog-list',
@@ -8,4 +9,10 @@ import { Video } from 'src/app/models/video.class';
 })
 export class CatalogListComponent {
   @Input() videos! : Video[] | null ;
+
+  constructor(private router: Router){}
+
+  viewVideoDetail(videoId: number){
+    this.router.navigate(['/home/detail', videoId])
+  }
 }

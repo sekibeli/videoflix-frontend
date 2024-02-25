@@ -5,7 +5,7 @@
         <div class="itemBox" >
             <div class="pic-box">
                
-                <div class="overlay" >
+                <div class="overlay" (click)="viewVideoDetail(video.id)" >
                     <!-- <i class="play-icon">▶</i> Beispiel für ein Abspielsymbol -->
                     <div class="playIcon">Play</div>
                 </div>
@@ -18,7 +18,7 @@
                 </video>
            
             </div>
-                <div class="text-besides">
+                <div class="text-besides" *ngIf="video">
                     <div class="overview-title">{{video.title}}</div>
                     <div class="overview-category">{{video.category}}</div>
                     <div></div>

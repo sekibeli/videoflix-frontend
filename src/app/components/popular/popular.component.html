@@ -3,12 +3,12 @@
         <div>
     <div class="placemid" *ngIf="(videoService.mostLikedVideos$ | async)?.slice(0,1) as mostLikedVideo">
       
-            <video width="100%" height="auto" *ngIf="mostLikedVideo[0]" loop autoplay muted >
+            <video width="100%" height="auto" *ngIf="mostLikedVideo[0]">
                 <source [src]="mostLikedVideo[0].video_file" type="video/mp4">
                 Ihr Browser unterstützt das Video-Tag nicht.
             </video>
             
-            <div class="text-overlay">
+            <div class="text-overlay" *ngIf="mostLikedVideo[0]">
                 <div class="show-title">{{mostLikedVideo[0].title}}</div>
                 <div class="show-description">{{mostLikedVideo[0].description}}</div>
                 <div class="show-category">{{mostLikedVideo[0].category}}</div>

@@ -16,6 +16,8 @@ import { PopularComponent } from './components/popular/popular.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { VideoDetailComponent } from './components/video-detail/video-detail.component';
+import { EditVideoComponent } from './components/edit-video/edit-video.component';
 
 
 const routes: Routes = [
@@ -39,7 +41,8 @@ const routes: Routes = [
       { path: 'allvideos', component: OverviewComponent },
       { path: 'myvideos', component: MyvideosComponent},
       { path: 'popular', component: PopularComponent},
-      // { path: 'detail', component: DetailComponent }
+     { path: 'detail/:id', component: VideoDetailComponent },
+     { path: 'edit-video/:id', component: EditVideoComponent}
     ]
   }
 ];
