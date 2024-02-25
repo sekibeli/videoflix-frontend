@@ -30,6 +30,7 @@ import { CatalogGridComponent } from './components/catalog-grid/catalog-grid.com
 import { CatalogListComponent } from './components/catalog-list/catalog-list.component';
 import { VideoDetailComponent } from './components/video-detail/video-detail.component';
 import { EditVideoComponent } from './components/edit-video/edit-video.component';
+import { MyCatalogListComponent } from './components/my-catalog-list/my-catalog-list.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { EditVideoComponent } from './components/edit-video/edit-video.component
     CatalogListComponent,
     VideoDetailComponent,
     EditVideoComponent,
+    MyCatalogListComponent,
    
   ],
   imports: [
