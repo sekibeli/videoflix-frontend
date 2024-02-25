@@ -25,11 +25,27 @@
                 <source [src]="video.video_file" type="video/mp4">
                 Ihr Browser unterstützt das Video-Tag nicht.
 
-            </video></div>
+            </video>
+        
+            <div class="videoLikesContainer">
+                <div class="bi bi-heart iconSize"
+                    *ngIf="video && video.id !== undefined && !videoLiked"
+                    (click)="toggleLikeVideo(video.id)"></div>
+                <div class="bi bi-heart-fill iconSize likeButton"
+                    [ngClass]="{'liked': videoLiked}" style="color:red"
+                    *ngIf="video && video.id !== undefined && videoLiked"
+                    (click)="toggleLikeVideo(video.id)"></div>
+                <div class="bi likeCounterSelectedVideo iconSizeFeatureVideo">
+                    {{video.likes.length}}</div>
+            </div>
+        
+        </div>
         </div>
         
     </div>
+
     <div class="section-devider"></div>
+  
 </div>
 
 

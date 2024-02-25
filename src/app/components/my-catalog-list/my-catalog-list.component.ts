@@ -13,6 +13,6 @@ export class MyCatalogListComponent {
   constructor(private router: Router){}
 
   editVideoDetail(videoId: number){
-    this.router.navigate(['/home/detail', videoId])
+    this.router.navigate(['/home/edit-video', videoId])
   }
 }

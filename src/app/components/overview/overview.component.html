@@ -12,25 +12,17 @@
                 <div class="rowHead">
                     <h2>{{ category.key }}</h2>
                 </div>
-                <div class="videoListing">
-
-                    <div *ngFor="let video of category.value" data-bs-toggle="modal"
+                <!-- <div class="videoListing"> -->
+                    <app-catalog-grid [videos]="category.value"></app-catalog-grid>
+                    <!-- <div *ngFor="let video of category.value" data-bs-toggle="modal"
                         data-bs-target="#overviewVideoModal">
-                        <!-- Darstellung jedes Videos -->
-                        <!-- <div class="videoBox" (click)="onSelectVideo(video)">
-                            <div class="relative">
-                                <div class="videoTitleHeader">{{ video.title }}</div>
-                                <video width="240" height="160" [poster]="video.thumbnail">
-                                    <source [src]="video.video_file" type="video/mp4">
-                                    Ihr Browser unterstützt das Video-Tag nicht.
-                                </video>
-                            </div>
-                        </div> -->
+                      
+                      
                         <div class="itemBox" >
                             <div class="pic-box">
                                
                                 <div class="overlay" (click)="viewVideoDetail(video.id)">
-                                    <!-- <i class="play-icon">▶</i> Beispiel für ein Abspielsymbol -->
+                                
                                     <div class="playIcon">Play</div>
                                 </div>
                                
@@ -50,8 +42,8 @@
                                 </div>
                             
                         </div>
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div> -->
             </div>
         </ng-container>
 

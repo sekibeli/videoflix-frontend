@@ -24,7 +24,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 7;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
 }
 .overview-category {
@@ -41,7 +41,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    padding: 10px 80px;
+    padding: 20px 80px;
 }
 
 .itemBox {
@@ -119,4 +119,20 @@ video {
     flex-direction: column;
     width: 200px;
     margin: 5px 20px;
+}
+
+
+.overview-likes {
+    margin-bottom: 20px;
+    padding-top: 5px;
+    img {
+        
+        margin-right: 10px;
+        width:20px;
+        height: 20px;
+    }
+}
+
+.space-left {
+    margin-left: 15px;
 }

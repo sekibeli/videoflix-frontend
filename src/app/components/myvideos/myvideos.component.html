@@ -4,8 +4,8 @@
  
   <div class="uploadBox">
 
-      <span class="headline"> <img src="../../../assets/img/logovideoflix.png" alt="" width="250px"></span><br>
-      <span>NEUES VIDEO HOCHLADEN</span>
+      <div class="headline"> <img src="../../../assets/img/logovideoflix.png" alt="" width="250px"></div>
+      <div>NEUES VIDEO HOCHLADEN</div>
     
       <form class="formgroup" [formGroup]="videoForm" (ngSubmit)="onUpload()">
 
@@ -40,7 +40,7 @@
         
           <div class="modal-footer">
             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-            <button [disabled]="!videoForm.valid" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Video
+            <button [disabled]="!videoForm.valid" type="submit" class="btn btn-danger" data-bs-dismiss="modal">Video
               hinzufügen</button>
           </div>
       </form>
@@ -56,11 +56,12 @@
 </div>
 <div>
   <div class="rowHead">
-    <h2>Meine veröffentlichten Videos</h2>
-    <div class="videoListing" *ngIf="myVideos" >
-      <app-my-catalog-list [videos]="myVideos"></app-my-catalog-list>
-                </div>
+    <h2><strong>Meine</strong> veröffentlichten Videos</h2>
+   
 </div>
+<div class="videoListing" *ngIf="myVideos" >
+  <app-my-catalog-list [videos]="myVideos"></app-my-catalog-list>
+            </div>
 </div>
 
 
