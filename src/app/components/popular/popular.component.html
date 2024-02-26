@@ -38,7 +38,7 @@
 
 
                     <div class="rowHead">
-                        <h2>Am meisten geliked</h2>
+                        <h2>Am meisten <strong>geliked</strong></h2>
                     </div>
                     <div class="videoListing">
                         <app-catalog-grid [videos]="this.videoService.mostLikedVideos$ | async "></app-catalog-grid>
@@ -48,7 +48,7 @@
 <div class="sections">
 
                         <div class="rowHead">
-                            <h2>Am meisten gesehen</h2>
+                            <h2>Am meisten <strong>angesehen</strong></h2>
                         </div>
                         <div class="videoListing">
                             <app-catalog-grid [videos]="this.videoService.mostSeenVideos$ | async "></app-catalog-grid>

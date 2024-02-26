@@ -8,7 +8,7 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'videoflix-frontend';
+  title = 'Videoflix';
 
 constructor(private videoService: VideoService, private userService: UserService){
 }

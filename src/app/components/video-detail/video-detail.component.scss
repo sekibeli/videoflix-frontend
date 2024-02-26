@@ -13,6 +13,7 @@
     display: flex;
     justify-content: space-between;
     gap:40px;
+   
 
  }
  .left-content, .right-content {
@@ -20,9 +21,33 @@
     /* Optional: Abstand hinzufügen */
    
 }
+
+// .left-content {
+//     border-left: 20px linear-gradient(to right, #232328, transparent);
+// }
+
+
+.left-content {
+    position: relative;
+    background: linear-gradient(to right, #232328, transparent);
+    border-radius: 10px;
+  }
+  
+
+  
  .placemid {
     margin: 100px 100px;
 
+ }
+
+ .goBack {
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+       
+        filter:invert(0.2)
+    }
  }
  .section-devider {
     width: 100%;
@@ -39,23 +64,29 @@
    width: 100vw;
 }
 
+.red {
+    color: #DC3545;
+}
 .information {
     color: white;
-    font-size: 1em;
+    font-size: 1.3em;
     font-weight: 300;
-    width: 400px;
+    width: 100%;
+  
     margin-left: 20px;
 }
 
 .smallPic {
-    width: 180px;
+    width: 20px;
     height: 280px;
-    background-color: grey;
-    border-radius: 10px;
+    background: linear-gradient(to right, #232328, transparent);
+
+    border-radius: 3px;
 }
 
 .left-top {
     display: flex;
+    flex-direction: column;
 }
 
 .description {
@@ -65,6 +96,7 @@
     color: white;
     font-size: 1em;
     font-weight: 300;
+    margin-left: 20px;
 
 }
 
