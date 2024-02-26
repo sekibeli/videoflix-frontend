@@ -5,6 +5,7 @@ import { Video } from 'src/app/models/video.class';
 import { AuthService } from 'src/app/services/auth.service';
 import { SignupData } from 'src/app/services/user-interface';
 import { VideoService } from 'src/app/services/video.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-video-detail',
@@ -19,7 +20,7 @@ currentUser!: SignupData;
 unsubscribe: Subscription | undefined;
 
 
-  constructor(private route: ActivatedRoute, public videoService: VideoService, private authService: AuthService){}
+  constructor(private route: ActivatedRoute, public videoService: VideoService, private authService: AuthService, private location: Location){}
   ngOnInit() {
     this.getLoggedUserData();
     const id = this.route.snapshot.paramMap.get('id');
@@ -94,5 +95,9 @@ unsubscribe: Subscription | undefined;
     } catch (err) {
       console.error('Could not load user data', err);
     }
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
