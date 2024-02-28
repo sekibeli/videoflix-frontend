@@ -15,8 +15,8 @@ export class PopularComponent implements OnInit, OnDestroy {
   private videosYesterdaySubject = new BehaviorSubject<Video[]>([]);
   public videosYesterday$ = this.videosYesterdaySubject.asObservable();
 
-  // private recentVideosSubject = new BehaviorSubject<Video[]>([]);
-  // public recentVideos$ = this.recentVideosSubject.asObservable();
+  private recentVideosSubject = new BehaviorSubject<Video[]>([]);
+  public recentVideos$ = this.recentVideosSubject.asObservable();
 
   private displayedVideosSubject = new BehaviorSubject<Video[]>([]);
   public displayedVideos$ = this.displayedVideosSubject.asObservable();
@@ -30,7 +30,7 @@ export class PopularComponent implements OnInit, OnDestroy {
     this.videoService.getMostLikedVideos();
     this.videoService.getMostSeenVideos();
     this.videoService.loadInitialVideoData();
-    // this.getRecentVideos();
+    this.getRecentVideos();
   }
 
 
@@ -48,12 +48,12 @@ export class PopularComponent implements OnInit, OnDestroy {
   }
 
 
-  // getRecentVideos() {
-  //   this.videoService.getRecentVideos().subscribe(videos => {
-  //     console.log('recentVideos: ', videos);
-  //     this.recentVideosSubject.next(videos);
-  //   })
-  // }
+  getRecentVideos() {
+    this.videoService.getRecentVideos().subscribe(videos => {
+      console.log('recentVideos: ', videos);
+      this.recentVideosSubject.next(videos);
+    })
+  }
 
 
   onSelectVideo(video: Video): void {
