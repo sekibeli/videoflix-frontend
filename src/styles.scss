@@ -2,6 +2,7 @@
 
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~bootstrap-icons/font/bootstrap-icons.css';
+@import './assets/fonts/fonts.css';
 
 // body{
 //     // background-image: url('assets/img/dallebg.jpg'); /* Pfad zum Hintergrundbild anpassen */
@@ -15,7 +16,8 @@
 // }
 
 body {
-    background-color: #1A221C;
+    background-color: #28282D;
+    font-family: 'Open Sans', sans-serif;
 } 
 .warning {
     color: red;
@@ -23,4 +25,11 @@ body {
 
 .success {
     color: green;
+}
+h2 {
+    font-weight: 300;
+}
+
+.btn {
+    margin-right: 5px;
 }
