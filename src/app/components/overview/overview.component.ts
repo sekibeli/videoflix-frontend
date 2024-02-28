@@ -60,6 +60,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     return Object.keys(this.videosByCategory);
   }
 
+
   onSelectVideo(video: Video): void {
     const videoId = video.id;
     this.getSelectedtVideo(videoId)
@@ -67,17 +68,21 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.checkVideoLikes();    
   }
 
+
   deleteSelectedVideo() {
     this.selectedVideo = null;
   }
+
 
   onModalClose() {
     this.selectedVideo = null;
   }
 
+
   deleteVideo(videoId: number) {
     this.videoService.deleteVideo(videoId);
   }
+  
 
   getUserById(id: number): User | undefined {
     return this.users.find(user => user.id === id);

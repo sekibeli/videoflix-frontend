@@ -15,12 +15,12 @@
         <div class="rightSection">
             <div class="videoBox">
                 <div class="top">Neu hochgeladen</div>
-                <app-videorow [videos]="recentVideos$ | async "></app-videorow>
-
+                <app-videorow [videos]="this.videoService.recentVideos$| async " (toggleLikebyUser)="handleVideoLiked($event)"></app-videorow>
+                
             </div>
             <div class="videoBox">
                 <div class="top">Am meisten geliked</div>
-                <app-videorow [videos]="this.videoService.mostLikedVideos$ | async "></app-videorow>
+                <app-videorow [videos]="this.videoService.mostLikedVideos$ | async " ></app-videorow>
 
             </div>
         </div>
