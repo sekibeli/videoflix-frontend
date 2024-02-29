@@ -38,7 +38,6 @@ export class EditUserComponent implements OnInit {
       this.editUserForm.patchValue({
         email: userProfile.email,
         username: userProfile.username,
-        phone: userProfile.phone,
       })
       this.currentUsername = userProfile.username;
     } catch (err) {
@@ -51,7 +50,6 @@ export class EditUserComponent implements OnInit {
     this.editUserForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       username: ['', [Validators.required]],
-      phone: ['', [Validators.required, Validators.pattern('[- +()0-9]+')]],
     })
   }
 

@@ -2,7 +2,6 @@ export interface SignupData {
     id: number;
     email: string;
     username: string;
-    phone: string;
     password: string;
     adress: string;
   }

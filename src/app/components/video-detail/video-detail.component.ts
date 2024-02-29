@@ -23,13 +23,14 @@ unsubscribe: Subscription | undefined;
   constructor(private route: ActivatedRoute, public videoService: VideoService, private authService: AuthService, private location: Location){}
   ngOnInit() {
     this.getLoggedUserData();
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');    
     if (id !== null) {
       // Konvertiere den String zu einem Number und weise ihn zu, falls die Konversion erfolgreich ist
       this.videoId = Number(id);
       console.log(this.videoId);
        this.unsubscribe = this.videoService.getVideobyId(this.videoId).subscribe((video) => {
         this.video = video;
+        this.checkVideoLikes();
        });
       // Überprüfen, ob die Konversion fehlgeschlagen ist (NaN)
       if (isNaN(this.videoId)) {
@@ -78,6 +79,8 @@ unsubscribe: Subscription | undefined;
   }
 
   checkVideoLikes() {
+    console.log('Current video us:',this.video, 'currentuser is:', this.currentUser);
+    
     if (this.video && this.video.likes && this.currentUser && this.currentUser.id !== undefined) {
       this.videoLiked = this.video.likes.includes(this.currentUser.id);
     } else {

@@ -56,12 +56,12 @@ export class PopularComponent implements OnInit, OnDestroy {
   }
 
 
-  onSelectVideo(video: Video): void {
-    const videoId = video.id;
-    // this.getSelectedtVideo(videoId)
-    // this.selectedVideo = video;
-    // this.checkVideoLikes();
-  }
+  // onSelectVideo(video: Video): void {
+  //   const videoId = video.id;
+  //   this.getSelectedtVideo(videoId)
+  //   this.selectedVideo = video;
+  //   this.checkVideoLikes();
+  // }
 
 
   getYesterdayVideos() {
