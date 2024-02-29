@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Video } from '../models/video.class';
-import { BehaviorSubject, Observable, Subject, map, of, switchMap, take } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, map, of, switchMap, take, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
@@ -20,11 +20,15 @@ export class VideoService {
   public searchResults$ = this.searchResultsSubject.asObservable();
 
   private likeUpdate = new BehaviorSubject<number | null>(null);
+
   private mostLikedVideosSubject = new BehaviorSubject<Video[]>([]);
   public mostLikedVideos$ = this.mostLikedVideosSubject.asObservable();
 
   private mostSeenVideosSubject = new BehaviorSubject<Video[]>([]);
   public mostSeenVideos$ = this.mostSeenVideosSubject.asObservable();
+
+  private recentVideosSubject = new BehaviorSubject<Video[]>([]);
+  public recentVideos$ = this.recentVideosSubject.asObservable();
 
 
   constructor(private http: HttpClient) { }
@@ -71,11 +75,15 @@ export class VideoService {
   }
 
 
-  toggleLike(videoId: number) {
-    const url = environment.baseUrl + `/toggle_like/${videoId}`;
-    return this.http.post(url, {});
+  toggleLike(videoId: number): Observable<any> {
+    const url = `${environment.baseUrl}/toggle_like/${videoId}`;
+    return this.http.post(url, {}).pipe(
+      tap(() => {
+        this.loadInitialVideoData(); 
+      })
+    );
   }
-
+  
 
   notifyLikeUpdate(videoId: number) {
     this.likeUpdate.next(videoId);
@@ -97,7 +105,7 @@ export class VideoService {
   }
 
   getRecentVideos() {
-    const url = environment.baseUrl + `/videos/recentVideos/`;
+    const url = environment.baseUrl + `/videos/recentVideos/`;    
     return this.http.get<Video[]>(url);
   }
 
@@ -148,4 +156,16 @@ export class VideoService {
     );
   }
 
+
+  loadInitialVideoData() {
+    this.loadVideosForType('recentVideos', this.recentVideosSubject);
+    // this.loadVideosForType('popular_videos', this.mostLikedVideosSubject);
+  }
+
+
+  loadVideosForType(type: string, subject: BehaviorSubject<Video[]>) {   
+    const url = `${environment.baseUrl}/videos/${type}/`;
+    this.http.get<Video[]>(url).subscribe(videos => subject.next(videos));
+  }
+  
 }

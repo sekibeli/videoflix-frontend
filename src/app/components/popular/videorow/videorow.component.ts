@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.class';
 import { Video } from 'src/app/models/video.class';
@@ -14,6 +14,7 @@ import { VideoService } from 'src/app/services/video.service';
 })
 export class VideorowComponent {
 @Input() videos! : Video[] | null ;
+@Output() toggleLikebyUser = new EventEmitter<number>();
 selectedVideo!: any ;
 videoLiked!: boolean;
 currentUser!: SignupData;
@@ -34,34 +35,45 @@ ngOnInit() {
   this.subscription = this.userService.users$.subscribe(users => {
     this.users = users;
   });
+  this.checkVideoLikes();
 }
+
+
+
 onSelectVideo(video: Video): void {
   this.selectedVideo = video;
  
   const videoId = video.id;
   // this.getSelectedVideo(video.id)
    this.checkVideoLikes();
-   
 }
+
 
 deleteSelectedVideo() {
   this.selectedVideo = null;
   // document.body.classList.remove('modal-open');
 }
 
+
 onModalClose() {
   this.selectedVideo = null;
 }
+
 
 deleteVideo(videoId: number) {
   this.videoService.deleteVideo(videoId);
 }
 
+
 toggleLikeVideo(videoId: number) {
+  this.toggleLikebyUser.emit(videoId); 
   this.videoService.toggleLike(videoId).subscribe({
     next: (response) => {
       this.getSelectedVideo(videoId);
-      this.videoService.notifyLikeUpdate(videoId);
+      this.videoService.getMostSeenVideos();
+      this.videoService.getMostLikedVideos();
+      // this.videoService.getRecentVideos();
+      // this.recentVideoLiked.emit();
       console.log(response);
     },
     error: (error) => {
@@ -83,6 +95,7 @@ getSelectedVideo(videoId: number) {
   });
 }
 
+
 checkVideoLikes() {
   if (this.selectedVideo && this.selectedVideo.likes) {
      this.videoLiked = this.selectedVideo.likes.includes(this.currentUser.id);
@@ -92,13 +105,14 @@ checkVideoLikes() {
 onVideoPlay(videoId: number){
   this.videoService.incrementViewCount(videoId).subscribe(response => {
     console.log('Video hochgezählt');
-
   });
- 
 }
+
+
 getUserById(id: number): User | undefined {
   return this.users.find(user => user.id === id);
 }
+
 
 async getLoggedUserData() {
   try {

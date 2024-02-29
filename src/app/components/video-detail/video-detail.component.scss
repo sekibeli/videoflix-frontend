@@ -1,0 +1,169 @@
+
+:host {
+    display: block;
+    width: 100%; 
+    min-height: 100vh; 
+    background-size: cover; 
+    background-color: #28282D;
+  }
+
+ 
+
+ .videoDetail {
+    display: flex;
+    justify-content: space-between;
+    gap:40px;
+   
+
+ }
+ .left-content, .right-content {
+    flex: 1; /* Jedes Kind nimmt gleich viel Platz ein */
+    /* Optional: Abstand hinzufügen */
+   
+}
+
+// .left-content {
+//     border-left: 20px linear-gradient(to right, #232328, transparent);
+// }
+
+
+.left-content {
+    position: relative;
+    background: linear-gradient(to right, #232328, transparent);
+    border-radius: 10px;
+  }
+  
+
+  
+ .placemid {
+    margin: 100px 100px;
+
+ }
+
+ .goBack {
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+       
+        filter:invert(0.2)
+    }
+ }
+ .section-devider {
+    width: 100%;
+    background-color: #DC3545;
+    height: 2px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.rowHead {
+    color: white;
+    margin: 30px 0;
+  
+   
+   width: 100vw;
+}
+
+.red {
+    color: #DC3545;
+}
+.information {
+    color: white;
+    font-size: 1.3em;
+    font-weight: 300;
+    width: 100%;
+  
+    margin-left: 20px;
+}
+
+.smallPic {
+    width: 20px;
+    height: 280px;
+    background: linear-gradient(to right, #232328, transparent);
+
+    border-radius: 3px;
+}
+
+.left-top {
+    display: flex;
+    flex-direction: column;
+}
+
+.description {
+    margin-top: 20px;
+    width: 100%;
+    height: 100px;
+    color: white;
+    font-size: 1em;
+    font-weight: 300;
+    margin-left: 20px;
+
+}
+
+video {
+    border-radius: 10px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overview-likes {
+    margin-bottom: 20px;
+    padding-top: 5px;
+    img {
+        
+        margin-right: 10px;
+        width:20px;
+        height: 20px;
+    }
+}
+
+.space-left {
+    margin-left: 15px;
+}
+
+.iconSize {
+    font-size: 1em;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.videoLikesContainer {
+    color: white;
+    display: flex;
+    width: 120px;
+    align-items: center;
+    border: 1.5px solid #dc3545;
+    border-radius: 20px;
+}
+
+.likeCounterSelectedVideo {
+    font-size: 1em !important;
+    padding: 0 10px;
+}
+
+.likeButton {
+    display: inline-block;
+    transition: all .125ms ease;
+
+    &.liked {
+        color: red;
+        animation: pulse 0.6s ease;
+    }
+}
+
+.bi {
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2); 
+    }
+    100% {
+      transform: scale(1);
+    }
+}
