@@ -4,14 +4,13 @@
     <div class="placemid">
         <div class="goBack" (click)="goBack()"><img src="../../../assets/img/goBack.png">zurück</div>
         <div class="rowHead">
-            <h1>{{video.title}}</h1>
+            <h1>Information bearbeiten</h1>
         </div>
         <div class="videoDetail">
             <div class="left-content">
                 <div class="left-top">
-                    <!-- 
-                        <div class="smallPic"></div> -->
-                    <div class="information">
+                    
+                    <!-- <div class="information">
                         <div class="overview-likes">
                             <span><img src="../../../assets/img/icons8-herz-48.png" alt="">{{video.likes.length}}</span>
                             <span class="space-left"><img src="../../../assets/img/auge.png" alt="">{{video.view_count}}</span>
@@ -20,31 +19,57 @@
                         Hochgeladen am: <span>{{video.created_at | date: 'dd.MM.yyyy' }}</span> <br>
                        Laufzeit: <span class="red">120 min</span>
                        
-                    </div>
-                    <div class="description">{{video.description}}</div>
+                    </div> -->
+                    <!-- <div class="description">{{video.description}}</div> -->
+
+
+                    <form [formGroup]="editVideoForm"> 
+
+                        Title section 
+                         <div>
+                          <label for="title">Titel:</label>
+                          <input class="form-control edit" type="text" formControlName="title" placeholder="Titel">
+                          <span *ngIf="submitted && editVideoForm.get('title')?.errors?.['required']" class="warning">
+                            Please enter your title.
+                          </span>
+                        </div>
+                        <div> 
+                          <!-- Description section -->
+                          <label for="description">Beschreibung:</label>
+                          <textarea class="form-control edit area" type="text" formControlName="description" placeholder="Description"></textarea>
+                          <span *ngIf="submitted && editVideoForm.get('description')?.errors?.['required']" class="warning">
+                            Please enter your description.
+                          </span>
+                        </div>
+            
+                        <div class="mb-3 input-item">
+                          <label for="categorySelect" class="form-label">Kategorie</label>
+                          <select class="form-select edit" formControlName="category" id="categorySelect">
+                            <option selected>Wählen Sie eine Kategorie</option>
+                            <option value="allgemein">Allgemein</option>
+                            <option value="kids">Kids</option>
+                            <option value="noidea">No idea</option>
+                            <option value="funny">Funny</option>
+                          </select>
+                        </div>
+            
+                      </form>
+                      
+                    <button (click)="saveChanges(video); goBack()" type="button"
+                      class="btn btn-primary">Änderungen speichern</button>
                     
                 </div>
                 
 
             </div>
              <div class="right-content">
-                 <video width="100%" controls (play)="onVideoPlay(video.id)">
+                 <video width="100%" >
                 <source [src]="video.video_file" type="video/mp4">
                 Ihr Browser unterstützt das Video-Tag nicht.
 
             </video>
         
-            <div class="videoLikesContainer">
-                <div class="bi bi-heart iconSize"
-                    *ngIf="video && video.id !== undefined && !videoLiked"
-                    (click)="toggleLikeVideo(video.id)"></div>
-                <div class="bi bi-heart-fill iconSize likeButton"
-                    [ngClass]="{'liked': videoLiked}" style="color:red"
-                    *ngIf="video && video.id !== undefined && videoLiked"
-                    (click)="toggleLikeVideo(video.id)"></div>
-                <div class="bi likeCounterSelectedVideo iconSizeFeatureVideo">
-                    {{video.likes.length}}</div>
-            </div>
+          
         
         </div>
         </div>
