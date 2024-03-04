@@ -22,6 +22,7 @@ currentUser!: SignupData;
 unsubscribe: Subscription | undefined;
 editVideoForm!: FormGroup;
 submitted = false;
+selectedFile: File | null = null;
 
 videoForm = this.formBuilder.group({
   title: ['', Validators.required],
@@ -32,9 +33,18 @@ videoForm = this.formBuilder.group({
 });
 
 
-  constructor(private route: ActivatedRoute, public videoService: VideoService, private authService: AuthService, private formBuilder: FormBuilder, private location: Location){}
+  constructor(private route: ActivatedRoute, public videoService: VideoService, private authService: AuthService, private formBuilder: FormBuilder, private location: Location){
+    
+  }
   ngOnInit() {
-    this.getLoggedUserData();
+
+  
+
+
+
+
+    this.initFormGroup();
+    // this.getLoggedUserData();
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== null) {
       // Konvertiere den String zu einem Number und weise ihn zu, falls die Konversion erfolgreich ist
@@ -42,6 +52,7 @@ videoForm = this.formBuilder.group({
       console.log(this.videoId);
        this.unsubscribe = this.videoService.getVideobyId(this.videoId).subscribe((video) => {
         this.video = video;
+        this.initFormGroup();
        });
       // Überprüfen, ob die Konversion fehlgeschlagen ist (NaN)
       if (isNaN(this.videoId)) {
@@ -52,11 +63,7 @@ videoForm = this.formBuilder.group({
       this.videoId = undefined;
     }
   }
-  onVideoPlay(videoId: number){
-    this.videoService.incrementViewCount(videoId).subscribe(response => {
-      console.log('Video hochgezählt');
-    });   
-  }
+ 
 
   ngOnDestroy(): void {
     if (this.unsubscribe) {
@@ -64,24 +71,13 @@ videoForm = this.formBuilder.group({
     }
   }
 
-  toggleLikeVideo(videoId: number) {
-    this.videoService.toggleLike(videoId).subscribe({
-      next: (response) => {
-        this.getSelectedVideo(videoId);
-        this.videoService.notifyLikeUpdate(videoId);
-        console.log(response);
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    });
-  }
+
 
   getSelectedVideo(videoId: number) {
     this.videoService.getVideobyId(videoId).subscribe({
       next: (updatedVideo: Video) => {
         this.video = updatedVideo;
-        this.checkVideoLikes(); // Rufe dies nur auf, wenn `updatedVideo` erfolgreich aktualisiert wurde
+        // this.checkVideoLikes(); 
       },
       error: (error: any) => {
         console.error("Fehler beim Abrufen des aktualisierten Videos", error);
@@ -89,25 +85,7 @@ videoForm = this.formBuilder.group({
     });
   }
 
-  checkVideoLikes() {
-    if (this.video && this.video.likes && this.currentUser && this.currentUser.id !== undefined) {
-      this.videoLiked = this.video.likes.includes(this.currentUser.id);
-    } else {
-      // Behandle den Fall, dass `currentUser` oder `likes` undefined sind
-      console.error("currentUser oder likes sind undefined");
-    }
-  }
-
-  async getLoggedUserData() {
-    try {
-      this.currentUser = await this.authService.getLoggedUserData();
-      if (this.currentUser) {
-        this.checkVideoLikes();
-      }
-    } catch (err) {
-      console.error('Could not load user data', err);
-    }
-  }
+  
 
   saveChanges(video: Video) {
     if (this.editVideoForm.valid) {
@@ -134,4 +112,51 @@ videoForm = this.formBuilder.group({
   goBack() {
     this.location.back();
   }
+
+  // onSubmit() { }
+  initFormGroup() {
+    // Verwenden Sie Video-Daten, falls verfügbar, sonst leere Strings als Standardwerte
+    const videoData = this.video || { title: '', description: '', category: '' };
+    this.editVideoForm = this.formBuilder.group({
+      title: [videoData.title, [Validators.required]],
+      description: [videoData.description, [Validators.required]],
+      category: [videoData.category, [Validators.required]],
+    });
+  }
+
+  onUpload() {
+    if (this.videoForm.valid && this.selectedFile) {
+      const formData = new FormData();
+      formData.append('title', this.videoForm.value.title ?? '')
+      formData.append('description', this.videoForm.value.description ?? '')
+      formData.append('video_file', this.selectedFile, this.selectedFile.name);
+      formData.append('category', this.videoForm.value.category ?? 'allgemein');
+
+      formData.append('myFile', this.selectedFile, this.selectedFile.name);
+
+      this.videoService.postVideo(formData).subscribe({
+        next: (response) => {
+          console.log('Video erfolgreich hochgeladen', response);
+          this.videoService.getVideos();
+        },
+        error: (error) => {
+          console.log('Fehler beim Hochladen des Videos', error);
+        }
+      })
+
+    }
+  }
+
+  onFileSelected(event: Event) {
+    const element = event.currentTarget as HTMLInputElement;
+    let file: File | null = element.files ? element.files[0] : null;
+    if (file) {
+      this.videoForm.patchValue({ video_file: file as any | null });
+      this.videoForm.get('video_file')?.updateValueAndValidity();
+      this.selectedFile = file; // Ihre bestehende Logik zur Speicherung der Datei
+    }
+  }
+
+
+
 }
