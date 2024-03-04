@@ -1,6 +1,5 @@
-
 <div class="content" *ngIf="video">
-   
+
     <div class="placemid">
         <div class="goBack" (click)="goBack()"><img src="../../../assets/img/goBack.png">zurück</div>
         <div class="rowHead">
@@ -14,45 +13,53 @@
                     <div class="information">
                         <div class="overview-likes">
                             <span><img src="../../../assets/img/icons8-herz-48.png" alt="">{{video.likes.length}}</span>
-                            <span class="space-left"><img src="../../../assets/img/auge.png" alt="">{{video.view_count}}</span>
+                            <span class="space-left"><img src="../../../assets/img/auge.png"
+                                    alt="">{{video.view_count}}</span>
                         </div>
                         Kategorie: <span class="red">{{video.category}}</span><br>
                         Hochgeladen am: <span>{{video.created_at | date: 'dd.MM.yyyy' }}</span> <br>
-                       Laufzeit: <span class="red">120 min</span>
-                       
+                        Laufzeit: <span class="red">120 min</span>
+
                     </div>
                     <div class="description">{{video.description}}</div>
-                    
+
                 </div>
-                
+
 
             </div>
-             <div class="right-content">
-                 <video width="100%" controls (play)="onVideoPlay(video.id)">
-                <source [src]="video.video_file" type="video/mp4">
-                Ihr Browser unterstützt das Video-Tag nicht.
+            <div class="right-content">
+                <video id="videoPlayer" width="100%" controls (play)="onVideoPlay(video.id)">
+                    <source [src]="video.video_file" type="video/mp4">
+                    Ihr Browser unterstützt das Video-Tag nicht.
+                </video>
 
-            </video>
-        
-            <div class="videoLikesContainer">
-                <div class="bi bi-heart iconSize"
-                    *ngIf="video && video.id !== undefined && !videoLiked"
-                    (click)="toggleLikeVideo(video.id)"></div>
-                <div class="bi bi-heart-fill iconSize likeButton"
-                    [ngClass]="{'liked': videoLiked}" style="color:red"
-                    *ngIf="video && video.id !== undefined && videoLiked"
-                    (click)="toggleLikeVideo(video.id)"></div>
-                <div class="bi likeCounterSelectedVideo iconSizeFeatureVideo">
-                    {{video.likes.length}}</div>
+                <div class="videoBottomContent">
+                    <!-- Video-Likes section -->
+                    <div class="videoLikesContainer">
+                        <div class="bi bi-heart iconSize" *ngIf="video && video.id !== undefined && !videoLiked"
+                            (click)="toggleLikeVideo(video.id)"></div>
+                        <div class="bi bi-heart-fill iconSize likeButton" [ngClass]="{'liked': videoLiked}"
+                            style="color:red" *ngIf="video && video.id !== undefined && videoLiked"
+                            (click)="toggleLikeVideo(video.id)"></div>
+                        <div class="bi likeCounterSelectedVideo iconSizeFeatureVideo">
+                            {{video.likes.length}}</div>
+                    </div>
+
+                    <!-- Video-Quality section -->
+                    <div class="videoQualityContainer">
+                        <div class="selectVideoQuality" *ngFor="let quality of videoQualities">
+                            <div (click)="changeQuality(quality.video_file)" >{{quality.quality}}</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        
         </div>
-        </div>
-        
+
     </div>
 
     <div class="section-devider"></div>
-  
+
 </div>
 
 
@@ -61,4 +68,3 @@
 
 <!-- <a target="_blank" href="https://icons8.com/icon/85130/sichtbar">Sichtbar</a> Icon von <a target="_blank" href="https://icons8.com">Icons8</a> -->
 <!-- <a target="_blank" href="https://icons8.com/icon/85459/links">Links</a> Icon von <a target="_blank" href="https://icons8.com">Icons8</a> -->
-

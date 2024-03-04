@@ -28,14 +28,6 @@
                 </span>
             </div>
 
-            <!-- Phone section -->
-            <div>
-                <input class="form-control" type="text" formControlName="phone" placeholder="Telefon">
-                <span *ngIf="submitted && signUpForm.get('phone')?.errors?.['required']" class="warning">
-                    Please enter a phone.
-                </span>
-            </div>
-
             <!-- Password section -->
             <div>
                 <input class="form-control" type="password" formControlName="password"
