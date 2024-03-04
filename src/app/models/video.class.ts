@@ -1,3 +1,9 @@
+export interface VideoQuality {
+    quality: string;
+    video_file: string;
+  }
+
+
 export class Video {
     id: number;
     created_at: Date;
@@ -9,6 +15,7 @@ export class Video {
     likes: number[];
     thumbnail: string;
     view_count: number;
+    qualities?: VideoQuality[];
 
     constructor(obj?:any){
         this.id = obj ? obj.id: null;
@@ -21,6 +28,7 @@ export class Video {
         this.likes = obj ? obj.likes: [];
         this.thumbnail = obj ? obj.thumbnail: '';
         this.view_count = obj ? obj.view_count: null;
+        this.qualities = obj ? obj.qualities : [];
     }
 
     public toJSON(){
@@ -34,7 +42,8 @@ export class Video {
            video_file: this.video_file,
            likes: this.likes,
            thumbnail: this.thumbnail,
-           view_count: this.view_count
+           view_count: this.view_count,
+           qualities: this.qualities
         }
     }
 }

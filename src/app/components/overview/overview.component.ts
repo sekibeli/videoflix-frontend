@@ -47,6 +47,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
 
   private groupVideosByCategory(videos: Video[]) {
+    console.log(videos);
+    
     const categoryGroups: { [category: string]: Video[] } = {};
     videos.forEach(video => {
       if (!categoryGroups[video.category]) {

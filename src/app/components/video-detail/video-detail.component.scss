@@ -167,3 +167,21 @@ video {
       transform: scale(1);
     }
 }
+
+.videoBottomContent {
+    display: flex;
+    justify-content: space-between;
+}
+
+.videoQualityContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.selectVideoQuality {
+    color: white;
+    background: #dc3545;
+    border-radius: 5px;
+    padding: 4px;
+    cursor: pointer;
+}
