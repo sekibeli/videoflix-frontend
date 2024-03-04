@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Video, VideoQuality } from 'src/app/models/video.class';
@@ -15,14 +15,18 @@ import { Location } from '@angular/common';
 export class VideoDetailComponent implements OnInit, OnDestroy {
   videoId: number | undefined;
   video: Video | undefined;
+  currentVideoSrc: string = '';
   videoQualities: VideoQuality[] = [];
   selectedQuality: string = '';
   videoLiked!: boolean;
   currentUser!: SignupData;
   unsubscribe: Subscription | undefined;
+  @ViewChild('videoPlayer') videoPlayer: any;
 
 
   constructor(private route: ActivatedRoute, public videoService: VideoService, private authService: AuthService, private location: Location) { }
+
+
   ngOnInit() {
     this.getLoggedUserData();
     const id = this.route.snapshot.paramMap.get('id');    
@@ -33,8 +37,7 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
       this.unsubscribe = this.videoService.getVideobyId(this.videoId).subscribe((video) => {
         this.video = video;
         this.checkVideoLikes();
-        console.log(this.video);
-        this.selectedQuality = video.video_file;
+        this.currentVideoSrc = this.video.video_file;
         this.videoQualities = video.qualities || [];
       });
       // Überprüfen, ob die Konversion fehlgeschlagen ist (NaN)
@@ -46,6 +49,8 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
       this.videoId = undefined;
     }
   }
+
+
   onVideoPlay(videoId: number) {
     this.videoService.incrementViewCount(videoId).subscribe(response => {
       console.log('Video hochgezählt');
@@ -111,15 +116,16 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
 
 
   changeQuality(qualityVideoFile: string) {
-    console.log('Choose another qulty', qualityVideoFile);
+    console.log(this.video);
+
     if (this.video) {
-      const videoElement = document.getElementById('videoPlayer') as HTMLVideoElement;
+      const videoElement = this.videoPlayer.nativeElement;
       videoElement.pause();
-      videoElement.currentTime = 0;
-      videoElement.src = qualityVideoFile;
-      videoElement.load();
+      this.currentVideoSrc = qualityVideoFile; 
+      videoElement.load(); 
       videoElement.play();
     }
   }
+
 
 }

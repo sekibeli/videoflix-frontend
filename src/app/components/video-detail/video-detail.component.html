@@ -28,8 +28,8 @@
 
             </div>
             <div class="right-content">
-                <video id="videoPlayer" width="100%" controls (play)="onVideoPlay(video.id)">
-                    <source [src]="video.video_file" type="video/mp4">
+                <video #videoPlayer width="100%" controls (play)="onVideoPlay(video.id)">
+                    <source [src]="currentVideoSrc" type="video/mp4">
                     Ihr Browser unterstützt das Video-Tag nicht.
                 </video>
 
@@ -48,7 +48,7 @@
                     <!-- Video-Quality section -->
                     <div class="videoQualityContainer">
                         <div class="selectVideoQuality" *ngFor="let quality of videoQualities">
-                            <div (click)="changeQuality(quality.video_file)" >{{quality.quality}}</div>
+                            <div (click)="changeQuality(quality.video_file)">{{ quality.quality }}</div>
                         </div>
                     </div>
                 </div>
