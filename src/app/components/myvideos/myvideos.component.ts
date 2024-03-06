@@ -19,17 +19,18 @@ export class MyvideosComponent implements OnInit {
   userProfile?: any;
   myVideos: Video[] = [];
   selectedFile: File | null = null;
+  filmRatings = Array.from({ length: 19 }, (v, k) => k);
+  curentfilmRating: number = 0;
+  currentCategory: string = 'allgemein';
   // videoForm!: FormGroup;
 
   videoForm = this.formBuilder.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
     category: ['', Validators.required],
-    film_rating: ['', Validators.required],
     video_file: [null, Validators.required],
-
-  });
-
+    film_rating: [0, Validators.required]
+  });  
 
 
   onFileSelected(event: Event) {
@@ -76,8 +77,8 @@ export class MyvideosComponent implements OnInit {
       formData.append('description', this.videoForm.value.description ?? '')
       formData.append('video_file', this.selectedFile, this.selectedFile.name);
       formData.append('category', this.videoForm.value.category ?? 'allgemein');
-      formData.append('film_rating', this.videoForm.value.film_rating ?? '0');
       formData.append('myFile', this.selectedFile, this.selectedFile.name);
+      formData.append('film_rating', this.videoForm.value.film_rating?.toString() ?? '0');
 
       this.videoService.postVideo(formData).subscribe({
         next: (response) => {
@@ -125,7 +126,7 @@ export class MyvideosComponent implements OnInit {
       title: ['', [Validators.required]],
       description: ['', [Validators.required]],
       category: ['', [Validators.required]],
-
+      film_rating: ['', [Validators.required]],
     })
   }
 
@@ -137,6 +138,7 @@ export class MyvideosComponent implements OnInit {
       formData.append('title', this.editVideoForm.get('title')?.value);
       formData.append('description', this.editVideoForm.get('description')?.value);
       formData.append('category', this.editVideoForm.get('category')?.value);
+      formData.append('film_rating', this.editVideoForm.get('film_rating')?.value);
       // Fügen Sie hier ggf. weitere Felder hinzu
 
       // Wenn Sie eine Datei hochladen, fügen Sie diese auch hinzu
@@ -158,5 +160,23 @@ export class MyvideosComponent implements OnInit {
     const modalElement = document.getElementById('editModal');
     const modal = bootstrap.Modal.getInstance(modalElement);
     modal.hide();
+  }
+
+
+  selectRating(rating: number) {
+    const filmRatingControl = this.videoForm.get('film_rating');
+    if (filmRatingControl) {
+      filmRatingControl.setValue(rating);
+      this.curentfilmRating = rating;
+    }
+  }  
+
+
+  selectCategory(category: string) {
+    const categoryControl = this.videoForm.get('category');
+    if (categoryControl) {
+      categoryControl.setValue(category);
+      this.currentCategory = category;
+    }
   }
 }
