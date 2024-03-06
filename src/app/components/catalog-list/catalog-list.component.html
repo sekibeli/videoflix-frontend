@@ -21,7 +21,11 @@
                 <div class="text-besides" *ngIf="video">
                     <div class="overview-title">{{video.title}}</div>
                     <div class="overview-category">{{video.category}}</div>
-                    <div></div>
+                    <div class="overview-likes">
+                        <span class="lighter"><img src="../../../assets/img/icons8-herz-48.png" alt="">{{video?.likes?.length}}</span>
+                        <span class="space-left lighter"><img src="../../../assets/img/auge.png" alt="">{{video?.view_count}}</span>
+                        <span class="space-left fsk">{{video?.film_rating}}</span>
+                    </div>
                     <div class="overview-description">{{video.description}}</div>
                 </div>
             

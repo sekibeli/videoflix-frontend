@@ -25,6 +25,7 @@ export class MyvideosComponent implements OnInit {
     title: ['', Validators.required],
     description: ['', Validators.required],
     category: ['', Validators.required],
+    film_rating: ['', Validators.required],
     video_file: [null, Validators.required],
 
   });
@@ -75,7 +76,7 @@ export class MyvideosComponent implements OnInit {
       formData.append('description', this.videoForm.value.description ?? '')
       formData.append('video_file', this.selectedFile, this.selectedFile.name);
       formData.append('category', this.videoForm.value.category ?? 'allgemein');
-
+      formData.append('film_rating', this.videoForm.value.film_rating ?? '0');
       formData.append('myFile', this.selectedFile, this.selectedFile.name);
 
       this.videoService.postVideo(formData).subscribe({

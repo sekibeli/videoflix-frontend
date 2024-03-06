@@ -16,6 +16,7 @@ export class Video {
     thumbnail: string;
     view_count: number;
     qualities?: VideoQuality[];
+    film_rating: number;
 
     constructor(obj?:any){
         this.id = obj ? obj.id: null;
@@ -29,6 +30,7 @@ export class Video {
         this.thumbnail = obj ? obj.thumbnail: '';
         this.view_count = obj ? obj.view_count: null;
         this.qualities = obj ? obj.qualities : [];
+        this.film_rating = obj ? obj.film_rating : null;
     }
 
     public toJSON(){
@@ -43,7 +45,8 @@ export class Video {
            likes: this.likes,
            thumbnail: this.thumbnail,
            view_count: this.view_count,
-           qualities: this.qualities
+           qualities: this.qualities,
+           film_rating: this.film_rating
         }
     }
 }
