@@ -191,6 +191,13 @@ label {
     .headlineContainer {
         padding: 0 2%;
     }
+    .content-box {
+        padding: 50px 20px;
+    }
+
+    .profileBox {
+        width: 310px;
+    }
 }
 
 @media(max-height: 700px) {
@@ -202,4 +209,6 @@ label {
     .headlineContainer {
         margin-top: 20px;
     }
+
+  
 }
