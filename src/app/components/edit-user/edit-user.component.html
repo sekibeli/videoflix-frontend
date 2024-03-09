@@ -1,25 +1,29 @@
 <div class="content" >
     <div class="rowHead"><h2>Profil bearbeiten</h2></div>
     <div class="section-devider"></div>
-<div class="content-box">
-    <span class="infoText">
+<div class="content-box background-pic">
+    <div class="infoText">
         Wilkommen {{currentUsername}}, hier kannst
         du deine persöhnlichen Einstellungen verwalten.
-    </span>
+    </div>
     <div class="profileBox">
         <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
 
             <!-- Email section -->
-            <div>
-                <input class="form-control" type="email" formControlName="email" placeholder="Deine email">
+          
+            <div >
+                <label for="userEmail">Deine Email</label>
+                <input class="form-control" type="email" id="userEmail" formControlName="email" placeholder="Deine Email">
                 <span *ngIf="submitted && editUserForm.get('email')?.errors?.['required']" class="warning">
                     Please enter your email.
                 </span>
             </div>
+            
 
             <!-- Username section -->
             <div>
-                <input class="form-control" type="text" formControlName="username" placeholder="Benutzername">
+                <label for="username">Dein Username</label>
+                <input class="form-control" type="text" id="username" formControlName="username" placeholder="Benutzername">
                 <span *ngIf="submitted && editUserForm.get('username')?.errors?.['required']" class="warning">
                     Please enter your firstname.
                 </span>
@@ -31,8 +35,11 @@
             </div>
         </form>
     </div>
-
-    <div class="editUserBottomContainer">
+</div>
+<div class="section-devider"></div>
+<div class="content-box">
+    <!-- <div class="editUserBottomContainer"> -->
+        
         <span class="infoText">
             Möchtest du deinen Account löschen?
         </span>
@@ -59,8 +66,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </div>
+<div class="section-devider"></div>
 </div>
 
 
