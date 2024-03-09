@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'datenschutz', component: DatenschutzComponent },
   { path: 'impressum', component: ImpressumComponent },
-  { path: 'edit-user', component: EditUserComponent },
+  // { path: 'edit-user', component: EditUserComponent },
   {
     path: 'home', component: HomeComponent,
 
@@ -42,7 +42,8 @@ const routes: Routes = [
       { path: 'myvideos', component: MyvideosComponent},
       { path: 'popular', component: PopularComponent},
      { path: 'detail/:id', component: VideoDetailComponent },
-     { path: 'edit-video/:id', component: EditVideoComponent}
+     { path: 'edit-video/:id', component: EditVideoComponent},
+     { path: 'edit-user', component: EditUserComponent },
     ]
   }
 ];

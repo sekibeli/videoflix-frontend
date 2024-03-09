@@ -1,15 +1,11 @@
-<div class="mainContainer">
-
-    <div class="headlineContainer">
-        <span class="title titleadd">Profil bearbeiten</span>
-        <div class="underline"></div>
-
-        <span class="infoText">
-            Wilkommen {{currentUsername}}, hier kannst
-            du deine persöhnlichen Einstellungen verwalten.
-        </span>
-    </div>
-
+<div class="content" >
+    <div class="rowHead"><h2>Profil bearbeiten</h2></div>
+    <div class="section-devider"></div>
+<div class="content-box">
+    <span class="infoText">
+        Wilkommen {{currentUsername}}, hier kannst
+        du deine persöhnlichen Einstellungen verwalten.
+    </span>
     <div class="profileBox">
         <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
 
@@ -64,5 +60,75 @@
             </div>
         </div>
     </div>
-
 </div>
+</div>
+
+
+<!-- <div class="mainContainer"> -->
+
+    <!-- <div class="headlineContainer">
+        <span class="title titleadd">Profil bearbeiten</span>
+        <div class="underline"></div>
+
+        <span class="infoText">
+            Wilkommen {{currentUsername}}, hier kannst
+            du deine persöhnlichen Einstellungen verwalten.
+        </span>
+    </div> -->
+
+    <!-- <div class="profileBox">
+        <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
+
+            Email section
+            <div>
+                <input class="form-control" type="email" formControlName="email" placeholder="Deine email">
+                <span *ngIf="submitted && editUserForm.get('email')?.errors?.['required']" class="warning">
+                    Please enter your email.
+                </span>
+            </div>
+
+            Username section
+            <div>
+                <input class="form-control" type="text" formControlName="username" placeholder="Benutzername">
+                <span *ngIf="submitted && editUserForm.get('username')?.errors?.['required']" class="warning">
+                    Please enter your firstname.
+                </span>
+            </div>
+
+            <div class="btnContainer">
+                <button class="editProfileBtn saveBtn" type="submit" [disabled]="!editUserForm.valid">Speichern</button>
+                <button class="editProfileBtn cancelBtn" type="button" (click)="goBack()">Abbrechen</button>
+            </div>
+        </form>
+    </div> -->
+
+    <!-- <div class="editUserBottomContainer">
+        <span class="infoText">
+            Möchtest du deinen Account löschen?
+        </span>
+
+        Button trigger modal
+        <button type="button" class="deleteUserAccountBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">Account
+            löschen</button>
+
+        Modal
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Account löschen</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Möchtest du wirklich deinen Account unwiderruflich löschen?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteAccount()">Löschen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+<!-- </div> -->
