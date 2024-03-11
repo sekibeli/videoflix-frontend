@@ -15,6 +15,10 @@ nav {
 #navbarSupportedContent {
     margin-top: 5px;
 }
+.bg-body-tertiary {
+    background-color: #2B2B30 !important;
+  }
+  
 
 .headerLinks {
     display: flex;
@@ -24,17 +28,19 @@ nav {
 }
 
 .link {
+    color: white;
     padding: 5px 10px;
     border-radius: 5px;
+    transition: color 0.5s ease;
     &:hover {
+        color: #DC3444;
         cursor: pointer;
-        //    background-color: rgba(255, 255, 255, 0.558);
-        background-color: rgba(150, 150, 150, 0.424);
+      
     }
 
     &.active {
         cursor: pointer;
-        background-color: rgba(150, 150, 150, 0.424);
+      
     }
 }
 
@@ -56,11 +62,34 @@ nav {
 }
 
 
-@media (max-width: 991px) {
+.form-control {
+    background-color:#63636e !important;
+    color: lightgrey;
+    border: 1px solid lightgrey;
+    margin-left: 10px;
+}
+
+.searchInputContent input::placeholder {
+    color: #BDBDBD; /* Hellgraue Farbe */
+    opacity: 1; /* Stellt sicher, dass die Farbe nicht durch die Standard-Transparenz beeinträchtigt wird */
+  }
+  
+
+@media (max-width: 990px) {
+    .navbar-toggler {
+        border-color: #FFF;
+      }
+      
+      .navbar-toggler-icon {
+        background-image: url('data:image/svg+xml;charset=UTF8,<svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><path stroke="rgba(255, 255, 255, 1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 7h22M4 15h22M4 23h22"/></svg>');
+    
+      }
+      
     #navbarSupportedContent {
-        background-color: white;
+        background-color: #28282D;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
+        border-bottom: 1px solid red;
     }
 
     .homeBtn {
