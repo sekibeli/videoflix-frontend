@@ -15,7 +15,7 @@
                             <span><img src="../../../assets/img/icons8-herz-48.png" alt="">{{video.likes.length}}</span>
                             <span class="space-left"><img src="../../../assets/img/auge.png"
                                     alt="">{{video.view_count}}</span>
-                                    <span class="space-left filmRating">FSK: {{video.film_rating}}</span>
+                            <span class="space-left filmRating">{{video.film_rating}}</span>
                         </div>
                         Kategorie: <span class="red">{{video.category}}</span><br>
                         Hochgeladen am: <span>{{video.created_at | date: 'dd.MM.yyyy' }}</span> <br>
@@ -29,10 +29,12 @@
 
             </div>
             <div class="right-content">
-                <video #videoPlayer width="100%" controls (play)="onVideoPlay(video.id)">
-                    <source [src]="currentVideoSrc" type="video/mp4">
-                    Ihr Browser unterstützt das Video-Tag nicht.
-                </video>
+                <div class="videoContainer">
+                    <video #videoPlayer width="100%" controls (play)="onVideoPlay(video.id)">
+                        <source [src]="currentVideoSrc" type="video/mp4">
+                        Ihr Browser unterstützt das Video-Tag nicht.
+                    </video>
+                </div>
 
                 <div class="videoBottomContent">
                     <!-- Video-Likes section -->
@@ -47,7 +49,11 @@
                     </div>
 
                     <!-- Video-Quality section -->
-                    <div class="videoQualityContainer">
+                    <button *ngIf="!(videoQualitiesReady | async)" class="btn btn-danger" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Laden...
+                      </button>
+                    <div class="videoQualityContainer" *ngIf="videoQualitiesReady | async">
                         <div class="selectVideoQuality" *ngFor="let quality of videoQualities">
                             <div (click)="changeQuality(quality.video_file)">{{ quality.quality }}</div>
                         </div>
