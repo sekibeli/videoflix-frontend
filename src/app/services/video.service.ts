@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Video } from '../models/video.class';
-import { BehaviorSubject, Observable, Subject, map, of, switchMap, take, tap } from 'rxjs';
+import { BehaviorSubject, Observable, take, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'

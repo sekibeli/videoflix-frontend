@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription, interval, switchMap, takeUntil, takeWhile, timer } from 'rxjs';
 import { Video, VideoQuality } from 'src/app/models/video.class';
 import { AuthService } from 'src/app/services/auth.service';
 import { SignupData } from 'src/app/services/user-interface';
@@ -21,6 +21,9 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
   videoLiked!: boolean;
   currentUser!: SignupData;
   unsubscribe: Subscription | undefined;
+  loadingVideoQuality: boolean = true;
+  isLoading: boolean = false;
+  videoQualitiesReady = new BehaviorSubject<boolean>(false);
   @ViewChild('videoPlayer') videoPlayer: any;
 
 
@@ -29,7 +32,7 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getLoggedUserData();
-    const id = this.route.snapshot.paramMap.get('id');    
+    const id = this.route.snapshot.paramMap.get('id');
     if (id !== null) {
       // Konvertiere den String zu einem Number und weise ihn zu, falls die Konversion erfolgreich ist
       this.videoId = Number(id);
@@ -39,6 +42,7 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
         this.checkVideoLikes();
         this.currentVideoSrc = this.video.video_file;
         this.videoQualities = video.qualities || [];
+        this.pollForVideoQualities(video.id);
       });
       // Überprüfen, ob die Konversion fehlgeschlagen ist (NaN)
       if (isNaN(this.videoId)) {
@@ -89,8 +93,8 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
   }
 
   checkVideoLikes() {
-    console.log('Current video us:',this.video, 'currentuser is:', this.currentUser);
-    
+    console.log('Current video us:', this.video, 'currentuser is:', this.currentUser);
+
     if (this.video && this.video.likes && this.currentUser && this.currentUser.id !== undefined) {
       this.videoLiked = this.video.likes.includes(this.currentUser.id);
     } else {
@@ -114,6 +118,23 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
+  pollForVideoQualities(videoId: number) {
+    const pollingInterval = 1000; 
+    const stopPollingAfter = 60000;   
+    const stopPolling$ = timer(stopPollingAfter);   
+    interval(pollingInterval).pipe(
+      switchMap(() => this.videoService.getVideobyId(videoId)),
+      takeWhile((video) => this.videoQualities.length <= 2, true),
+      takeUntil(stopPolling$)
+    ).subscribe(video => {
+      this.videoQualities = video.qualities || [];
+      if (this.videoQualities.length > 2) {
+        this.videoQualitiesReady.next(true);
+      }
+    });
+  }
+  
+
 
   changeQuality(qualityVideoFile: string) {
     console.log(this.video);
@@ -121,8 +142,8 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
     if (this.video) {
       const videoElement = this.videoPlayer.nativeElement;
       videoElement.pause();
-      this.currentVideoSrc = qualityVideoFile; 
-      videoElement.load(); 
+      this.currentVideoSrc = qualityVideoFile;
+      videoElement.load();
       videoElement.play();
     }
   }
