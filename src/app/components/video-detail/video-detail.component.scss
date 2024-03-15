@@ -184,7 +184,22 @@ video {
     cursor: pointer;
 }
 
-.filmRating {
-    border: 1px solid hsla(0, 0%, 100%, .4);
-    padding: 0 0.4em;
+// .filmRating {
+//     border: 1px solid hsla(0, 0%, 100%, .4);
+//     padding: 0 0.4em;
+// }
+
+.fsk {
+    margin-left: 5px;
+    border: 1px solid #666671;
+    border-radius: 3px;
+    padding: 0px 5px;
+}
+
+// .lighter {
+//     color: #afafaf;
+// }
+
+.space-left {
+    margin-left: 20px ;
 }
