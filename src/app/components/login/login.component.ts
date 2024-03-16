@@ -94,8 +94,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  async onGuestLogin(event: MouseEvent) {
-    event.stopPropagation();
+  async onGuestLogin() {
     try {
       const resp: any = await this.authService.guestLogin();
       localStorage.setItem('token', resp['token']);

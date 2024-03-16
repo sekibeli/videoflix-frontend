@@ -19,24 +19,7 @@
     background-color: rgba(40, 40, 45, 0.90); /* Farbton #28282D mit hoher Deckkraft */
     z-index: 1; /* Stellt sicher, dass das Overlay über dem Hintergrundbild liegt */
 }
-// :host {
-//     display: block;
-//     width: 100%; /* Füllt die Breite des Elternelements */
-//     min-height: 100vh; /* Mindestens so hoch wie der Viewport */
-//     background: url('../../../assets/img/dallebg.jpg') no-repeat center center;
-//     background-size: cover; /* Stellt sicher, dass der Hintergrund die gesamte Fläche bedeckt */
-//   }
 
-// :host {
-//       // background-image: url('assets/img/dallebg.jpg'); /* Pfad zum Hintergrundbild anpassen */
-
-//       background-size: cover; /* Sorgt dafür, dass der Hintergrund das gesamte Element bedeckt */
-//       background-position: center; /* Zentriert das Bild */
-//       background-repeat: no-repeat; /* Verhindert das Wiederholen des Bildes */
-//       background-attachment: fixed; /* Der Hintergrund bewegt sich nicht beim Scrollen */
-//       height: 100%; /* Höhe auf 100% setzen, damit der gesamte Bereich bedeckt ist */
-//       margin: 0; /* Entfernt standardmäßige Randabstände */
-// }
 .headline {
     margin-bottom: 30px;
     font-size: 2em;
@@ -110,7 +93,7 @@
     width: 250px;
     background-color: #302f2f;
     border-color: #28282D;
-    color: white !important;
+    color: rgb(135, 135, 135) !important;
 }
 
 .form-control::placeholder {
@@ -150,4 +133,9 @@
     border-color: #DC3545;
     background-color:rgba(255, 255, 255, 0.292);
     height: 1px;
+}
+
+.modal-content {
+    background-color: #28282d;
+    color: white;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, Subscription, debounceTime, distinctUntilChanged } from 'rxjs';
 import { Video } from 'src/app/models/video.class';
@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @ViewChild('navbarCollapse') navbarCollapse: ElementRef | undefined;
   searchTermValue: string = '';
   searchTerm = new Subject<string>();
   videos: Video[] = [];
@@ -77,6 +78,10 @@ export class HeaderComponent implements OnInit {
       this.router.navigateByUrl('/login');
     } catch (err) {
     }
+  }
+
+  closeNavbar() {
+    this.navbarCollapse?.nativeElement.classList.remove('show');
   }
 
 }

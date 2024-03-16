@@ -1,10 +1,6 @@
-<!-- <button class="btn btn-danger fixedButton" [routerLink]="['/start']">zurück</button> -->
-<div class="startbox">
-    <!-- <div class="title titleadd">Videoflix</div>
-    <div class="title">
-        Streamen, Teilen, Spaß haben
-    </div> -->
 
+<div class="startbox">
+ 
     <div class="signUpBox">
 
         <span class="headline"> <img src="../../../assets/img/logovideoflix.png" alt="" width="250px"></span>
@@ -24,13 +20,36 @@
             </div>
 
             <button class="btn btn-danger mb-3" type="submit" [disabled]="!loginForm.valid">LOG IN</button>
-            <button class="btn btn-danger" type="submit" (click)="onGuestLogin($event)">GUEST LOGIN</button>
+            <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#guestModal">GAST LOGIN</button>
         </form>
         <div class="text">Du hast noch keinen Account? <br><span class="red" [routerLink]="['/signup']">Hier registrieren!</span></div>
         <div class="signUpBoxBottomContent">
             <div class="forgotPw" [routerLink]="['/forgot-password']">Passwort vergessen?</div>
         </div>
-<div class="devide"></div>
+<!-- <div class="devide"></div>
 <div class="redsection">Gastzugang</div>
+    </div>
+</div> -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="guestModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Herzlich Willkommen!</h1>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Vielen Dank, dass Sie sich die Zeit nehmen, unsere App zu erkunden. Um Ihnen ein vollständiges Erlebnis zu
+                    bieten, haben wir alle Funktionen der App auch für Gastnutzer freigeschaltet. So können Sie jede Facette
+                    unserer Anwendung in Ruhe ausprobieren und kennenlernen - ohne Einschränkungen.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="onGuestLogin()">LOG IN</button>
+            </div>
+        </div>
     </div>
 </div>

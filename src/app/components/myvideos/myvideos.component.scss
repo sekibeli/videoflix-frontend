@@ -1,11 +1,197 @@
 
-:host {
-    display: block;
-    width: 100%; /* Füllt die Breite des Elternelements */
-    min-height: 100vh; /* Mindestens so hoch wie der Viewport */
-    background: url('../../../assets/img/dallebg.jpg') no-repeat center center;
-    background-size: cover; /* Stellt sicher, dass der Hintergrund die gesamte Fläche bedeckt */
-  }
+
+.startbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('../../../assets/img/film.jpg');
+    background-size: cover;
+    height: 70vh;
+    position: relative;
+    border-bottom: 2px solid  #DC3545;
+   padding: 0 80px;
+}
+
+.startbox::before {
+    content: ""; /* Notwendig für die Anzeige des Pseudo-Elements */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(40, 40, 45, 0.90); /* Farbton #28282D mit hoher Deckkraft */
+    z-index: 1; /* Stellt sicher, dass das Overlay über dem Hintergrundbild liegt */
+}
+
+.headline {
+    margin-bottom: 30px;
+    font-size: 2em;
+
+}
+
+.text {
+    // display: flex;
+    // justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.red {
+    color: #DC3545;
+    cursor: pointer;
+
+}
+.title {
+    // margin-top: 150px;
+    text-align: center;
+    font-size:2.5em;
+    color: white;
+    line-height: 1.2em;
+
+}
+.titleadd {
+    margin-top: 100px;
+    font-size: 5em;
+    color: #FEFDC4;
+}
+
+.login {
+    color: white;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    background-color: #132c33de;
+    // width: 300px;
+    border-radius: 20px;
+    margin: auto; /* Zentriert den Container horizontal */
+    padding: 30px;
+    position: absolute;
+    top: 66%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Zentriert den Container vertikal */
+}
+.uploadBox {
+    border-top: 2px solid #DC3545;
+    color: white;
+    padding: 30px 27px;
+    margin-top: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // flex-direction: column;
+    background-color: #28282D;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1000px;
+    z-index: 3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+   
+}
+.form-control {
+   
+    margin-bottom: 15px;
+    // width: 250px;
+    background-color: #302f2f;
+    border-color: #28282D;
+    color: rgb(123, 123, 123) !important;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.592); /* Setzt die Farbe des Placeholder-Textes auf Weiß */
+    opacity: 1; /* Optional: Stellt sicher, dass der Placeholder-Text vollständig opak ist */
+}
+
+.formgroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    width: 100%
+}
+
+.fixedButton {
+    position: absolute;
+     top: 5%;
+    right: 10%;
+}
+
+.forgotPw {
+    cursor: pointer;
+    color: #DC3545;
+}
+.redsection {
+    font-size: 0.8em;
+    width: 100px;
+    margin-top: 10px;
+    // color: #DC3545;
+    color: rgba(255, 255, 255, 0.288);
+    cursor: pointer;
+   
+   
+}
+.devide {
+    margin-top: 20px;
+    width: 100%;
+    border-color: #DC3545;
+    background-color:rgba(255, 255, 255, 0.292);
+    height: 1px;
+}
+.rowHead {
+    color: white;
+    margin: 30px 0;
+    // background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.162) 100%);
+    // border-bottom: 1px solid rgba(0, 0, 0, 0.334);
+    // border-top: 1px solid rgba(0, 0, 0, 0.334);
+    padding: 0px 80px;
+   width: 100vw;
+}
+
+@media (max-width: 992px){
+    .startbox {
+        padding: 0 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// :host {
+//     display: block;
+//     width: 100%; /* Füllt die Breite des Elternelements */
+//     min-height: 100vh; /* Mindestens so hoch wie der Viewport */
+//     background: url('../../../assets/img/dallebg.jpg') no-repeat center center;
+//     background-size: cover; /* Stellt sicher, dass der Hintergrund die gesamte Fläche bedeckt */
+//   }
 
 .myList {
 position: absolute;
@@ -18,6 +204,7 @@ height: 100vh;
 
 .input-item {
     margin-top: 10px;
+    width: 100%;
      &:label {
         padding-left: 5px;
      }
@@ -45,4 +232,28 @@ height: 100vh;
 .lastRow {
     display: flex;
     gap: 5px;
+}
+
+.section-devider {
+    width: 100%;
+    background-color: #DC3545;
+    height: 2px;
+    z-index: 20;
+}
+
+
+.dropdownMenu {
+    display: flex;
+    align-items: center;
+}
+
+.currentSelection {
+    color: #DC3545;
+}
+
+@media(max-width:600px) {
+    .dropdownMenu {
+        flex-direction: column;
+        justify-content: center;
+    }
 }

@@ -12,29 +12,21 @@
                 <div class="rowHead">
                     <h2>{{ category.key }}</h2>
                 </div>
-                <div class="videoListing">
-
-                    <div *ngFor="let video of category.value" data-bs-toggle="modal"
+                <!-- <div class="videoListing"> -->
+                    <app-catalog-grid [videos]="category.value"></app-catalog-grid>
+                    <!-- <div *ngFor="let video of category.value" data-bs-toggle="modal"
                         data-bs-target="#overviewVideoModal">
-                        <!-- Darstellung jedes Videos -->
-                        <!-- <div class="videoBox" (click)="onSelectVideo(video)">
-                            <div class="relative">
-                                <div class="videoTitleHeader">{{ video.title }}</div>
-                                <video width="240" height="160" [poster]="video.thumbnail">
-                                    <source [src]="video.video_file" type="video/mp4">
-                                    Ihr Browser unterstützt das Video-Tag nicht.
-                                </video>
-                            </div>
-                        </div> -->
+                      
+                      
                         <div class="itemBox" >
                             <div class="pic-box">
                                
-                                <div class="overlay" (click)="onSelectVideo(video)">
-                                    <!-- <i class="play-icon">▶</i> Beispiel für ein Abspielsymbol -->
+                                <div class="overlay" (click)="viewVideoDetail(video.id)">
+                                
                                     <div class="playIcon">Play</div>
                                 </div>
                                
-                                <video class="video" width="240" height="160" [poster]="video.thumbnail" >
+                                <video class="video"  [poster]="video.thumbnail" >
                                    
                                     <source [src]="video.video_file" type="video/mp4">
                                     Ihr Browser unterstützt das Video-Tag nicht.
@@ -50,14 +42,14 @@
                                 </div>
                             
                         </div>
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div> -->
             </div>
         </ng-container>
 
 
         <!-- Modal -->
-        <div class="modal fade" id="overviewVideoModal" data-bs-backdrop="static" tabindex="-1"
+        <!-- <div class="modal fade" id="overviewVideoModal" data-bs-backdrop="static" tabindex="-1"
             aria-labelledby="overviewVideoModalLabel" aria-hidden="true" (hide.bs.modal)="deleteSelectedVideo()">
             <div class="modal-dialog modal-xl modal-fullscreen-md-down">
                 <div class="modal-content">
@@ -82,7 +74,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="controlButtons">
-                                        <!-- <div class="bi bi-trash3-fill iconSize" data-bs-dismiss="modal" (click)="deleteVideo(selectedVideo.id)"></div> -->
+                                        <div class="bi bi-trash3-fill iconSize" data-bs-dismiss="modal" (click)="deleteVideo(selectedVideo.id)"></div>
                                         <div class="videoLikesContainer">
                                             <div class="bi bi-heart iconSize"
                                                 *ngIf="selectedVideo && selectedVideo.id !== undefined && !videoLiked"
@@ -95,7 +87,11 @@
                                                 {{selectedVideo?.likes?.length}}</div>
                                         </div>
                                         <div class="bi bi-info-circle-fill iconSize"></div>
-                                        <div class="additionalInformation"><i class="bi bi-person-fill"></i> {{ getUserById(selectedVideo?.created_from)?.username }}   <i class="bi bi-cloud-upload-fill"></i> {{selectedVideo?.created_at | date: 'dd. MMMM yyyy'}} <i class="bi bi-eye-fill"></i> {{selectedVideo?.view_count}}</div>
+                                        <div class="additionalInformation"><i class="bi bi-person-fill"></i> {{
+                                            getUserById(selectedVideo?.created_from)?.username }} <i
+                                                class="bi bi-cloud-upload-fill"></i> {{selectedVideo?.created_at | date:
+                                            'dd. MMMM yyyy'}} <i class="bi bi-eye-fill"></i>
+                                            {{selectedVideo?.view_count}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -106,11 +102,11 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                             (click)="deleteSelectedVideo()">Close</button>
-                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Modal Ende -->
 
 

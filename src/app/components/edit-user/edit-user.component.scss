@@ -1,3 +1,54 @@
+:host {
+    display: block;
+    width: 100%; 
+    min-height: 100vh; 
+    background-size: cover; 
+    // background-color: #28282D;
+  }
+
+  .background-pic {
+    position: relative;
+    background-size: cover;
+  }
+  
+  .background-pic::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../../../assets/img/film.jpg');
+    background-size: cover;
+    filter: contrast(30%) brightness(40%);
+    z-index: -1;
+   
+  }
+
+
+.content {
+    height: 100vh;
+    position: absolute;
+    top: 54px;
+}
+
+.section-devider {
+    width: 100%;
+    background-color: #DC3545;
+    height: 2px;
+}
+
+.rowHead {
+    color: white;
+    margin: 30px 0;
+    padding: 0px 80px;
+   width: 100vw;
+}
+
+
+.content-box {
+    padding: 50px 80px;
+}
 .mainContainer {
     display: flex;
     flex-direction: column;
@@ -28,7 +79,9 @@
 
 .infoText {
     color: white;
-    font-size: 2em;
+    font-size: 1.5em;
+    margin-top: 10px ;
+    z-index: 10;
 }
 
 .profileBox {
@@ -37,7 +90,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 320px;
+    width: 420px;
+    z-index: 10;
 }
 
 form {
@@ -111,11 +165,17 @@ input {
     color: white;
     border-radius: 10px;
     cursor: pointer;
+    margin-left: 10px;
     transition: all ease-in-out 125ms;
 
     &:hover {
         background-color: rgb(240, 5, 5);
     }
+}
+
+label {
+    // width: 100px;
+    color: white;
 }
 
 
@@ -131,6 +191,13 @@ input {
     .headlineContainer {
         padding: 0 2%;
     }
+    .content-box {
+        padding: 50px 20px;
+    }
+
+    .profileBox {
+        width: 310px;
+    }
 }
 
 @media(max-height: 700px) {
@@ -142,4 +209,6 @@ input {
     .headlineContainer {
         margin-top: 20px;
     }
+
+  
 }

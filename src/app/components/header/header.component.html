@@ -10,23 +10,23 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" #navbarCollapse>
       <ul class="navbar-nav mr-auto">
 
         <li class="nav-item homeBtn">
-          <div class="link bi bi-house-fill" routerLink="surprise" routerLinkActive="active"></div>
+          <div class="link bi bi-house-fill" (click)="closeNavbar()" routerLink="surprise" routerLinkActive="active"></div>
         </li>
 
         <li class="nav-item">
-          <div class="link" routerLink="allvideos" routerLinkActive="active">Alle Filme</div>
+          <div class="link" (click)="closeNavbar()" routerLink="allvideos" routerLinkActive="active">Alle Filme</div>
         </li>
 
         <li class="nav-item">
-          <div class="link" routerLink="popular" routerLinkActive="active">Neu & beliebt</div>
+          <div class="link" (click)="closeNavbar()" routerLink="popular" routerLinkActive="active">Neu & beliebt</div>
         </li>
 
         <li class="nav-item">
-          <div class="link" routerLink="myvideos" routerLinkActive="active">Meine Videos</div>
+          <div class="link" (click)="closeNavbar()" routerLink="myvideos" routerLinkActive="active">Meine Videos</div>
         </li>
       </ul>
 
@@ -42,7 +42,7 @@
 
       <div class="headerLinks">
         <div>
-          <button class="btn btn-danger " routerLink="/edit-user">Profil</button>
+          <button class="btn btn-danger " routerLink="edit-user" >Profil</button>
           <button class="btn btn-danger " (click)="onLogout()">Log out</button>
         </div>
       </div>

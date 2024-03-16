@@ -33,7 +33,6 @@ export class SignupComponent implements OnInit {
     this.signUpForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       username: ['', Validators.required],
-      phone: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['']
     }, { validators: this.checkPasswords } as AbstractControlOptions);
