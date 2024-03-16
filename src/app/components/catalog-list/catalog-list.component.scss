@@ -148,3 +148,13 @@ video {
 .space-left {
     margin-left: 15px ;
 }
+
+@media (max-width: 800px){
+    .itemBox {
+        flex-direction: column;
+    }
+    .videoListing {
+       
+        padding: 10px 20px;
+    }
+}

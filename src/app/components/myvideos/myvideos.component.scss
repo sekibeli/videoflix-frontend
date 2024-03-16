@@ -12,6 +12,12 @@
    padding: 0 80px;
 }
 
+.content {
+    margin: auto;
+    max-width: 1920px;
+    width: 100%;
+}
+
 .startbox::before {
     content: ""; /* Notwendig für die Anzeige des Pseudo-Elements */
     position: absolute;

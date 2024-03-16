@@ -16,6 +16,12 @@
 //     display: flex;
 //     flex-direction: column;
 // }
+
+.content {
+    margin: auto;
+    max-width: 1920px;
+    width: 100%;
+}
 .placemid {
     position: relative;
      display: flex;
@@ -201,5 +207,8 @@ app-videorow {
     .rightSection {
         width: 100%;
         margin: 20px 0;
+    }
+    .upper-content-box {
+        margin: 100px 20px;
     }
 }
