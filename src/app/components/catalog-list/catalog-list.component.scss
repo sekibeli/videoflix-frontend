@@ -150,11 +150,24 @@ video {
 }
 
 @media (max-width: 800px){
-    .itemBox {
-        flex-direction: column;
-    }
     .videoListing {
        
         padding: 10px 20px;
     }
+}
+@media (max-width: 500px){
+    .itemBox {
+        flex-direction: column;
+    }
+
+    .overview-description {
+        display: none;
+    }
+
+    .pic-box {
+        position: relative;
+        height: 280px;
+        width: 100%; 
+    }
+   
 }
