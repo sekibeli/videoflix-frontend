@@ -1,8 +1,9 @@
-<div class="upper-content-box">
-    <div *ngIf="featureVideo">
-    
-        <div class="placemid">
-            <!-- <div class="video-box"> -->
+<div class="content">
+    <div class="upper-content-box">
+        <!-- <ng-container *ngIf="(videoService.mostLikedVideos$ | async)?.slice(0,1) as mostLikedVideos"> -->
+            <div class="placemid"  *ngIf="featureVideo">
+
+
                 <video  width="100%" height="auto" autoplay muted loop>
                     <source [src]="featureVideo.video_file" type="video/mp4">
                     Ihr Browser unterstützt das Video-Tag nicht.
@@ -14,40 +15,53 @@
                     <div class="show-category">{{featureVideo.category}}</div>
                     <button class="btn btn-danger" (click)="viewVideoDetail(featureVideo.id)">ANSCHAUEN</button>
                 </div>
-            <!-- </div> -->
-         
-        </div>
-       
-       
-    
-        <!-- <div class="card">
-            <div class="card-body">
-                <div class="controlButtons">
-                    <div class="videoLikesContainer">
-                        <div class="bi bi-heart likeButton iconSizeFeatureVideo"
-                            *ngIf="featureVideo.id && !featureVideoLiked" (click)="toggleLikeFeatureVideo(featureVideo.id)">
-                        </div>
-                        <div class="bi bi-heart-fill iconSizeFeatureVideo likeButton"
-                            [ngClass]="{'liked': featureVideoLiked}" style="color:red" *ngIf="featureVideoLiked"
-                            (click)="toggleLikeFeatureVideo(featureVideo.id)"></div>
-                        <div class="bi likeCounterFeatureVideo iconSizeFeatureVideo">{{featureVideo.likes.length}}</div>
-                    </div>
-                    <div class="bi bi-info-circle-fill iconSizeFeatureVideo" data-bs-toggle="collapse"
-                        data-bs-target="#videoDescriptionContent"></div>
-                </div>
+                <!-- <video width="100%" height="auto" *ngIf="mostLikedVideo[0]">
+                    <source [src]="mostLikedVideo[0].video_file" type="video/mp4">
+                    Ihr Browser unterstützt das Video-Tag nicht.
+                </video>
+
+                <div class="text-overlay" *ngIf="mostLikedVideo[0]">
+                    <div class="show-title">{{mostLikedVideo[0].title}}</div>
+                    <div class="show-description">{{mostLikedVideo[0].description}}</div>
+                    <div class="show-category">{{mostLikedVideo[0].category}}</div>
+                    <button class="btn btn-danger">ANSCHAUEN</button>
+                </div> -->
+
+
             </div>
-            <div id="videoDescriptionContent" class="collapse">
-                <div class="videoDescriptionContainer">
-                    <div class="infoFeatureVideo">Autor: {{ featureVideo ? getUserById(featureVideo.created_from)?.username
-                        : 'Unbekannter Autor' }}</div>
-                    <div class="infoFeatureVideo">Upload: {{featureVideo.created_at | date: 'dd. MMMM yyyy'}}</div>
-                    <div class="infoFeatureVideo">Kategorie: {{featureVideo.category}}</div>
-                    <span class="infoFeatureVideo">Beschreibung: {{featureVideo.description}}</span>
-                </div>
-            </div>
-        </div> -->
+        <!-- </ng-container> -->
     </div>
+
+    <!-- <div class="section-devider"></div> -->
+
+   
+
+
+   
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="content">
+   
+
 
 
 <div class="section-devider"></div>
@@ -91,69 +105,6 @@
                         </div>
                     </div>
         
-                    <!-- Modal -->
-                    <!-- <div class="modal fade" id="surpriseVideoModal" data-bs-backdrop="static" tabindex="-1"
-                        aria-labelledby="surpriseVideoModalLabel" aria-hidden="true" (show.bs.modal)="pauseFeatureVideo()"
-                        (hidden.bs.modal)="playFeatureVideo()" (hide.bs.modal)="deleteSelectedVideo()">
-                        <div class="modal-dialog modal-xl modal-fullscreen-md-down">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="surpriseVideoModalLabel">Modal title</h1>
-                                    <button type="button" class="btn-close" (click)="deleteSelectedVideo()"
-                                        data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="category">{{selectedVideo?.category}}</div>
-                                    <div class="box">
-                                        <h4>{{selectedVideo?.title}}</h4>
-                                        <div class="description">{{selectedVideo?.description}}</div>
-                                        <div class="fullwidth" *ngIf="selectedVideo">
-                                            <video width="100%" controls (play)="onVideoPlay(selectedVideo.id)" >
-                                                <source [src]="selectedVideo.video_file" type="video/mp4">
-                                                Ihr Browser unterstützt das Video-Tag nicht.
-        
-                                            </video>
-        
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="controlButtons">
-                                                    <div class="videoLikesContainer">
-                                                        <div class="bi bi-heart iconSize"
-                                                            *ngIf="selectedVideo && selectedVideo.id !== undefined && !videoLiked"
-                                                            (click)="toggleLikeVideo(selectedVideo.id)"></div>
-                                                        <div class="bi bi-heart-fill iconSize likeButton"
-                                                            [ngClass]="{'liked': videoLiked}" style="color:red"
-                                                            *ngIf="selectedVideo && selectedVideo.id !== undefined && videoLiked"
-                                                            (click)="toggleLikeVideo(selectedVideo.id)"></div>
-                                                        <div class="bi likeCounterSelectedVideo iconSizeFeatureVideo">
-                                                            {{selectedVideo?.likes?.length}}</div>
-                                                    </div>
-                                                    <div class="bi bi-info-circle-fill iconSize"></div>
-                                                    <div class="additionalInformation">Autor: {{ selectedVideo ?
-                                                        getUserById(selectedVideo.created_from)?.username : 'Unbekannter Autor'
-                                                        }}
-        
-                                                        Upload {{selectedVideo?.created_at |
-                                                        date: 'dd. MMMM yyyy'}}</div>
-                                                </div>
-                                            </div>
-        
-                                        </div>
-        
-                                    </div>
-        
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                                        (click)="deleteSelectedVideo()">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Modal Ende -->
-        
                 </div>
            
         </div>
@@ -164,3 +115,4 @@
 
 
 
+</div>
