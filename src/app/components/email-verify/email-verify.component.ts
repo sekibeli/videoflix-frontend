@@ -39,7 +39,7 @@ export class EmailVerifyComponent implements OnInit, OnDestroy {
 
 
   verifyEmail(token: string) {
-    return this.http.get(`http://localhost:8000/verify/${token}`);
+    return this.http.get(`https://alexander-peil.developerakademie.org/verify/${token}`);
   }
 
 

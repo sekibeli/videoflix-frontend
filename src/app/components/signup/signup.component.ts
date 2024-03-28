@@ -15,6 +15,8 @@ export class SignupComponent implements OnInit {
   submitted!: boolean;
   signedUpInfo!: boolean;
   isButtonDisabled!: boolean;
+  passwordInputFocused: boolean = false;
+
 
 
   constructor(
@@ -33,7 +35,7 @@ export class SignupComponent implements OnInit {
     this.signUpForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['']
     }, { validators: this.checkPasswords } as AbstractControlOptions);
   }
@@ -71,7 +73,7 @@ export class SignupComponent implements OnInit {
         this.router.navigateByUrl('/login');
       }, 3000);
     } catch (err) {
-      console.error('Could not signup.', err);      
+      console.error('Could not signup.', err);
       this.handlySignUpError();
     }
   }
@@ -82,6 +84,14 @@ export class SignupComponent implements OnInit {
     setTimeout(() => {
       this.userAlreadyExists = false;
     }, 3000);
+  }
+
+  onPasswordFocus() {
+    this.passwordInputFocused = true;
+  }
+  
+  onPasswordBlur() {
+    this.passwordInputFocused = false;
   }
 
 }

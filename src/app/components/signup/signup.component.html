@@ -29,27 +29,30 @@
             </div>
 
             <!-- Password section -->
-            <div>
-                <input class="form-control" type="password" formControlName="password"
-                    placeholder="Passwort">
-                <span *ngIf="submitted && signUpForm.get('password')?.errors?.['required']" class="warning">
-                    Please enter a password.
-                </span>
-            </div>
+            <input #passwordInput class="form-control" type="password" formControlName="password" placeholder="Passwort"
+                (focus)="onPasswordFocus()" (blur)="onPasswordBlur()">
+            <span *ngIf="passwordInputFocused && signUpForm.get('password')?.value.length < 8" class="warning checkPassword">
+                Das Passwort muss mindestens 8 Zeichen lang sein.
+            </span>
+
 
             <!-- Confirm passsword section -->
             <div>
                 <input class="form-control" type="password" formControlName="confirmPassword"
                     placeholder="Passwort wiederholen">
                 <span class="warning"
-                    *ngIf="signUpForm.errors?.['notSame'] && signUpForm.get('confirmPassword')?.touched">Passwords do not match.</span>
+                    *ngIf="signUpForm.errors?.['notSame'] && signUpForm.get('confirmPassword')?.touched">Passwords do
+                    not match.</span>
             </div>
-            
-            <button class="btn btn-danger signUptBtn" type="submit" [disabled]="!signUpForm.valid || isButtonDisabled">Konto anlegen</button>
-            <span *ngIf="signedUpInfo" class="success signupInfoText">Signed up succesfully. We sent you a verification email.</span>
+
+            <button class="btn btn-danger signUptBtn" type="submit"
+                [disabled]="!signUpForm.valid || isButtonDisabled">Konto anlegen</button>
+            <span *ngIf="signedUpInfo" class="success signupInfoText">Signed up succesfully. We sent you a verification
+                email.</span>
             <span *ngIf="userAlreadyExists" class="warning signupInfoText">This user already exists.</span>
         </form>
 
-<div class="text">Du hast schon einen Account?<br><span class="red" [routerLink]="['/login']">Hier einloggen</span></div>
+        <div class="text">Du hast schon einen Account?<br><span class="red" [routerLink]="['/login']">Hier
+                einloggen</span></div>
     </div>
 </div>

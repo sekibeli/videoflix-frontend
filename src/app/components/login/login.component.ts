@@ -52,9 +52,10 @@ export class LoginComponent implements OnInit {
 
   async performLogin() {
     try {
+      localStorage.removeItem('token');  
       const formData = this.loginForm.value;
       let resp: any = await this.authService.login(formData);
-      localStorage.setItem('token', resp['token']);
+      this.authService.token$.next(resp['token']);
       this.router.navigateByUrl('/home/surprise');
     } catch (err: any) {
       if (err.status === 401) {
@@ -96,8 +97,9 @@ export class LoginComponent implements OnInit {
 
   async onGuestLogin() {
     try {
+      localStorage.removeItem('token');
       const resp: any = await this.authService.guestLogin();
-      localStorage.setItem('token', resp['token']);
+      this.authService.token$.next(resp['token']);
       this.router.navigateByUrl('/home/surprise');
     } catch (err) {
       this.isEmailPasswordInvalid = true;
