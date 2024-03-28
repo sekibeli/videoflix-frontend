@@ -75,35 +75,41 @@ export class SignupComponent implements OnInit {
       }, 3000);
     } catch (err) {
       console.error('Could not signup.', err);
-      this.handlySignUpError(err);
+      this.handleSignUpError(err);
     }
   }
 
 
-  handlySignUpError(err: any) {
-    // Überprüfen Sie, ob es sich um eine Fehlerantwort mit Status 400 handelt
+  handleSignUpError(err: any) {
+    this.errorMessage = null;
     if (err.status === 400 && err.error) {
-      // Nehmen Sie an, dass der Fehler im ersten Schlüssel des Fehlerobjekts liegt.
-      const errors = err.error[Object.keys(err.error)[0]];
-      // Wenn errors ein Array ist, zeigen Sie die erste Fehlermeldung an.
-      if (Array.isArray(errors)) {
-        this.errorMessage = errors[0];
+      const passwordErrors = err.error.password || [];
+      for (let error of passwordErrors) {
+        if (error === "This password is too common.") {
+          this.errorMessage = "Dieses Passwort ist zu schwach.";
+          break;
+        } else if (error === "This password is entirely numeric.") {
+          this.errorMessage = "Dieses Passwort besteht nur aus Zahlen.";
+          break;
+        }
+      }
+      if (!this.errorMessage) {
+        this.errorMessage = "Es ist ein Fehler bei der Registrierung aufgetreten. Bitte versuchen Sie es erneut.";
       }
     } else {
-      // Wenn es kein bekannter Fehler ist, zeigen Sie eine allgemeine Fehlermeldung an.
-      this.errorMessage = "An error occurred during signup. Please try again.";
+      this.errorMessage = "Ein unbekannter Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.";
     }
-  
     setTimeout(() => {
       this.errorMessage = null;
     }, 3000);
   }
-  
+
+
 
   onPasswordFocus() {
     this.passwordInputFocused = true;
   }
-  
+
   onPasswordBlur() {
     this.passwordInputFocused = false;
   }
