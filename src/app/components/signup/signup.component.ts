@@ -10,7 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  userAlreadyExists!: boolean;
+  // userAlreadyExists!: boolean;
+  errorMessage: string | null = null;
   signUpForm!: FormGroup;
   submitted!: boolean;
   signedUpInfo!: boolean;
@@ -74,17 +75,30 @@ export class SignupComponent implements OnInit {
       }, 3000);
     } catch (err) {
       console.error('Could not signup.', err);
-      this.handlySignUpError();
+      this.handlySignUpError(err);
     }
   }
 
 
-  handlySignUpError() {
-    this.userAlreadyExists = true;
+  handlySignUpError(err: any) {
+    // Überprüfen Sie, ob es sich um eine Fehlerantwort mit Status 400 handelt
+    if (err.status === 400 && err.error) {
+      // Nehmen Sie an, dass der Fehler im ersten Schlüssel des Fehlerobjekts liegt.
+      const errors = err.error[Object.keys(err.error)[0]];
+      // Wenn errors ein Array ist, zeigen Sie die erste Fehlermeldung an.
+      if (Array.isArray(errors)) {
+        this.errorMessage = errors[0];
+      }
+    } else {
+      // Wenn es kein bekannter Fehler ist, zeigen Sie eine allgemeine Fehlermeldung an.
+      this.errorMessage = "An error occurred during signup. Please try again.";
+    }
+  
     setTimeout(() => {
-      this.userAlreadyExists = false;
+      this.errorMessage = null;
     }, 3000);
   }
+  
 
   onPasswordFocus() {
     this.passwordInputFocused = true;
