@@ -10,7 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  userAlreadyExists!: boolean;
+  // userAlreadyExists!: boolean;
+  errorMessage: string | null = null;
   signUpForm!: FormGroup;
   submitted!: boolean;
   signedUpInfo!: boolean;
@@ -74,22 +75,41 @@ export class SignupComponent implements OnInit {
       }, 3000);
     } catch (err) {
       console.error('Could not signup.', err);
-      this.handlySignUpError();
+      this.handleSignUpError(err);
     }
   }
 
 
-  handlySignUpError() {
-    this.userAlreadyExists = true;
+  handleSignUpError(err: any) {
+    this.errorMessage = null;
+    if (err.status === 400 && err.error) {
+      const passwordErrors = err.error.password || [];
+      for (let error of passwordErrors) {
+        if (error === "This password is too common.") {
+          this.errorMessage = "Dieses Passwort ist zu schwach.";
+          break;
+        } else if (error === "This password is entirely numeric.") {
+          this.errorMessage = "Dieses Passwort besteht nur aus Zahlen.";
+          break;
+        }
+      }
+      if (!this.errorMessage) {
+        this.errorMessage = "Es ist ein Fehler bei der Registrierung aufgetreten. Bitte versuchen Sie es erneut.";
+      }
+    } else {
+      this.errorMessage = "Ein unbekannter Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.";
+    }
     setTimeout(() => {
-      this.userAlreadyExists = false;
+      this.errorMessage = null;
     }, 3000);
   }
+
+
 
   onPasswordFocus() {
     this.passwordInputFocused = true;
   }
-  
+
   onPasswordBlur() {
     this.passwordInputFocused = false;
   }
