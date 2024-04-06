@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VideoService } from 'src/app/services/video.service';
@@ -23,6 +23,9 @@ export class MyvideosComponent implements OnInit {
   curentfilmRating: number = 0;
   currentCategory: string = 'allgemein';
   // videoForm!: FormGroup;
+  showUploadMessage: boolean = false;
+  uploadMessage: string = '';
+  @ViewChild('fileInput') fileInputVariable: ElementRef | undefined;
 
   videoForm = this.formBuilder.group({
     title: ['', Validators.required],
@@ -83,6 +86,20 @@ export class MyvideosComponent implements OnInit {
       this.videoService.postVideo(formData).subscribe({
         next: (response) => {
           console.log('Video erfolgreich hochgeladen', response);
+          this.videoForm.reset();
+          this.selectedFile = null;
+          this.curentfilmRating = 0;
+          this.currentCategory = 'allgemein'; 
+          this.showUploadMessage = true;
+          if(this.fileInputVariable && this.fileInputVariable.nativeElement) {
+            this.fileInputVariable.nativeElement.value = ""; 
+          }
+          this.uploadMessage = 'Vielen Dank für den Upload eines neuen Videos. Wir schalten es nach Überprüfung frei. Dies kann bis zu 24 Stunden dauern.';
+          
+          setTimeout(() => {
+            this.showUploadMessage = false;
+            this.uploadMessage = '';
+          }, 6000); 
           this.videoService.getVideos();
         },
         error: (error) => {
@@ -130,7 +147,7 @@ export class MyvideosComponent implements OnInit {
     })
   }
 
-  onSubmit() { }
+
 
   saveChanges(video: Video) {
     if (this.editVideoForm.valid) {
@@ -156,11 +173,11 @@ export class MyvideosComponent implements OnInit {
     }
   }
 
-  closeModal() {
-    const modalElement = document.getElementById('editModal');
-    const modal = bootstrap.Modal.getInstance(modalElement);
-    modal.hide();
-  }
+  // closeModal() {
+  //   const modalElement = document.getElementById('editModal');
+  //   const modal = bootstrap.Modal.getInstance(modalElement);
+  //   modal.hide();
+  // }
 
 
   selectRating(rating: number) {

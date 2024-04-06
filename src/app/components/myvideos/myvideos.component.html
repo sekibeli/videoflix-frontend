@@ -6,7 +6,7 @@
     <div class="headline"> <img src="../../../assets/img/logovideoflix.png" alt="" width="250px"></div>
     <div>NEUES VIDEO HOCHLADEN</div>
 
-    <form class="formgroup" [formGroup]="videoForm" (ngSubmit)="onUpload()">
+    <form class="formgroup" [formGroup]="videoForm" (ngSubmit)="onUpload()" *ngIf="!showUploadMessage">
 
 
       <div class="input-item">
@@ -73,15 +73,19 @@
       </div> -->
 
 
-      <input type="file" (change)="onFileSelected($event)">
-
+      <input type="file" (change)="onFileSelected($event)" #fileInput>
+    
 
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-        <button [disabled]="!videoForm.valid" type="submit" class="btn btn-danger" data-bs-dismiss="modal">Video
+        <button [disabled]="!videoForm.valid" type="submit" class="btn btn-danger">Video
           hinzufügen</button>
+         
       </div>
     </form>
+    <div *ngIf="showUploadMessage" class="upload-message">
+      {{ uploadMessage }}
+    </div>
     <!-- <div class="text">Du hast noch keinen Account? <br><span class="red" [routerLink]="['/signup']">Hier registrieren!</span></div>
       <div class="signUpBoxBottomContent">
           <div class="forgotPw" [routerLink]="['/forgot-password']">Passwort vergessen?</div>
