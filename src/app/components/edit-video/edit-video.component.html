@@ -52,12 +52,16 @@
                             <option value="funny">Funny</option>
                           </select>
                         </div>
+
+                        
             
                       </form>
                       
                     <button (click)="saveChanges(video); goBack()" type="button"
                       class="btn btn-primary">Änderungen speichern</button>
-                    
+                      <div class="spacer"></div>
+                      <button (click)="deleteVideo(video.id)" type="button"
+                      class="btn btn-danger">Video löschen</button>
                 </div>
                 
 
