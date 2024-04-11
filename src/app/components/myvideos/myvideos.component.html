@@ -4,7 +4,7 @@
   <div class="uploadBox">
 
     <div class="headline"> <img src="../../../assets/img/logovideoflix.png" alt="" width="250px"></div>
-    <div>NEUES VIDEO HOCHLADEN</div>
+    <div *ngIf="!showUploadMessage">NEUES VIDEO HOCHLADEN</div>
 
     <form class="formgroup" [formGroup]="videoForm" (ngSubmit)="onUpload()" *ngIf="!showUploadMessage">
 
@@ -85,6 +85,7 @@
     </form>
     <div *ngIf="showUploadMessage" class="upload-message">
       {{ uploadMessage }}
+      <button class="btn btn-danger" (click)="showForm()">Ok</button>
     </div>
     <!-- <div class="text">Du hast noch keinen Account? <br><span class="red" [routerLink]="['/signup']">Hier registrieren!</span></div>
       <div class="signUpBoxBottomContent">

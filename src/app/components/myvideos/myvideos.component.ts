@@ -96,10 +96,10 @@ export class MyvideosComponent implements OnInit {
           }
           this.uploadMessage = 'Vielen Dank für den Upload eines neuen Videos. Wir schalten es nach Überprüfung frei. Dies kann bis zu 24 Stunden dauern.';
           
-          setTimeout(() => {
-            this.showUploadMessage = false;
-            this.uploadMessage = '';
-          }, 6000); 
+          // setTimeout(() => {
+          //   this.showUploadMessage = false;
+          //   this.uploadMessage = '';
+          // }, 6000); 
           this.videoService.getVideos();
         },
         error: (error) => {
@@ -195,5 +195,9 @@ export class MyvideosComponent implements OnInit {
       categoryControl.setValue(category);
       this.currentCategory = category;
     }
+  }
+
+  showForm(){
+    this.showUploadMessage = false;
   }
 }

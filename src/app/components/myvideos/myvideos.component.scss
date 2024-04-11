@@ -155,12 +155,16 @@
    width: 100vw;
 }
 .upload-message {
-background-color: rgba(255, 255, 255, 0.594);
+    background-color: rgb(255 255 255);
     margin: 10px;
     padding: 20px;
     border-radius: 5px;
-    color: green; 
-    
+    color: #2d5838;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
   }
 
 @media (max-width: 992px){
