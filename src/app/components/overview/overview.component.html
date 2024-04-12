@@ -1,119 +1,18 @@
-<!-- <app-video-search [videos]="videoSearchList" (searchResults)="handleSearchResults($event)"></app-video-search> -->
-
-
-<div class="content" >
-    <div class="rowHead"><h2>Alle Filme im Überblick</h2></div>
+<div class="content">
+    <div class="rowHead">
+        <h2>Alle Filme im Überblick</h2>
+    </div>
     <div class="section-devider"></div>
-    <!-- <div class="overlay"></div> -->
-    <!-- <div class="section"> -->
 
-        <ng-container #showCategories>
-            <div *ngFor="let category of (videosByCategory$ | async) | keyvalue">
-                <div class="rowHead">
-                    <h2>{{ category.key }}</h2>
-                </div>
-                <!-- <div class="videoListing"> -->
-                    <app-catalog-grid [videos]="category.value"></app-catalog-grid>
-                    <!-- <div *ngFor="let video of category.value" data-bs-toggle="modal"
-                        data-bs-target="#overviewVideoModal">
-                      
-                      
-                        <div class="itemBox" >
-                            <div class="pic-box">
-                               
-                                <div class="overlay" (click)="viewVideoDetail(video.id)">
-                                
-                                    <div class="playIcon">Play</div>
-                                </div>
-                               
-                                <video class="video"  [poster]="video.thumbnail" >
-                                   
-                                    <source [src]="video.video_file" type="video/mp4">
-                                    Ihr Browser unterstützt das Video-Tag nicht.
-                                    
-                                </video>
-                           
-                            </div>
-                                <div class="text-besides">
-                                    <div class="overview-title">{{video.title}}</div>
-                                    <div class="overview-category">{{video.category}}</div>
-                                    <div class="overview-likes"><img src="../../../assets/img/icons8-herz-48.png" alt="">{{video?.likes?.length}}</div>
-                                   
-                                </div>
-                            
-                        </div>
-                    </div> -->
-                <!-- </div> -->
+    <ng-container #showCategories>
+        <div *ngFor="let category of (videosByCategory$ | async) | keyvalue">
+            <div class="rowHead">
+                <h2>{{ category.key }}</h2>
             </div>
-        </ng-container>
+            <app-catalog-grid [videos]="category.value"></app-catalog-grid>
 
-
-        <!-- Modal -->
-        <!-- <div class="modal fade" id="overviewVideoModal" data-bs-backdrop="static" tabindex="-1"
-            aria-labelledby="overviewVideoModalLabel" aria-hidden="true" (hide.bs.modal)="deleteSelectedVideo()">
-            <div class="modal-dialog modal-xl modal-fullscreen-md-down">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="overviewVideoModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" (click)="deleteSelectedVideo()" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="category">{{selectedVideo?.category}}</div>
-                        <div class="box">
-                            <h4>{{selectedVideo?.title}}</h4>
-                            <div class="description">{{selectedVideo?.description}}</div>
-                            <div class="fullwidth" *ngIf="selectedVideo">
-                                <video width="100%" controls (play)="onVideoPlay(selectedVideo.id)">
-                                    <source [src]="selectedVideo.video_file" type="video/mp4">
-                                    Ihr Browser unterstützt das Video-Tag nicht.
-
-                                </video>
-
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="controlButtons">
-                                        <div class="bi bi-trash3-fill iconSize" data-bs-dismiss="modal" (click)="deleteVideo(selectedVideo.id)"></div>
-                                        <div class="videoLikesContainer">
-                                            <div class="bi bi-heart iconSize"
-                                                *ngIf="selectedVideo && selectedVideo.id !== undefined && !videoLiked"
-                                                (click)="toggleLikeVideo(selectedVideo.id)"></div>
-                                            <div class="bi bi-heart-fill iconSize likeButton"
-                                                [ngClass]="{'liked': videoLiked}" style="color:red"
-                                                *ngIf="selectedVideo && selectedVideo.id !== undefined && videoLiked"
-                                                (click)="toggleLikeVideo(selectedVideo.id)"></div>
-                                            <div class="bi likeCounterSelectedVideo iconSizeFeatureVideo">
-                                                {{selectedVideo?.likes?.length}}</div>
-                                        </div>
-                                        <div class="bi bi-info-circle-fill iconSize"></div>
-                                        <div class="additionalInformation"><i class="bi bi-person-fill"></i> {{
-                                            getUserById(selectedVideo?.created_from)?.username }} <i
-                                                class="bi bi-cloud-upload-fill"></i> {{selectedVideo?.created_at | date:
-                                            'dd. MMMM yyyy'}} <i class="bi bi-eye-fill"></i>
-                                            {{selectedVideo?.view_count}}</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                            (click)="deleteSelectedVideo()">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- Modal Ende -->
-
-
-
-
-    <!-- </div> -->
-
+        </div>
+    </ng-container>
 </div>
 
 

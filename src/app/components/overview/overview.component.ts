@@ -36,8 +36,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.videoService.videos$.subscribe(videos => {
       this.groupVideosByCategory(videos);            
     });
-    this.checkVideoLikes();
-    this.getLoggedUserData();
+    // this.checkVideoLikes();
+    // this.getLoggedUserData();
   }
 
   ngOnDestroy() {
@@ -59,93 +59,93 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.videosByCategorySubject.next(categoryGroups);
   }
 
-  getCategories(): string[] {
-    return Object.keys(this.videosByCategory);
-  }
+  // getCategories(): string[] {
+  //   return Object.keys(this.videosByCategory);
+  // }
 
 
-  onSelectVideo(video: Video): void {
-    const videoId = video.id;
-    this.getSelectedtVideo(videoId)
-    this.selectedVideo = video;
-    this.checkVideoLikes();    
-  }
+  // onSelectVideo(video: Video): void {
+  //   const videoId = video.id;
+  //   this.getSelectedtVideo(videoId)
+  //   this.selectedVideo = video;
+  //   this.checkVideoLikes();    
+  // }
 
 
-  deleteSelectedVideo() {
-    this.selectedVideo = null;
-  }
+  // deleteSelectedVideo() {
+  //   this.selectedVideo = null;
+  // }
 
 
-  onModalClose() {
-    this.selectedVideo = null;
-  }
+  // onModalClose() {
+  //   this.selectedVideo = null;
+  // }
 
 
-  deleteVideo(videoId: number) {
-    this.videoService.deleteVideo(videoId);
-  }
+  // deleteVideo(videoId: number) {
+  //   this.videoService.deleteVideo(videoId);
+  // }
   
 
-  getUserById(id: number): User | undefined {
-    return this.users.find(user => user.id === id);
-  }
+  // getUserById(id: number): User | undefined {
+  //   return this.users.find(user => user.id === id);
+  // }
 
 
-  toggleLikeVideo(videoId: number) {
-    this.videoService.toggleLike(videoId).subscribe({
-      next: (response) => {
-        this.getSelectedtVideo(videoId);
-        this.videoService.notifyLikeUpdate(videoId);
-        console.log(response);
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    });
-  }
+  // toggleLikeVideo(videoId: number) {
+  //   this.videoService.toggleLike(videoId).subscribe({
+  //     next: (response) => {
+  //       this.getSelectedtVideo(videoId);
+  //       this.videoService.notifyLikeUpdate(videoId);
+  //       console.log(response);
+  //     },
+  //     error: (error) => {
+  //       console.error(error);
+  //     }
+  //   });
+  // }
 
 
-  getSelectedtVideo(videoId: number) {
-    this.videoService.getVideobyId(videoId).subscribe({
-      next: (updatedVideo: Video) => {
-        this.selectedVideo = updatedVideo;
-        this.checkVideoLikes();
-      },
-      error: (error: any) => {
-        console.error("Fehler beim Abrufen des aktualisierten Videos", error);
-      }
-    });
-    console.log('videoId is:',videoId, 'selectedVideo is:', this.selectedVideo);
-  }
+  // getSelectedtVideo(videoId: number) {
+  //   this.videoService.getVideobyId(videoId).subscribe({
+  //     next: (updatedVideo: Video) => {
+  //       this.selectedVideo = updatedVideo;
+  //       this.checkVideoLikes();
+  //     },
+  //     error: (error: any) => {
+  //       console.error("Fehler beim Abrufen des aktualisierten Videos", error);
+  //     }
+  //   });
+  //   console.log('videoId is:',videoId, 'selectedVideo is:', this.selectedVideo);
+  // }
 
 
-  checkVideoLikes() {
-    if (this.selectedVideo && this.selectedVideo.likes) {
-      this.videoLiked = this.selectedVideo.likes.includes(this.currentUser.id);
-    }
-  }
+  // checkVideoLikes() {
+  //   if (this.selectedVideo && this.selectedVideo.likes) {
+  //     this.videoLiked = this.selectedVideo.likes.includes(this.currentUser.id);
+  //   }
+  // }
 
 
-  async getLoggedUserData() {
-    try {
-      this.currentUser = await this.authService.getLoggedUserData();
-      if (this.currentUser) {
-        this.checkVideoLikes();
-      }
-    } catch (err) {
-      console.error('Could not load user data', err);
-    }
-  }
+  // async getLoggedUserData() {
+  //   try {
+  //     this.currentUser = await this.authService.getLoggedUserData();
+  //     if (this.currentUser) {
+  //       this.checkVideoLikes();
+  //     }
+  //   } catch (err) {
+  //     console.error('Could not load user data', err);
+  //   }
+  // }
 
  
-  onVideoPlay(videoId: number){
-    this.videoService.incrementViewCount(videoId).subscribe(response => {
-      console.log('Video hochgezählt');
-    });   
-  }
-  viewVideoDetail(videoId: number){
-    this.router.navigate(['/home/detail', videoId])
-  }
+  // onVideoPlay(videoId: number){
+  //   this.videoService.incrementViewCount(videoId).subscribe(response => {
+  //     console.log('Video hochgezählt');
+  //   });   
+  // }
+  // viewVideoDetail(videoId: number){
+  //   this.router.navigate(['/home/detail', videoId])
+  // }
 
 }
