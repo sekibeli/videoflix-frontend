@@ -7,15 +7,6 @@
     background-color: #28282D;
   }
 
-// .content {
-//     height: 100vh;
-//     width:100vw;
-//     position: absolute;
-//     top: 54px;
-//     background-color: #1A221C;
-//     display: flex;
-//     flex-direction: column;
-// }
 
 .content {
     margin: auto;
@@ -33,23 +24,21 @@
     margin: 100px 80px;
 }
 
-video {
-    height: 500px;
-     position: relative;
-     border-radius: 5px;
- // margin-top: 100px;
- // margin-bottom: 50px;
-     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-     background-color: rgba(255, 255, 255, 0.718);
-     cursor: pointer;
-     object-fit: cover;
- }
- .video {
-     position: relative;
-     height: 100%;
-     width: 100%;
-     display: block;
- }
+// video {
+//     height: 500px;
+//      position: relative;
+//      border-radius: 5px;
+//      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+//      background-color: rgba(255, 255, 255, 0.718);
+//      cursor: pointer;
+//      object-fit: cover;
+//  }
+//  .video {
+//      position: relative;
+//      height: 100%;
+//      width: 100%;
+//      display: block;
+//  }
 .sections {
     background-color: #2B2B31;
     padding-top: 20px;
@@ -92,31 +81,22 @@ padding: 10px;
 .rowHead {
     color: white;
     margin: 30px 0;
-    // background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.162) 100%);
-    // border-bottom: 1px solid rgba(0, 0, 0, 0.334);
-    // border-top: 1px solid rgba(0, 0, 0, 0.334);
-    padding: 0px 80px;
+     padding: 0px 80px;
    width: 100vw;
 }
-// .text-besides {
-//     color: white;
-//     display: flex;
-//     flex-direction: column;
-//     width: 200px;
-//     margin: 5px 20px;
-// }
+
 
 
 .firstRow {
     display: flex;
     
 }
-.rightSection {
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
+// .rightSection {
+//     margin: 20px;
+//     display: flex;
+//     flex-direction: column;
+//     width: 50%;
+// }
 // .videoBox {
 //     margin-bottom: 15px;
 //     display: flex;
@@ -138,76 +118,75 @@ padding: 10px;
 //     // position: absolute; /* Positioniert das Video absolut innerhalb des Containers */
 // }
 
-.top {
-    width: 100%;
-    color: white;
-    padding: 5px 10px;
-    background-color: rgba(255, 255, 255, 0.457);
-}
+// .top {
+//     width: 100%;
+//     color: white;
+//     padding: 5px 10px;
+//     background-color: rgba(255, 255, 255, 0.457);
+// }
 
-.videoRow {
-    padding: 0px 20px;
-    // background-color: rgba(255, 255, 255, 0.236);
-    margin-top: 15px;
-    height: 135px;
-    overflow-x: auto;
-    white-space: nowrap;
-}
-.relative {
-    position: relative;
-}
-.videoTitleHeader {
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.773);
-    width: 200px;
-    height: 30px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-    color: white;
-    font-size: 0.6em;
-    padding: 5px;
-}
+// .videoRow {
+//     padding: 0px 20px;
+//     margin-top: 15px;
+//     height: 135px;
+//     overflow-x: auto;
+//     white-space: nowrap;
+// }
+// .relative {
+//     position: relative;
+// }
+// .videoTitleHeader {
+//     z-index: 10;
+//     background-color: rgba(0, 0, 0, 0.773);
+//     width: 200px;
+//     height: 30px;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     border-top-right-radius: 5px;
+//     border-top-left-radius: 5px;
+//     color: white;
+//     font-size: 0.6em;
+//     padding: 5px;
+// }
 
-.dark {
-    color: black;
-}
-.videoListing {
-    display: flex;
-    gap: 5px;
-}
+// .dark {
+//     color: black;
+// }
+// .videoListing {
+//     display: flex;
+//     gap: 5px;
+// }
 
-.point {
-    cursor: pointer;
+// .point {
+//     cursor: pointer;
 
-    &:hover {
-        color: rgb(38, 38, 38);
-    }
-}
+//     &:hover {
+//         color: rgb(38, 38, 38);
+//     }
+// }
 
-app-videorow {
-    margin-bottom: 10px;
-}
+// app-videorow {
+//     margin-bottom: 10px;
+// }
 
 @media (max-width: 800px){
 
-    .firstRow {
-        flex-direction:column;
-        padding: 0px;
-        margin: 0px;
-    }
+    // .firstRow {
+    //     flex-direction:column;
+    //     padding: 0px;
+    //     margin: 0px;
+    // }
 
-    .bigVideo {
-        width: 100%;
-        margin: 20px 0;
-    }
+    // .bigVideo {
+    //     width: 100%;
+    //     margin: 20px 0;
+    // }
 
-    .rightSection {
-        width: 100%;
-        margin: 20px 0;
-    }
+    // .rightSection {
+    //     width: 100%;
+    //     margin: 20px 0;
+    // }
     .upper-content-box {
         margin: 100px 20px;
     }
