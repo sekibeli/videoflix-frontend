@@ -19,7 +19,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { MyvideosComponent } from './components/myvideos/myvideos.component';
 import { SurpriseComponent } from './components/surprise/surprise.component';
 import { PopularComponent } from './components/popular/popular.component';
-import { VideorowComponent } from './components/popular/videorow/videorow.component';
+// import { VideorowComponent } from './components/popular/videorow/videorow.component';
 
 
 
@@ -50,7 +50,7 @@ import { MyCatalogListComponent } from './components/my-catalog-list/my-catalog-
     MyvideosComponent,
     SurpriseComponent,
     PopularComponent,
-    VideorowComponent,
+    // VideorowComponent,
     ResetPasswordComponent,
     ForgotPasswordComponent,
     SearchResultsComponent,

@@ -88,9 +88,29 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
-    width: 180px;
+    // width: 180px;
     margin-right: 20px;
 }
 .space-left {
     margin-left: 15px;
+}
+
+@media (max-width: 800px){
+    .videoListing {
+       
+        padding: 10px 20px;
+    }
+}
+@media (max-width: 500px){
+    .itemBox {
+        flex-direction: column;
+    }
+   
+}
+
+@media (max-width: 440px){
+    .pic-box {
+       
+        width: 100%; 
+    }
 }

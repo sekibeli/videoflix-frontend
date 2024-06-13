@@ -148,3 +148,26 @@ video {
 .space-left {
     margin-left: 15px ;
 }
+
+@media (max-width: 800px){
+    .videoListing {
+       
+        padding: 10px 20px;
+    }
+}
+@media (max-width: 500px){
+    .itemBox {
+        flex-direction: column;
+    }
+
+    .overview-description {
+        display: none;
+    }
+
+    .pic-box {
+        position: relative;
+        height: 280px;
+        width: 100%; 
+    }
+   
+}

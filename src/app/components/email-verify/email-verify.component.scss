@@ -1,0 +1,19 @@
+:host {
+    display: block;
+    width: 100%; 
+    min-height: 100vh; 
+    background-size: cover; 
+    background-color: #28282D;
+  }
+
+.content {
+    height: 100vh;
+    // position: absolute;
+   padding-top: 54px;
+    margin: auto;
+    max-width: 1920px;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+}

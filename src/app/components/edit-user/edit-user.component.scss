@@ -26,10 +26,18 @@
   }
 
 
+// .content {
+//     height: 100vh;
+//     position: absolute;
+//     top: 54px;
+// }
 .content {
     height: 100vh;
-    position: absolute;
-    top: 54px;
+    // position: absolute;
+   padding-top: 54px;
+    margin: auto;
+    max-width: 1920px;
+    width: 100%;
 }
 
 .section-devider {

@@ -27,8 +27,7 @@
         <div class="content-box">
 
             <div class="content">
-                <!-- <div class="overlay"></div> -->
-
+            
                 <div class="rowHead">
                     <h2>Neu hochgeladen</h2>
                 </div>
@@ -44,17 +43,19 @@
                     <app-catalog-grid [videos]="this.videoService.mostLikedVideos$ | async "></app-catalog-grid>
                 </div>
 
-            </div>
-            <div class="sections">
 
-                <div class="rowHead">
-                    <h2>Am meisten <strong>angesehen</strong></h2>
-                </div>
-                <div class="videoListing">
-                    <app-catalog-grid [videos]="this.videoService.mostSeenVideos$ | async "></app-catalog-grid>
-                </div>
+                <div class="sections">
 
+                    <div class="rowHead">
+                        <h2>Am meisten <strong>angesehen</strong></h2>
+                    </div>
+                    <div class="videoListing">
+                        <app-catalog-grid [videos]="this.videoService.mostSeenVideos$ | async "></app-catalog-grid>
+                    </div>
+    
+                </div>
             </div>
+           
 
         </div>
 

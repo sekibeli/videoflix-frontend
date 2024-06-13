@@ -50,14 +50,23 @@
                             <option value="kids">Kids</option>
                             <option value="noidea">No idea</option>
                             <option value="funny">Funny</option>
+                            <option value="action">Action</option>
+                            <option value="drama">Drama</option>
+                            <option value="horror">Horror</option>
+                            <option value="krimi">Krimi</option>
+                            <option value="thriller">Thriller</option>
                           </select>
                         </div>
+
+                        
             
                       </form>
                       
                     <button (click)="saveChanges(video); goBack()" type="button"
                       class="btn btn-primary">Änderungen speichern</button>
-                    
+                      <div class="spacer"></div>
+                      <button (click)="deleteVideo(video.id)" type="button"
+                      class="btn btn-danger">Video löschen</button>
                 </div>
                 
 

@@ -93,17 +93,15 @@ videoForm = this.formBuilder.group({
       formData.append('title', this.editVideoForm.get('title')?.value);
       formData.append('description', this.editVideoForm.get('description')?.value);
       formData.append('category', this.editVideoForm.get('category')?.value);
-      // Fügen Sie hier ggf. weitere Felder hinzu
-
-      // Wenn Sie eine Datei hochladen, fügen Sie diese auch hinzu
-      // Beispiel: formData.append('video_file', this.selectedFile);
+      formData.append('isVisible', 'true');
+   
       const videoId = video.id;
       if (videoId !== undefined) {
-        this.videoService.updateVideo(formData, videoId) // Ersetzen Sie 'videoId' durch die tatsächliche Video-ID
+        this.videoService.updateVideo(formData, videoId) 
           .subscribe(response => {
-            // Erfolg: Handhaben Sie die Antwort hier
+            // Hat geklappt
           }, error => {
-            // Fehler: Handhaben Sie Fehlerfälle hier
+            // Fehler...
           });
       }
 
@@ -157,6 +155,9 @@ videoForm = this.formBuilder.group({
     }
   }
 
+  deleteVideo(videoId: number) {
+    this.videoService.deleteVideo(videoId);
+  }
 
 
 }

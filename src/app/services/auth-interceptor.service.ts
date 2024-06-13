@@ -2,35 +2,38 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthInterceptorService implements HttpInterceptor{
+export class AuthInterceptorService implements HttpInterceptor {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('token');
+    if (request.url.endsWith('/login/') || request.url.endsWith('/guest-login/')) {
+      return next.handle(request);
+    }
 
+    const token = this.authService.token;
     if (token) {
-       // If we have a token, we set it to the header
       request = request.clone({
-         setHeaders: {Authorization: `Token ${token}`}
+        setHeaders: { Authorization: `Token ${token}` }
       });
-   }
-   return next.handle(request).pipe(
-    catchError((err)=> {
-      if (err instanceof HttpErrorResponse) {
-        if (err.status === 401) {
-          console.log('No Token');
-          
-        this.router.navigateByUrl('/login');
-     }
-  }
-return throwError( ()=> err )
-    })
-   );
+    }
+    return next.handle(request).pipe(
+      catchError((err) => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            console.log('No Token');
+
+            this.router.navigateByUrl('/login');
+          }
+        }
+        return throwError(() => err)
+      })
+    );
   }
 }
