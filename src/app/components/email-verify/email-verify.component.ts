@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-email-verify',
@@ -39,7 +40,7 @@ export class EmailVerifyComponent implements OnInit, OnDestroy {
 
 
   verifyEmail(token: string) {
-    return this.http.get(`http://localhost:8000/verify/${token}`);
+    return this.http.get(environment.baseUrl + `/verify/${token}`);
   }
 
 
