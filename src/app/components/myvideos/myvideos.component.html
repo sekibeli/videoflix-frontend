@@ -1,62 +1,65 @@
 <div class="content">
-<div class="startbox">
+  <div class="startbox">
 
-  <div class="uploadBox">
+    <div class="uploadBox">
 
-    <div class="headline"> <img src="../../../assets/img/logovideoflix.png" alt="" width="250px"></div>
-    <div *ngIf="!showUploadMessage">NEUES VIDEO HOCHLADEN</div>
+      <div class="headline"> <img src="../../../assets/img/logovideoflix.png" alt="" width="250px"></div>
+      <div *ngIf="!showUploadMessage">NEUES VIDEO HOCHLADEN</div>
 
-    <form class="formgroup" [formGroup]="videoForm" (ngSubmit)="onUpload()" *ngIf="!showUploadMessage">
+      <form class="formgroup" [formGroup]="videoForm" (ngSubmit)="onUpload()" *ngIf="!showUploadMessage">
 
 
-      <div class="input-item">
-        <label for="username">Titel:</label>
-        <input class="form-control" type="text" formControlName="title" placeholder="Titel">
-      </div>
-      <div class="input-item">
-        <label for="username">Beschreibung:</label>
-        <input class="form-control" type="text" formControlName="description" placeholder="Beschreibung">
-      </div>
-
-      <div class="dropdownMenu mb-4 mt-1">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          FSK wählen
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="max-height: 200px; overflow-y: auto;">
-          <li *ngFor="let rating of filmRatings">
-            <button type="button" class="dropdown-item" href="#" (click)="selectRating(rating)">{{rating}}</button >
-          </li>
-        </ul>
-        <div>
-          <span>Ihre FSK Auswahl ist: </span>
-          <span class="currentSelection"> {{curentfilmRating}}</span>
+        <div class="input-item">
+          <label for="username">Titel:</label>
+          <input class="form-control" type="text" formControlName="title" placeholder="Titel">
         </div>
-      </div>
-
-
-      <div class="dropdownMenu mb-4">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-          Kategorie wählen
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="categoryDropdownButton" style="max-height: 200px; overflow-y: auto;">
-          <li><button class="dropdown-item" type="button" (click)="selectCategory('allgemein')">Allgemein</button></li>
-          <li><button class="dropdown-item" type="button" (click)="selectCategory('kids')">Kids</button></li>
-          <li><button class="dropdown-item" type="button" (click)="selectCategory('noidea')">No idea</button></li>
-          <li><button class="dropdown-item" type="button" (click)="selectCategory('funny')">Funny</button></li>
-          <li><button class="dropdown-item" type="button" (click)="selectCategory('action')">Action</button></li>
-          <li><button class="dropdown-item" type="button" (click)="selectCategory('drama')">Drama</button></li>
-          <li><button class="dropdown-item" type="button" (click)="selectCategory('horror')">Horror</button></li>
-          <li><button class="dropdown-item" type="button" (click)="selectCategory('krimi')">Krimi</button></li>
-          <li><button class="dropdown-item" type="button" (click)="selectCategory('thriller')">Thriller</button></li>
-        </ul>
-        <div>
-          <span>Ihre Kategorie Auswahl ist: </span>
-          <span class="currentSelection"> {{currentCategory}}</span>
+        <div class="input-item">
+          <label for="username">Beschreibung:</label>
+          <input class="form-control" type="text" formControlName="description" placeholder="Beschreibung">
         </div>
-      </div>
 
-      <!-- <div class="mb-3 input-item select-wrapper">
+        <div class="dropdownMenu mb-4 mt-1">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            FSK wählen
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="max-height: 200px; overflow-y: auto;">
+            <li *ngFor="let rating of filmRatings">
+              <button type="button" class="dropdown-item" href="#" (click)="selectRating(rating)">{{rating}}</button>
+            </li>
+          </ul>
+          <div>
+            <span>Ihre FSK Auswahl ist: </span>
+            <span class="currentSelection"> {{curentfilmRating}}</span>
+          </div>
+        </div>
+
+
+        <div class="dropdownMenu mb-4">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdownButton"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Kategorie wählen
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="categoryDropdownButton"
+            style="max-height: 200px; overflow-y: auto;">
+            <li><button class="dropdown-item" type="button" (click)="selectCategory('allgemein')">Allgemein</button>
+            </li>
+            <li><button class="dropdown-item" type="button" (click)="selectCategory('kids')">Kids</button></li>
+            <li><button class="dropdown-item" type="button" (click)="selectCategory('noidea')">No idea</button></li>
+            <li><button class="dropdown-item" type="button" (click)="selectCategory('funny')">Funny</button></li>
+            <li><button class="dropdown-item" type="button" (click)="selectCategory('action')">Action</button></li>
+            <li><button class="dropdown-item" type="button" (click)="selectCategory('drama')">Drama</button></li>
+            <li><button class="dropdown-item" type="button" (click)="selectCategory('horror')">Horror</button></li>
+            <li><button class="dropdown-item" type="button" (click)="selectCategory('krimi')">Krimi</button></li>
+            <li><button class="dropdown-item" type="button" (click)="selectCategory('thriller')">Thriller</button></li>
+          </ul>
+          <div>
+            <span>Ihre Kategorie Auswahl ist: </span>
+            <span class="currentSelection"> {{currentCategory}}</span>
+          </div>
+        </div>
+
+        <!-- <div class="mb-3 input-item select-wrapper">
         <label for="categorySelect" class="form-label">Kategorie</label>
         <select class="form-select select" formControlName="category" id="categorySelect">
           <option value="allgemein" selected>Wählen Sie eine Kategorie</option>
@@ -73,21 +76,25 @@
       </div> -->
 
 
-      <input type="file" (change)="onFileSelected($event)" #fileInput>
-    
+        <input type="file" (change)="onFileSelected($event)" #fileInput>
 
-      <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-        <button [disabled]="!videoForm.valid" type="submit" class="btn btn-danger">Video
-          hinzufügen</button>
-         
+
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+          <button [disabled]="!videoForm.valid" type="submit" class="btn btn-danger">Video
+            hinzufügen</button>
+
+        </div>
+      </form>
+      <div *ngIf="showUploadMessage" class="upload-message">
+        {{ uploadMessage }}
+        <button class="btn btn-danger" (click)="showForm()">Ok</button>
       </div>
-    </form>
-    <div *ngIf="showUploadMessage" class="upload-message">
-      {{ uploadMessage }}
-      <button class="btn btn-danger" (click)="showForm()">Ok</button>
     </div>
-    <!-- <div class="text">Du hast noch keinen Account? <br><span class="red" [routerLink]="['/signup']">Hier registrieren!</span></div>
+  </div>
+</div>
+
+<!-- <div class="text">Du hast noch keinen Account? <br><span class="red" [routerLink]="['/signup']">Hier registrieren!</span></div>
       <div class="signUpBoxBottomContent">
           <div class="forgotPw" [routerLink]="['/forgot-password']">Passwort vergessen?</div>
       </div>
@@ -95,18 +102,14 @@
 <div class="redsection">Gastzugang</div>
   </div> -->
 
-  </div>
-</div>
 <div>
   <div class="rowHead">
     <h2><strong>Meine</strong> veröffentlichten Videos</h2>
-
   </div>
-  <!-- <div class="videoListing" *ngIf="myVideos"> -->
-    <app-my-catalog-list [videos]="myVideos"></app-my-catalog-list>
-  <!-- </div> -->
+  
+  <app-my-catalog-list [videos]="myVideos"></app-my-catalog-list>
 </div>
-</div>
+
 
 
 
