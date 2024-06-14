@@ -1,43 +1,18 @@
 <div class="content">
     <div class="upper-content-box">
-        <!-- <ng-container *ngIf="(videoService.mostLikedVideos$ | async)?.slice(0,1) as mostLikedVideos"> -->
-            <div class="placemid"  *ngIf="featureVideo">
-
-
-                <video  width="100%" height="auto" autoplay muted loop>
-                    <source [src]="featureVideo.video_file" type="video/mp4">
-                    Ihr Browser unterstützt das Video-Tag nicht.
-                </video>
-                <!-- <div class="text-background "></div> -->
-                <div class="text-overlay">
-                    <div class="show-title">{{featureVideo.title}}</div>
-                    <div class="show-description">{{featureVideo.description}}</div>
-                    <div class="show-category">{{featureVideo.category}}</div>
-                    <button class="btn btn-danger" (click)="viewVideoDetail(featureVideo.id)">ANSCHAUEN</button>
-                </div>
-                <!-- <video width="100%" height="auto" *ngIf="mostLikedVideo[0]">
-                    <source [src]="mostLikedVideo[0].video_file" type="video/mp4">
-                    Ihr Browser unterstützt das Video-Tag nicht.
-                </video>
-
-                <div class="text-overlay" *ngIf="mostLikedVideo[0]">
-                    <div class="show-title">{{mostLikedVideo[0].title}}</div>
-                    <div class="show-description">{{mostLikedVideo[0].description}}</div>
-                    <div class="show-category">{{mostLikedVideo[0].category}}</div>
-                    <button class="btn btn-danger">ANSCHAUEN</button>
-                </div> -->
-
-
+        <div class="placemid" *ngIf="featureVideo">
+            <video width="100%" height="auto" autoplay muted loop>
+                <source [src]="featureVideo.video_file" type="video/mp4">
+                Ihr Browser unterstützt das Video-Tag nicht.
+            </video>
+            <div class="text-overlay">
+                <div class="show-title">{{featureVideo.title}}</div>
+                <div class="show-description">{{featureVideo.description}}</div>
+                <div class="show-category">{{featureVideo.category}}</div>
+                <button class="btn btn-danger" (click)="viewVideoDetail(featureVideo.id)">ANSCHAUEN</button>
             </div>
-        <!-- </ng-container> -->
+        </div>
     </div>
-
-    <!-- <div class="section-devider"></div> -->
-
-   
-
-
-   
 </div>
 
 
@@ -60,58 +35,59 @@
 
 
 <div class="content">
-   
 
 
 
-<div class="section-devider"></div>
-<div class="placemid">
 
-    <div class="content-box">
+    <div class="section-devider"></div>
+    <div class="placemid">
 
-        <div class="content">
-            <!-- <div class="overlay"></div> -->
-            
+        <div class="content-box">
+
+            <div class="content">
+                <!-- <div class="overlay"></div> -->
+
                 <div class="rowHead">
                     <h2>Ähnliche Videos</h2>
                 </div>
                 <div class="videoListing">
-        
-                    <div *ngFor="let video of videosByCategory" data-bs-toggle="modal" data-bs-target="#surpriseVideoModal">
+
+                    <div *ngFor="let video of videosByCategory" data-bs-toggle="modal"
+                        data-bs-target="#surpriseVideoModal">
                         <!-- Darstellung jedes Videos -->
-                        <div class="itemBox" >
+                        <div class="itemBox">
                             <div class="pic-box">
-                               
+
                                 <div class="overlay" (click)="viewVideoDetail(video.id)">
                                     <!-- <i class="play-icon">▶</i> Beispiel für ein Abspielsymbol -->
                                     <div class="playIcon">Play</div>
                                 </div>
-                               
-                                <video class="video" width="240" height="160" [poster]="video.thumbnail" >
-                                   
+
+                                <video class="video" width="240" height="160" [poster]="video.thumbnail">
+
                                     <source [src]="video.video_file" type="video/mp4">
                                     Ihr Browser unterstützt das Video-Tag nicht.
-                                    
+
                                 </video>
-                           
+
                             </div>
-                                <div class="text-besides">
-                                    <div class="overview-title">{{video.title}}</div>
-                                    <div class="overview-category">{{video.category}}</div>
-                                    <div></div>
-                                    <div class="overview-description">{{video.description}}</div>
-                                </div>
-                            
+                            <div class="text-besides">
+                                <div class="overview-title">{{video.title}}</div>
+                                <div class="overview-category">{{video.category}}</div>
+                                <div></div>
+                                <div class="overview-description">{{video.description}}</div>
+                            </div>
+
                         </div>
                     </div>
-        
-                </div>
-           
-        </div>
-        
-    </div>
 
-</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 
 

@@ -22,7 +22,6 @@ import { EditVideoComponent } from './components/edit-video/edit-video.component
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'start', component: StartComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'verify/:token', component: EmailVerifyComponent },
@@ -31,19 +30,17 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'datenschutz', component: DatenschutzComponent },
   { path: 'impressum', component: ImpressumComponent },
-  // { path: 'edit-user', component: EditUserComponent },
   {
     path: 'home', component: HomeComponent,
-
     children: [
       { path: 'search', component: SearchResultsComponent },
-      { path: 'surprise', component: SurpriseComponent},
+      { path: 'surprise', component: SurpriseComponent },
       { path: 'allvideos', component: OverviewComponent },
-      { path: 'myvideos', component: MyvideosComponent},
-      { path: 'popular', component: PopularComponent},
-     { path: 'detail/:id', component: VideoDetailComponent },
-     { path: 'edit-video/:id', component: EditVideoComponent},
-     { path: 'edit-user', component: EditUserComponent },
+      { path: 'myvideos', component: MyvideosComponent },
+      { path: 'popular', component: PopularComponent },
+      { path: 'detail/:id', component: VideoDetailComponent },
+      { path: 'edit-video/:id', component: EditVideoComponent },
+      { path: 'edit-user', component: EditUserComponent },
     ]
   }
 ];

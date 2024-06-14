@@ -28,7 +28,6 @@ export class EmailVerifyComponent implements OnInit, OnDestroy {
     if (token) {
       this.emailVerificationSubscription = this.verifyEmail(token).subscribe({
         next: (response) => {
-          console.log('You verified your email successfully.');
           this.router.navigateByUrl('/login');
         },
         error: (error) => {

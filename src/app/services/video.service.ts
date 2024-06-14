@@ -50,12 +50,10 @@ export class VideoService {
     const url = environment.baseUrl + `/videos/${id}`;
     this.http.delete(url).subscribe(
       (response) => {
-        console.log('Video gelöscht', response);
         this.getVideos();
       },
       (error) => {
         console.error('Fehler beim Löschen des Videos', error);
-
       }
     );
   }
@@ -65,10 +63,13 @@ export class VideoService {
     return this.http.post(url, videoData);
   }
 
+
   updateVideo(videoData: FormData, id: number) {
     const url = environment.baseUrl + `/videos/${id}/`;
     return this.http.put(url, videoData);
   }
+
+  
   getVideobyId(id: number) {
     const url = environment.baseUrl + `/videos/${id}`;
     return this.http.get<Video>(url);
@@ -94,27 +95,30 @@ export class VideoService {
     return this.likeUpdate.asObservable();
   }
 
+
   getTodayVideos() {
     const url = environment.baseUrl + `/videos/videos_today/`;
     return this.http.get<Video[]>(url);
   }
+
 
   getYesterdayVideos() {
     const url = environment.baseUrl + `/videos/videos_yesterday/`;
     return this.http.get<Video[]>(url);
   }
 
+
   getRecentVideos() {
     const url = environment.baseUrl + `/videos/recentVideos/`;    
     return this.http.get<Video[]>(url);
   }
+
 
   getMostLikedVideos() {
     const url = environment.baseUrl + `/videos/popular_videos/`;
     this.http.get<Video[]>(url).subscribe(
       mostLiked => {
         this.mostLikedVideosSubject.next(mostLiked);
-        console.log('Most liked', mostLiked);
       },
       error => {
         console.error('Fehler beim Laden der MostLikedVideos:', error)
@@ -123,18 +127,18 @@ export class VideoService {
     );
   }
 
+
   incrementViewCount(videoId: number) {
-    console.log('hoch');
     const url = environment.baseUrl + `/videos/${videoId}/increment-view-count/`;
     return this.http.post(url, null);
   }
+
 
   getMostSeenVideos() {
     const url = environment.baseUrl + `/videos/mostSeen_videos/`;
     this.http.get<Video[]>(url).subscribe(
       mostSeen => {
         this.mostSeenVideosSubject.next(mostSeen);
-        console.log('Most seen', mostSeen);
       },
       error => {
         console.error('Fehler beim Laden der MostSeenVideos:', error)
@@ -159,7 +163,6 @@ export class VideoService {
 
   loadInitialVideoData() {
     this.loadVideosForType('recentVideos', this.recentVideosSubject);
-    // this.loadVideosForType('popular_videos', this.mostLikedVideosSubject);
   }
 
 
