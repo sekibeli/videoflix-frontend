@@ -136,3 +136,36 @@ video {
 .space-left {
     margin-left: 15px;
 }
+
+@media(max-width: 1000px) {
+    .videoListing {
+        justify-content: center;
+        padding: 20px 20px;
+    }
+
+    .itemBox {
+        flex-direction: column;
+        align-items: center;
+        margin-right: unset;
+        margin-bottom: 30px;
+    }
+
+    .text-besides {
+        width: unset;
+        // margin: 30px 0;
+        align-items: center;
+    }
+
+    .overview-likes {
+        margin: unset;
+        padding-top: 10px;
+    }
+
+    .overview-category  {
+        padding-top: 10px;
+    } 
+
+    .overview-description {
+        padding-top: 10px;
+    }
+}
