@@ -79,7 +79,7 @@
         <input type="file" (change)="onFileSelected($event)" #fileInput>
 
 
-        <div class="modal-footer">
+        <div class="modal-footer addVideoBtn">
           <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
           <button [disabled]="!videoForm.valid" type="submit" class="btn btn-danger">Video
             hinzufügen</button>
@@ -93,14 +93,6 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="text">Du hast noch keinen Account? <br><span class="red" [routerLink]="['/signup']">Hier registrieren!</span></div>
-      <div class="signUpBoxBottomContent">
-          <div class="forgotPw" [routerLink]="['/forgot-password']">Passwort vergessen?</div>
-      </div>
-<div class="devide"></div>
-<div class="redsection">Gastzugang</div>
-  </div> -->
 
 <div>
   <div class="rowHead">
