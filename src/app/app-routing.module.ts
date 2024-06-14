@@ -31,7 +31,6 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'datenschutz', component: DatenschutzComponent },
   { path: 'impressum', component: ImpressumComponent },
-  // { path: 'edit-user', component: EditUserComponent },
   {
     path: 'home', component: HomeComponent,
 

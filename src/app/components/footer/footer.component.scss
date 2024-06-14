@@ -1,0 +1,31 @@
+footer {
+    max-height: 54px;
+    margin: auto;
+    max-width: 1920px;
+    width: 100%;
+}
+
+.title {
+    color: white;
+
+    img {
+        width: 150px;
+    }
+}
+
+.link {
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: color 0.5s ease;
+    &:hover {
+        color: #DC3444;
+        cursor: pointer;
+      
+    }
+
+    &.active {
+        cursor: pointer;
+      
+    }
+}
