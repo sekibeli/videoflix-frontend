@@ -1,15 +1,13 @@
-
-
 .startbox {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url('../../../assets/img/film.jpg');
+    background-image: url("../../../assets/img/film.jpg");
     background-size: cover;
-    height: 70vh;
+    // height: 70vh;
     position: relative;
-    border-bottom: 2px solid  #DC3545;
-   padding: 0 80px;
+    border-bottom: 2px solid #dc3545;
+    padding: 0 80px;
 }
 
 .content {
@@ -25,14 +23,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(40, 40, 45, 0.90); /* Farbton #28282D mit hoher Deckkraft */
+    background-color: rgba(40, 40, 45, 0.9); /* Farbton #28282D mit hoher Deckkraft */
     z-index: 1; /* Stellt sicher, dass das Overlay über dem Hintergrundbild liegt */
 }
 
 .headline {
     margin-bottom: 30px;
     font-size: 2em;
-
 }
 
 .text {
@@ -44,28 +41,26 @@
 }
 
 .red {
-    color: #DC3545;
+    color: #dc3545;
     cursor: pointer;
-
 }
 .title {
     // margin-top: 150px;
     text-align: center;
-    font-size:2.5em;
+    font-size: 2.5em;
     color: white;
     line-height: 1.2em;
-
 }
 .titleadd {
     margin-top: 100px;
     font-size: 5em;
-    color: #FEFDC4;
+    color: #fefdc4;
 }
 
 .login {
     color: white;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #132c33de;
@@ -79,7 +74,7 @@
     transform: translate(-50%, -50%); /* Zentriert den Container vertikal */
 }
 .uploadBox {
-    border-top: 2px solid #DC3545;
+    border-top: 2px solid #dc3545;
     color: white;
     padding: 30px 27px;
     margin-top: 110px;
@@ -88,21 +83,18 @@
     justify-content: center;
     align-items: center;
     // flex-direction: column;
-    background-color: #28282D;
+    background-color: #28282d;
     border-radius: 10px;
     width: 100%;
     max-width: 1000px;
     z-index: 3;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-   
 }
 .form-control {
-   
     margin-bottom: 15px;
     // width: 250px;
     background-color: #302f2f;
-    border-color: #28282D;
+    border-color: #28282d;
     color: rgb(123, 123, 123) !important;
 }
 
@@ -115,18 +107,18 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 5px;
-    width: 100%
+    width: 100%;
 }
 
 .fixedButton {
     position: absolute;
-     top: 5%;
+    top: 5%;
     right: 10%;
 }
 
 .forgotPw {
     cursor: pointer;
-    color: #DC3545;
+    color: #dc3545;
 }
 .redsection {
     font-size: 0.8em;
@@ -135,14 +127,12 @@
     // color: #DC3545;
     color: rgba(255, 255, 255, 0.288);
     cursor: pointer;
-   
-   
 }
 .devide {
     margin-top: 20px;
     width: 100%;
-    border-color: #DC3545;
-    background-color:rgba(255, 255, 255, 0.292);
+    border-color: #dc3545;
+    background-color: rgba(255, 255, 255, 0.292);
     height: 1px;
 }
 .rowHead {
@@ -151,8 +141,8 @@
     // background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.162) 100%);
     // border-bottom: 1px solid rgba(0, 0, 0, 0.334);
     // border-top: 1px solid rgba(0, 0, 0, 0.334);
-    padding: 0px 80px;
-   width: 100vw;
+    padding: 0px 100px;
+    // width: 100vw;
 }
 .upload-message {
     background-color: rgb(255 255 255);
@@ -165,43 +155,13 @@
     justify-content: center;
     flex-direction: column;
     gap: 10px;
-  }
+}
 
-@media (max-width: 992px){
+@media (max-width: 992px) {
     .startbox {
         padding: 0 10px;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // :host {
 //     display: block;
@@ -212,20 +172,20 @@
 //   }
 
 .myList {
-position: absolute;
-top: 54px;
-width: 100vw;
-height: 100vh;
-//  background-color: rgb(102, 149, 37);
-//  background: url('./../../../assets/img/dallebg.jpg')  ;
+    position: absolute;
+    top: 54px;
+    width: 100vw;
+    height: 100vh;
+    //  background-color: rgb(102, 149, 37);
+    //  background: url('./../../../assets/img/dallebg.jpg')  ;
 }
 
 .input-item {
     margin-top: 10px;
     width: 100%;
-     &:label {
+    &:label {
         padding-left: 5px;
-     }
+    }
 }
 .uploadCard {
     height: 150px;
@@ -234,9 +194,8 @@ height: 100vh;
 }
 
 .myvideosContent {
-   
     display: flex;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     gap: 5px;
 }
 
@@ -254,11 +213,10 @@ height: 100vh;
 
 .section-devider {
     width: 100%;
-    background-color: #DC3545;
+    background-color: #dc3545;
     height: 2px;
     z-index: 20;
 }
-
 
 .dropdownMenu {
     display: flex;
@@ -266,10 +224,15 @@ height: 100vh;
 }
 
 .currentSelection {
-    color: #DC3545;
+    color: #dc3545;
 }
 
-@media(max-width:600px) {
+.addVideoBtn {
+    padding-top: 1.5rem !important;
+    justify-content: center !important;
+}
+
+@media (max-width: 600px) {
     .dropdownMenu {
         flex-direction: column;
         justify-content: center;
