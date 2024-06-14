@@ -49,7 +49,6 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   loadFeatureVideo(videos: Video[]) {
     if (videos && videos.length > 0) {
       this.featureVideo = this.selectOrSaveFeatureVideo(videos);
-      console.log('Current FeatureVideo is:', this.featureVideo);
 
       if (this.currentUser && this.featureVideo) {
         this.checkVideoLikes();
@@ -84,7 +83,7 @@ export class SurpriseComponent implements OnInit, OnDestroy {
 
   getAllVideos() {
     this.videoSubscription = this.videoService.videos$.subscribe(videos => {
-      console.log('Video Array', videos);
+
       this.allVideos = videos;
       this.allVideos.sort((a, b) => b.likes.length - a.likes.length);
       this.loadFeatureVideo(videos);
@@ -92,18 +91,10 @@ export class SurpriseComponent implements OnInit, OnDestroy {
   }
 
 
-  // getAllVideosAfterLike() {
-  //   this.likeSubscription = this.videoService.getVideos();
-  //   this.videoService.videos$.subscribe(videos => {
-  //     this.allVideos = videos;
-  //     this.allVideos.sort((a, b) => b.likes.length - a.likes.length);
-  //   });
-  // }
-
-
   pauseFeatureVideo() {
     this.featureVideoElement.nativeElement.pause();
   }
+
 
   playFeatureVideo() {
     this.featureVideoElement.nativeElement.play();
@@ -133,7 +124,6 @@ export class SurpriseComponent implements OnInit, OnDestroy {
       next: (response) => {
         this.getFeatureVideo(videoId);
         this.videoService.notifyLikeUpdate(videoId);
-        console.log(response);
       },
       error: (error) => {
         console.error(error);
@@ -147,7 +137,6 @@ export class SurpriseComponent implements OnInit, OnDestroy {
       next: (response) => {
         this.getSelectedtVideo(videoId);
         this.videoService.notifyLikeUpdate(videoId);
-        console.log(response);
       },
       error: (error) => {
         console.error(error);
@@ -178,7 +167,6 @@ export class SurpriseComponent implements OnInit, OnDestroy {
     if (index !== -1) {
       this.videoService.getVideobyId(updatedVideoId).subscribe(updatedVideo => {
         this.allVideos[index] = updatedVideo;
-        console.log('Try to update video', updatedVideo);
         this.checkVideoLikes();
       });
     }
@@ -245,15 +233,15 @@ export class SurpriseComponent implements OnInit, OnDestroy {
     this.selectedVideoLikedSubscription?.unsubscribe();
   }
 
+
   onVideoPlay(videoId: number) {
     this.videoService.incrementViewCount(videoId).subscribe(response => {
       console.log('Video hochgezählt');
-
     });
-
   }
 
-  viewVideoDetail(videoId: number){
+
+  viewVideoDetail(videoId: number) {
     this.router.navigate(['/home/detail', videoId])
   }
 

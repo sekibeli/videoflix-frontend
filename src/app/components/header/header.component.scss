@@ -21,7 +21,6 @@ nav {
 }
 .bg-body-tertiary {
     background-color: #2B2B30 !important;
-    // box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.1);
   }
   
 
@@ -75,8 +74,8 @@ nav {
 }
 
 .searchInputContent input::placeholder {
-    color: #BDBDBD; /* Hellgraue Farbe */
-    opacity: 1; /* Stellt sicher, dass die Farbe nicht durch die Standard-Transparenz beeinträchtigt wird */
+    color: #BDBDBD; 
+    opacity: 1;
   }
   
 

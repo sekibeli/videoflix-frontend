@@ -80,6 +80,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  
   closeNavbar() {
     this.navbarCollapse?.nativeElement.classList.remove('show');
   }

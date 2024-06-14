@@ -27,16 +27,18 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
   @ViewChild('videoPlayer') videoPlayer: any;
 
 
-  constructor(private route: ActivatedRoute, public videoService: VideoService, private authService: AuthService, private location: Location) { }
+  constructor(
+    private route: ActivatedRoute,
+    public videoService: VideoService,
+    private authService: AuthService,
+    private location: Location) { }
 
 
   ngOnInit() {
     this.getLoggedUserData();
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== null) {
-      // Konvertiere den String zu einem Number und weise ihn zu, falls die Konversion erfolgreich ist
       this.videoId = Number(id);
-      console.log(this.videoId);
       this.unsubscribe = this.videoService.getVideobyId(this.videoId).subscribe((video) => {
         this.video = video;
         this.checkVideoLikes();
@@ -44,12 +46,10 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
         this.videoQualities = video.qualities || [];
         this.pollForVideoQualities(video.id);
       });
-      // Überprüfen, ob die Konversion fehlgeschlagen ist (NaN)
       if (isNaN(this.videoId)) {
-        this.videoId = undefined; // oder eine andere Fehlerbehandlung
+        this.videoId = undefined;
       }
     } else {
-      // Setze videoId auf undefined oder führe eine Fehlerbehandlung durch, falls kein ID-Parameter vorhanden ist
       this.videoId = undefined;
     }
   }
@@ -61,18 +61,19 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
     });
   }
 
+
   ngOnDestroy(): void {
     if (this.unsubscribe) {
       this.unsubscribe.unsubscribe();
     }
   }
 
+
   toggleLikeVideo(videoId: number) {
     this.videoService.toggleLike(videoId).subscribe({
       next: (response) => {
         this.getSelectedVideo(videoId);
         this.videoService.notifyLikeUpdate(videoId);
-        console.log(response);
       },
       error: (error) => {
         console.error(error);
@@ -80,11 +81,12 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
     });
   }
 
+
   getSelectedVideo(videoId: number) {
     this.videoService.getVideobyId(videoId).subscribe({
       next: (updatedVideo: Video) => {
         this.video = updatedVideo;
-        this.checkVideoLikes(); // Rufe dies nur auf, wenn `updatedVideo` erfolgreich aktualisiert wurde
+        this.checkVideoLikes();
       },
       error: (error: any) => {
         console.error("Fehler beim Abrufen des aktualisierten Videos", error);
@@ -92,16 +94,15 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  checkVideoLikes() {
-    console.log('Current video us:', this.video, 'currentuser is:', this.currentUser);
 
+  checkVideoLikes() {
     if (this.video && this.video.likes && this.currentUser && this.currentUser.id !== undefined) {
       this.videoLiked = this.video.likes.includes(this.currentUser.id);
     } else {
-      // Behandle den Fall, dass `currentUser` oder `likes` undefined sind
       console.error("currentUser oder likes sind undefined");
     }
   }
+
 
   async getLoggedUserData() {
     try {
@@ -114,14 +115,16 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
     }
   }
 
+
   goBack() {
     this.location.back();
   }
 
+
   pollForVideoQualities(videoId: number) {
-    const pollingInterval = 1000; 
-    const stopPollingAfter = 60000;   
-    const stopPolling$ = timer(stopPollingAfter);   
+    const pollingInterval = 1000;
+    const stopPollingAfter = 60000;
+    const stopPolling$ = timer(stopPollingAfter);
     interval(pollingInterval).pipe(
       switchMap(() => this.videoService.getVideobyId(videoId)),
       takeWhile((video) => this.videoQualities.length <= 2, true),
@@ -133,12 +136,10 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
       }
     });
   }
-  
+
 
 
   changeQuality(qualityVideoFile: string) {
-    console.log(this.video);
-
     if (this.video) {
       const videoElement = this.videoPlayer.nativeElement;
       videoElement.pause();
@@ -147,6 +148,5 @@ export class VideoDetailComponent implements OnInit, OnDestroy {
       videoElement.play();
     }
   }
-
 
 }

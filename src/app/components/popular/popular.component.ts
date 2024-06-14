@@ -41,7 +41,6 @@ export class PopularComponent implements OnInit, OnDestroy {
 
   getTodayVideos() {
     this.videoService.getTodayVideos().subscribe(videos => {
-      console.log('Today Videos', videos);
       this.videosTodaySubject.next(videos);
       this.displayedVideosSubject.next(videos);
     })
@@ -50,16 +49,13 @@ export class PopularComponent implements OnInit, OnDestroy {
 
   getRecentVideos() {
     this.videoService.getRecentVideos().subscribe(videos => {
-      console.log('recentVideos: ', videos);
       this.recentVideosSubject.next(videos);
     })
   }
 
 
-
   getYesterdayVideos() {
     this.videoService.getYesterdayVideos().subscribe(videos => {
-      console.log('yesterday Videos:', videos);
       this.videosYesterdaySubject.next(videos);
     })
   }
@@ -67,13 +63,13 @@ export class PopularComponent implements OnInit, OnDestroy {
 
   scrollLeft() {
     const container = document.querySelector('.videoRow');
-    container?.scrollBy({ left: -200, behavior: 'smooth' }); // Passen Sie den Wert -200 nach Bedarf an
+    container?.scrollBy({ left: -200, behavior: 'smooth' }); 
   }
 
 
   scrollRight() {
     const container = document.querySelector('.videoRow');
-    container?.scrollBy({ left: 200, behavior: 'smooth' }); // Passen Sie den Wert 200 nach Bedarf an
+    container?.scrollBy({ left: 200, behavior: 'smooth' });
   }
 
 
@@ -81,7 +77,6 @@ export class PopularComponent implements OnInit, OnDestroy {
     this.subscription.add(
       (displayToday ? this.videosToday$ : this.videosYesterday$).subscribe(videos => {
         this.displayedVideosSubject.next(videos);
-        console.log('displayes Videos: ', videos)
       })
     );
   }
