@@ -16,7 +16,7 @@ export class StartComponent {
   constructor(private route:Router){}
 
   onSubmit(){
-    console.log();
     this.route.navigateByUrl('/signup');
   }
+  
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.class';
 import { Video } from 'src/app/models/video.class';
@@ -12,7 +12,7 @@ import { VideoService } from 'src/app/services/video.service';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss']
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent implements OnInit, OnDestroy {
   videos$ = this.videoService.searchResults.asObservable();
   selectedVideo: any = null;
   videoLiked!: boolean;
@@ -43,7 +43,6 @@ export class SearchResultsComponent implements OnInit {
     this.getSelectedtVideo(videoId)
     this.selectedVideo = video;
     this.checkVideoLikes();
-    console.log('videoId is:',videoId, 'selectedVideo is:', this.selectedVideo);
   }
 
 
@@ -57,7 +56,6 @@ export class SearchResultsComponent implements OnInit {
         console.error("Fehler beim Abrufen des aktualisierten Videos", error);
       }
     });
-    console.log('videoId is:',videoId, 'selectedVideo is:', this.selectedVideo);
   }
 
 
@@ -72,13 +70,16 @@ export class SearchResultsComponent implements OnInit {
     this.selectedVideo = null;
   }
 
+
   onModalClose() {
     this.selectedVideo = null;
   }
 
+
   deleteVideo(videoId: number) {
     this.videoService.deleteVideo(videoId);
   }
+
 
   getUserById(id: number): User | undefined {
     return this.users.find(user => user.id === id);
@@ -110,12 +111,18 @@ export class SearchResultsComponent implements OnInit {
       next: (response) => {
         this.getSelectedtVideo(videoId);
         this.videoService.notifyLikeUpdate(videoId);
-        console.log(response);
       },
       error: (error) => {
         console.error(error);
       }
     });
+  }
+
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }
