@@ -15,43 +15,17 @@
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="content">
-
-
-
-
     <div class="section-devider"></div>
     <div class="placemid">
-
         <div class="content-box">
-
             <div class="content">
-                <!-- <div class="overlay"></div> -->
 
                 <div class="rowHead">
                     <h2>Ähnliche Videos</h2>
                 </div>
-                <div class="videoListing">
 
+                <div class="videoListing">
                     <div *ngFor="let video of videosByCategory" data-bs-toggle="modal"
                         data-bs-target="#surpriseVideoModal">
                         <!-- Darstellung jedes Videos -->
@@ -62,14 +36,10 @@
                                     <!-- <i class="play-icon">▶</i> Beispiel für ein Abspielsymbol -->
                                     <div class="playIcon">Play</div>
                                 </div>
-
                                 <video class="video" width="240" height="160" [poster]="video.thumbnail">
-
                                     <source [src]="video.video_file" type="video/mp4">
                                     Ihr Browser unterstützt das Video-Tag nicht.
-
                                 </video>
-
                             </div>
                             <div class="text-besides">
                                 <div class="overview-title">{{video.title}}</div>
@@ -77,18 +47,10 @@
                                 <div></div>
                                 <div class="overview-description">{{video.description}}</div>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
-
-
 </div>

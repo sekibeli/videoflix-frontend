@@ -1,40 +1,30 @@
 :host {
     display: block;
-    width: 100%; 
-    min-height: 100vh; 
-    background-size: cover; 
-    // background-color: #28282D;
-  }
+    width: 100%;
+    min-height: 100vh;
+    background-size: cover;
+}
 
-  .background-pic {
+.background-pic {
     position: relative;
     background-size: cover;
-  }
-  
-  .background-pic::before {
+}
+
+.background-pic::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('../../../assets/img/film.jpg');
+    background-image: url("../../../assets/img/film.jpg");
     background-size: cover;
     filter: contrast(30%) brightness(40%);
     z-index: -1;
-   
-  }
+}
 
-
-// .content {
-//     height: 100vh;
-//     position: absolute;
-//     top: 54px;
-// }
 .content {
-    height: 100vh;
-    // position: absolute;
-   padding-top: 54px;
+    padding-top: 54px;
     margin: auto;
     max-width: 1920px;
     width: 100%;
@@ -42,7 +32,7 @@
 
 .section-devider {
     width: 100%;
-    background-color: #DC3545;
+    background-color: #dc3545;
     height: 2px;
 }
 
@@ -50,9 +40,8 @@
     color: white;
     margin: 30px 0;
     padding: 0px 80px;
-   width: 100vw;
+    width: 100vw;
 }
-
 
 .content-box {
     padding: 50px 80px;
@@ -88,7 +77,7 @@
 .infoText {
     color: white;
     font-size: 1.5em;
-    margin-top: 10px ;
+    margin-top: 10px;
     z-index: 10;
 }
 
@@ -182,12 +171,10 @@ input {
 }
 
 label {
-    // width: 100px;
     color: white;
 }
 
-
-@media(max-width: 800px) {
+@media (max-width: 800px) {
     .title {
         font-size: 4em;
     }
@@ -208,7 +195,7 @@ label {
     }
 }
 
-@media(max-height: 700px) {
+@media (max-height: 700px) {
     .editUserBottomContainer {
         margin-top: min(30px);
         margin-bottom: 20px;
@@ -217,6 +204,4 @@ label {
     .headlineContainer {
         margin-top: 20px;
     }
-
-  
 }
