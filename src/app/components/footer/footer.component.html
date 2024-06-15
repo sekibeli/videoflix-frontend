@@ -1,16 +1,22 @@
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 
-    <div class="title">
-        <img src="../../../assets/img/logovideoflix.png" alt="">
-    </div>
+    <div class="footerContainerMobile">
+        <div class="title">
+            <img src="../../../assets/img/logovideoflix.png" alt="">
+        </div>
 
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <div class="link" routerLink="datenschutz" routerLinkActive="active">Datenschutzerklärung</div>
-        </li>
-        <li class="nav-item">
-            <div class="link" routerLink="impressum" routerLinkActive="active">Impressum</div>
-        </li>
-    </ul>
+        <ul class="navbar-nav mr-auto footerLinks">
+            <li class="nav-item">
+                <div class="link" routerLink="datenschutz" routerLinkActive="active">Datenschutzerklärung</div>
+            </li>
+            <li class="nav-item">
+                <div class="link" routerLink="impressum" routerLinkActive="active">Impressum</div>
+            </li>
+        </ul>
+
+        <div class="scrollPageBtn" (click)="scrollToTop($event)">
+            <img src="assets/img/arrow_up.png" alt="">
+        </div>
+    </div>
 
 </footer>
