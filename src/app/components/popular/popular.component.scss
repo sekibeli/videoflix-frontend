@@ -1,12 +1,10 @@
-
 :host {
     display: block;
-    width: 100%; 
-    min-height: 100vh; 
-    background-size: cover; 
-    background-color: #28282D;
-  }
-
+    width: 100%;
+    min-height: 100vh;
+    background-size: cover;
+    background-color: #28282d;
+}
 
 .content {
     margin: auto;
@@ -15,40 +13,24 @@
 }
 .placemid {
     position: relative;
-     display: flex;
-     justify-content: center;
-     border-radius: 10px;
- }
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+}
 
- .upper-content-box {
+.upper-content-box {
     margin: 100px 80px;
 }
 
-// video {
-//     height: 500px;
-//      position: relative;
-//      border-radius: 5px;
-//      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-//      background-color: rgba(255, 255, 255, 0.718);
-//      cursor: pointer;
-//      object-fit: cover;
-//  }
-//  .video {
-//      position: relative;
-//      height: 100%;
-//      width: 100%;
-//      display: block;
-//  }
 .sections {
-    background-color: #2B2B31;
+    background-color: #2b2b31;
     padding-top: 20px;
     margin-top: 20px;
 }
 
- .text-overlay {
+.text-overlay {
     position: absolute;
-padding: 10px;
-
+    padding: 10px;
 
     // top: 200px;
     left: 50px;
@@ -60,7 +42,7 @@ padding: 10px;
 }
 .section-devider {
     width: 100%;
-    background-color: #DC3545;
+    background-color: #dc3545;
     height: 2px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -75,118 +57,21 @@ padding: 10px;
 }
 
 .show-category {
-    color: #DC3545;
+    color: #dc3545;
     margin-bottom: 20px;
 }
 .rowHead {
     color: white;
     margin: 30px 0;
-     padding: 0px 80px;
-   width: 100vw;
+    padding: 0px 80px;
+    //    width: 100vw;
 }
-
-
 
 .firstRow {
     display: flex;
-    
 }
-// .rightSection {
-//     margin: 20px;
-//     display: flex;
-//     flex-direction: column;
-//     width: 50%;
-// }
-// .videoBox {
-//     margin-bottom: 15px;
-//     display: flex;
-//     flex-direction: column;
-// }
-// .bigVideo {
-//     background-color: white;
-   
-//     margin: 20px;
-//     width: 50%;
-//     height: 400px;
-//     position: relative; /* Stellen Sie sicher, dass der Container relative positioniert ist */
-//     overflow: hidden;
-// }
-// .bigVideo video {
-//     // width: 100%; /* Setzt die Breite des Videos auf die volle Breite des Containers */
-//     // height: 100%; /* Setzt die Höhe des Videos auf die volle Höhe des Containers */
-//     object-fit: cover; /* Stellt sicher, dass das Video den Container bedeckt, während das Seitenverhältnis beibehalten wird */
-//     // position: absolute; /* Positioniert das Video absolut innerhalb des Containers */
-// }
 
-// .top {
-//     width: 100%;
-//     color: white;
-//     padding: 5px 10px;
-//     background-color: rgba(255, 255, 255, 0.457);
-// }
-
-// .videoRow {
-//     padding: 0px 20px;
-//     margin-top: 15px;
-//     height: 135px;
-//     overflow-x: auto;
-//     white-space: nowrap;
-// }
-// .relative {
-//     position: relative;
-// }
-// .videoTitleHeader {
-//     z-index: 10;
-//     background-color: rgba(0, 0, 0, 0.773);
-//     width: 200px;
-//     height: 30px;
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     border-top-right-radius: 5px;
-//     border-top-left-radius: 5px;
-//     color: white;
-//     font-size: 0.6em;
-//     padding: 5px;
-// }
-
-// .dark {
-//     color: black;
-// }
-// .videoListing {
-//     display: flex;
-//     gap: 5px;
-// }
-
-// .point {
-//     cursor: pointer;
-
-//     &:hover {
-//         color: rgb(38, 38, 38);
-//     }
-// }
-
-// app-videorow {
-//     margin-bottom: 10px;
-// }
-
-@media (max-width: 800px){
-
-    // .firstRow {
-    //     flex-direction:column;
-    //     padding: 0px;
-    //     margin: 0px;
-    // }
-
-    // .bigVideo {
-    //     width: 100%;
-    //     margin: 20px 0;
-    // }
-
-    // .rightSection {
-    //     width: 100%;
-    //     margin: 20px 0;
-    // }
+@media (max-width: 800px) {
     .upper-content-box {
         margin: 100px 20px;
     }
