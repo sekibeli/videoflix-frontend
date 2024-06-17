@@ -9,14 +9,14 @@
    
 }
 .startbox::before {
-    content: ""; /* Notwendig für die Anzeige des Pseudo-Elements */
+    content: ""; 
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(40, 40, 45, 0.90); /* Farbton #28282D mit hoher Deckkraft */
-    z-index: 1; /* Stellt sicher, dass das Overlay über dem Hintergrundbild liegt */
+    background-color: rgba(40, 40, 45, 0.90); 
+    z-index: 1;
 }
 
 .login{
@@ -32,8 +32,8 @@
     color: rgb(145, 145, 145) !important;
 }
 .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.592); /* Setzt die Farbe des Placeholder-Textes auf Weiß */
-    opacity: 1; /* Optional: Stellt sicher, dass der Placeholder-Text vollständig opak ist */
+    color: rgba(255, 255, 255, 0.592); 
+    opacity: 1; 
 } 
 .formgroup {
     display: flex;
@@ -41,7 +41,6 @@
 }
 
 .title {
-    // margin-top: 150px;
     text-align: center;
     font-size:2.5em;
     color: white;
@@ -77,8 +76,6 @@
     z-index: 3;
 }
 .text {
-    // display: flex;
-    // justify-content: center;
     margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;

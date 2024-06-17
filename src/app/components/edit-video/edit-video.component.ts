@@ -70,7 +70,6 @@ export class EditVideoComponent implements OnInit, OnDestroy {
     this.videoService.getVideobyId(videoId).subscribe({
       next: (updatedVideo: Video) => {
         this.video = updatedVideo;
-        // this.checkVideoLikes(); 
       },
       error: (error: any) => {
         console.error("Fehler beim Abrufen des aktualisierten Videos", error);
@@ -94,7 +93,6 @@ export class EditVideoComponent implements OnInit, OnDestroy {
           }, error => {
           });
       }
-
     }
   }
 
@@ -121,9 +119,7 @@ export class EditVideoComponent implements OnInit, OnDestroy {
       formData.append('description', this.videoForm.value.description ?? '')
       formData.append('video_file', this.selectedFile, this.selectedFile.name);
       formData.append('category', this.videoForm.value.category ?? 'allgemein');
-
       formData.append('myFile', this.selectedFile, this.selectedFile.name);
-
       this.videoService.postVideo(formData).subscribe({
         next: (response) => {
           this.videoService.getVideos();

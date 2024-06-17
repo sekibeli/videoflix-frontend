@@ -22,40 +22,6 @@
     margin: 100px 80px;
 }
 
-// .videoContainer {
-//     overflow: hidden;
-//    width: 100%;
-//     height:400px;
-//     // background-color: rgba(0, 0, 0, 0.811);
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-
-// }
-// .videoFullScreen {
-//     width: 100%;
-//     height: 100%;
-//     display:block;
-//     object-fit: cover; /* Füllt den Container, schneidet aber Teile ab */
-// }
-
-// .video-container {
-//     width: 100%;
-//     height: 400px;
-//     overflow: hidden;
-//     position: relative;
-// }
-
-// .video-container video {
-//     width: 100%;
-//     height: 100%;
-//     object-fit: cover;
-//    position: absolute;
-// top: 50%;
-// left: 50%;
-// transform: translate(-50%, -50%);
-// }
-
 .placemid {
     position: relative;
     display: flex;
@@ -77,7 +43,6 @@
     position: absolute;
     padding: 10px;
     left: 8%;
-    // right: 20px;
     bottom: 15%;
     color: white;
     z-index: 20;
@@ -90,10 +55,6 @@
     align-items: center;
     height: 100%;
 }
-
-// .upper-content-box {
-//     margin: 100px 80px;
-// }
 
 .show-title {
     font-size: 2em;
@@ -143,7 +104,6 @@
 }
 
 .card {
-    // background-color: rgba(255, 228, 196, 0.517);
     height: auto;
     padding: 2px 0;
 }
@@ -197,8 +157,6 @@ video {
     height: 500px;
     position: relative;
     border-radius: 5px;
-    // margin-top: 100px;
-    // margin-bottom: 50px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     background-color: rgba(255, 255, 255, 0.718);
     cursor: pointer;
@@ -273,10 +231,6 @@ video {
     height: 2px;
 }
 
-// .relative {
-//     position: relative;
-// }
-
 .overview {
     display: flex;
 }
@@ -306,7 +260,6 @@ video {
 }
 
 .fullwidth {
-    // width: 80vw;
     display: flex;
     justify-content: center;
 }

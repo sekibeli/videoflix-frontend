@@ -8,8 +8,6 @@
         <div class="videoDetail">
             <div class="left-content">
                 <div class="left-top">
-                    <!-- 
-                        <div class="smallPic"></div> -->
                     <div class="information">
                         <div class="overview-likes">
                             <span><img src="../../../assets/img/icons8-herz-48.png" alt="">{{video.likes.length}}</span>
@@ -52,7 +50,7 @@
                     <button *ngIf="!(videoQualitiesReady | async)" class="btn btn-danger" type="button" disabled>
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         Laden...
-                      </button>
+                    </button>
                     <div class="videoQualityContainer" *ngIf="videoQualitiesReady | async">
                         <div class="selectVideoQuality" *ngFor="let quality of videoQualities">
                             <div (click)="changeQuality(quality.video_file)">{{ quality.quality }}</div>
@@ -68,10 +66,3 @@
     <div class="section-devider"></div>
 
 </div>
-
-
-
-
-
-<!-- <a target="_blank" href="https://icons8.com/icon/85130/sichtbar">Sichtbar</a> Icon von <a target="_blank" href="https://icons8.com">Icons8</a> -->
-<!-- <a target="_blank" href="https://icons8.com/icon/85459/links">Links</a> Icon von <a target="_blank" href="https://icons8.com">Icons8</a> -->

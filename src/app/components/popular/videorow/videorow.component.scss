@@ -27,7 +27,6 @@
 
 .videoRow {
     padding: 0px 10px;
-    // background-color: rgba(255, 255, 255, 0.236);
     margin-top: 15px;
     height: 135px;
     overflow-x: auto;
@@ -56,8 +55,8 @@ video {
     display: flex;
     font-size: 1em;
 }
+
 .fullwidth {
-    // width: 80vw;
     display: flex;
     justify-content: center;
 }
@@ -68,10 +67,12 @@ video {
     align-items: center;
     padding-top: 5px;
 }
+
 .card-body {
     height: 40px;
     padding: 0;
 }
+
 .card {
     
   
@@ -121,7 +122,6 @@ video {
     top: 50px;
     left: 10%;
     right: 10%;
-    // width: 70%;
     border-radius: 20px;
     background-color: #fafafa;
     z-index: 20;
@@ -136,14 +136,15 @@ justify-content: flex-end;
 padding: 10px 20px;
 cursor:pointer;
 }
+
 .modalOverlay {
-    position: fixed; /* Positioniert das Overlay fest auf dem Bildschirm */
+    position: fixed; 
     top: 0;
     left: 0;
-    width: 100%; /* Stellt sicher, dass das Overlay den ganzen Bildschirm bedeckt */
+    width: 100%; 
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.648); /* Schwarze Hintergrundfarbe mit 50% Transparenz */
-    z-index: 15; /* Stellt sicher, dass das Overlay unter dem Modal, aber über dem Rest der Seite angezeigt wird */
+    background-color: rgba(0, 0, 0, 0.648);
+    z-index: 15; 
 }
 
 

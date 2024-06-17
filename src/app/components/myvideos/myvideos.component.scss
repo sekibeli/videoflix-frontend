@@ -4,7 +4,6 @@
     align-items: center;
     background-image: url("../../../assets/img/film.jpg");
     background-size: cover;
-    // height: 70vh;
     position: relative;
     border-bottom: 2px solid #dc3545;
     padding: 0 80px;
@@ -17,14 +16,14 @@
 }
 
 .startbox::before {
-    content: ""; /* Notwendig für die Anzeige des Pseudo-Elements */
+    content: ""; 
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(40, 40, 45, 0.9); /* Farbton #28282D mit hoher Deckkraft */
-    z-index: 1; /* Stellt sicher, dass das Overlay über dem Hintergrundbild liegt */
+    background-color: rgba(40, 40, 45, 0.9);
+    z-index: 1; 
 }
 
 .headline {
@@ -33,8 +32,6 @@
 }
 
 .text {
-    // display: flex;
-    // justify-content: center;
     margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;
@@ -45,7 +42,6 @@
     cursor: pointer;
 }
 .title {
-    // margin-top: 150px;
     text-align: center;
     font-size: 2.5em;
     color: white;
@@ -64,14 +60,13 @@
     justify-content: center;
     align-items: center;
     background-color: #132c33de;
-    // width: 300px;
     border-radius: 20px;
-    margin: auto; /* Zentriert den Container horizontal */
+    margin: auto; 
     padding: 30px;
     position: absolute;
     top: 66%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Zentriert den Container vertikal */
+    transform: translate(-50%, -50%); 
 }
 .uploadBox {
     border-top: 2px solid #dc3545;
@@ -82,7 +77,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // flex-direction: column;
     background-color: #28282d;
     border-radius: 10px;
     width: 100%;
@@ -92,15 +86,14 @@
 }
 .form-control {
     margin-bottom: 15px;
-    // width: 250px;
     background-color: #302f2f;
     border-color: #28282d;
     color: rgb(123, 123, 123) !important;
 }
 
 .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.592); /* Setzt die Farbe des Placeholder-Textes auf Weiß */
-    opacity: 1; /* Optional: Stellt sicher, dass der Placeholder-Text vollständig opak ist */
+    color: rgba(255, 255, 255, 0.592); 
+    opacity: 1; 
 }
 
 .formgroup {
@@ -124,7 +117,6 @@
     font-size: 0.8em;
     width: 100px;
     margin-top: 10px;
-    // color: #DC3545;
     color: rgba(255, 255, 255, 0.288);
     cursor: pointer;
 }
@@ -138,11 +130,7 @@
 .rowHead {
     color: white;
     margin: 30px 0;
-    // background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.162) 100%);
-    // border-bottom: 1px solid rgba(0, 0, 0, 0.334);
-    // border-top: 1px solid rgba(0, 0, 0, 0.334);
     padding: 0px 100px;
-    // width: 100vw;
 }
 .upload-message {
     background-color: rgb(255 255 255);
@@ -163,34 +151,12 @@
     }
 }
 
-// :host {
-//     display: block;
-//     width: 100%; /* Füllt die Breite des Elternelements */
-//     min-height: 100vh; /* Mindestens so hoch wie der Viewport */
-//     background: url('../../../assets/img/dallebg.jpg') no-repeat center center;
-//     background-size: cover; /* Stellt sicher, dass der Hintergrund die gesamte Fläche bedeckt */
-//   }
-
-.myList {
-    position: absolute;
-    top: 54px;
-    width: 100vw;
-    height: 100vh;
-    //  background-color: rgb(102, 149, 37);
-    //  background: url('./../../../assets/img/dallebg.jpg')  ;
-}
-
 .input-item {
     margin-top: 10px;
     width: 100%;
     &:label {
         padding-left: 5px;
     }
-}
-.uploadCard {
-    height: 150px;
-    background: rgba(0, 0, 0, 0.546);
-    width: 100vw;
 }
 
 .myvideosContent {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { VideoService } from './services/video.service';
 import { UserService } from './services/user.service';
 
@@ -7,15 +7,7 @@ import { UserService } from './services/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Videoflix';
 
-constructor(private videoService: VideoService, private userService: UserService){
-}
-
-  ngOnInit(){
-    // this.videoService.getVideos();
-    // this.userService.getUserData();
-  
-  }
 }

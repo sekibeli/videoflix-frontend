@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { MessageService } from 'src/app/services/message.service';
@@ -32,12 +32,9 @@ export class LoginComponent implements OnInit {
 
 
   initFormGroup() {
-    // const savedUsername = localStorage.getItem('username');
-
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
-      // rememberMe: [!!savedUsername],
     });
   }
 
@@ -52,7 +49,7 @@ export class LoginComponent implements OnInit {
 
   async performLogin() {
     try {
-      localStorage.removeItem('token');  
+      localStorage.removeItem('token');
       const formData = this.loginForm.value;
       let resp: any = await this.authService.login(formData);
       this.authService.token$.next(resp['token']);

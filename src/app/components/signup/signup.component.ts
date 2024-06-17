@@ -10,7 +10,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  // userAlreadyExists!: boolean;
   errorMessage: string | null = null;
   signUpForm!: FormGroup;
   submitted!: boolean;

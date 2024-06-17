@@ -1,9 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VideoService } from 'src/app/services/video.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { User } from 'src/app/models/user.class';
 import { Video } from 'src/app/models/video.class';
 
 declare var bootstrap: any;
@@ -22,7 +20,6 @@ export class MyvideosComponent implements OnInit {
   filmRatings = Array.from({ length: 19 }, (v, k) => k);
   curentfilmRating: number = 0;
   currentCategory: string = 'allgemein';
-  // videoForm!: FormGroup;
   showUploadMessage: boolean = false;
   uploadMessage: string = '';
   @ViewChild('fileInput') fileInputVariable: ElementRef | undefined;
@@ -42,7 +39,7 @@ export class MyvideosComponent implements OnInit {
     if (file) {
       this.videoForm.patchValue({ video_file: file as any | null });
       this.videoForm.get('video_file')?.updateValueAndValidity();
-      this.selectedFile = file; // Ihre bestehende Logik zur Speicherung der Datei
+      this.selectedFile = file; 
     }
   }
 
@@ -60,14 +57,10 @@ export class MyvideosComponent implements OnInit {
 
 
   async loadMyVideos() {
-    // Benutzerdaten abrufen
     const userProfile = await this.authService.getLoggedUserData();
     this.userProfile = userProfile;
     const userId = this.userProfile.id;
-    // Auf Änderungen in videosSubject reagieren
     this.videoService.videos$.subscribe(videos => {
-
-      // Filtern der Videos, die vom eingeloggten Benutzer erstellt wurden
       this.myVideos = videos.filter(video => video.created_from === userId);
     });
 

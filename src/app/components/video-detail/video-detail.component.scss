@@ -11,19 +11,14 @@
     justify-content: space-between;
     gap: 40px;
 }
+
 .left-content,
 .right-content {
-    flex: 1; /* Jedes Kind nimmt gleich viel Platz ein */
-    /* Optional: Abstand hinzufügen */
+    flex: 1;
 }
 
-// .left-content {
-//     border-left: 20px linear-gradient(to right, #232328, transparent);
-// }
 .content {
-    height: 100vh;
-    // position: absolute;
-   padding-top: 54px;
+    padding-top: 54px;
     margin: auto;
     max-width: 1920px;
     width: 100%;
@@ -47,6 +42,7 @@
         filter: invert(0.2);
     }
 }
+
 .section-devider {
     width: 100%;
     background-color: #dc3545;
@@ -54,6 +50,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 .rowHead {
     color: white;
     margin: 30px 0;
@@ -62,6 +59,7 @@
 .red {
     color: #dc3545;
 }
+
 .information {
     color: white;
     font-size: 1.3em;
@@ -94,14 +92,12 @@
     margin-left: 20px;
 }
 
-// Testweise erstellt
 .videoContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
-    // max-height: 360px;
     overflow: hidden;
 }
 
@@ -190,11 +186,6 @@ video {
     cursor: pointer;
 }
 
-// .filmRating {
-//     border: 1px solid hsla(0, 0%, 100%, .4);
-//     padding: 0 0.4em;
-// }
-
 .fsk {
     margin-left: 5px;
     border: 1px solid #666671;
@@ -202,28 +193,24 @@ video {
     padding: 0px 5px;
 }
 
-// .lighter {
-//     color: #afafaf;
-// }
-
 .space-left {
-    margin-left: 20px ;
+    margin-left: 20px;
 }
 
-@media(max-width:1200px) {
+@media (max-width: 1200px) {
     .videoDetail {
         flex-direction: column;
     }
 }
 
-@media(max-width:700px) {
+@media (max-width: 700px) {
     .placemid {
         margin: unset;
         padding: 50px;
     }
 }
 
-@media(max-width:400px) {
+@media (max-width: 400px) {
     .placemid {
         padding: 25px;
     }

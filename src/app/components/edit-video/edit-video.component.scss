@@ -1,78 +1,64 @@
-
 :host {
     display: block;
-    width: 100%; 
-    min-height: 100vh; 
-    background-size: cover; 
-    background-color: #28282D;
-  }
-
- 
-
- .videoDetail {
-    display: flex;
-    justify-content: space-between;
-    gap:40px;
-   
-
- }
- .left-content, .right-content {
-    flex: 1; /* Jedes Kind nimmt gleich viel Platz ein */
-    /* Optional: Abstand hinzufügen */
-   
+    width: 100%;
+    min-height: 100vh;
+    background-size: cover;
+    background-color: #28282d;
 }
 
-// .left-content {
-//     border-left: 20px linear-gradient(to right, #232328, transparent);
-// }
+.videoDetail {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
 
+.left-content,
+.right-content {
+    flex: 1;
+}
 
 .left-content {
     position: relative;
     background: linear-gradient(to right, #232328, transparent);
     border-radius: 10px;
-  }
-  
+}
 
-  
- .placemid {
+.placemid {
     margin: 100px 100px;
+}
 
- }
-
- .goBack {
+.goBack {
     color: white;
     cursor: pointer;
 
     &:hover {
-       
-        filter:invert(0.2)
+        filter: invert(0.2);
     }
- }
- .section-devider {
+}
+
+.section-devider {
     width: 100%;
-    background-color: #DC3545;
+    background-color: #dc3545;
     height: 2px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 .rowHead {
     color: white;
     margin: 30px 0;
-  
-   
-   width: 100vw;
 }
 
 .red {
-    color: #DC3545;
+    color: #dc3545;
 }
+
 .information {
     color: white;
     font-size: 1.3em;
     font-weight: 300;
     width: 100%;
-  
+
     margin-left: 20px;
 }
 
@@ -97,7 +83,6 @@
     font-size: 1em;
     font-weight: 300;
     margin-left: 20px;
-
 }
 
 video {
@@ -110,9 +95,8 @@ video {
     margin-bottom: 20px;
     padding-top: 5px;
     img {
-        
         margin-right: 10px;
-        width:20px;
+        width: 20px;
         height: 20px;
     }
 }
@@ -143,7 +127,7 @@ video {
 
 .likeButton {
     display: inline-block;
-    transition: all .125ms ease;
+    transition: all 0.125ms ease;
 
     &.liked {
         color: red;
@@ -158,30 +142,48 @@ video {
 
 @keyframes pulse {
     0% {
-      transform: scale(1);
+        transform: scale(1);
     }
     50% {
-      transform: scale(1.2); 
+        transform: scale(1.2);
     }
     100% {
-      transform: scale(1);
+        transform: scale(1);
     }
 }
 
 .edit {
-    background-color:#2f2f37;
+    background-color: #2f2f37;
     border: none;
     color: white;
-    font-size:1.5em;
+    font-size: 1.5em;
     margin-left: 10px;
 }
 
 .area {
-    font-size:1em;
+    font-size: 1em;
     height: 150px;
-
 }
 
 .spacer {
     margin-bottom: 5px;
+}
+
+@media (max-width: 700px) {
+    .placemid {
+        margin: 25px 0 0 0;
+        padding: 50px;
+    }
+
+    .videoDetail {
+        flex-direction: column;
+    }
+
+    .edit {
+        margin-left: unset;
+    }
+
+    .btn {
+        margin-right: unset;
+    }
 }

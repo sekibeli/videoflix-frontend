@@ -19,10 +19,6 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { MyvideosComponent } from './components/myvideos/myvideos.component';
 import { SurpriseComponent } from './components/surprise/surprise.component';
 import { PopularComponent } from './components/popular/popular.component';
-// import { VideorowComponent } from './components/popular/videorow/videorow.component';
-
-
-
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
@@ -51,7 +47,6 @@ import { FooterComponent } from './components/footer/footer.component';
     MyvideosComponent,
     SurpriseComponent,
     PopularComponent,
-    // VideorowComponent,
     ResetPasswordComponent,
     ForgotPasswordComponent,
     SearchResultsComponent,

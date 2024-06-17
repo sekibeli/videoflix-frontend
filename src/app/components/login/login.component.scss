@@ -10,14 +10,14 @@
 }
 
 .startbox::before {
-    content: ""; /* Notwendig für die Anzeige des Pseudo-Elements */
+    content: ""; 
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(40, 40, 45, 0.90); /* Farbton #28282D mit hoher Deckkraft */
-    z-index: 1; /* Stellt sicher, dass das Overlay über dem Hintergrundbild liegt */
+    background-color: rgba(40, 40, 45, 0.90); 
+    z-index: 1;
 }
 
 .headline {
@@ -27,8 +27,6 @@
 }
 
 .text {
-    // display: flex;
-    // justify-content: center;
     margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;
@@ -40,7 +38,6 @@
 
 }
 .title {
-    // margin-top: 150px;
     text-align: center;
     font-size:2.5em;
     color: white;
@@ -60,14 +57,13 @@
     justify-content: center;
     align-items: center;
     background-color: #132c33de;
-    // width: 300px;
     border-radius: 20px;
-    margin: auto; /* Zentriert den Container horizontal */
+    margin: auto; 
     padding: 30px;
     position: absolute;
     top: 66%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Zentriert den Container vertikal */
+    transform: translate(-50%, -50%); 
 }
 .signUpBox {
     border-top: 2px solid #DC3545;
@@ -78,7 +74,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // flex-direction: column;
     background-color: #28282D;
     border-radius: 10px;
     width: 350px;
@@ -97,8 +92,8 @@
 }
 
 .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.592); /* Setzt die Farbe des Placeholder-Textes auf Weiß */
-    opacity: 1; /* Optional: Stellt sicher, dass der Placeholder-Text vollständig opak ist */
+    color: rgba(255, 255, 255, 0.592);
+    opacity: 1; 
 }
 
 .formgroup {
@@ -121,7 +116,6 @@
     font-size: 0.8em;
     width: 100px;
     margin-top: 10px;
-    // color: #DC3545;
     color: rgba(255, 255, 255, 0.288);
     cursor: pointer;
    

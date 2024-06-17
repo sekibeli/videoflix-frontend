@@ -47,12 +47,10 @@
     display: flex;
     flex-direction: column;
     width: 180px;
-    // margin: 5px 20px;
 }
 .overview-title {
     font-weight: 300;
     color: white;
-    // padding-bottom: 20px;
     font-size: 1.2em;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -84,11 +82,9 @@
 }
 
 .itemBox {
-    // margin-right: 5px;
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
-    // width: 180px;
     margin-right: 20px;
 }
 .space-left {

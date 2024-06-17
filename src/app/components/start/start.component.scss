@@ -1,10 +1,10 @@
 
 :host {
     display: block;
-    width: 100%; /* Füllt die Breite des Elternelements */
-    min-height: 100vh; /* Mindestens so hoch wie der Viewport */
+    width: 100%;
+    min-height: 100vh; 
     background: url('../../../assets/img/dallebg.jpg') no-repeat center center;
-    background-size: cover; /* Stellt sicher, dass der Hintergrund die gesamte Fläche bedeckt */
+    background-size: cover; 
   }
   
 .startbox {
@@ -22,13 +22,14 @@
 .form-control {
     width: 250px;
 }
+
 .title {
-    // margin-top: 150px;
     text-align: center;
     font-size:2.5em;
     color: white;
 
 }
+
 .titleadd {
     margin-top: 100px;
     font-size: 5em;
@@ -41,11 +42,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    // flex-direction: column;
     background-color: rgba(0, 0, 0, 0.482);
     border-radius: 10px;
     width: 350px;
 }
+
 .button {
     margin-top: 20px;
     width: 150px;
@@ -60,6 +61,7 @@
         background-color: rgb(240, 5, 5);
     }
 }
+
 .fixedButton {
     position: absolute;
      top: 5%;
